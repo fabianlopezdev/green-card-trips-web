@@ -1,0 +1,113 @@
+{
+  "nav": {
+    "features": "Funciones",
+    "howItWorks": "Cómo funciona",
+    "pricing": "Precio",
+    "faq": "Preguntas",
+    "getApp": "Obtener la app",
+    "language": "Idioma",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "homeLink": "Inicio de Green Card Trips",
+    "chooseLanguage": "Elegir idioma",
+    "downloadAppStore": "Descargar en App Store",
+    "downloadPlayStore": "Descargar en Google Play"
+  },
+  "hero": {
+    "headline": "Tu Compañero de Tranquilidad en el Camino a la Ciudadanía de EE.UU.",
+    "subtitle": "Registra tus viajes, planifica tus viajes y cumple con los requisitos de USCIS. Green Card Trips hace que la elegibilidad para la ciudadanía sea simple y sin estrés.",
+    "usersDescription": "Confiado por titulares de green card",
+    "downloadNow": "Descargar Ahora"
+  },
+  "features": {
+    "title": "Todo lo que Necesitas para Mantenerte en Cumplimiento",
+    "subtitle": "Herramientas simples para rastrear tu presencia, planificar viajes y alcanzar tus metas de ciudadanía",
+    "tracking": {
+      "title": "Registro Inteligente de Viajes",
+      "description": "Registra fácilmente todos tus viajes internacionales con fechas y destinos. Ve tus días en EE.UU. de un vistazo."
+    },
+    "simulator": {
+      "title": "Simulador de Viajes",
+      "description": "Planifica viajes futuros con confianza. Ve exactamente cómo los viajes afectan tu elegibilidad para la ciudadanía antes de reservar."
+    },
+    "dashboard": {
+      "title": "Panel de Información",
+      "description": "Estadísticas de presencia en tiempo real con advertencias de 180 y 365 días. Conoce tu estado al instante."
+    },
+    "privacy": {
+      "title": "Privacidad y Seguridad",
+      "description": "Diseño sin conexión con encriptación a nivel de campo. Tus datos nunca salen de tu dispositivo a menos que elijas sincronización en la nube."
+    }
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona",
+    "subtitle": "Comienza en minutos y toma control de tu camino hacia la ciudadanía",
+    "step1": {
+      "title": "Descarga la App",
+      "description": "Instala Green Card Trips en tu dispositivo iOS."
+    },
+    "step2": {
+      "title": "Ingresa Detalles de Green Card",
+      "description": "Agrega la fecha de tu green card y selecciona tu camino de elegibilidad (3 años o 5 años)."
+    },
+    "step3": {
+      "title": "Registra tus Viajes",
+      "description": "Ingresa manualmente viajes pasados y futuros con fechas de salida y regreso."
+    },
+    "step4": {
+      "title": "Planifica Viajes de Forma Segura",
+      "description": "Usa el simulador para verificar cómo los viajes futuros afectan tu elegibilidad antes de reservar."
+    },
+    "step5": {
+      "title": "Mantente en Cumplimiento",
+      "description": "Monitorea tu panel para advertencias, rastrea fechas de renovación y mantén tu estado."
+    }
+  },
+  "pricing": {
+    "title": "Precio Simple y Transparente",
+    "subtitle": "Compra única.",
+    "price": "$4.99",
+    "cta": "Descargar Ahora",
+    "features": [
+      "Registro ilimitado de viajes",
+      "Simulador de viajes",
+      "Panel de información",
+      "Recordatorios de cumplimiento",
+      "Modo sin conexión"
+    ]
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "q1": {
+      "question": "¿Qué es Green Card Trips?",
+      "answer": "Green Card Trips es una aplicación móvil que ayuda a los titulares de green card de EE.UU. a rastrear su presencia física en Estados Unidos para cumplir con los requisitos de elegibilidad para la ciudadanía. Previene errores costosos monitoreando umbrales críticos de viaje."
+    },
+    "q2": {
+      "question": "¿Qué tan precisos son los cálculos?",
+      "answer": "Nuestros cálculos siguen las reglas oficiales de USCIS con precisión. Los días de salida y regreso cuentan como presencia física. Y monitoreamos umbrales que afectan la residencia continua y la presencia física para el estado de green card."
+    },
+    "q3": {
+      "question": "¿Mis datos son privados y seguros?",
+      "answer": "Absolutamente. Todos los datos se almacenan localmente en tu dispositivo. Tu información nunca sale de tu teléfono. No tenemos acceso a tus datos."
+    },
+    "q4": {
+      "question": "¿Puedo usarla sin conexión?",
+      "answer": "¡Sí! Toda la aplicación funciona sin conexión. Registra viajes, usa el simulador y verifica tu panel en cualquier lugar sin internet."
+    },
+    "q5": {
+      "question": "¿La aplicación está disponible en Android?",
+      "answer": "Todavía no, ¡pero estamos trabajando en traer Green Card Trips a Android pronto! Actualmente, la aplicación solo está disponible para dispositivos iOS. Anunciaremos el lanzamiento de Android tan pronto como esté lista."
+    }
+  },
+  "appBanner": {
+    "title": "¿Listo para Tomar Control de tu Camino hacia la Ciudadanía?",
+    "subtitle": "Únete a los titulares de green card que confían en Green Card Trips para mantenerse en cumplimiento y lograr sus metas de ciudadanía.",
+    "cta": "Descargar Ahora"
+  },
+  "footer": {
+    "description": "Green Card Trips ayuda a los titulares de green card de EE.UU. a rastrear la presencia física y gestionar su camino hacia la ciudadanía con confianza.",
+    "madeBy": "Hecho por Titulares de Green Card",
+    "madeByFor": "para Titulares de Green Card",
+    "developedBy": "Desarrollado por"
+  }
+}

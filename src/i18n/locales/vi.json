@@ -1,0 +1,113 @@
+{
+  "nav": {
+    "features": "Tính năng",
+    "howItWorks": "Cách hoạt động",
+    "pricing": "Giá cả",
+    "faq": "Câu hỏi",
+    "getApp": "Tải ứng dụng",
+    "language": "Ngôn ngữ",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "homeLink": "Trang chủ Green Card Trips",
+    "chooseLanguage": "Chọn ngôn ngữ",
+    "downloadAppStore": "Tải trên App Store",
+    "downloadPlayStore": "Tải trên Google Play"
+  },
+  "hero": {
+    "headline": "Đối Tác An Tâm Trên Con Đường Đến Quốc Tịch Hoa Kỳ",
+    "subtitle": "Theo dõi chuyến đi, lên kế hoạch du lịch và tuân thủ các yêu cầu của USCIS. Green Card Trips giúp việc đủ điều kiện công dân trở nên đơn giản và không căng thẳng.",
+    "usersDescription": "Được tin tưởng bởi người có thẻ xanh",
+    "downloadNow": "Tải Ngay"
+  },
+  "features": {
+    "title": "Mọi Thứ Bạn Cần Để Tuân Thủ",
+    "subtitle": "Công cụ đơn giản để theo dõi sự hiện diện, lên kế hoạch du lịch và đạt được mục tiêu công dân",
+    "tracking": {
+      "title": "Theo Dõi Chuyến Đi Thông Minh",
+      "description": "Dễ dàng ghi lại tất cả các chuyến đi quốc tế với ngày tháng và điểm đến. Xem số ngày ở Mỹ trong nháy mắt."
+    },
+    "simulator": {
+      "title": "Mô Phỏng Du Lịch",
+      "description": "Lên kế hoạch cho các chuyến đi tương lai một cách tự tin. Xem chính xác cách du lịch ảnh hưởng đến điều kiện công dân của bạn trước khi đặt vé."
+    },
+    "dashboard": {
+      "title": "Thông Tin Dashboard",
+      "description": "Thống kê hiện diện theo thời gian thực với cảnh báo 180 ngày và 365 ngày. Biết trạng thái của bạn ngay lập tức."
+    },
+    "privacy": {
+      "title": "Riêng Tư & Bảo Mật",
+      "description": "Thiết kế offline-first với mã hóa cấp trường. Dữ liệu của bạn không bao giờ rời khỏi thiết bị trừ khi bạn chọn đồng bộ đám mây."
+    }
+  },
+  "howItWorks": {
+    "title": "Cách Hoạt Động",
+    "subtitle": "Bắt đầu trong vài phút và kiểm soát hành trình công dân của bạn",
+    "step1": {
+      "title": "Tải Ứng Dụng",
+      "description": "Cài đặt Green Card Trips trên thiết bị iOS của bạn."
+    },
+    "step2": {
+      "title": "Nhập Chi Tiết Thẻ Xanh",
+      "description": "Thêm ngày thẻ xanh của bạn và chọn lộ trình đủ điều kiện (3 năm hoặc 5 năm)."
+    },
+    "step3": {
+      "title": "Ghi Lại Chuyến Đi",
+      "description": "Nhập thủ công các chuyến đi trong quá khứ và tương lai với ngày khởi hành và trở về."
+    },
+    "step4": {
+      "title": "Lên Kế Hoạch Du Lịch An Toàn",
+      "description": "Sử dụng mô phỏng để kiểm tra cách các chuyến đi tương lai ảnh hưởng đến điều kiện của bạn trước khi đặt vé."
+    },
+    "step5": {
+      "title": "Duy Trì Tuân Thủ",
+      "description": "Theo dõi dashboard của bạn để nhận cảnh báo, theo dõi ngày gia hạn và duy trì trạng thái của bạn."
+    }
+  },
+  "pricing": {
+    "title": "Giá Cả Đơn Giản và Minh Bạch",
+    "subtitle": "Mua một lần.",
+    "price": "$4.99",
+    "cta": "Tải Ngay",
+    "features": [
+      "Theo dõi chuyến đi không giới hạn",
+      "Mô phỏng du lịch",
+      "Thông tin dashboard",
+      "Nhắc nhở tuân thủ",
+      "Chế độ offline"
+    ]
+  },
+  "faq": {
+    "title": "Câu Hỏi Thường Gặp",
+    "q1": {
+      "question": "Green Card Trips là gì?",
+      "answer": "Green Card Trips là một ứng dụng di động giúp người có thẻ xanh Hoa Kỳ theo dõi sự hiện diện vật lý của họ tại Hoa Kỳ để đáp ứng các yêu cầu đủ điều kiện công dân. Nó ngăn chặn những sai lầm tốn kém bằng cách theo dõi các ngưỡng du lịch quan trọng."
+    },
+    "q2": {
+      "question": "Các phép tính chính xác như thế nào?",
+      "answer": "Các phép tính của chúng tôi tuân theo chính xác các quy tắc chính thức của USCIS. Ngày khởi hành và trở về được tính là hiện diện vật lý. Và chúng tôi theo dõi các ngưỡng ảnh hưởng đến cư trú liên tục và hiện diện vật lý cho tình trạng thẻ xanh."
+    },
+    "q3": {
+      "question": "Dữ liệu của tôi có riêng tư và an toàn không?",
+      "answer": "Hoàn toàn. Tất cả dữ liệu được lưu trữ cục bộ trên thiết bị của bạn. Thông tin của bạn không bao giờ rời khỏi điện thoại. Chúng tôi không có quyền truy cập vào dữ liệu của bạn."
+    },
+    "q4": {
+      "question": "Tôi có thể sử dụng nó offline không?",
+      "answer": "Có! Toàn bộ ứng dụng hoạt động offline. Ghi lại chuyến đi, sử dụng mô phỏng và kiểm tra dashboard của bạn ở bất cứ đâu mà không cần internet."
+    },
+    "q5": {
+      "question": "Ứng dụng có khả dụng trên Android không?",
+      "answer": "Chưa, nhưng chúng tôi đang làm việc để đưa Green Card Trips lên Android sớm! Hiện tại, ứng dụng chỉ khả dụng cho thiết bị iOS. Chúng tôi sẽ thông báo về việc ra mắt Android ngay khi sẵn sàng."
+    }
+  },
+  "appBanner": {
+    "title": "Sẵn Sàng Kiểm Soát Hành Trình Công Dân Của Bạn?",
+    "subtitle": "Tham gia với những người có thẻ xanh tin tưởng Green Card Trips để tuân thủ và đạt được mục tiêu công dân của họ.",
+    "cta": "Tải Ngay"
+  },
+  "footer": {
+    "description": "Green Card Trips giúp người có thẻ xanh Hoa Kỳ theo dõi sự hiện diện vật lý và quản lý con đường của họ đến công dân một cách tự tin.",
+    "madeBy": "Được Tạo bởi Người Có Thẻ Xanh",
+    "madeByFor": "cho Người Có Thẻ Xanh",
+    "developedBy": "Phát triển bởi"
+  }
+}
