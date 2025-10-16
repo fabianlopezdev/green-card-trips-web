@@ -11,13 +11,16 @@ import PrivacyPolicyContent from "@modules/privacyPolicy";
 export function getStaticPaths() {
   const languages = getSupportedLanguages();
 
-  return languages.map(lang => ({
-    params: { lang },
-    props: {
-      lang,
-      translations: getTranslations(lang),
-    }
-  }));
+  // Exclude 'en' since English is at root level (/)
+  return languages
+    .filter(lang => lang !== 'en')
+    .map(lang => ({
+      params: { lang },
+      props: {
+        lang,
+        translations: getTranslations(lang),
+      }
+    }));
 }
 
 const { lang } = Astro.params;
