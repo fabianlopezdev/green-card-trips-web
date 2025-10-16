@@ -20,6 +20,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Optimization tracking (local only)
+OPTIMIZATIONS.md
+
 # jetbrains setting folder
 .idea/
 
