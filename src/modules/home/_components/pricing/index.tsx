@@ -57,7 +57,7 @@ function Pricing({ config }: Props) {
         className="flex flex-col max-w-none gap-8 md:flex-row md:justify-center"
       >
         {pricing.plans?.map((plan, index) => (
-          <motion.div
+          <motion.article
             key={index}
             transition={{ delay: 0.25 + index * 0.25 }}
             className="md:w-1/3 flex relative"
@@ -116,7 +116,7 @@ function Pricing({ config }: Props) {
                 )}
               </div>
             </a>
-          </motion.div>
+          </motion.article>
         ))}
       </motion.div>
     </section>

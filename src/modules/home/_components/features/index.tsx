@@ -59,7 +59,7 @@ function Features({ config }: Props) {
         className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6"
       >
         {featureCards.map((feat, index) => (
-          <motion.div
+          <motion.article
             key={index}
             variants={{
               hidden: { x: "-100%", opacity: 0 },
@@ -109,7 +109,7 @@ function Features({ config }: Props) {
                 {t(`features.${feat.key}.description`)}
               </p>
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </motion.div>
     </section>

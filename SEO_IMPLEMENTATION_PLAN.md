@@ -231,79 +231,39 @@
 
 ## 🎯 PRIORITY 3: Polish and Optimization
 
-### Phase 3.1: Skip to Content Link
-**Impact**: Moderate for Accessibility
-**Files to modify**: `src/modules/home/index.tsx` or new component
-
-- [ ] **Step 3.1.1**: Create skip to content link component
-  - File: Create `src/components/skipLink/index.tsx`
-  - Component should be visually hidden until focused
-  - Commit: "Add skip to content link component"
-
-- [ ] **Step 3.1.2**: Add skip link before navbar
-  - File: `src/modules/home/index.tsx:22`
-  - Add skip link that jumps to main content
-  - Commit: "Add skip to content link for keyboard navigation"
-
-- [ ] **Step 3.1.3**: Add id="main-content" to main element
-  - File: `src/modules/home/index.tsx:22`
-  - Add id to main tag for skip link target
-  - Commit: "Add main content id for skip link"
-
-- [ ] **Step 3.1.4**: Test skip link with keyboard navigation (Tab key)
-
----
-
-### Phase 3.2: Semantic Elements for Content Cards
+### Phase 3.1: Semantic Elements for Content
 **Impact**: Low-Moderate for SEO
-**Files to modify**: Feature, Pricing, FAQ components
+**Files to modify**: Review HTML structure and convert divs to semantic elements only where meaningful
 
-- [ ] **Step 3.2.1**: Convert feature cards to `<article>` elements
-  - File: `src/modules/home/_components/features/index.tsx:62`
-  - Change wrapping div to article with proper semantic structure
+- [ ] **Step 3.1.1**: Review current HTML structure with Chrome DevTools
+  - Take snapshot and analyze div usage
+  - Identify candidates for semantic conversion based on content meaning
+
+- [ ] **Step 3.1.2**: Convert feature cards to `<article>` elements (if appropriate)
+  - File: `src/modules/home/_components/features/index.tsx`
+  - Only if feature cards are standalone, self-contained content
   - Commit: "Use article elements for feature cards"
 
-- [ ] **Step 3.2.2**: Convert pricing card to `<article>` element
-  - File: Find in `src/modules/home/_components/pricing/`
-  - Change wrapping element to article
-  - Commit: "Use article element for pricing card"
+- [ ] **Step 3.1.3**: Convert pricing cards to `<article>` elements (if appropriate)
+  - File: `src/modules/home/_components/pricing/index.tsx`
+  - Only if pricing cards are standalone content units
+  - Commit: "Use article elements for pricing cards"
 
-- [ ] **Step 3.2.3**: Convert FAQ items to use semantic elements
-  - File: Find in `src/modules/home/_components/faq/`
-  - Consider using article or improving semantic structure
-  - Commit: "Improve semantic structure of FAQ items"
-
-- [ ] **Step 3.2.4**: Verify semantic structure with HTML validator
+- [ ] **Step 3.1.4**: Verify semantic structure with HTML validator
 
 ---
 
-### Phase 3.3: Preconnect Resource Hints
+### Phase 3.2: Preconnect Resource Hints
 **Impact**: Low for Performance
 **Files to modify**: `src/Layout.astro`
 
-- [ ] **Step 3.3.1**: Upgrade dns-prefetch to preconnect for critical domains
-  - File: `src/Layout.astro:24`
+- [ ] **Step 3.2.1**: Upgrade dns-prefetch to preconnect for critical domains
+  - File: `src/Layout.astro`
   - Change critical dns-prefetch to preconnect
   - Keep dns-prefetch for non-critical
-  - Commit: "Add preconnect hints for critical external domains"
+  - Commit: "Upgrade to preconnect for critical external domains"
 
-- [ ] **Step 3.3.2**: Test page load performance with Chrome DevTools
-
----
-
-### Phase 3.4: Meta Keywords (Optional)
-**Impact**: Very Low (Google ignores, but some search engines may use)
-**Files to modify**: `src/Layout.astro` and `src/utils/config.ts`
-
-- [ ] **Step 3.4.1**: Add keywords to SEO config
-  - File: `src/utils/config.ts`
-  - Add keywords array to seo object
-  - Commit: "Add keywords to SEO configuration"
-
-- [ ] **Step 3.4.2**: Add meta keywords tag
-  - File: `src/Layout.astro`
-  - Add: `<meta name="keywords" content={seo.keywords?.join(', ')} />`
-  - Commit: "Add meta keywords tag"
+- [ ] **Step 3.2.2**: Test page load performance with Chrome DevTools
 
 ---
 
