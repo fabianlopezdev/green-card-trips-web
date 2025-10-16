@@ -9,19 +9,29 @@ import { motion } from "framer-motion";
 
 interface Props {
   config: TemplateConfig;
+  lang?: string;
 }
 
-function Footer({ config }: Props) {
+function Footer({ config, lang }: Props) {
   const { t } = useTranslation();
   const {
     footer: { links, legalLinks, socials },
   } = config;
 
+  // Helper to construct language-aware URLs
+  const getLocalizedUrl = (path: string) => {
+    if (!lang || lang === 'en') {
+      return path;
+    }
+    // For non-English languages, prepend language prefix
+    return `/${lang}${path}`;
+  };
+
   const footerLinks = [
-    { href: "/#features", key: "nav.features" },
-    { href: "/#how-it-works", key: "nav.howItWorks" },
-    { href: "/#pricing", key: "nav.pricing" },
-    { href: "/#faq", key: "nav.faq" },
+    { href: getLocalizedUrl("/#features"), key: "nav.features" },
+    { href: getLocalizedUrl("/#how-it-works"), key: "nav.howItWorks" },
+    { href: getLocalizedUrl("/#pricing"), key: "nav.pricing" },
+    { href: getLocalizedUrl("/#faq"), key: "nav.faq" },
   ];
 
   return (
@@ -130,7 +140,7 @@ function Footer({ config }: Props) {
                   }}
                   transition={{ delay: 0.25 }}
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
-                  href="/terms-and-conditions"
+                  href={getLocalizedUrl("/terms-and-conditions")}
                 >
                   Terms & conditions
                 </motion.a>
@@ -143,7 +153,7 @@ function Footer({ config }: Props) {
                   }}
                   transition={{ delay: 0.5 }}
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
-                  href="/privacy-policy"
+                  href={getLocalizedUrl("/privacy-policy")}
                 >
                   Privacy policy
                 </motion.a>
@@ -156,7 +166,7 @@ function Footer({ config }: Props) {
                   }}
                   transition={{ delay: 0.75 }}
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
-                  href="/cookies-policy"
+                  href={getLocalizedUrl("/cookies-policy")}
                 >
                   Cookies policy
                 </motion.a>

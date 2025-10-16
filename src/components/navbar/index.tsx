@@ -13,9 +13,10 @@ import GreenCardLogoSimplified from "./GreenCardLogoSimplified";
 
 interface Props {
   config: TemplateConfig;
+  lang?: string;
 }
 
-function Navbar({ config }: Props) {
+function Navbar({ config, lang }: Props) {
   const { t } = useTranslation();
   const {
     name,
@@ -58,12 +59,21 @@ function Navbar({ config }: Props) {
     ease: easeIn,
   });
 
+  // Helper to construct language-aware URLs
+  const getLocalizedUrl = (path: string) => {
+    if (!lang || lang === 'en') {
+      return path;
+    }
+    // For non-English languages, prepend language prefix
+    return `/${lang}${path}`;
+  };
+
   // Map config links to translation keys
   const navLinks = [
-    { href: "/#features", key: "nav.features" },
-    { href: "/#how-it-works", key: "nav.howItWorks" },
-    { href: "/#pricing", key: "nav.pricing" },
-    { href: "/#faq", key: "nav.faq" },
+    { href: getLocalizedUrl("/#features"), key: "nav.features" },
+    { href: getLocalizedUrl("/#how-it-works"), key: "nav.howItWorks" },
+    { href: getLocalizedUrl("/#pricing"), key: "nav.pricing" },
+    { href: getLocalizedUrl("/#faq"), key: "nav.faq" },
   ];
 
   return (
@@ -92,7 +102,7 @@ function Navbar({ config }: Props) {
           )}
         />
         <div className="navbar-start flex-1 max-nav:flex-auto">
-          <a href="/" className="flex items-center" aria-label={t("nav.homeLink")}>
+          <a href={getLocalizedUrl("/")} className="flex items-center" aria-label={t("nav.homeLink")}>
             <GreenCardLogoSimplified className="h-16" />
             <span className="font-logo font-medium mx-1 text-2xl tracking-[-0.01em]">{name}</span>
           </a>
