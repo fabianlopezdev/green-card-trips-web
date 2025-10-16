@@ -38,3 +38,5 @@ TRANSLATIONS_TEMP.txt
 # documentation & reports
 docs/
 
+# playwright screenshots
+.playwright-mcp/
