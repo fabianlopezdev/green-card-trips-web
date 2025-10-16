@@ -47,17 +47,17 @@ const faqSchema = generateFAQPageSchema(faqs);
 
   <InitScripts client:load />
   <header>
-    <Navbar client:load config={defaultTemplateConfig} lang={lang} />
+    <Navbar client:only="react" config={defaultTemplateConfig} lang={lang} />
   </header>
   <main>
-    <Header client:load config={defaultTemplateConfig} />
-    <Partners client:visible config={defaultTemplateConfig} />
-    <Features client:visible config={defaultTemplateConfig} />
-    <HowItWorks client:visible config={defaultTemplateConfig} />
-    <Pricing client:visible config={defaultTemplateConfig} />
-    <Testimonials client:visible config={defaultTemplateConfig} />
-    <Faq client:visible config={defaultTemplateConfig} />
-    <AppBanner client:visible config={defaultTemplateConfig} />
-    <Footer client:idle config={defaultTemplateConfig} lang={lang} />
+    <Header client:only="react" config={defaultTemplateConfig} />
+    <Partners client:only="react" config={defaultTemplateConfig} />
+    <Features client:only="react" config={defaultTemplateConfig} />
+    <HowItWorks client:only="react" config={defaultTemplateConfig} />
+    <Pricing client:only="react" config={defaultTemplateConfig} />
+    <Testimonials client:only="react" config={defaultTemplateConfig} />
+    <Faq client:only="react" config={defaultTemplateConfig} />
+    <AppBanner client:only="react" config={defaultTemplateConfig} />
+    <Footer client:only="react" config={defaultTemplateConfig} lang={lang} />
   </main>
 </Layout>

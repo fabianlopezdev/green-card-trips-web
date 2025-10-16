@@ -2,23 +2,62 @@
 import "swiper/css";
 import "@styles/styles.scss";
 import type { TemplateConfig } from "utils/configType";
+import type { TranslationObject } from "utils/serverI18n";
 import {
   generateMobileApplicationSchema,
   generateOrganizationSchema,
   generateWebSiteSchema,
 } from "utils/structuredData";
 
-const config = Astro.props as TemplateConfig;
-const { backgroundGrid, seo, logo, theme, forceTheme } = config;
+interface Props extends TemplateConfig {
+  currentLang?: string;
+  translations?: TranslationObject;
+}
+
+const config = Astro.props as Props;
+const { backgroundGrid, seo, logo, theme, forceTheme, currentLang, translations } = config;
+
+// For new language routes, use translations; for old routes, use config seo
+const pageSeo = translations ? {
+  title: translations.seo?.title || seo.title,
+  description: translations.seo?.description || seo.description,
+} : seo;
+
+// Determine the actual language - default to 'en' for old routes
+const htmlLang = currentLang || 'en';
 
 // Generate structured data schemas
 const mobileAppSchema = generateMobileApplicationSchema(config, Astro.url.href);
 const organizationSchema = generateOrganizationSchema(config, Astro.url.href);
 const websiteSchema = generateWebSiteSchema(config, Astro.url.href);
+
+// Generate hreflang URLs
+const siteUrl = Astro.site || new URL(Astro.url.origin);
+const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-cn'];
+
+// Get the current path without language prefix
+const getCurrentPath = () => {
+  const pathname = Astro.url.pathname;
+  // Remove language prefix if present
+  const pathWithoutLang = pathname.replace(/^\/(es|tl|vi|zh-cn)(\/|$)/, '/');
+  return pathWithoutLang === '/' ? '' : pathWithoutLang.replace(/\/$/, '');
+};
+
+const currentPath = getCurrentPath();
+
+// Generate language-specific URLs
+const languageUrls = supportedLanguages.map(lang => {
+  // English (default locale) doesn't have prefix
+  if (lang === 'en') {
+    return { lang, url: new URL(currentPath || '/', siteUrl).href };
+  }
+  // Other languages have /{lang}/ prefix
+  return { lang, url: new URL(`/${lang}${currentPath || '/'}`, siteUrl).href };
+});
 ---
 
 <!doctype html>
-<html lang="en" data-theme={theme}>
+<html lang={htmlLang} data-theme={theme}>
   <head>
     <!-- Global Metadata -->
     <meta charset="utf-8" />
@@ -37,32 +76,35 @@ const websiteSchema = generateWebSiteSchema(config, Astro.url.href);
     <link rel="dns-prefetch" href="https://www.google.com" />
 
     <!-- Primary Meta Tags -->
-    <title>{seo.title}</title>
-    <meta name="title" content={seo.title} />
-    <meta name="description" content={seo.description} />
+    <title>{pageSeo.title}</title>
+    <meta name="title" content={pageSeo.title} />
+    <meta name="description" content={pageSeo.description} />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={Astro.url} />
+    <link rel="canonical" href={Astro.url.href} />
 
     <!-- Hreflang Tags for Multilingual SEO -->
-    <link rel="alternate" hreflang="en" href={Astro.url} />
-    <link rel="alternate" hreflang="es" href={Astro.url} />
-    <link rel="alternate" hreflang="tl" href={Astro.url} />
-    <link rel="alternate" hreflang="vi" href={Astro.url} />
-    <link rel="alternate" hreflang="zh-CN" href={Astro.url} />
-    <link rel="alternate" hreflang="x-default" href={Astro.url} />
+    {languageUrls.map(({ lang, url }) => (
+      <link
+        rel="alternate"
+        hreflang={lang === 'zh-cn' ? 'zh-CN' : lang}
+        href={url}
+      />
+    ))}
+    <!-- x-default points to English version -->
+    <link rel="alternate" hreflang="x-default" href={languageUrls.find(l => l.lang === 'en')?.url} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={seo.title} />
-    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={pageSeo.title} />
+    <meta property="og:description" content={pageSeo.description} />
     <meta property="og:image" content={new URL(logo, Astro.url)} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={seo.title} />
-    <meta property="twitter:description" content={seo.description} />
+    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:title" content={pageSeo.title} />
+    <meta property="twitter:description" content={pageSeo.description} />
     <meta property="twitter:image" content={new URL(logo, Astro.url)} />
 
     <!-- Structured Data (JSON-LD) for SEO -->
@@ -73,30 +115,13 @@ const websiteSchema = generateWebSiteSchema(config, Astro.url.href);
     <!-- Allow pages to inject additional head content (e.g., FAQPage schema) -->
     <slot name="head" />
 
-    <script is:inline>
-      // Set language attribute dynamically (same detection order as i18next)
-      function getLanguage() {
-        const supportedLngs = ['en', 'es', 'tl', 'vi', 'zh-CN'];
-        // Check localStorage first (i18next stores in 'i18nextLng')
-        const storedLng = localStorage.getItem('i18nextLng');
-        if (storedLng && supportedLngs.includes(storedLng)) {
-          return storedLng;
-        }
-        // Fall back to navigator language
-        const navLng = navigator.language || navigator.userLanguage;
-        if (navLng) {
-          // Exact match
-          if (supportedLngs.includes(navLng)) return navLng;
-          // Try base language (e.g., en-US -> en)
-          const baseLng = navLng.split('-')[0];
-          if (supportedLngs.includes(baseLng)) return baseLng;
-        }
-        // Default to English
-        return 'en';
-      }
-      const lang = getLanguage();
-      document.documentElement.setAttribute('lang', lang);
-    </script>
+    <!-- Initialize i18next with the correct language for this page -->
+    {currentLang && (
+      <script is:inline define:vars={{ currentLang }}>
+        // Store the page's language in localStorage for i18next
+        localStorage.setItem('i18nextLng', currentLang);
+      </script>
+    )}
 
     <script is:inline define:vars={{ forceTheme }}>
       function getPreferredColorScheme() {
