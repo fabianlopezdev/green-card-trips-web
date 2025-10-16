@@ -18,6 +18,7 @@ i18n
     resources,
     fallbackLng: 'en',
     supportedLngs: ['en', 'es', 'tl', 'vi', 'zh-CN'],
+    partialBundledLanguages: true,
     backend: {
       loadPath: '/locales/{{lng}}.json',
     },
