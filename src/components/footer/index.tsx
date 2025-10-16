@@ -37,7 +37,7 @@ function Footer({ config }: Props) {
         className="max-w-screen-lg mx-auto mt-12"
       >
         <div className="flex flex-col md:flex-row gap-8 mb-4">
-          <nav className="flex flex-col items-center justify-center gap-4">
+          <nav className="flex flex-col items-center md:items-start justify-center gap-4">
             {footerLinks.map(({ key, href }, index) => (
               <motion.a
                 key={index}
