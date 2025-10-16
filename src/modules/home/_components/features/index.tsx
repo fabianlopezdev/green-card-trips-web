@@ -17,10 +17,10 @@ function Features({ config }: Props) {
   if (!features) return null;
 
   const featureCards = [
-    { icon: features.cards[0]?.icon, key: "tracking" },
-    { icon: features.cards[1]?.icon, key: "simulator" },
-    { icon: features.cards[2]?.icon, key: "dashboard" },
-    { icon: features.cards[3]?.icon, key: "privacy" },
+    { icon: features.cards[0]?.icon, key: "tracking", altText: "Smart trip tracking icon" },
+    { icon: features.cards[1]?.icon, key: "simulator", altText: "Travel simulator icon" },
+    { icon: features.cards[2]?.icon, key: "dashboard", altText: "Dashboard insights icon" },
+    { icon: features.cards[3]?.icon, key: "privacy", altText: "Privacy and security icon" },
   ];
 
   const cardBackgroundColors = [
@@ -95,7 +95,7 @@ function Features({ config }: Props) {
                   width={160}
                   height={160}
                   loading="lazy"
-                  alt="feature icon"
+                  alt={feat.altText}
                   className="w-40 transition-transform group-hover:scale-90"
                 />
               </figure>

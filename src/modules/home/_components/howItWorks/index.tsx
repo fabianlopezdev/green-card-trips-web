@@ -20,9 +20,19 @@ function HowItWorks({ config }: Props) {
 
   if (!howItWorks) return null;
 
+  // Map step titles to descriptive alt text
+  const stepAltText = [
+    "Person downloading app from the App Store on smartphone",
+    "Hands entering green card details into the app",
+    "User logging international trip information with dates",
+    "Travel planning interface showing trip simulation",
+    "Dashboard displaying compliance status and renewal reminders",
+  ];
+
   const steps = howItWorks.steps.map((step, i) => ({
     image: step.image,
     key: `step${i + 1}`,
+    altText: stepAltText[i] || `Step ${i + 1}: ${step.title}`,
   }));
 
   return (
@@ -124,7 +134,7 @@ function HowItWorks({ config }: Props) {
                 width={400}
                 height={300}
                 loading="lazy"
-                alt={`step ${index}`}
+                alt={step.altText}
               />
             </motion.div>
           </motion.div>

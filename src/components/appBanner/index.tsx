@@ -31,6 +31,13 @@ function AppBanner({ config }: Props) {
   };
   const languageFolder = getLanguageFolder(i18n.language);
 
+  // Map screenshot names to descriptive alt text
+  const screenshotAltText: Record<string, string> = {
+    "dashboard": "App dashboard showing trip statistics and citizenship eligibility status",
+    "trips": "Trip history list showing all international travel",
+    "modify-trip": "Add or edit trip form with departure and return dates",
+  };
+
   if (!appBanner) return null;
   return (
     <motion.section
@@ -145,7 +152,10 @@ function AppBanner({ config }: Props) {
                   index === 2 && "absolute origin-bottom-right hidden xl:block"
                 )}
               >
-                <IphoneFrame src={`/screenshots/${languageFolder}/${name}.webp`} />
+                <IphoneFrame
+                  src={`/screenshots/${languageFolder}/${name}.webp`}
+                  altText={screenshotAltText[name] || `App screenshot: ${name}`}
+                />
               </motion.div>
             ))}
           </motion.div>

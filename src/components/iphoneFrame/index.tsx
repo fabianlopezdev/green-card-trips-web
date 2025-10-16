@@ -1,15 +1,16 @@
 interface Props {
   src: string;
+  altText?: string;
 }
 
-function IphoneFrame({ src }: Props) {
+function IphoneFrame({ src, altText = "App screenshot" }: Props) {
   return (
     <div className="relative h-full overflow-hidden">
       <div className="absolute top-2 bottom-2 left-2.5">
         <img
           src={src}
           loading="lazy"
-          alt="screenshot"
+          alt={altText}
           className="rounded-2xl h-full"
         />
       </div>

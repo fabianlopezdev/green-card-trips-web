@@ -33,6 +33,13 @@ function Header({ config }: Props) {
   };
   const languageFolder = getLanguageFolder(i18n.language);
 
+  // Map screenshot names to descriptive alt text
+  const screenshotAltText: Record<string, string> = {
+    "dashboard": "App dashboard showing trip statistics and citizenship eligibility status",
+    "modify-trip": "Add or edit trip form with departure and return dates",
+    "trips": "Trip history list showing all international travel",
+  };
+
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -197,6 +204,7 @@ function Header({ config }: Props) {
                       scrollYProgress={scrollYProgress}
                       index={index}
                       totalCount={header.screenshots.length}
+                      altText={screenshotAltText[name] || `App screenshot: ${name}`}
                     />
                   ))}
                 </div>

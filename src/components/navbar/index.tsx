@@ -178,14 +178,14 @@ function Navbar({ config }: Props) {
             {googlePlayLink && (
               <li>
                 <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadPlayStore")}>
-                  <img className="h-14" width={156} height={56} loading="lazy" src="/stores/google-play.svg" alt="" />
+                  <img className="h-14" width={156} height={56} loading="lazy" src="/stores/google-play.svg" alt="Download on Google Play" />
                 </a>
               </li>
             )}
             {appStoreLink && (
               <li>
                 <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadAppStore")}>
-                  <img className="h-14" width={156} height={56} loading="lazy" src="/stores/app-store.svg" alt="" />
+                  <img className="h-14" width={156} height={56} loading="lazy" src="/stores/app-store.svg" alt="Download on the App Store" />
                 </a>
               </li>
             )}

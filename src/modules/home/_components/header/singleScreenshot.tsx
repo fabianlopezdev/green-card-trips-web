@@ -6,9 +6,10 @@ interface Props {
   totalCount: number;
   scrollYProgress: MotionValue<number>;
   src: string;
+  altText: string;
 }
 
-function SingleScreenshot({ scrollYProgress, index, totalCount, src }: Props) {
+function SingleScreenshot({ scrollYProgress, index, totalCount, src, altText }: Props) {
   const x = useTransform(scrollYProgress, (y) => {
     if (index > 0 && index % 2 === 0) {
       const i = totalCount - index;
@@ -35,7 +36,7 @@ function SingleScreenshot({ scrollYProgress, index, totalCount, src }: Props) {
     <motion.img
       src={src}
       loading={index === 0 ? "eager" : "lazy"}
-      alt={`screenshot ${index}`}
+      alt={altText}
       style={{ translateX: x, translateY: y, scale: 1 }}
       className="absolute overflow-hidden w-full h-full"
     />
