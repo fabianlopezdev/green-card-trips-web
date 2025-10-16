@@ -18,7 +18,24 @@ export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitch
   const [isOpen, setIsOpen] = useState(false);
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+    // Get current path and remove language prefix
+    const currentPath = window.location.pathname;
+    const pathWithoutLang = currentPath.replace(/^\/(es|tl|vi|zh-cn)(\/|$)/, '/');
+
+    // Construct new URL
+    let newPath;
+    if (lng === 'en') {
+      // English at root - no prefix
+      newPath = pathWithoutLang === '/' ? '/' : pathWithoutLang;
+    } else {
+      // Other languages with prefix - convert to lowercase for URL
+      const urlLang = lng.toLowerCase();
+      const cleanPath = pathWithoutLang === '/' ? '' : pathWithoutLang;
+      newPath = `/${urlLang}${cleanPath}`;
+    }
+
+    // Navigate to new URL
+    window.location.href = newPath;
     setIsOpen(false);
   };
 
