@@ -30,6 +30,7 @@ const { backgroundGrid, seo, logo, theme, forceTheme } =
     <title>{seo.title}</title>
     <meta name="title" content={seo.title} />
     <meta name="description" content={seo.description} />
+    <link rel="canonical" href={Astro.url} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -44,6 +45,31 @@ const { backgroundGrid, seo, logo, theme, forceTheme } =
     <meta property="twitter:title" content={seo.title} />
     <meta property="twitter:description" content={seo.description} />
     <meta property="twitter:image" content={new URL(logo, Astro.url)} />
+
+    <script is:inline>
+      // Set language attribute dynamically (same detection order as i18next)
+      function getLanguage() {
+        const supportedLngs = ['en', 'es', 'tl', 'vi', 'zh-CN'];
+        // Check localStorage first (i18next stores in 'i18nextLng')
+        const storedLng = localStorage.getItem('i18nextLng');
+        if (storedLng && supportedLngs.includes(storedLng)) {
+          return storedLng;
+        }
+        // Fall back to navigator language
+        const navLng = navigator.language || navigator.userLanguage;
+        if (navLng) {
+          // Exact match
+          if (supportedLngs.includes(navLng)) return navLng;
+          // Try base language (e.g., en-US -> en)
+          const baseLng = navLng.split('-')[0];
+          if (supportedLngs.includes(baseLng)) return baseLng;
+        }
+        // Default to English
+        return 'en';
+      }
+      const lang = getLanguage();
+      document.documentElement.setAttribute('lang', lang);
+    </script>
 
     <script is:inline define:vars={{ forceTheme }}>
       function getPreferredColorScheme() {
