@@ -17,7 +17,7 @@ function Testimonials({ config }: Props) {
   if (!testimonials) return null;
 
   return (
-    <section className="max-w-screen-lg mx-auto px-4 py-12">
+    <section className="max-w-screen-lg mx-auto px-4 py-12" aria-label="User testimonials">
       <div className="mb-6 max-w-none flex flex-col items-center prose prose-lg text-center">
         <h1 className="mb-0">
           <AnimatedText text={testimonials.title} />

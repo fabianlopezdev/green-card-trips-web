@@ -46,6 +46,7 @@ function AppBanner({ config }: Props) {
       whileInView="visible"
       viewport={{ once: true, amount: 0.4 }}
       className="relative max-w-screen-lg mx-auto px-4 -mb-3 -z-10 md:-mb-2 lg:mb-0"
+      aria-label="Download the app"
     >
       <motion.div
         variants={{

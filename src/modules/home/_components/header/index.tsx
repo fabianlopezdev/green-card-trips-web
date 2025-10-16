@@ -46,7 +46,7 @@ function Header({ config }: Props) {
   });
 
   return (
-    <section id={header.id} className="relative pb-8 md:pb-4">
+    <section id={header.id} className="relative pb-8 md:pb-4" aria-label="Hero section">
       <div className="max-w-screen-lg mx-auto py-4 px-4 md:py-16">
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-1 items-center md:items-start md:h-[300vh]">

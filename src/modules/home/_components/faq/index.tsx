@@ -23,7 +23,7 @@ function Faq({ config }: Props) {
   const faqs = faq.qa.map((_, i) => `q${i + 1}`);
 
   return (
-    <section id={faq.id} className="max-w-screen-lg mx-auto px-4 mb-12">
+    <section id={faq.id} className="max-w-screen-lg mx-auto px-4 mb-12" aria-label="Frequently asked questions">
       <div className="flex flex-col md:flex-row">
         <div className="relative flex-1 flex items-center">
           <NeonHexagon />

@@ -39,6 +39,7 @@ function HowItWorks({ config }: Props) {
     <section
       id={howItWorks.id}
       className="overflow-hidden max-w-screen-lg mx-auto px-4 py-12"
+      aria-label="How the app works"
     >
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
         <h2 className="mb-3 font-normal">

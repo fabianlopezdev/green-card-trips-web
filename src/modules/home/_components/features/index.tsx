@@ -31,7 +31,7 @@ function Features({ config }: Props) {
   ];
 
   return (
-    <section id={features.id} className="max-w-screen-lg mx-auto px-4 py-12">
+    <section id={features.id} className="max-w-screen-lg mx-auto px-4 py-12" aria-label="App features">
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
         <h2 className="mb-3 font-normal">
           <AnimatedText text={t("features.title")} />

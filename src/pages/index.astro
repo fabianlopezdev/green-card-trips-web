@@ -31,8 +31,10 @@ const faqSchema = generateFAQPageSchema(faqs);
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
 
   <InitScripts client:load />
-  <main>
+  <header>
     <Navbar client:load config={defaultTemplateConfig} />
+  </header>
+  <main>
     <Header client:load config={defaultTemplateConfig} />
     <Partners client:visible config={defaultTemplateConfig} />
     <Features client:visible config={defaultTemplateConfig} />

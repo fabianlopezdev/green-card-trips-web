@@ -40,7 +40,16 @@ const websiteSchema = generateWebSiteSchema(config, Astro.url.href);
     <title>{seo.title}</title>
     <meta name="title" content={seo.title} />
     <meta name="description" content={seo.description} />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href={Astro.url} />
+
+    <!-- Hreflang Tags for Multilingual SEO -->
+    <link rel="alternate" hreflang="en" href={Astro.url} />
+    <link rel="alternate" hreflang="es" href={Astro.url} />
+    <link rel="alternate" hreflang="tl" href={Astro.url} />
+    <link rel="alternate" hreflang="vi" href={Astro.url} />
+    <link rel="alternate" hreflang="zh-CN" href={Astro.url} />
+    <link rel="alternate" hreflang="x-default" href={Astro.url} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />

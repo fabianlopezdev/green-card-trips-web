@@ -35,6 +35,7 @@ function Pricing({ config }: Props) {
     <section
       id={pricing.id}
       className="overflow-hidden max-w-screen-lg mx-auto px-4 py-12"
+      aria-label="Pricing plans"
     >
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
         <h2 className="mb-0 font-normal">
