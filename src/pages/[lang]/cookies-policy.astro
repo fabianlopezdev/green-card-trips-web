@@ -1,0 +1,43 @@
+---
+import Layout from "Layout.astro";
+import defaultTemplateConfig from "utils/config";
+import { getTranslations, getSupportedLanguages } from "utils/serverI18n";
+import InitScripts from "../../components/initScripts";
+import Navbar from "../../components/navbar";
+import AppBanner from "../../components/appBanner";
+import Footer from "../../components/footer";
+import CookiesPolicyContent from "@modules/cookiesPolicy";
+
+export function getStaticPaths() {
+  const languages = getSupportedLanguages();
+
+  return languages.map(lang => ({
+    params: { lang },
+    props: {
+      lang,
+      translations: getTranslations(lang),
+    }
+  }));
+}
+
+const { lang } = Astro.params;
+const { translations } = Astro.props;
+
+// Get language-specific SEO from config
+const seo = defaultTemplateConfig.cookiesPolicy?.[lang]?.seo || defaultTemplateConfig.cookiesPolicy?.en?.seo;
+---
+
+<Layout
+  {...defaultTemplateConfig}
+  seo={seo}
+  currentLang={lang}
+  translations={translations}
+>
+  <InitScripts client:load />
+  <main>
+    <Navbar client:load config={defaultTemplateConfig} lang={lang} />
+    <CookiesPolicyContent client:only="react" config={defaultTemplateConfig} />
+    <AppBanner client:visible config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} lang={lang} />
+  </main>
+</Layout>

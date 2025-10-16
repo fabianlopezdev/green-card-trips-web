@@ -1,0 +1,63 @@
+---
+import Layout from "Layout.astro";
+import defaultTemplateConfig from "utils/config";
+import { generateFAQPageSchema } from "utils/structuredData";
+import { getTranslations, getSupportedLanguages } from "utils/serverI18n";
+import InitScripts from "../../components/initScripts";
+import Navbar from "../../components/navbar";
+import Header from "../../modules/home/_components/header";
+import Partners from "../../modules/home/_components/partners";
+import Features from "../../modules/home/_components/features";
+import HowItWorks from "../../modules/home/_components/howItWorks";
+import Pricing from "../../modules/home/_components/pricing";
+import Testimonials from "../../modules/home/_components/testimonials";
+import Faq from "../../modules/home/_components/faq";
+import AppBanner from "../../components/appBanner";
+import Footer from "../../components/footer";
+
+export function getStaticPaths() {
+  const languages = getSupportedLanguages();
+
+  return languages.map(lang => ({
+    params: { lang },
+    props: {
+      lang,
+      translations: getTranslations(lang),
+    }
+  }));
+}
+
+const { lang } = Astro.params;
+const { translations } = Astro.props;
+
+// Generate FAQPage schema with language-specific FAQ content
+const faqs = [
+  { question: translations.faq.q1.question, answer: translations.faq.q1.answer },
+  { question: translations.faq.q2.question, answer: translations.faq.q2.answer },
+  { question: translations.faq.q3.question, answer: translations.faq.q3.answer },
+  { question: translations.faq.q4.question, answer: translations.faq.q4.answer },
+  { question: translations.faq.q5.question, answer: translations.faq.q5.answer },
+];
+const faqSchema = generateFAQPageSchema(faqs);
+---
+
+<Layout {...defaultTemplateConfig} currentLang={lang} translations={translations}>
+  <!-- FAQPage Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <InitScripts client:load />
+  <header>
+    <Navbar client:load config={defaultTemplateConfig} lang={lang} />
+  </header>
+  <main>
+    <Header client:load config={defaultTemplateConfig} />
+    <Partners client:visible config={defaultTemplateConfig} />
+    <Features client:visible config={defaultTemplateConfig} />
+    <HowItWorks client:visible config={defaultTemplateConfig} />
+    <Pricing client:visible config={defaultTemplateConfig} />
+    <Testimonials client:visible config={defaultTemplateConfig} />
+    <Faq client:visible config={defaultTemplateConfig} />
+    <AppBanner client:visible config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} lang={lang} />
+  </main>
+</Layout>
