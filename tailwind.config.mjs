@@ -5,6 +5,17 @@ import config from "./src/utils/config";
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   darkMode: ['selector', '[data-theme="dark"]'],
+  safelist: [
+    // DaisyUI dynamic classes
+    'avatar-group',
+    'avatar',
+    // Base theme classes
+    'base-100',
+    'base-200',
+    'base-300',
+    'base-content',
+    'primary-content',
+  ],
   theme: {
     screens: {
       "3xs": "350px",
@@ -36,6 +47,10 @@ export default {
   },
   plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
+    styled: true,
+    base: true,
+    utils: true,
+    logs: false,
     themes: [
       {
         "dark": {
