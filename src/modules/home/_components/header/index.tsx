@@ -60,7 +60,7 @@ function Header({ config }: Props) {
                   </motion.div>
                 ))}
               </div>
-              <motion.h2
+              <motion.h1
                 initial={{ opacity: 0, rotateZ: -10 }}
                 animate={{ opacity: 1, rotateZ: 0 }}
                 className="mt-0 mb-4 text-4xl md:text-6xl font-normal"
@@ -95,7 +95,7 @@ function Header({ config }: Props) {
                 ) : (
                   t("hero.headline")
                 )}
-              </motion.h2>
+              </motion.h1>
               <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 0.7, x: 0 }}
