@@ -30,7 +30,7 @@ function PrivacyPolicyPage({ config }: Props) {
   const content = privacyPolicy[lang];
 
   return (
-    <section className="max-w-screen-lg mx-auto py-4 px-4 md:py-16">
+    <section className="max-w-screen-lg mx-auto pt-24 pb-4 px-4 md:pt-32 md:pb-16">
       <Markdown className="prose" remarkPlugins={[remarkGfm]}>
         {content.content}
       </Markdown>

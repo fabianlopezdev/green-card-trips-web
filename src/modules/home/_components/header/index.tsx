@@ -47,7 +47,7 @@ function Header({ config }: Props) {
 
   return (
     <section id={header.id} className="relative pb-8 md:pb-4" aria-label="Hero section">
-      <div className="max-w-screen-lg mx-auto py-4 px-4 md:py-16">
+      <div className="max-w-screen-lg mx-auto pt-24 pb-4 px-4 md:pt-32 md:pb-16">
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-1 items-center md:items-start md:h-[300vh]">
             <div className="static top-40 flex flex-col prose justify-center py-8 md:sticky md:h-[548px]">
