@@ -1,15 +1,19 @@
+import "../../../../i18n";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import AnimatedText from "../../../../components/animatedText";
 import { motion } from "framer-motion";
-import { useContext } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import type { TemplateConfig } from "../../../../utils/configType";
 import { Autoplay } from "swiper/modules";
 
-function Testimonials() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function Testimonials({ config }: Props) {
   const {
     home: { testimonials },
-  } = useContext(ConfigContext)!;
+  } = config;
   if (!testimonials) return null;
 
   return (

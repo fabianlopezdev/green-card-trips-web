@@ -1,11 +1,15 @@
+import "../../i18n";
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 
-interface LenisProviderProps {
-  children: React.ReactNode;
-}
-
-export default function LenisProvider({ children }: LenisProviderProps) {
+/**
+ * InitScripts component initializes global functionality:
+ * - i18next for translations (imported at top)
+ * - Lenis for smooth scrolling
+ *
+ * This component renders nothing, only runs side effects.
+ */
+export default function InitScripts() {
   useEffect(() => {
     // Initialize Lenis with custom configuration for premium feel
     const lenis = new Lenis({
@@ -34,5 +38,5 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     };
   }, []);
 
-  return <>{children}</>;
+  return null;
 }

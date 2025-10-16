@@ -1,12 +1,16 @@
+import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import { motion } from "framer-motion";
-import { useContext } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import type { TemplateConfig } from "../../../../utils/configType";
 
-function Partners() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function Partners({ config }: Props) {
   const {
     home: { partners },
-  } = useContext(ConfigContext)!;
+  } = config;
   if (!partners) return null;
 
   return (

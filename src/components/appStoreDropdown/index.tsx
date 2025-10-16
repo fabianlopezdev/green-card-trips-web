@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { useContext, useState } from 'react';
-import { ConfigContext } from '../../utils/configContext';
+import { useState } from 'react';
+import type { TemplateConfig } from '../../utils/configType';
 
-export default function AppStoreDropdown() {
+interface Props {
+  config: TemplateConfig;
+}
+
+export default function AppStoreDropdown({ config }: Props) {
   const { t } = useTranslation();
-  const config = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
-
-  if (!config) return null;
 
   const { appStoreLink, googlePlayLink } = config;
 

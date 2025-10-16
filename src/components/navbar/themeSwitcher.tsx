@@ -1,8 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { ConfigContext } from "../../utils/configContext";
+import { useEffect, useState } from "react";
+import type { TemplateConfig } from "../../utils/configType";
 
-function ThemeSwitcher() {
-  const config = useContext(ConfigContext);
+interface Props {
+  config: TemplateConfig;
+}
+
+function ThemeSwitcher({ config }: Props) {
   const [mode, setMode] = useState<string>();
 
   useEffect(() => {
@@ -20,7 +23,7 @@ function ThemeSwitcher() {
   }, []);
 
   const toggleTheme = () => {
-    const newMode = mode === "dark" ? config?.theme : "dark";
+    const newMode = mode === "dark" ? config.theme : "dark";
     if (!newMode) return;
     document.documentElement.setAttribute("data-theme", newMode);
     localStorage.setItem("theme", newMode);

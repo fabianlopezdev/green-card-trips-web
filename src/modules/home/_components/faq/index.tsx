@@ -1,16 +1,21 @@
+import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ConfigContext } from "../../../../utils/configContext";
+import type { TemplateConfig } from "../../../../utils/configType";
 import NeonHexagon from "./svgs/neonHexagon";
 
-function Faq() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function Faq({ config }: Props) {
   const { t } = useTranslation();
   const {
     home: { faq },
-  } = useContext(ConfigContext)!;
+  } = config;
   const [activeIndex, setActiveIndex] = useState<number>();
 
   if (!faq) return null;

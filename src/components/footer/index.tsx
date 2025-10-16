@@ -1,17 +1,21 @@
-import { useContext } from "react";
+import "../../i18n";
 import { useTranslation } from "react-i18next";
-import { ConfigContext } from "../../utils/configContext";
+import type { TemplateConfig } from "../../utils/configType";
 import InstagramLogo from "./svgs/instagram";
 import FacebookLogo from "./svgs/facebook";
 import TwitterLogo from "./svgs/twitter";
 import Heart from "./svgs/Heart";
 import { motion } from "framer-motion";
 
-function Footer() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function Footer({ config }: Props) {
   const { t } = useTranslation();
   const {
     footer: { links, legalLinks, socials },
-  } = useContext(ConfigContext)!;
+  } = config;
 
   const footerLinks = [
     { href: "/#features", key: "nav.features" },

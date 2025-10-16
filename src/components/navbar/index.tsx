@@ -1,16 +1,21 @@
+import "../../i18n";
 import AnimatedList from "../../components/animatedList";
 import MenuToggle from "../../components/menuToggle";
 import clsx from "clsx";
 import { easeIn, motion, useScroll, useTransform } from "framer-motion";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ConfigContext } from "../../utils/configContext";
+import type { TemplateConfig } from "../../utils/configType";
 import ThemeSwitcher from "./themeSwitcher";
 import LanguageSwitcher from "../languageSwitcher";
 import AppStoreDropdown from "../appStoreDropdown";
 import GreenCardLogoSimplified from "./GreenCardLogoSimplified";
 
-function Navbar() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function Navbar({ config }: Props) {
   const { t } = useTranslation();
   const {
     name,
@@ -18,7 +23,7 @@ function Navbar() {
     topNavbar,
     googlePlayLink,
     appStoreLink,
-  } = useContext(ConfigContext)!;
+  } = config;
 
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
   const [targetWidth, setTargetWidth] = useState("88%");
@@ -112,14 +117,13 @@ function Navbar() {
             ))}
             <div className="flex border-l border-current pl-2">
             <LanguageSwitcher />
-            {showThemeSwitch && <ThemeSwitcher />}
+            {showThemeSwitch && <ThemeSwitcher config={config} />}
             </div>
           </ul>
-          {topNavbar.cta && <AppStoreDropdown />}
+          {topNavbar.cta && <AppStoreDropdown config={config} />}
         </div>
       </motion.div>
       <AnimatedList
-        id="mobile-navigation-menu"
         listKey="mobile-navbar"
         listClassName="absolute bg-base-100 top-20 h-[calc(100vh-5rem)] w-full px-4 flex flex-col gap-2 nav:hidden overflow-y-auto"
         isVisible={isMobileNavVisible}
@@ -133,7 +137,7 @@ function Navbar() {
               }}
               className="w-full flex justify-center py-2"
             >
-              <ThemeSwitcher />
+              <ThemeSwitcher config={config} />
             </motion.div>
           )}
           <ul className="list-none flex flex-col gap-2 m-0 p-0">

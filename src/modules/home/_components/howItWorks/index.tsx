@@ -1,18 +1,22 @@
+import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { ConfigContext } from "../../../../utils/configContext";
+import type { TemplateConfig } from "../../../../utils/configType";
 import SwirlArrowBottomLeft from "./svg/swirlArrowBottomLeft";
 import SwirlArrowBottomRight from "./svg/swirlArrowBottomRight";
 import SwirlArrowBottom from "./svg/swirlArrowBottom";
 
-function HowItWorks() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function HowItWorks({ config }: Props) {
   const { t } = useTranslation();
   const {
     home: { howItWorks },
-  } = useContext(ConfigContext)!;
+  } = config;
 
   if (!howItWorks) return null;
 

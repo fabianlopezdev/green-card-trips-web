@@ -3,7 +3,6 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import AppBanner from "../../components/appBanner";
 import LenisProvider from "../../components/lenis";
-import { ConfigContext } from "../../utils/configContext";
 import type { TemplateConfig } from "../../utils/configType";
 import Header from "./_components/header";
 import Features from "./_components/features";
@@ -19,22 +18,20 @@ interface Props {
 
 function Home({ config }: Props) {
   return (
-    <ConfigContext.Provider value={config}>
-      <LenisProvider>
-        <main>
-          <Navbar />
-          <Header />
-          <Partners />
-          <Features />
-          <HowItWorks />
-          <Pricing />
-          <Testimonials />
-          <Faq />
-          <AppBanner />
-          <Footer />
-        </main>
-      </LenisProvider>
-    </ConfigContext.Provider>
+    <LenisProvider>
+      <main>
+        <Navbar config={config} />
+        <Header config={config} />
+        <Partners config={config} />
+        <Features config={config} />
+        <HowItWorks config={config} />
+        <Pricing config={config} />
+        <Testimonials config={config} />
+        <Faq config={config} />
+        <AppBanner config={config} />
+        <Footer config={config} />
+      </main>
+    </LenisProvider>
   );
 }
 

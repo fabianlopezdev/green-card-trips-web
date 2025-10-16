@@ -1,9 +1,9 @@
+import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { ConfigContext } from "../../../../utils/configContext";
+import type { TemplateConfig } from "../../../../utils/configType";
 import Airplane from "./svgs/airplane";
 
 const planImages = [
@@ -14,11 +14,15 @@ const planImages = [
 
 const planBGs = ["bg-primary/80", "bg-secondary/80", "bg-accent/80"];
 
-function Pricing() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function Pricing({ config }: Props) {
   const { t } = useTranslation();
   const {
     home: { pricing },
-  } = useContext(ConfigContext)!;
+  } = config;
   if (!pricing) return null;
 
   return (
@@ -85,7 +89,7 @@ function Pricing() {
                   </div>
                 </div>
                 <div className="w-full flex-1 flex flex-col mb-4">
-                  {t("pricing.features", { returnObjects: true }).map(
+                  {(t("pricing.features", { returnObjects: true }) as string[]).map(
                     (feature: string, idx: number) => (
                       <div key={idx} className="flex relative items-center">
                         <span className="mx-6">

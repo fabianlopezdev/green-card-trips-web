@@ -1,15 +1,19 @@
+import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { ConfigContext } from "../../../../utils/configContext";
+import type { TemplateConfig } from "../../../../utils/configType";
 
-function Features() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function Features({ config }: Props) {
   const { t } = useTranslation();
   const {
     home: { features },
-  } = useContext(ConfigContext)!;
+  } = config;
   if (!features) return null;
 
   const featureCards = [

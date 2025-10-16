@@ -1,12 +1,22 @@
 ---
-import PrivacyPolicyPage from "@modules/privacyPolicy";
 import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
+import InitScripts from "../components/initScripts";
+import Navbar from "../components/navbar";
+import AppBanner from "../components/appBanner";
+import Footer from "../components/footer";
+import PrivacyPolicyContent from "@modules/privacyPolicy";
 ---
 
 <Layout
   {...defaultTemplateConfig}
   seo={defaultTemplateConfig.privacyPolicy?.en?.seo}
 >
-  <PrivacyPolicyPage client:idle config={defaultTemplateConfig} />
+  <InitScripts client:load />
+  <main>
+    <Navbar client:load config={defaultTemplateConfig} />
+    <PrivacyPolicyContent client:only="react" config={defaultTemplateConfig} />
+    <AppBanner client:visible config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} />
+  </main>
 </Layout>

@@ -1,18 +1,23 @@
+import "../../../../i18n";
 import { motion, useScroll } from "framer-motion";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { ConfigContext } from "../../../../utils/configContext";
+import type { TemplateConfig } from "../../../../utils/configType";
 import SingleScreenshot from "./singleScreenshot";
 import SVGWave from "./svg/wave";
 import GradientBlobs from "./svg/gradientBlobs";
 
-function Header() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function Header({ config }: Props) {
   const { t, i18n } = useTranslation();
   const {
     googlePlayLink,
     appStoreLink,
     home: { header, partners },
-  } = useContext(ConfigContext)!;
+  } = config;
 
   // Map browser language to supported language folders
   // Supported: en, es, tl, vi, zh-CN

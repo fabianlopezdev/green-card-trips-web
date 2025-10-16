@@ -1,9 +1,31 @@
 ---
-import HomePage from "@modules/home"
 import Layout from "Layout.astro"
 import defaultTemplateConfig from "utils/config"
+import InitScripts from "../components/initScripts"
+import Navbar from "../components/navbar"
+import Header from "../modules/home/_components/header"
+import Partners from "../modules/home/_components/partners"
+import Features from "../modules/home/_components/features"
+import HowItWorks from "../modules/home/_components/howItWorks"
+import Pricing from "../modules/home/_components/pricing"
+import Testimonials from "../modules/home/_components/testimonials"
+import Faq from "../modules/home/_components/faq"
+import AppBanner from "../components/appBanner"
+import Footer from "../components/footer"
 ---
 
 <Layout {...defaultTemplateConfig}>
-  <HomePage client:load config={defaultTemplateConfig} />
+  <InitScripts client:load />
+  <main>
+    <Navbar client:load config={defaultTemplateConfig} />
+    <Header client:load config={defaultTemplateConfig} />
+    <Partners client:visible config={defaultTemplateConfig} />
+    <Features client:visible config={defaultTemplateConfig} />
+    <HowItWorks client:visible config={defaultTemplateConfig} />
+    <Pricing client:visible config={defaultTemplateConfig} />
+    <Testimonials client:visible config={defaultTemplateConfig} />
+    <Faq client:visible config={defaultTemplateConfig} />
+    <AppBanner client:visible config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} />
+  </main>
 </Layout>

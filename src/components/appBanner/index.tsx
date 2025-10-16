@@ -1,15 +1,18 @@
-import { useContext } from "react";
+import "../../i18n";
 import { useTranslation } from "react-i18next";
-import { ConfigContext } from "../../utils/configContext";
+import type { TemplateConfig } from "../../utils/configType";
 import Spill from "./svgs/spill";
 import IphoneFrame from "../../components/iphoneFrame";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
-function AppBanner() {
+interface Props {
+  config: TemplateConfig;
+}
+
+function AppBanner({ config }: Props) {
   const { t, i18n } = useTranslation();
-  const { googlePlayLink, appStoreLink, appBanner } =
-    useContext(ConfigContext)!;
+  const { googlePlayLink, appStoreLink, appBanner } = config;
 
   // Map browser language to supported language folders
   // Supported: en, es, tl, vi, zh-CN

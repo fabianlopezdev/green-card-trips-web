@@ -1,12 +1,22 @@
 ---
-import CookiesPolicyPage from "@modules/cookiesPolicy";
 import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
+import InitScripts from "../components/initScripts";
+import Navbar from "../components/navbar";
+import AppBanner from "../components/appBanner";
+import Footer from "../components/footer";
+import CookiesPolicyContent from "@modules/cookiesPolicy";
 ---
 
 <Layout
   {...defaultTemplateConfig}
   seo={defaultTemplateConfig.cookiesPolicy?.en?.seo}
 >
-  <CookiesPolicyPage client:idle config={defaultTemplateConfig} />
+  <InitScripts client:load />
+  <main>
+    <Navbar client:load config={defaultTemplateConfig} />
+    <CookiesPolicyContent client:only="react" config={defaultTemplateConfig} />
+    <AppBanner client:visible config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} />
+  </main>
 </Layout>

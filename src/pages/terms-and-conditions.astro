@@ -1,12 +1,22 @@
 ---
-import TermsAndConditionsPage from "@modules/termsAndConditions";
 import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
+import InitScripts from "../components/initScripts";
+import Navbar from "../components/navbar";
+import AppBanner from "../components/appBanner";
+import Footer from "../components/footer";
+import TermsAndConditionsContent from "@modules/termsAndConditions";
 ---
 
 <Layout
   {...defaultTemplateConfig}
   seo={defaultTemplateConfig.termsAndConditions?.en?.seo}
 >
-  <TermsAndConditionsPage client:idle config={defaultTemplateConfig} />
+  <InitScripts client:load />
+  <main>
+    <Navbar client:load config={defaultTemplateConfig} />
+    <TermsAndConditionsContent client:only="react" config={defaultTemplateConfig} />
+    <AppBanner client:visible config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} />
+  </main>
 </Layout>
