@@ -68,7 +68,7 @@ function Navbar({ config }: Props) {
 
   return (
     <motion.nav
-      className="opacity-0 max-w-screen-lg mx-auto sticky top-0 z-50"
+      className="opacity-0 max-w-screen-lg mx-auto fixed top-0 left-0 right-0 z-50"
       animate={{ opacity: 1 }}
       aria-label="Main navigation"
     >
