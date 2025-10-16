@@ -33,9 +33,9 @@ function Features({ config }: Props) {
   return (
     <section id={features.id} className="max-w-screen-lg mx-auto px-4 py-12">
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
-        <h1 className="mb-3 font-normal">
+        <h2 className="mb-3 font-normal">
           <AnimatedText text={t("features.title")} />
-        </h1>
+        </h2>
         <motion.div
           className="h-2 bg-gradient-to-r from-primary to-secondary rounded-full overflow-hidden [--w:200px] md:[--w:350px]"
           whileInView={{ width: "var(--w)" }}

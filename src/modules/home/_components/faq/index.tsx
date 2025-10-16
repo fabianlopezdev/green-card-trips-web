@@ -28,9 +28,9 @@ function Faq({ config }: Props) {
         <div className="relative flex-1 flex items-center">
           <NeonHexagon />
           <div className="h-full w-full flex items-center justify-center">
-            <h3 className="text-center font-normal text-3xl flex flex-col items-center mb-8 md:mb-0 md:text-left">
+            <h2 className="text-center font-normal text-3xl flex flex-col items-center mb-8 md:mb-0 md:text-left">
               <AnimatedText text={t("faq.title")} initial={{ y: "0%" }} />
-            </h3>
+            </h2>
           </div>
         </div>
         <motion.div

@@ -31,9 +31,9 @@ function HowItWorks({ config }: Props) {
       className="overflow-hidden max-w-screen-lg mx-auto px-4 py-12"
     >
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
-        <h1 className="mb-3 font-normal">
+        <h2 className="mb-3 font-normal">
           <AnimatedText text={t("howItWorks.title")} />
-        </h1>
+        </h2>
         {howItWorks.subtitle && (
           <motion.p
             initial={{ y: "100%", opacity: 0 }}
@@ -104,9 +104,9 @@ function HowItWorks({ config }: Props) {
                 {index < 10 && 0}
                 {index + 1}
               </div>
-              <h4 className="mt-0 text-2xl font-bold">
+              <h3 className="mt-0 text-2xl font-bold">
                 {t(`howItWorks.${step.key}.title`)}
-              </h4>
+              </h3>
               <p className="mx-auto max-w-sm opacity-[.7]">
                 {t(`howItWorks.${step.key}.description`)}
               </p>

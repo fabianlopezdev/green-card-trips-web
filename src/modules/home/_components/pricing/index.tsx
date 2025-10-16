@@ -31,9 +31,9 @@ function Pricing({ config }: Props) {
       className="overflow-hidden max-w-screen-lg mx-auto px-4 py-12"
     >
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
-        <h1 className="mb-0 font-normal">
+        <h2 className="mb-0 font-normal">
           <AnimatedText text={t("pricing.title")} />
-        </h1>
+        </h2>
         <motion.p
           initial={{ y: "100%", opacity: 0 }}
           whileInView={{ y: "0%", opacity: 0.7 }}
