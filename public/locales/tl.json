@@ -1,0 +1,113 @@
+{
+  "nav": {
+    "features": "Mga Tampok",
+    "howItWorks": "Paano Gumagana",
+    "pricing": "Presyo",
+    "faq": "Mga Tanong",
+    "getApp": "Kunin ang app",
+    "language": "Wika",
+    "openMenu": "Buksan ang menu",
+    "closeMenu": "Isara ang menu",
+    "homeLink": "Home ng Green Card Trips",
+    "chooseLanguage": "Pumili ng wika",
+    "downloadAppStore": "I-download sa App Store",
+    "downloadPlayStore": "I-download sa Google Play"
+  },
+  "hero": {
+    "headline": "Ang Iyong Kasosyo sa Kapayapaan ng Isip sa Landas Patungo sa U.S. Citizenship",
+    "subtitle": "Subaybayan ang iyong mga biyahe, planuhin ang iyong paglalakbay, at sumunod sa mga kinakailangan ng USCIS. Ginagawang simple at walang stress ng Green Card Trips ang pagiging karapat-dapat sa citizenship.",
+    "usersDescription": "Pinagkakatiwalaan ng mga may green card",
+    "downloadNow": "I-download Ngayon"
+  },
+  "features": {
+    "title": "Lahat ng Kailangan Mo para Manatiling Sumusunod",
+    "subtitle": "Simpleng mga tool para subaybayan ang iyong presensya, magplano ng paglalakbay, at makamit ang iyong mga layunin sa citizenship",
+    "tracking": {
+      "title": "Matalinong Pagsubaybay ng Biyahe",
+      "description": "Madaling itala ang lahat ng iyong mga internasyonal na biyahe kasama ang mga petsa at destinasyon. Makita ang iyong mga araw sa USA sa isang sulyap."
+    },
+    "simulator": {
+      "title": "Travel Simulator",
+      "description": "Magplano ng mga biyahe sa hinaharap nang may kumpiyansa. Makita kung paano nakakaapekto ang paglalakbay sa iyong pagiging karapat-dapat sa citizenship bago mag-book."
+    },
+    "dashboard": {
+      "title": "Dashboard Insights",
+      "description": "Real-time na mga istatistika ng presensya na may 180-araw at 365-araw na mga babala. Alamin ang iyong katayuan agad."
+    },
+    "privacy": {
+      "title": "Privacy at Seguridad",
+      "description": "Offline-first na disenyo na may field-level encryption. Hindi lumalabas ang iyong data sa iyong device maliban kung pipiliin mo ang cloud sync."
+    }
+  },
+  "howItWorks": {
+    "title": "Paano Ito Gumagana",
+    "subtitle": "Magsimula sa loob ng ilang minuto at kontrolin ang iyong paglalakbay tungo sa citizenship",
+    "step1": {
+      "title": "I-download ang App",
+      "description": "I-install ang Green Card Trips sa iyong iOS device."
+    },
+    "step2": {
+      "title": "Ilagay ang Mga Detalye ng Green Card",
+      "description": "Idagdag ang petsa ng iyong green card at piliin ang iyong eligibility path (3-taon o 5-taon)."
+    },
+    "step3": {
+      "title": "Itala ang Iyong Mga Biyahe",
+      "description": "Manu-manong ilagay ang mga nakaraang at darating na biyahe kasama ang mga petsa ng pag-alis at pagbabalik."
+    },
+    "step4": {
+      "title": "Magplano ng Biyahe nang Ligtas",
+      "description": "Gamitin ang simulator para suriin kung paano nakakaapekto ang mga biyahe sa iyong eligibility bago mag-book."
+    },
+    "step5": {
+      "title": "Manatiling Sumusunod",
+      "description": "Subaybayan ang iyong dashboard para sa mga babala, subaybayan ang mga petsa ng renewal, at panatilihin ang iyong katayuan."
+    }
+  },
+  "pricing": {
+    "title": "Simple at Transparent na Presyo",
+    "subtitle": "Isang beses lang na pagbili.",
+    "price": "$4.99",
+    "cta": "I-download Ngayon",
+    "features": [
+      "Walang limitasyong pagsubaybay ng biyahe",
+      "Travel simulator",
+      "Dashboard insights",
+      "Mga paalala sa pagsunod",
+      "Offline mode"
+    ]
+  },
+  "faq": {
+    "title": "Mga Madalas Itanong",
+    "q1": {
+      "question": "Ano ang Green Card Trips?",
+      "answer": "Ang Green Card Trips ay isang mobile app na tumutulong sa mga may green card sa U.S. na subaybayan ang kanilang pisikal na presensya sa United States upang matugunan ang mga kinakailangan sa pagiging karapat-dapat sa citizenship. Pinipigilan nito ang mga nakakalokong pagkakamali sa pamamagitan ng pagsubaybay sa mga kritikal na threshold ng paglalakbay."
+    },
+    "q2": {
+      "question": "Gaano katumpak ang mga kalkulasyon?",
+      "answer": "Ang aming mga kalkulasyon ay sumusunod nang eksakto sa mga opisyal na patakaran ng USCIS. Ang mga araw ng pag-alis at pagbabalik ay binibilang bilang pisikal na presensya. At sinusubaybayan namin ang mga threshold na nakakaapekto sa tuloy-tuloy na paninirahan at pisikal na presensya para sa katayuan ng green card."
+    },
+    "q3": {
+      "question": "Ligtas at pribado ba ang aking data?",
+      "answer": "Tiyak. Ang lahat ng data ay naka-imbak nang lokal sa iyong device. Ang iyong impormasyon ay hindi lumalabas sa iyong telepono. Wala kaming access sa iyong data."
+    },
+    "q4": {
+      "question": "Pwede ko bang gamitin ito offline?",
+      "answer": "Oo! Ang buong app ay gumagana offline. Magtala ng mga biyahe, gamitin ang simulator, at suriin ang iyong dashboard kahit saan nang walang internet."
+    },
+    "q5": {
+      "question": "Available ba ang app sa Android?",
+      "answer": "Hindi pa, pero nagtratrabaho kami upang dalhin ang Green Card Trips sa Android sa lalong madaling panahon! Sa kasalukuyan, ang app ay available lang para sa iOS devices. Iaanunsyo namin ang Android launch pagkatapos itong matapos."
+    }
+  },
+  "appBanner": {
+    "title": "Handa Ka Na Bang Kontrolin ang Iyong Paglalakbay Tungo sa Citizenship?",
+    "subtitle": "Sumali sa mga may green card na nagtitiwala sa Green Card Trips upang manatiling sumusunod at makamit ang kanilang mga layunin sa citizenship.",
+    "cta": "I-download Ngayon"
+  },
+  "footer": {
+    "description": "Tinutulungan ng Green Card Trips ang mga may green card sa U.S. na subaybayan ang pisikal na presensya at pamahalaan ang kanilang landas tungo sa citizenship nang may kumpiyansa.",
+    "madeBy": "Ginawa ng mga May Green Card",
+    "madeByFor": "para sa mga May Green Card",
+    "developedBy": "Nilikha ng"
+  }
+}
