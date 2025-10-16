@@ -8,5 +8,5 @@ import defaultTemplateConfig from "utils/config";
   {...defaultTemplateConfig}
   seo={defaultTemplateConfig.termsAndConditions?.en?.seo}
 >
-  <TermsAndConditionsPage client:load config={defaultTemplateConfig} />
+  <TermsAndConditionsPage client:idle config={defaultTemplateConfig} />
 </Layout>

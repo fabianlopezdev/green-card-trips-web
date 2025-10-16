@@ -8,5 +8,5 @@ import defaultTemplateConfig from "utils/config";
   {...defaultTemplateConfig}
   seo={defaultTemplateConfig.privacyPolicy?.en?.seo}
 >
-  <PrivacyPolicyPage client:load config={defaultTemplateConfig} />
+  <PrivacyPolicyPage client:idle config={defaultTemplateConfig} />
 </Layout>

@@ -8,5 +8,5 @@ import defaultTemplateConfig from "utils/config";
   {...defaultTemplateConfig}
   seo={defaultTemplateConfig.cookiesPolicy?.en?.seo}
 >
-  <CookiesPolicyPage client:load config={defaultTemplateConfig} />
+  <CookiesPolicyPage client:idle config={defaultTemplateConfig} />
 </Layout>
