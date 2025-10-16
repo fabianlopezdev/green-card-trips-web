@@ -8,12 +8,14 @@ function IphoneFrame({ src }: Props) {
       <div className="absolute top-2 bottom-2 left-2.5">
         <img
           src={src}
+          loading="lazy"
           alt="screenshot"
           className="rounded-2xl h-full"
         />
       </div>
       <img
         src="/misc/iphone-frame.webp"
+        loading="lazy"
         alt="iphone-frame"
         className="relative z-10 h-full"
       />

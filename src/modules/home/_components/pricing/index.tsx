@@ -73,6 +73,9 @@ function Pricing() {
                   <div className={clsx("h-32 w-1/2 p-4", planBGs[index])}>
                     <img
                       src={planImages[index]}
+                      width={160}
+                      height={160}
+                      loading="lazy"
                       alt="pricing plan"
                       className="m-0 h-full w-full object-contain"
                     />

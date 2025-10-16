@@ -117,6 +117,9 @@ function HowItWorks() {
               <img
                 className="rounded-3xl lg:w-[75%]"
                 src={step.image}
+                width={400}
+                height={300}
+                loading="lazy"
                 alt={`step ${index}`}
               />
             </motion.div>

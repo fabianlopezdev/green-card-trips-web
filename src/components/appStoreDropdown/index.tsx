@@ -67,7 +67,7 @@ export default function AppStoreDropdown() {
                 className="flex items-center justify-center px-3 py-2 rounded-lg hover:bg-base-200 transition-colors"
                 aria-label={store.name === 'iOS' ? t("nav.downloadAppStore") : t("nav.downloadPlayStore")}
               >
-                <img src={store.icon} alt="" className="h-10" />
+                <img src={store.icon} width={112} height={40} loading="lazy" alt="" className="h-10" />
               </a>
             </li>
           ))}

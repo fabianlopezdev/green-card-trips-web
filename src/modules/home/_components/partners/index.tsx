@@ -26,6 +26,9 @@ function Partners() {
             <motion.img
               key={index}
               src={logo}
+              width={80}
+              height={80}
+              loading="lazy"
               alt="partner logo"
               variants={{
                 hidden: { y: "-80%", opacity: 0 },

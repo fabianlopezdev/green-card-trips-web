@@ -88,6 +88,9 @@ function Features() {
               <figure className="py-4">
                 <img
                   src={feat.icon}
+                  width={160}
+                  height={160}
+                  loading="lazy"
                   alt="feature icon"
                   className="w-40 transition-transform group-hover:scale-90"
                 />

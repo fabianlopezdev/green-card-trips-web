@@ -59,6 +59,9 @@ function Footer() {
           >
             <img
               src="/green-card-trips-logo-footer.svg"
+              width={400}
+              height={200}
+              loading="lazy"
               alt="Green Card Trips Logo"
               className="h-32 md:h-[15rem] w-auto"
             />
@@ -188,7 +191,7 @@ function Footer() {
               visible: { opacity: 1, y: 0 },
             }}
             transition={{ delay: 1.5 }}
-            className="font-sans whitespace-nowrap md:pb-4 text-white"
+            className="font-sans whitespace-nowrap md:pb-4 text-white text-center md:text-left"
             style={{ fontSize: '0.625rem' }}
           >
             {t('footer.developedBy')}{' '}
