@@ -1,6 +1,7 @@
 ---
 import Layout from "Layout.astro"
 import defaultTemplateConfig from "utils/config"
+import { generateFAQPageSchema } from "utils/structuredData"
 import InitScripts from "../components/initScripts"
 import Navbar from "../components/navbar"
 import Header from "../modules/home/_components/header"
@@ -12,9 +13,23 @@ import Testimonials from "../modules/home/_components/testimonials"
 import Faq from "../modules/home/_components/faq"
 import AppBanner from "../components/appBanner"
 import Footer from "../components/footer"
+import enTranslations from "../i18n/locales/en.json"
+
+// Generate FAQPage schema with actual FAQ content from translations
+const faqs = [
+  { question: enTranslations.faq.q1.question, answer: enTranslations.faq.q1.answer },
+  { question: enTranslations.faq.q2.question, answer: enTranslations.faq.q2.answer },
+  { question: enTranslations.faq.q3.question, answer: enTranslations.faq.q3.answer },
+  { question: enTranslations.faq.q4.question, answer: enTranslations.faq.q4.answer },
+  { question: enTranslations.faq.q5.question, answer: enTranslations.faq.q5.answer },
+];
+const faqSchema = generateFAQPageSchema(faqs);
 ---
 
 <Layout {...defaultTemplateConfig}>
+  <!-- FAQPage Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
   <InitScripts client:load />
   <main>
     <Navbar client:load config={defaultTemplateConfig} />

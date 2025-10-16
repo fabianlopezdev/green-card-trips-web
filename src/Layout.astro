@@ -2,9 +2,19 @@
 import "swiper/css";
 import "@styles/styles.scss";
 import type { TemplateConfig } from "utils/configType";
+import {
+  generateMobileApplicationSchema,
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+} from "utils/structuredData";
 
-const { backgroundGrid, seo, logo, theme, forceTheme } =
-  Astro.props as TemplateConfig;
+const config = Astro.props as TemplateConfig;
+const { backgroundGrid, seo, logo, theme, forceTheme } = config;
+
+// Generate structured data schemas
+const mobileAppSchema = generateMobileApplicationSchema(config, Astro.url.href);
+const organizationSchema = generateOrganizationSchema(config, Astro.url.href);
+const websiteSchema = generateWebSiteSchema(config, Astro.url.href);
 ---
 
 <!doctype html>
@@ -45,6 +55,14 @@ const { backgroundGrid, seo, logo, theme, forceTheme } =
     <meta property="twitter:title" content={seo.title} />
     <meta property="twitter:description" content={seo.description} />
     <meta property="twitter:image" content={new URL(logo, Astro.url)} />
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify(mobileAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+    <!-- Allow pages to inject additional head content (e.g., FAQPage schema) -->
+    <slot name="head" />
 
     <script is:inline>
       // Set language attribute dynamically (same detection order as i18next)
