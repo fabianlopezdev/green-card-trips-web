@@ -9,6 +9,7 @@ import {
   generateWebSiteSchema,
 } from "utils/structuredData";
 import CookieConsentBanner from "@components/cookieConsent/index.tsx";
+import GoogleAnalytics from "@components/googleAnalytics/index.tsx";
 
 interface Props extends TemplateConfig {
   currentLang?: string;
@@ -123,6 +124,10 @@ const languageUrls = supportedLanguages.map(lang => {
     <link rel="stylesheet" href="/swiper.css" media="print" onload="this.media='all'; this.onload=null;" />
     <noscript><link rel="stylesheet" href="/swiper.css" /></noscript>
 
+    <!-- Defer below-fold fonts (howItWorks, footer) -->
+    <link rel="stylesheet" href="/below-fold-fonts.css" media="print" onload="this.media='all'; this.onload=null;" />
+    <noscript><link rel="stylesheet" href="/below-fold-fonts.css" /></noscript>
+
     <!-- Primary Meta Tags -->
     <title>{pageSeo.title}</title>
     <meta name="title" content={pageSeo.title} />
@@ -211,5 +216,8 @@ const languageUrls = supportedLanguages.map(lang => {
 
     <!-- Cookie Consent Banner -->
     <CookieConsentBanner client:load />
+
+    <!-- Google Analytics (loads conditionally based on cookie consent) -->
+    <GoogleAnalytics trackingId={config.googleAnalytics} client:load />
   </body>
 </html>

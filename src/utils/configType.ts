@@ -9,6 +9,7 @@ export type TemplateConfig = {
     backgroundGrid: boolean;
     forceTheme: boolean;
     showThemeSwitch: boolean;
+    googleAnalytics?: string | undefined;
     googlePlayLink?: string | undefined;
     appStoreLink?: string | undefined;
     termsAndConditions: Record<string, {

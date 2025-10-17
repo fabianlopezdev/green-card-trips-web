@@ -3,6 +3,25 @@ import { useTranslation } from "react-i18next";
 import * as CookieConsent from "vanilla-cookieconsent";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import { getConsentMode, getCookie } from "./config";
+import "../../i18n"; // Initialize i18next
+
+// Color-coded logging helpers for production debugging
+const log = {
+  success: (msg: string, ...args: any[]) => {
+    console.log(`%c🟢 [Cookie Consent] ${msg}`, 'color: #10b981; font-weight: bold', ...args);
+  },
+  error: (msg: string, ...args: any[]) => {
+    console.log(`%c🔴 [Cookie Consent] ${msg}`, 'color: #ef4444; font-weight: bold', ...args);
+  },
+  info: (msg: string, ...args: any[]) => {
+    console.log(`%c🔵 [Cookie Consent] ${msg}`, 'color: #3b82f6; font-weight: bold', ...args);
+  },
+  warn: (msg: string, ...args: any[]) => {
+    console.log(`%c🟡 [Cookie Consent] ${msg}`, 'color: #f59e0b; font-weight: bold', ...args);
+  },
+};
+
+const getTimestamp = () => new Date().toISOString().split('T')[1].split('.')[0];
 
 export default function CookieConsentBanner() {
   const { t, i18n } = useTranslation();
@@ -12,7 +31,19 @@ export default function CookieConsentBanner() {
     const countryCode = getCookie("user_country") || "UNKNOWN";
     const consentConfig = getConsentMode(countryCode);
 
-    console.log("Cookie consent initialized for country:", countryCode, consentConfig);
+    log.info(`[${getTimestamp()}] Cookie consent system initializing...`);
+    log.info(`Detected country code: ${countryCode}`);
+    log.info(`Consent mode for ${countryCode}:`, consentConfig.mode);
+    log.info(`Block cookies by default: ${consentConfig.blockCookies}`);
+
+    if (consentConfig.mode === "opt-in") {
+      log.warn(`[${getTimestamp()}] EU/GDPR region detected - blocking modal will appear`);
+      log.info('User MUST accept cookies before analytics load');
+    } else {
+      log.success(`[${getTimestamp()}] Non-EU region detected - no blocking modal`);
+      log.info('Analytics cookies enabled by default (opt-out model)');
+      log.info('User can opt-out via footer "Cookie Settings" link');
+    }
 
     // Initialize cookie consent
     CookieConsent.run({
@@ -133,31 +164,120 @@ export default function CookieConsentBanner() {
         },
       },
 
-      // Callbacks for Google Analytics integration (Phase 6)
+      // Callbacks for Google Analytics integration
       onChange: ({ changedCategories, changedServices }) => {
-        console.log("Cookie preferences changed:", changedCategories);
+        log.info(`[${getTimestamp()}] 🔔 User changed cookie preferences`);
+        log.info('Changed categories:', changedCategories);
+        log.info('Changed services:', changedServices);
 
         // Handle Google Analytics
         if (changedCategories.includes("analytics")) {
           const accepted = CookieConsent.acceptedCategory("analytics");
 
           if (accepted) {
-            console.log("Analytics accepted - will load GA in Phase 6");
-            // Phase 6: Load Google Analytics here
+            log.success(`[${getTimestamp()}] Analytics cookies ACCEPTED`);
+            log.info('Google Analytics will load (if tracking ID configured)');
           } else {
-            console.log("Analytics rejected - GA will not load");
+            log.error(`[${getTimestamp()}] Analytics cookies REJECTED`);
+            log.info('Google Analytics will NOT load / will be removed');
           }
         }
       },
 
       onFirstConsent: ({ cookie }) => {
-        console.log("First consent saved:", cookie);
+        log.success(`[${getTimestamp()}] 🎉 First consent saved by user`);
+        log.info('Consent cookie created:', cookie);
+        log.info('Accepted categories:', cookie.categories);
+        log.info('This consent will persist for 365 days');
       },
 
       onConsent: ({ cookie }) => {
-        console.log("Consent saved:", cookie);
+        log.success(`[${getTimestamp()}] Consent saved/updated`);
+        log.info('Current categories:', cookie.categories);
+
+        if (cookie.categories?.includes('analytics')) {
+          log.success('✓ Analytics cookies: ACCEPTED');
+        } else {
+          log.error('✗ Analytics cookies: REJECTED');
+        }
+
+        log.success('✓ Necessary cookies: ALWAYS ENABLED (required for site functionality)');
       },
     });
+
+    log.success(`[${getTimestamp()}] Cookie consent system initialized successfully`);
+    log.info('Auto-show modal:', consentConfig.mode === "opt-in" ? 'YES (EU)' : 'NO (US/other)');
+
+    // Expose debug helpers to window for production testing
+    if (!window.cookieConsentDebug) {
+      window.cookieConsentDebug = {} as any;
+    }
+
+    window.cookieConsentDebug.status = () => {
+      const cookie = CookieConsent.getCookie();
+      return {
+        countryDetected: countryCode,
+        consentMode: consentConfig.mode,
+        bannerAutoShow: consentConfig.mode === "opt-in",
+        consentGiven: !!cookie,
+        consentCategories: cookie?.categories || [],
+        analyticsAccepted: cookie?.categories?.includes('analytics') || false,
+        cookieExpiry: cookie ? '365 days from consent' : 'N/A',
+      };
+    };
+
+    window.cookieConsentDebug.country = () => {
+      return {
+        detected: countryCode,
+        source: 'Netlify Edge Function cookie (user_country)',
+        mode: consentConfig.mode,
+        isEU: consentConfig.mode === 'opt-in',
+      };
+    };
+
+    window.cookieConsentDebug.cookies = () => {
+      const allCookies = document.cookie.split(';').map(c => c.trim());
+      const consentCookie = allCookies.find(c => c.startsWith('cc_cookie='));
+      const gaCookies = allCookies.filter(c => c.startsWith('_ga'));
+
+      return {
+        allCookies: allCookies.length > 0 ? allCookies : 'No cookies found',
+        consentCookie: consentCookie || 'Not set',
+        gaCookies: gaCookies.length > 0 ? gaCookies : 'No GA cookies',
+      };
+    };
+
+    window.cookieConsentDebug.test = {
+      acceptAll: () => {
+        log.info('🧪 TEST: Simulating "Accept All" action...');
+        CookieConsent.acceptCategory('all');
+        log.success('✓ All categories accepted');
+        log.info('Check console logs above for GA loading');
+      },
+      rejectAll: () => {
+        log.info('🧪 TEST: Simulating "Reject All" action...');
+        CookieConsent.acceptCategory('necessary');
+        log.success('✓ Only necessary cookies accepted');
+        log.info('Check console logs above for GA removal');
+      },
+      clearConsent: () => {
+        log.warn('🧪 TEST: Clearing consent cookie...');
+        document.cookie = 'cc_cookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        log.success('✓ Consent cookie cleared');
+        log.info('Refresh page to see modal again (if EU) or reset to defaults');
+      },
+    };
+
+    log.info('═══════════════════════════════════════════════════════════════');
+    log.info('🔧 DEBUG HELPERS AVAILABLE IN CONSOLE:');
+    log.info('  window.cookieConsentDebug.status()   - Show current consent status');
+    log.info('  window.cookieConsentDebug.country()  - Show detected country info');
+    log.info('  window.cookieConsentDebug.ga()       - Show Google Analytics status');
+    log.info('  window.cookieConsentDebug.cookies()  - List all cookies');
+    log.info('  window.cookieConsentDebug.test.acceptAll()   - Simulate accepting');
+    log.info('  window.cookieConsentDebug.test.rejectAll()   - Simulate rejecting');
+    log.info('  window.cookieConsentDebug.test.clearConsent() - Clear consent to retest');
+    log.info('═══════════════════════════════════════════════════════════════');
   }, [i18n.language, t]);
 
   return null; // This component only initializes the library
