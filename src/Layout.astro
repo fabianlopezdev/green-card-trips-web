@@ -115,6 +115,16 @@ const languageUrls = supportedLanguages.map(lang => {
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={Astro.url.href} />
 
+    <!-- Apple Mobile Web App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Green Card Trips" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#8b5cf6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1f2937" media="(prefers-color-scheme: dark)" />
+
     <!-- Hreflang Tags for Multilingual SEO -->
     {languageUrls.map(({ lang, url }) => (
       <link
