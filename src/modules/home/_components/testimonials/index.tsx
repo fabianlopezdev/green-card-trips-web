@@ -1,13 +1,15 @@
-import "../../../../i18n";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import AnimatedText from "../../../../components/animatedText";
 import { motion } from "framer-motion";
 import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
 import { Autoplay } from "swiper/modules";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
 function Testimonials({ config }: Props) {
@@ -19,9 +21,9 @@ function Testimonials({ config }: Props) {
   return (
     <section className="max-w-screen-lg mx-auto px-4 py-12" aria-label="User testimonials">
       <div className="mb-6 max-w-none flex flex-col items-center prose prose-lg text-center">
-        <h1 className="mb-0">
+        <h2 className="mb-0 font-normal text-3xl">
           <AnimatedText text={testimonials.title} />
-        </h1>
+        </h2>
         <motion.p
           initial={{ y: "100%", opacity: 0 }}
           whileInView={{ y: "0%", opacity: 0.7 }}

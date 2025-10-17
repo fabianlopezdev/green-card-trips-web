@@ -1,10 +1,12 @@
-import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import { motion } from "framer-motion";
 import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
 function Partners({ config }: Props) {

@@ -1,6 +1,5 @@
-import "../../i18n";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../utils/configType";
+import type { TranslationObject } from "../../utils/serverI18n";
 import Spill from "./svgs/spill";
 import IphoneFrame from "../../components/iphoneFrame";
 import { motion } from "framer-motion";
@@ -8,18 +7,16 @@ import clsx from "clsx";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
-function AppBanner({ config }: Props) {
-  const { t, i18n } = useTranslation();
+function AppBanner({ config, translations, currentLang = "en" }: Props) {
   const { googlePlayLink, appStoreLink, appBanner } = config;
 
   // Map browser language to supported language folders
   // Supported: en, es, tl, vi, zh-CN
-  const getLanguageFolder = (lang: string | undefined) => {
-    // Fallback to English if language is not available (SSR)
-    if (!lang) return 'en';
-
+  const getLanguageFolder = (lang: string) => {
     const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-CN'];
     // If exact match, use it
     if (supportedLanguages.includes(lang)) return lang;
@@ -29,7 +26,7 @@ function AppBanner({ config }: Props) {
     // Fallback to English
     return 'en';
   };
-  const languageFolder = getLanguageFolder(i18n.language);
+  const languageFolder = getLanguageFolder(currentLang);
 
   // Map screenshot names to descriptive alt text
   const screenshotAltText: Record<string, string> = {
@@ -73,7 +70,7 @@ function AppBanner({ config }: Props) {
               transition={{ delay: 0.3 }}
               className="mt-0 mb-4 text-4xl md:text-6xl"
             >
-              {t("appBanner.title")}
+              {translations.appBanner.title}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: "100%" }}
@@ -81,7 +78,7 @@ function AppBanner({ config }: Props) {
               transition={{ delay: 0.5 }}
               className="text-primary-content/70 whitespace-pre-wrap text-left m-0 mt-1 md:text-lg"
             >
-              {t("appBanner.subtitle")}
+              {translations.appBanner.subtitle}
             </motion.p>
             <motion.ul
               initial={{ opacity: 0, y: "100%" }}

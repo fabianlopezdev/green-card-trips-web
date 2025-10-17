@@ -1,9 +1,8 @@
-import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
 import Airplane from "./svgs/airplane";
 
 const planImages = [
@@ -22,10 +21,11 @@ const planBGs = ["bg-primary/80", "bg-secondary/80", "bg-accent/80"];
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
-function Pricing({ config }: Props) {
-  const { t } = useTranslation();
+function Pricing({ config, translations }: Props) {
   const {
     home: { pricing },
   } = config;
@@ -39,7 +39,7 @@ function Pricing({ config }: Props) {
     >
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
         <h2 className="mb-0 font-normal">
-          <AnimatedText text={t("pricing.title")} />
+          <AnimatedText text={translations.pricing.title} />
         </h2>
         <motion.p
           initial={{ y: "100%", opacity: 0 }}
@@ -47,7 +47,7 @@ function Pricing({ config }: Props) {
           viewport={{ once: true }}
           className="text-xl max-w-lg"
         >
-          {t("pricing.subtitle")}
+          {translations.pricing.subtitle}
         </motion.p>
       </div>
       <motion.div
@@ -92,11 +92,11 @@ function Pricing({ config }: Props) {
                     />
                   </div>
                   <div className="w-1/2 flex items-center justify-center py-8">
-                    <p className="text-[2.5rem]">{t("pricing.price")}</p>
+                    <p className="text-[2.5rem]">{translations.pricing.price}</p>
                   </div>
                 </div>
                 <div className="w-full flex-1 flex flex-col mb-4">
-                  {(t("pricing.features", { returnObjects: true }) as string[]).map(
+                  {translations.pricing.features.map(
                     (feature: string, idx: number) => (
                       <div key={idx} className="flex relative items-center">
                         <span className="mx-6">
@@ -110,7 +110,7 @@ function Pricing({ config }: Props) {
                 {pricing.actionText && (
                   <div className="w-full">
                     <span className="btn btn-primary btn-square no-animation rounded-none w-full text-lg h-auto py-4">
-                      {t("pricing.cta")}
+                      {translations.pricing.cta}
                     </span>
                   </div>
                 )}

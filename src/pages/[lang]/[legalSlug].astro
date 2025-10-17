@@ -57,7 +57,7 @@ const legalUrls = {
 >
   <InitScripts client:load />
   <main>
-    <Navbar client:load config={defaultTemplateConfig} lang={lang} />
+    <Navbar client:load config={defaultTemplateConfig} translations={translations} currentLang={lang} />
     {pageKey === 'privacy-policy' && (
       <PrivacyPolicyContent client:only="react" config={defaultTemplateConfig} />
     )}
@@ -67,7 +67,7 @@ const legalUrls = {
     {pageKey === 'cookies-policy' && (
       <CookiesPolicyContent client:only="react" config={defaultTemplateConfig} />
     )}
-    <AppBanner client:visible config={defaultTemplateConfig} />
-    <Footer client:idle config={defaultTemplateConfig} lang={lang} legalUrls={legalUrls} />
+    <AppBanner client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <Footer client:idle config={defaultTemplateConfig} translations={translations} currentLang={lang} legalUrls={legalUrls} />
   </main>
 </Layout>

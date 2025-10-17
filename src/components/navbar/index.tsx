@@ -1,11 +1,10 @@
-import "../../i18n";
 import AnimatedList from "../../components/animatedList";
 import MenuToggle from "../../components/menuToggle";
 import clsx from "clsx";
 import { easeIn, motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../utils/configType";
+import type { TranslationObject } from "../../utils/serverI18n";
 import ThemeSwitcher from "./themeSwitcher";
 import LanguageSwitcher from "../languageSwitcher";
 import AppStoreDropdown from "../appStoreDropdown";
@@ -13,11 +12,11 @@ import GreenCardLogoSimplified from "./GreenCardLogoSimplified";
 
 interface Props {
   config: TemplateConfig;
-  lang?: string;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
-function Navbar({ config, lang }: Props) {
-  const { t } = useTranslation();
+function Navbar({ config, translations, currentLang: lang }: Props) {
   const {
     name,
     showThemeSwitch,
@@ -68,12 +67,12 @@ function Navbar({ config, lang }: Props) {
     return `/${lang}${path}`;
   };
 
-  // Map config links to translation keys
+  // Map config links to translations
   const navLinks = [
-    { href: getLocalizedUrl("/#features"), key: "nav.features" },
-    { href: getLocalizedUrl("/#how-it-works"), key: "nav.howItWorks" },
-    { href: getLocalizedUrl("/#pricing"), key: "nav.pricing" },
-    { href: getLocalizedUrl("/#faq"), key: "nav.faq" },
+    { href: getLocalizedUrl("/#features"), label: translations.nav.features },
+    { href: getLocalizedUrl("/#how-it-works"), label: translations.nav.howItWorks },
+    { href: getLocalizedUrl("/#pricing"), label: translations.nav.pricing },
+    { href: getLocalizedUrl("/#faq"), label: translations.nav.faq },
   ];
 
   return (
@@ -102,7 +101,7 @@ function Navbar({ config, lang }: Props) {
           )}
         />
         <div className="navbar-start flex-1 max-nav:flex-auto">
-          <a href={getLocalizedUrl("/")} className="flex items-center" aria-label={t("nav.homeLink")}>
+          <a href={getLocalizedUrl("/")} className="flex items-center" aria-label={translations.nav.homeLink}>
             <GreenCardLogoSimplified className="h-16" />
             <span className="font-logo font-medium mx-1 text-2xl tracking-[-0.01em]">{name}</span>
           </a>
@@ -116,18 +115,18 @@ function Navbar({ config, lang }: Props) {
         <div className="navbar-end hidden font-medium nav:flex">
           <ul className="flex gap-4 px-1 items-center">
             
-            {navLinks.map(({ key, href }, index) => (
+            {navLinks.map(({ label, href }, index) => (
               <li key={index}>
                 <a
                   className="text-sm whitespace-nowrap link link-hover"
                   href={href}
                 >
-                  {t(key)}
+                  {label}
                 </a>
               </li>
             ))}
             <div className="flex border-l border-current pl-2">
-            <LanguageSwitcher />
+            <LanguageSwitcher currentLang={lang} />
             {showThemeSwitch && <ThemeSwitcher config={config} />}
             </div>
           </ul>
@@ -152,7 +151,7 @@ function Navbar({ config, lang }: Props) {
             </motion.div>
           )}
           <ul className="list-none flex flex-col gap-2 m-0 p-0">
-            {navLinks.map(({ key, href }, index) => (
+            {navLinks.map(({ label, href }, index) => (
               <li key={index}>
                 <motion.a
                   className="w-full py-3 px-4 text-center text-lg block"
@@ -163,7 +162,7 @@ function Navbar({ config, lang }: Props) {
                     hidden: { x: "-100%" },
                   }}
                 >
-                  {t(key)}
+                  {label}
                 </motion.a>
               </li>
             ))}
@@ -175,7 +174,7 @@ function Navbar({ config, lang }: Props) {
             }}
             className="w-full"
           >
-            <LanguageSwitcher variant="mobile" />
+            <LanguageSwitcher variant="mobile" currentLang={lang} />
           </motion.div>
         </nav>
         <motion.div
@@ -188,14 +187,14 @@ function Navbar({ config, lang }: Props) {
           <ul className="flex gap-2 list-none m-0 p-0">
             {googlePlayLink && (
               <li>
-                <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadPlayStore")}>
+                <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label={translations.nav.downloadPlayStore}>
                   <img className="h-14" width={156} height={56} loading="lazy" src="/stores/google-play.svg" alt="Download on Google Play" />
                 </a>
               </li>
             )}
             {appStoreLink && (
               <li>
-                <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadAppStore")}>
+                <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label={translations.nav.downloadAppStore}>
                   <img className="h-14" width={156} height={56} loading="lazy" src="/stores/app-store.svg" alt="Download on the App Store" />
                 </a>
               </li>

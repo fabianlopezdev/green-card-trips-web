@@ -1,6 +1,5 @@
-import "../../i18n";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../utils/configType";
+import type { TranslationObject } from "../../utils/serverI18n";
 import InstagramLogo from "./svgs/instagram";
 import FacebookLogo from "./svgs/facebook";
 import TwitterLogo from "./svgs/twitter";
@@ -9,7 +8,8 @@ import { motion } from "framer-motion";
 
 interface Props {
   config: TemplateConfig;
-  lang?: string;
+  translations: TranslationObject;
+  currentLang?: string;
   legalUrls?: {
     termsAndConditions: string;
     privacyPolicy: string;
@@ -17,8 +17,7 @@ interface Props {
   };
 }
 
-function Footer({ config, lang, legalUrls }: Props) {
-  const { t } = useTranslation();
+function Footer({ config, translations, currentLang: lang, legalUrls }: Props) {
   const {
     footer: { links, legalLinks, socials },
   } = config;
@@ -40,10 +39,10 @@ function Footer({ config, lang, legalUrls }: Props) {
   };
 
   const footerLinks = [
-    { href: getLocalizedUrl("/#features"), key: "nav.features" },
-    { href: getLocalizedUrl("/#how-it-works"), key: "nav.howItWorks" },
-    { href: getLocalizedUrl("/#pricing"), key: "nav.pricing" },
-    { href: getLocalizedUrl("/#faq"), key: "nav.faq" },
+    { href: getLocalizedUrl("/#features"), label: translations.nav.features },
+    { href: getLocalizedUrl("/#how-it-works"), label: translations.nav.howItWorks },
+    { href: getLocalizedUrl("/#pricing"), label: translations.nav.pricing },
+    { href: getLocalizedUrl("/#faq"), label: translations.nav.faq },
   ];
 
   return (
@@ -60,7 +59,7 @@ function Footer({ config, lang, legalUrls }: Props) {
       >
         <div className="flex flex-col md:flex-row gap-8 mb-4">
           <nav className="flex flex-col items-center md:items-start justify-center gap-4">
-            {footerLinks.map(({ key, href }, index) => (
+            {footerLinks.map(({ label, href }, index) => (
               <motion.a
                 key={index}
                 variants={{
@@ -71,7 +70,7 @@ function Footer({ config, lang, legalUrls }: Props) {
                 className="text-xl font-bold block uppercase whitespace-nowrap link no-underline text-white hover:text-white/70 md:text-4xl"
                 href={href}
               >
-                {t(key).toUpperCase()}
+                {label.toUpperCase()}
               </motion.a>
             ))}
           </nav>
@@ -154,7 +153,7 @@ function Footer({ config, lang, legalUrls }: Props) {
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
                   href={legalPageUrls.termsAndConditions}
                 >
-                  {t('footer.termsAndConditions')}
+                  {translations.footer.termsAndConditions}
                 </motion.a>
               )}
               {legalLinks.privacyPolicy && (
@@ -167,7 +166,7 @@ function Footer({ config, lang, legalUrls }: Props) {
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
                   href={legalPageUrls.privacyPolicy}
                 >
-                  {t('footer.privacyPolicy')}
+                  {translations.footer.privacyPolicy}
                 </motion.a>
               )}
               {legalLinks.cookiesPolicy && (
@@ -180,7 +179,7 @@ function Footer({ config, lang, legalUrls }: Props) {
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
                   href={legalPageUrls.cookiesPolicy}
                 >
-                  {t('footer.cookiesPolicy')}
+                  {translations.footer.cookiesPolicy}
                 </motion.a>
               )}
             </div>
@@ -206,8 +205,8 @@ function Footer({ config, lang, legalUrls }: Props) {
             className="md:flex md:items-center md:gap-1 text-center md:text-left text-white"
             style={{ fontFamily: "'PlaywriteAR', cursive", fontSize: '0.7rem' }}
           >
-            <span className="block md:inline">{t('footer.madeBy')}</span>
-            <span className="block md:inline mt-2 md:mt-0">{t('footer.madeByFor')}</span>
+            <span className="block md:inline">{translations.footer.madeBy}</span>
+            <span className="block md:inline mt-2 md:mt-0">{translations.footer.madeByFor}</span>
             <br className="md:hidden" />
             <Heart className="w-6 h-6 md:w-3 md:h-3 inline-block" />
           </motion.p>
@@ -220,7 +219,7 @@ function Footer({ config, lang, legalUrls }: Props) {
             className="font-sans whitespace-nowrap md:pb-4 text-white text-center md:text-left"
             style={{ fontSize: '0.625rem' }}
           >
-            {t('footer.developedBy')}{' '}
+            {translations.footer.developedBy}{' '}
             <a
               href="https://fabapps.dev/"
               target="_blank"

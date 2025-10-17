@@ -39,17 +39,17 @@ const faqSchema = generateFAQPageSchema(faqs);
 
   <InitScripts client:load />
   <header>
-    <Navbar client:load config={defaultTemplateConfig} />
+    <Navbar client:load config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
   </header>
   <main>
-    <Header client:load config={defaultTemplateConfig} />
-    <Partners client:visible config={defaultTemplateConfig} />
-    <Features client:visible config={defaultTemplateConfig} />
-    <HowItWorks client:visible config={defaultTemplateConfig} />
-    <Pricing client:visible config={defaultTemplateConfig} />
-    <Testimonials client:visible config={defaultTemplateConfig} />
-    <Faq client:visible config={defaultTemplateConfig} />
-    <AppBanner client:visible config={defaultTemplateConfig} />
-    <Footer client:idle config={defaultTemplateConfig} legalUrls={legalUrls} />
+    <Header client:load config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <Partners client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <Features client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <HowItWorks client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <Pricing client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <Testimonials client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <Faq client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <AppBanner client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <Footer client:idle config={defaultTemplateConfig} translations={enTranslations} currentLang="en" legalUrls={legalUrls} />
   </main>
 </Layout>

@@ -1,19 +1,19 @@
-import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
 import SwirlArrowBottomLeft from "./svg/swirlArrowBottomLeft";
 import SwirlArrowBottomRight from "./svg/swirlArrowBottomRight";
 import SwirlArrowBottom from "./svg/swirlArrowBottom";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
-function HowItWorks({ config }: Props) {
-  const { t } = useTranslation();
+function HowItWorks({ config, translations }: Props) {
   const {
     home: { howItWorks },
   } = config;
@@ -43,7 +43,7 @@ function HowItWorks({ config }: Props) {
     >
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
         <h2 className="mb-3 font-normal">
-          <AnimatedText text={t("howItWorks.title")} />
+          <AnimatedText text={translations.howItWorks.title} />
         </h2>
         {howItWorks.subtitle && (
           <motion.p
@@ -52,7 +52,7 @@ function HowItWorks({ config }: Props) {
             viewport={{ once: true }}
             className="text-md max-w-lg"
           >
-            {t("howItWorks.subtitle")}
+            {translations.howItWorks.subtitle}
           </motion.p>
         )}
       </div>
@@ -116,10 +116,10 @@ function HowItWorks({ config }: Props) {
                 {index + 1}
               </div>
               <h3 className="mt-0 text-2xl font-bold">
-                {t(`howItWorks.${step.key}.title`)}
+                {translations.howItWorks[step.key as keyof typeof translations.howItWorks]?.title}
               </h3>
               <p className="mx-auto max-w-sm opacity-[.7]">
-                {t(`howItWorks.${step.key}.description`)}
+                {translations.howItWorks[step.key as keyof typeof translations.howItWorks]?.description}
               </p>
             </motion.div>
             <motion.div

@@ -1,18 +1,18 @@
-import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
 import NeonHexagon from "./svgs/neonHexagon";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
-function Faq({ config }: Props) {
-  const { t } = useTranslation();
+function Faq({ config, translations }: Props) {
   const {
     home: { faq },
   } = config;
@@ -29,7 +29,7 @@ function Faq({ config }: Props) {
           <NeonHexagon />
           <div className="h-full w-full flex items-center justify-center">
             <h2 className="text-center font-normal text-3xl flex flex-col items-center mb-8 md:mb-0 md:text-left">
-              <AnimatedText text={t("faq.title")} initial={{ y: "0%" }} />
+              <AnimatedText text={translations.faq.title} initial={{ y: "0%" }} />
             </h2>
           </div>
         </div>
@@ -62,7 +62,7 @@ function Faq({ config }: Props) {
                 }
                 className="text-start collapse-title text-lg font-medium"
               >
-                {t(`faq.${key}.question`)}
+                {translations.faq[key as keyof typeof translations.faq]?.question}
               </button>
               <div
                 className={clsx(
@@ -73,7 +73,7 @@ function Faq({ config }: Props) {
                 )}
               >
                 <p className="overflow-hidden mx-4 opacity-[.7]">
-                  {t(`faq.${key}.answer`)}
+                  {translations.faq[key as keyof typeof translations.faq]?.answer}
                 </p>
               </div>
             </motion.div>

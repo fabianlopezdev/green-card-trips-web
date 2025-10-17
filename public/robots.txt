@@ -1,0 +1,12 @@
+# Robots.txt for Green Card Trips
+# https://greencardtrips.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://greencardtrips.com/sitemap-index.xml
+
+# Common paths to disallow (if any exist in the future)
+Disallow: /api/
+Disallow: /_astro/

@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { getLegalPageKeyFromSlug, getLegalPageSlug } from '../../utils/legalPageSlugs';
 
@@ -12,16 +11,16 @@ const languages = [
 
 interface LanguageSwitcherProps {
   variant?: 'desktop' | 'mobile';
+  currentLang?: string;
 }
 
-export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitcherProps) {
-  const { i18n, t } = useTranslation();
+export default function LanguageSwitcher({ variant = 'desktop', currentLang = 'en' }: LanguageSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const changeLanguage = (lng: string) => {
     // Get current path and language
     const currentPath = window.location.pathname;
-    const currentLang = (i18n.language || 'en').toLowerCase();
+    const currentLanguage = currentLang.toLowerCase();
 
     // Remove language prefix to get the path
     const pathWithoutLang = currentPath.replace(/^\/(es|tl|vi|zh-cn)(\/|$)/, '/');
@@ -33,7 +32,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitch
     // Try to identify if this is a legal page
     let translatedPath = pathWithoutLang;
     if (lastSegment) {
-      const legalPageKey = getLegalPageKeyFromSlug(lastSegment, currentLang);
+      const legalPageKey = getLegalPageKeyFromSlug(lastSegment, currentLanguage);
       if (legalPageKey) {
         // This is a legal page - translate the slug
         const targetLang = lng.toLowerCase();
@@ -54,15 +53,15 @@ export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitch
       newPath = `/${urlLang}${cleanPath}`;
     }
 
-    // Change i18n language before navigating (this updates localStorage)
-    i18n.changeLanguage(lng);
+    // Store language preference in localStorage
+    localStorage.setItem('i18nextLng', lng);
 
     // Navigate to new URL
     window.location.href = newPath;
     setIsOpen(false);
   };
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  const currentLanguage = languages.find(lang => lang.code.toLowerCase() === currentLang.toLowerCase()) || languages[0];
 
   // Mobile variant using native details element
   if (variant === 'mobile') {
@@ -73,9 +72,9 @@ export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitch
         className="w-full relative"
         onToggle={(e) => setIsDetailsOpen((e.target as HTMLDetailsElement).open)}
       >
-        <summary className="w-full py-3 px-4 cursor-pointer list-none flex justify-center items-center text-lg" aria-label={t("nav.chooseLanguage")}>
+        <summary className="w-full py-3 px-4 cursor-pointer list-none flex justify-center items-center text-lg" aria-label="Choose language">
           <span className="relative">
-            {t('nav.language')}
+            {currentLanguage.name}
             <svg
               className={`absolute left-full top-1/2 -translate-y-1/2 ml-1 w-4 h-4 transition-transform duration-300 ${isDetailsOpen ? 'rotate-180' : ''}`}
               width="24"
@@ -97,7 +96,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitch
               key={lang.code}
               onClick={() => changeLanguage(lang.code)}
               className={`w-full py-2 text-center ${
-                i18n.language === lang.code ? 'font-semibold' : ''
+                currentLang.toLowerCase() === lang.code.toLowerCase() ? 'font-semibold' : ''
               }`}
             >
               {lang.name}
@@ -163,9 +162,9 @@ export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitch
                 role="menuitem"
                 onClick={() => changeLanguage(lang.code)}
                 className={`text-sm px-3 py-2 rounded-lg hover:bg-base-200 transition-colors ${
-                  i18n.language === lang.code ? 'font-semibold' : ''
+                  currentLang.toLowerCase() === lang.code.toLowerCase() ? 'font-semibold' : ''
                 }`}
-                aria-current={i18n.language === lang.code ? 'true' : undefined}
+                aria-current={currentLang.toLowerCase() === lang.code.toLowerCase() ? 'true' : undefined}
               >
                 {lang.name}
               </button>

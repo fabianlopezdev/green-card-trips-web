@@ -1,18 +1,18 @@
-import "../../../../i18n";
 import { motion, useScroll } from "framer-motion";
 import { useRef } from "react";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
 import SingleScreenshot from "./singleScreenshot";
 import SVGWave from "./svg/wave";
 import GradientBlobs from "./svg/gradientBlobs";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
-function Header({ config }: Props) {
-  const { t, i18n } = useTranslation();
+function Header({ config, translations, currentLang = "en" }: Props) {
   const {
     googlePlayLink,
     appStoreLink,
@@ -31,7 +31,7 @@ function Header({ config }: Props) {
     // Fallback to English
     return 'en';
   };
-  const languageFolder = getLanguageFolder(i18n.language);
+  const languageFolder = getLanguageFolder(currentLang);
 
   // Map screenshot names to descriptive alt text
   const screenshotAltText: Record<string, string> = {
@@ -74,13 +74,13 @@ function Header({ config }: Props) {
               >
                 {header.headlineMark ? (
                   <>
-                    {t("hero.headline")
+                    {translations.hero.headline
                       .split(" ")
                       .slice(0, header.headlineMark[0])
                       .join(" ")}{" "}
                     <span className="inline-block relative">
                       <span>
-                        {t("hero.headline")
+                        {translations.hero.headline
                           .split(" ")
                           .slice(...header.headlineMark)
                           .join(" ")}
@@ -94,13 +94,13 @@ function Header({ config }: Props) {
                         className="w-0 h-full top-0 left-0 z-[-1] absolute inline-block bg-gradient-to-r from-primary/80 to-secondary/40 rounded-lg"
                       />
                     </span>{" "}
-                    {t("hero.headline")
+                    {translations.hero.headline
                       .split(" ")
                       .slice(header.headlineMark[1])
                       .join(" ")}
                   </>
                 ) : (
-                  t("hero.headline")
+                  translations.hero.headline
                 )}
               </motion.h1>
               <motion.p
@@ -109,7 +109,7 @@ function Header({ config }: Props) {
                 transition={{ delay: 0.5, ease: "easeInOut" }}
                 className="whitespace-pre-wrap text-left m-0 my-1 max-w-md md:text-lg md:max-w-lg"
               >
-                {t("hero.subtitle")}
+                {translations.hero.subtitle}
               </motion.p>
               <motion.ul
                 initial={{ opacity: 0, y: "100%" }}
@@ -172,7 +172,7 @@ function Header({ config }: Props) {
                     animate={{ scale: 1, opacity: 1, y: 0 }}
                     transition={{ delay: 1.1 }}
                   >
-                    {t("hero.usersDescription")}
+                    {translations.hero.usersDescription}
                   </motion.p>
                 </div>
               )}

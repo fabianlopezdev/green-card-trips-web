@@ -6,6 +6,7 @@ import Navbar from "../components/navbar";
 import AppBanner from "../components/appBanner";
 import Footer from "../components/footer";
 import PrivacyPolicyContent from "@modules/privacyPolicy";
+import enTranslations from "../i18n/locales/en.json";
 
 // English legal page URLs (at root level)
 const legalUrls = {
@@ -21,9 +22,9 @@ const legalUrls = {
 >
   <InitScripts client:load />
   <main>
-    <Navbar client:load config={defaultTemplateConfig} />
+    <Navbar client:load config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
     <PrivacyPolicyContent client:only="react" config={defaultTemplateConfig} />
-    <AppBanner client:visible config={defaultTemplateConfig} />
-    <Footer client:idle config={defaultTemplateConfig} legalUrls={legalUrls} />
+    <AppBanner client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <Footer client:idle config={defaultTemplateConfig} translations={enTranslations} currentLang="en" legalUrls={legalUrls} />
   </main>
 </Layout>

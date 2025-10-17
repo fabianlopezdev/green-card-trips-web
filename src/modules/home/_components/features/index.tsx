@@ -1,16 +1,16 @@
-import "../../../../i18n";
 import AnimatedText from "../../../../components/animatedText";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
-function Features({ config }: Props) {
-  const { t } = useTranslation();
+function Features({ config, translations }: Props) {
   const {
     home: { features },
   } = config;
@@ -34,7 +34,7 @@ function Features({ config }: Props) {
     <section id={features.id} className="max-w-screen-lg mx-auto px-4 py-12" aria-label="App features">
       <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
         <h2 className="mb-3 font-normal">
-          <AnimatedText text={t("features.title")} />
+          <AnimatedText text={translations.features.title} />
         </h2>
         <motion.div
           className="h-2 bg-gradient-to-r from-primary to-secondary rounded-full overflow-hidden [--w:200px] md:[--w:350px]"
@@ -48,7 +48,7 @@ function Features({ config }: Props) {
             viewport={{ once: true }}
             className="text-md max-w-lg"
           >
-            {t("features.subtitle")}
+            {translations.features.subtitle}
           </motion.p>
         )}
       </div>
@@ -102,11 +102,11 @@ function Features({ config }: Props) {
             </div>
             <div className="w-full pt-0 px-0 card-body items-center text-center transition-transform max-w-none group-hover:scale-95">
               <h2 className="card-title text-2xl font-bold">
-                {t(`features.${feat.key}.title`)}
+                {translations.features[feat.key as keyof typeof translations.features]?.title}
               </h2>
               <div className="h-0.5 w-full bg-primary/10" />
               <p className="opacity-[.7]">
-                {t(`features.${feat.key}.description`)}
+                {translations.features[feat.key as keyof typeof translations.features]?.description}
               </p>
             </div>
           </motion.article>
