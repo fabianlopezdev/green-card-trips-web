@@ -27,4 +27,44 @@ export function getSupportedLanguages(): string[] {
   return ['en', 'es', 'tl', 'vi', 'zh-cn'];
 }
 
-export type { TranslationObject };
+// Legal page slug mappings for each language
+export const legalPageSlugs = {
+  'privacy-policy': {
+    en: 'privacy-policy',
+    es: 'politica-de-privacidad',
+    tl: 'patakaran-sa-privacy',
+    vi: 'chinh-sach-bao-mat',
+    'zh-cn': 'yinsi-zhengce',
+  },
+  'terms-and-conditions': {
+    en: 'terms-and-conditions',
+    es: 'terminos-y-condiciones',
+    tl: 'mga-tuntunin-at-kundisyon',
+    vi: 'dieu-khoan-va-dieu-kien',
+    'zh-cn': 'tiaokuan-he-tiaozheng',
+  },
+  'cookies-policy': {
+    en: 'cookies-policy',
+    es: 'politica-de-cookies',
+    tl: 'patakaran-sa-cookies',
+    vi: 'chinh-sach-cookies',
+    'zh-cn': 'cookies-zhengce',
+  },
+} as const;
+
+type LegalPageKey = keyof typeof legalPageSlugs;
+
+export function getLegalPageSlug(pageKey: LegalPageKey, lang: string): string {
+  return legalPageSlugs[pageKey][lang as keyof typeof legalPageSlugs[typeof pageKey]] || legalPageSlugs[pageKey].en;
+}
+
+export function getLegalPageKeyFromSlug(slug: string, lang: string): LegalPageKey | null {
+  for (const [key, slugs] of Object.entries(legalPageSlugs)) {
+    if (slugs[lang as keyof typeof slugs] === slug) {
+      return key as LegalPageKey;
+    }
+  }
+  return null;
+}
+
+export type { TranslationObject, LegalPageKey };

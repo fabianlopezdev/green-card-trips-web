@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { getLegalPageKeyFromSlug, getLegalPageSlug } from '../../utils/legalPageSlugs';
 
 const languages = [
   { code: 'en', name: 'English' },
@@ -18,19 +19,38 @@ export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitch
   const [isOpen, setIsOpen] = useState(false);
 
   const changeLanguage = (lng: string) => {
-    // Get current path and remove language prefix
+    // Get current path and language
     const currentPath = window.location.pathname;
+    const currentLang = (i18n.language || 'en').toLowerCase();
+
+    // Remove language prefix to get the path
     const pathWithoutLang = currentPath.replace(/^\/(es|tl|vi|zh-cn)(\/|$)/, '/');
+
+    // Check if we're on a legal page by extracting the last segment
+    const pathSegments = pathWithoutLang.split('/').filter(Boolean);
+    const lastSegment = pathSegments[pathSegments.length - 1];
+
+    // Try to identify if this is a legal page
+    let translatedPath = pathWithoutLang;
+    if (lastSegment) {
+      const legalPageKey = getLegalPageKeyFromSlug(lastSegment, currentLang);
+      if (legalPageKey) {
+        // This is a legal page - translate the slug
+        const targetLang = lng.toLowerCase();
+        const translatedSlug = getLegalPageSlug(legalPageKey, targetLang);
+        translatedPath = `/${translatedSlug}`;
+      }
+    }
 
     // Construct new URL
     let newPath;
     if (lng === 'en') {
       // English at root - no prefix
-      newPath = pathWithoutLang === '/' ? '/' : pathWithoutLang;
+      newPath = translatedPath === '/' ? '/' : translatedPath;
     } else {
       // Other languages with prefix - convert to lowercase for URL
       const urlLang = lng.toLowerCase();
-      const cleanPath = pathWithoutLang === '/' ? '' : pathWithoutLang;
+      const cleanPath = translatedPath === '/' ? '' : translatedPath;
       newPath = `/${urlLang}${cleanPath}`;
     }
 

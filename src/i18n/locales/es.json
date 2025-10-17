@@ -112,6 +112,9 @@
     "description": "Green Card Trips ayuda a los titulares de green card de EE.UU. a rastrear la presencia física y gestionar su camino hacia la ciudadanía con confianza.",
     "madeBy": "Hecho por Titulares de Green Card",
     "madeByFor": "para Titulares de Green Card",
-    "developedBy": "Desarrollado por"
+    "developedBy": "Desarrollado por",
+    "termsAndConditions": "Términos y condiciones",
+    "privacyPolicy": "Política de privacidad",
+    "cookiesPolicy": "Política de cookies"
   }
 }

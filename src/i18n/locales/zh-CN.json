@@ -112,6 +112,9 @@
     "description": "Green Card Trips帮助美国绿卡持有者追踪实际在场时间，自信地管理他们的公民身份之路。",
     "madeBy": "由绿卡持有者",
     "madeByFor": "为绿卡持有者制作",
-    "developedBy": "开发者"
+    "developedBy": "开发者",
+    "termsAndConditions": "条款和条件",
+    "privacyPolicy": "隐私政策",
+    "cookiesPolicy": "Cookies政策"
   }
 }

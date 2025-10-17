@@ -1,0 +1,73 @@
+---
+import Layout from "Layout.astro";
+import defaultTemplateConfig from "utils/config";
+import { getTranslations, getSupportedLanguages, getLegalPageKeyFromSlug, legalPageSlugs, type LegalPageKey } from "utils/serverI18n";
+import InitScripts from "../../components/initScripts";
+import Navbar from "../../components/navbar";
+import AppBanner from "../../components/appBanner";
+import Footer from "../../components/footer";
+import PrivacyPolicyContent from "@modules/privacyPolicy";
+import TermsAndConditionsContent from "@modules/termsAndConditions";
+import CookiesPolicyContent from "@modules/cookiesPolicy";
+
+export function getStaticPaths() {
+  const languages = getSupportedLanguages();
+  const paths: any[] = [];
+
+  // Exclude 'en' since English is at root level (/)
+  const nonEnglishLangs = languages.filter(lang => lang !== 'en');
+
+  // Generate paths for each legal page in each non-English language
+  nonEnglishLangs.forEach(lang => {
+    Object.entries(legalPageSlugs).forEach(([pageKey, slugs]) => {
+      const slug = slugs[lang as keyof typeof slugs];
+      paths.push({
+        params: { lang, legalSlug: slug },
+        props: {
+          lang,
+          pageKey: pageKey as LegalPageKey,
+          translations: getTranslations(lang),
+        }
+      });
+    });
+  });
+
+  return paths;
+}
+
+const { lang, legalSlug } = Astro.params;
+const { pageKey, translations } = Astro.props;
+
+// Get language-specific SEO from config
+const seo = defaultTemplateConfig[pageKey]?.[lang]?.seo || defaultTemplateConfig[pageKey]?.en?.seo;
+
+// Generate language-specific legal page URLs
+const legalUrls = {
+  termsAndConditions: `/${lang}/${legalPageSlugs['terms-and-conditions'][lang as keyof typeof legalPageSlugs['terms-and-conditions']]}`,
+  privacyPolicy: `/${lang}/${legalPageSlugs['privacy-policy'][lang as keyof typeof legalPageSlugs['privacy-policy']]}`,
+  cookiesPolicy: `/${lang}/${legalPageSlugs['cookies-policy'][lang as keyof typeof legalPageSlugs['cookies-policy']]}`,
+};
+---
+
+<Layout
+  {...defaultTemplateConfig}
+  seo={seo}
+  currentLang={lang}
+  translations={translations}
+>
+  <InitScripts client:load />
+  <main>
+    <Navbar client:load config={defaultTemplateConfig} lang={lang} />
+    {pageKey === 'privacy-policy' && (
+      <PrivacyPolicyContent client:only="react" config={defaultTemplateConfig} />
+    )}
+    {pageKey === 'terms-and-conditions' && (
+      <TermsAndConditionsContent client:only="react" config={defaultTemplateConfig} />
+    )}
+    {pageKey === 'cookies-policy' && (
+      <CookiesPolicyContent client:only="react" config={defaultTemplateConfig} />
+    )}
+    <AppBanner client:visible config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} lang={lang} legalUrls={legalUrls} />
+  </main>
+</Layout>

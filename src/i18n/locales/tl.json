@@ -112,6 +112,9 @@
     "description": "Tinutulungan ng Green Card Trips ang mga may green card sa U.S. na subaybayan ang pisikal na presensya at pamahalaan ang kanilang landas tungo sa citizenship nang may kumpiyansa.",
     "madeBy": "Ginawa ng mga May Green Card",
     "madeByFor": "para sa mga May Green Card",
-    "developedBy": "Nilikha ng"
+    "developedBy": "Nilikha ng",
+    "termsAndConditions": "Mga tuntunin at kundisyon",
+    "privacyPolicy": "Patakaran sa privacy",
+    "cookiesPolicy": "Patakaran sa cookies"
   }
 }

@@ -15,6 +15,13 @@ import AppBanner from "../components/appBanner"
 import Footer from "../components/footer"
 import enTranslations from "../i18n/locales/en.json"
 
+// English legal page URLs (at root level)
+const legalUrls = {
+  termsAndConditions: '/terms-and-conditions',
+  privacyPolicy: '/privacy-policy',
+  cookiesPolicy: '/cookies-policy',
+};
+
 // Generate FAQPage schema with actual FAQ content from translations
 const faqs = [
   { question: enTranslations.faq.q1.question, answer: enTranslations.faq.q1.answer },
@@ -43,6 +50,6 @@ const faqSchema = generateFAQPageSchema(faqs);
     <Testimonials client:visible config={defaultTemplateConfig} />
     <Faq client:visible config={defaultTemplateConfig} />
     <AppBanner client:visible config={defaultTemplateConfig} />
-    <Footer client:idle config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} legalUrls={legalUrls} />
   </main>
 </Layout>

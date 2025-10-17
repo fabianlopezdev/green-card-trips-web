@@ -112,6 +112,9 @@
     "description": "Green Card Trips helps U.S. green card holders track physical presence and manage their path to citizenship with confidence.",
     "madeBy": "Made by Green Card Holders",
     "madeByFor": "for Green Card Holders",
-    "developedBy": "Developed by"
+    "developedBy": "Developed by",
+    "termsAndConditions": "Terms & conditions",
+    "privacyPolicy": "Privacy policy",
+    "cookiesPolicy": "Cookies policy"
   }
 }

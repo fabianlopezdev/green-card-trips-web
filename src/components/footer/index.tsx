@@ -10,9 +10,14 @@ import { motion } from "framer-motion";
 interface Props {
   config: TemplateConfig;
   lang?: string;
+  legalUrls?: {
+    termsAndConditions: string;
+    privacyPolicy: string;
+    cookiesPolicy: string;
+  };
 }
 
-function Footer({ config, lang }: Props) {
+function Footer({ config, lang, legalUrls }: Props) {
   const { t } = useTranslation();
   const {
     footer: { links, legalLinks, socials },
@@ -25,6 +30,13 @@ function Footer({ config, lang }: Props) {
     }
     // For non-English languages, prepend language prefix
     return `/${lang}${path}`;
+  };
+
+  // Use provided legal URLs or fall back to English defaults
+  const legalPageUrls = legalUrls || {
+    termsAndConditions: '/terms-and-conditions',
+    privacyPolicy: '/privacy-policy',
+    cookiesPolicy: '/cookies-policy',
   };
 
   const footerLinks = [
@@ -140,9 +152,9 @@ function Footer({ config, lang }: Props) {
                   }}
                   transition={{ delay: 0.25 }}
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
-                  href={getLocalizedUrl("/terms-and-conditions")}
+                  href={legalPageUrls.termsAndConditions}
                 >
-                  Terms & conditions
+                  {t('footer.termsAndConditions')}
                 </motion.a>
               )}
               {legalLinks.privacyPolicy && (
@@ -153,9 +165,9 @@ function Footer({ config, lang }: Props) {
                   }}
                   transition={{ delay: 0.5 }}
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
-                  href={getLocalizedUrl("/privacy-policy")}
+                  href={legalPageUrls.privacyPolicy}
                 >
-                  Privacy policy
+                  {t('footer.privacyPolicy')}
                 </motion.a>
               )}
               {legalLinks.cookiesPolicy && (
@@ -166,9 +178,9 @@ function Footer({ config, lang }: Props) {
                   }}
                   transition={{ delay: 0.75 }}
                   className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap"
-                  href={getLocalizedUrl("/cookies-policy")}
+                  href={legalPageUrls.cookiesPolicy}
                 >
-                  Cookies policy
+                  {t('footer.cookiesPolicy')}
                 </motion.a>
               )}
             </div>

@@ -6,6 +6,13 @@ import Navbar from "../components/navbar";
 import AppBanner from "../components/appBanner";
 import Footer from "../components/footer";
 import TermsAndConditionsContent from "@modules/termsAndConditions";
+
+// English legal page URLs (at root level)
+const legalUrls = {
+  termsAndConditions: '/terms-and-conditions',
+  privacyPolicy: '/privacy-policy',
+  cookiesPolicy: '/cookies-policy',
+};
 ---
 
 <Layout
@@ -17,6 +24,6 @@ import TermsAndConditionsContent from "@modules/termsAndConditions";
     <Navbar client:load config={defaultTemplateConfig} />
     <TermsAndConditionsContent client:only="react" config={defaultTemplateConfig} />
     <AppBanner client:visible config={defaultTemplateConfig} />
-    <Footer client:idle config={defaultTemplateConfig} />
+    <Footer client:idle config={defaultTemplateConfig} legalUrls={legalUrls} />
   </main>
 </Layout>

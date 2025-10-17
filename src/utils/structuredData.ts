@@ -19,7 +19,7 @@ export function generateMobileApplicationSchema(config: TemplateConfig, currentU
     "@context": "https://schema.org",
     "@type": "MobileApplication",
     "name": name,
-    "description": seo.description,
+    "description": seo?.description || "",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "iOS",
     "offers": {
@@ -76,7 +76,7 @@ export function generateOrganizationSchema(config: TemplateConfig, currentUrl: s
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": name,
-    "description": seo.description,
+    "description": seo?.description || "",
     "url": currentUrl,
     "logo": new URL(logo, currentUrl).href,
     "sameAs": []
@@ -111,7 +111,7 @@ export function generateWebSiteSchema(config: TemplateConfig, currentUrl: string
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": name,
-    "description": seo.description,
+    "description": seo?.description || "",
     "url": currentUrl
   };
 }
