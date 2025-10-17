@@ -1,0 +1,236 @@
+/* Cookie Consent Custom Styles - Match DaisyUI Theme */
+
+/* Override vanilla-cookieconsent default colors to match DaisyUI "green-card-trips" theme */
+:root {
+  --cc-bg: oklch(var(--b1)); /* DaisyUI base-100 (background) */
+  --cc-text: oklch(var(--bc)); /* DaisyUI base-content (text) */
+  --cc-btn-primary-bg: oklch(var(--p)); /* DaisyUI primary (#2800C8) */
+  --cc-btn-primary-text: oklch(var(--pc)); /* DaisyUI primary-content */
+  --cc-btn-primary-hover-bg: oklch(var(--pf)); /* DaisyUI primary-focus */
+  --cc-btn-secondary-bg: oklch(var(--b2)); /* DaisyUI base-200 */
+  --cc-btn-secondary-text: oklch(var(--bc)); /* DaisyUI base-content */
+  --cc-btn-secondary-hover-bg: oklch(var(--b3)); /* DaisyUI base-300 */
+  --cc-toggle-on-bg: oklch(var(--su)); /* DaisyUI success (green) */
+  --cc-separator: oklch(var(--bc) / 0.2); /* Subtle separator */
+  --cc-overlay-bg: rgba(0, 0, 0, 0.85); /* Dark overlay for modal */
+  --cc-cookie-category-block-bg: oklch(var(--b2)); /* Category block background */
+}
+
+/* Ensure banner respects dark theme */
+[data-theme="dark"] {
+  --cc-bg: oklch(var(--b1));
+  --cc-text: oklch(var(--bc));
+  --cc-overlay-bg: rgba(0, 0, 0, 0.90); /* Slightly darker overlay for dark mode */
+}
+
+/* Make banner rounded to match site style (1rem rounded-box) */
+#cc-main .cm {
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#cc-main .pm {
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure proper z-index (above everything except modals) */
+#cc-main {
+  z-index: 9999 !important;
+}
+
+/* Better button styling - match site's button design */
+#cc-main button {
+  border-radius: 0.5rem !important; /* Slightly less rounded than containers */
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+/* Primary button hover effect */
+#cc-main button[data-role="accept_all"],
+#cc-main button[data-role="save_preferences"] {
+  transform: translateY(0);
+}
+
+#cc-main button[data-role="accept_all"]:hover,
+#cc-main button[data-role="save_preferences"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 0, 200, 0.3); /* Purple shadow */
+}
+
+#cc-main button[data-role="accept_all"]:active,
+#cc-main button[data-role="save_preferences"]:active {
+  transform: translateY(0);
+}
+
+/* Secondary button hover effect */
+#cc-main button[data-role="accept_necessary"],
+#cc-main button[data-role="show_preferences_modal"] {
+  transform: translateY(0);
+}
+
+#cc-main button[data-role="accept_necessary"]:hover,
+#cc-main button[data-role="show_preferences_modal"]:hover {
+  transform: translateY(-1px);
+}
+
+#cc-main button[data-role="accept_necessary"]:active,
+#cc-main button[data-role="show_preferences_modal"]:active {
+  transform: translateY(0);
+}
+
+/* Smooth transitions for modal appearance */
+#cc-main .cm,
+#cc-main .pm {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Toggle switch styling improvements */
+#cc-main .section__toggle {
+  transition: all 0.2s ease;
+}
+
+#cc-main .section__toggle:hover {
+  transform: scale(1.05);
+}
+
+/* Links in footer */
+#cc-main a {
+  color: oklch(var(--p));
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+#cc-main a:hover {
+  opacity: 0.8;
+}
+
+/* Cookie category sections */
+#cc-main .section {
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  /* Make banner full-width at bottom on mobile */
+  #cc-main .cm--box {
+    position: fixed !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    border-radius: 1rem 1rem 0 0 !important; /* Round only top corners */
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Adjust padding for mobile */
+  #cc-main .cm__body,
+  #cc-main .pm__body {
+    padding: 1rem;
+  }
+
+  /* Stack buttons vertically on mobile if needed */
+  #cc-main .cm__footer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #cc-main .cm__footer button {
+    width: 100%;
+  }
+
+  /* Preferences modal full screen on mobile */
+  #cc-main .pm {
+    margin: 0.5rem;
+    max-height: calc(100vh - 1rem);
+    border-radius: 1rem !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #cc-main .cm {
+    max-width: 500px;
+  }
+}
+
+/* Desktop - bottom-right positioning (already default, but ensure it) */
+@media (min-width: 1025px) {
+  #cc-main .cm--box {
+    max-width: 450px;
+  }
+}
+
+/* Improve focus states for accessibility */
+#cc-main button:focus-visible {
+  outline: 2px solid oklch(var(--p));
+  outline-offset: 2px;
+}
+
+#cc-main .section__toggle:focus-visible {
+  outline: 2px solid oklch(var(--p));
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+/* Modal title styling */
+#cc-main .pm__title,
+#cc-main .cm__title {
+  color: oklch(var(--bc));
+  font-weight: 700;
+}
+
+/* Modal description text */
+#cc-main .cm__desc,
+#cc-main .section__desc {
+  color: oklch(var(--bc) / 0.8);
+  line-height: 1.6;
+}
+
+/* Overlay backdrop blur effect (subtle) */
+#cc-main .cm__overlay {
+  backdrop-filter: blur(2px);
+}
+
+/* Settings icon/button styling */
+#cc-main .pm__close-btn {
+  transition: transform 0.2s ease;
+}
+
+#cc-main .pm__close-btn:hover {
+  transform: rotate(90deg);
+}
+
+/* Section borders */
+#cc-main .section__toggle-wrapper {
+  border-radius: 0.5rem;
+}
+
+/* Ensure text is always readable */
+#cc-main {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Animation for initial appearance */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#cc-main .cm.show--consent {
+  animation: slideInFromBottom 0.4s ease-out;
+}
+
+/* Prevent layout shift */
+#cc-main .cm {
+  will-change: transform, opacity;
+}

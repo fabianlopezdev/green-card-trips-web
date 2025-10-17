@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import * as CookieConsent from "vanilla-cookieconsent";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
+import "./styles.css"; // Custom styles to match DaisyUI theme
 import { getConsentMode, getCookie } from "./config";
 
 // Color-coded logging helpers for production debugging
