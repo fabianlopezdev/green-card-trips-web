@@ -35,8 +35,10 @@ const faqSchema = generateFAQPageSchema(faqs);
 // Generate Review schemas for testimonials
 const reviewSchemas = generateReviewSchema(defaultTemplateConfig);
 
-// Generate Product schema for pricing
-const productSchema = generateProductSchema(defaultTemplateConfig, Astro.url.href);
+// Generate Product schema for pricing with production URL
+const siteUrl = Astro.site || new URL(Astro.url.origin);
+const currentPageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUrl);
 ---
 
 <Layout {...defaultTemplateConfig}>

@@ -27,13 +27,16 @@ const pageSeo = translations ? {
 // Determine the actual language - default to 'en' for old routes
 const htmlLang = currentLang || 'en';
 
-// Generate structured data schemas
-const mobileAppSchema = generateMobileApplicationSchema(config, Astro.url.href);
-const organizationSchema = generateOrganizationSchema(config, Astro.url.href);
-const websiteSchema = generateWebSiteSchema(config, Astro.url.href);
-
 // Generate hreflang URLs
 const siteUrl = Astro.site || new URL(Astro.url.origin);
+
+// Create the full current page URL using the production site URL
+const currentPageUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+// Generate structured data schemas
+const mobileAppSchema = generateMobileApplicationSchema(config, currentPageUrl);
+const organizationSchema = generateOrganizationSchema(config, currentPageUrl);
+const websiteSchema = generateWebSiteSchema(config, currentPageUrl);
 const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-cn'];
 
 // Get the current path without language prefix and detect if it's a legal page
@@ -113,7 +116,7 @@ const languageUrls = supportedLanguages.map(lang => {
     <meta name="title" content={pageSeo.title} />
     <meta name="description" content={pageSeo.description} />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={Astro.url.href} />
+    <link rel="canonical" href={currentPageUrl} />
 
     <!-- Apple Mobile Web App Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -138,17 +141,20 @@ const languageUrls = supportedLanguages.map(lang => {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:url" content={currentPageUrl} />
     <meta property="og:title" content={pageSeo.title} />
     <meta property="og:description" content={pageSeo.description} />
-    <meta property="og:image" content={new URL(logo, Astro.url)} />
+    <meta property="og:image" content={new URL('/og-image.png', siteUrl).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:url" content={currentPageUrl} />
     <meta property="twitter:title" content={pageSeo.title} />
     <meta property="twitter:description" content={pageSeo.description} />
-    <meta property="twitter:image" content={new URL(logo, Astro.url)} />
+    <meta property="twitter:image" content={new URL('/og-image.png', siteUrl).href} />
 
     <!-- Structured Data (JSON-LD) for SEO -->
     <script type="application/ld+json" set:html={JSON.stringify(mobileAppSchema)} />
