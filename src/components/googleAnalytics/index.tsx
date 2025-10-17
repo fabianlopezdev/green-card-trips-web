@@ -191,11 +191,14 @@ export default function GoogleAnalytics({ trackingId }: Props) {
       log.info('User consent categories:', categories);
       log.info('New consent state:', newConsentState);
 
-      // Update consent - Google will apply this immediately
-      window.gtag('consent', 'update', newConsentState);
-
-      log.success(`[${getTimestamp()}] ✓ Consent Mode v2 updated successfully`);
-      log.info('Google will now use these consent signals for measurement');
+      // Only update if gtag exists (i.e., GA is loaded or about to load)
+      if (window.gtag) {
+        window.gtag('consent', 'update', newConsentState);
+        log.success(`[${getTimestamp()}] ✓ Consent Mode v2 updated successfully`);
+        log.info('Google will now use these consent signals for measurement');
+      } else {
+        log.info(`[${getTimestamp()}] gtag not yet loaded - consent will be set during GA initialization`);
+      }
     };
 
     // Check current consent status and load/remove GA accordingly
@@ -226,14 +229,16 @@ export default function GoogleAnalytics({ trackingId }: Props) {
     log.info(`[${getTimestamp()}] Initial consent check on component mount`);
     checkConsentAndLoad();
 
-    // Listen for consent changes
-    CookieConsent.on("consent", ({ cookie }) => {
+    // Listen for consent changes using native browser events (vanilla-cookieconsent v3 API)
+    window.addEventListener('cc:onConsent', (event: any) => {
+      const { cookie } = event.detail;
       log.info(`[${getTimestamp()}] 🔔 Consent event fired - user made a choice`);
       log.info('New consent state:', cookie);
       checkConsentAndLoad();
     });
 
-    CookieConsent.on("change", ({ changedCategories, changedServices }) => {
+    window.addEventListener('cc:onChange', (event: any) => {
+      const { changedCategories, changedServices } = event.detail;
       log.info(`[${getTimestamp()}] 🔔 Preferences changed event fired`);
       log.info('Changed categories:', changedCategories);
       log.info('Changed services:', changedServices);
