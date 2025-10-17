@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import * as CookieConsent from "vanilla-cookieconsent";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import { getConsentMode, getCookie } from "./config";
-import "../../i18n"; // Initialize i18next
 
 // Color-coded logging helpers for production debugging
 const log = {

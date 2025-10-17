@@ -15,7 +15,7 @@ const templateConfig: TemplateConfig = {
   // Shows switch to toggle between dark and light modes
   showThemeSwitch: true,
   // Google Analytics tracking ID (GA4). Set to undefined to disable.
-  googleAnalytics: undefined, // e.g., "G-XXXXXXXXXX"
+  googleAnalytics: "G-ZMHYCPL58R",
   appStoreLink: "#",
   googlePlayLink: undefined,
   footer: {

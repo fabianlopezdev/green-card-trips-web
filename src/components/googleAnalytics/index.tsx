@@ -1,8 +1,19 @@
 import { useEffect } from "react";
 import * as CookieConsent from "vanilla-cookieconsent";
+import { EU_COUNTRIES, getCookie } from "@components/cookieConsent/config";
 
 interface Props {
   trackingId?: string;
+}
+
+// Google Consent Mode v2 types
+type ConsentStatus = 'granted' | 'denied';
+
+interface GoogleConsentState {
+  ad_storage: ConsentStatus;
+  analytics_storage: ConsentStatus;
+  ad_user_data: ConsentStatus;
+  ad_personalization: ConsentStatus;
 }
 
 // Color-coded logging helpers for production debugging
@@ -23,6 +34,58 @@ const log = {
 
 const getTimestamp = () => new Date().toISOString().split('T')[1].split('.')[0];
 
+/**
+ * Get region-specific default consent state for Google Consent Mode v2
+ * EU/EEA: All denied by default (strict opt-in)
+ * US/Other: Analytics granted by default (opt-out)
+ */
+function getDefaultConsentState(countryCode: string): GoogleConsentState {
+  const isEU = EU_COUNTRIES.includes(countryCode);
+
+  if (isEU) {
+    // EU: Strict opt-in - everything denied until user accepts
+    return {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    };
+  }
+
+  // US/Other: Opt-out - analytics allowed by default, ads still require consent
+  return {
+    ad_storage: 'denied', // Keep ad storage denied until explicit consent
+    analytics_storage: 'granted', // Analytics OK by default (opt-out model)
+    ad_user_data: 'denied', // User data sharing requires explicit consent
+    ad_personalization: 'denied', // Personalization requires explicit consent
+  };
+}
+
+/**
+ * Convert vanilla-cookieconsent categories to Google Consent Mode v2 state
+ */
+function getConsentStateFromCategories(categories: string[]): GoogleConsentState {
+  const analyticsAccepted = categories.includes('analytics');
+
+  if (analyticsAccepted) {
+    // User accepted analytics - grant all consent parameters
+    return {
+      ad_storage: 'granted',
+      analytics_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+    };
+  }
+
+  // User rejected analytics - deny all
+  return {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  };
+}
+
 export default function GoogleAnalytics({ trackingId }: Props) {
   useEffect(() => {
     if (!trackingId) {
@@ -32,6 +95,27 @@ export default function GoogleAnalytics({ trackingId }: Props) {
     }
 
     log.info(`[${getTimestamp()}] Google Analytics component mounted with ID: ${trackingId}`);
+
+    // ===== GOOGLE CONSENT MODE V2 SETUP =====
+    // IMPORTANT: Must set default consent BEFORE any GA scripts load
+    const countryCode = getCookie("user_country") || "UNKNOWN";
+    const defaultConsent = getDefaultConsentState(countryCode);
+
+    log.info(`[${getTimestamp()}] 🔐 Setting Google Consent Mode v2 defaults...`);
+    log.info(`Country detected: ${countryCode} (${EU_COUNTRIES.includes(countryCode) ? 'EU - opt-in' : 'Non-EU - opt-out'})`);
+    log.info('Default consent state:', defaultConsent);
+
+    // Initialize gtag function FIRST (required before any gtag calls)
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    // Set default consent state BEFORE any measurement code loads
+    window.gtag('consent', 'default', defaultConsent);
+
+    log.success(`[${getTimestamp()}] ✓ Consent Mode v2 defaults set successfully`);
+    log.info('These defaults apply until user makes a choice in the cookie banner');
 
     // Function to load Google Analytics
     const loadGoogleAnalytics = () => {
@@ -55,11 +139,7 @@ export default function GoogleAnalytics({ trackingId }: Props) {
       };
       document.head.appendChild(script);
 
-      // Initialize gtag
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function gtag() {
-        window.dataLayer.push(arguments);
-      };
+      // Configure Google Analytics (gtag already initialized with consent mode)
       window.gtag("js", new Date());
       window.gtag("config", trackingId, {
         anonymize_ip: true, // Anonymize IP for privacy (GDPR compliance)
@@ -103,7 +183,22 @@ export default function GoogleAnalytics({ trackingId }: Props) {
       log.info('Verify in Application > Cookies: No _ga cookies');
     };
 
-    // Check current consent status
+    // Update Google Consent Mode v2 based on user's choice
+    const updateConsentMode = (categories: string[]) => {
+      const newConsentState = getConsentStateFromCategories(categories);
+
+      log.info(`[${getTimestamp()}] 🔐 Updating Google Consent Mode v2...`);
+      log.info('User consent categories:', categories);
+      log.info('New consent state:', newConsentState);
+
+      // Update consent - Google will apply this immediately
+      window.gtag('consent', 'update', newConsentState);
+
+      log.success(`[${getTimestamp()}] ✓ Consent Mode v2 updated successfully`);
+      log.info('Google will now use these consent signals for measurement');
+    };
+
+    // Check current consent status and load/remove GA accordingly
     const checkConsentAndLoad = () => {
       const cookie = CookieConsent.getCookie();
       const analyticsAccepted = cookie?.categories?.includes("analytics");
@@ -112,6 +207,11 @@ export default function GoogleAnalytics({ trackingId }: Props) {
       log.info('Consent cookie exists:', !!cookie);
       log.info('Consent categories:', cookie?.categories || 'none');
       log.info('Analytics accepted:', analyticsAccepted ? 'YES' : 'NO');
+
+      // Update consent mode if user has made a choice
+      if (cookie?.categories) {
+        updateConsentMode(cookie.categories);
+      }
 
       if (analyticsAccepted) {
         log.success(`[${getTimestamp()}] Analytics cookies accepted - loading Google Analytics`);
@@ -161,7 +261,32 @@ export default function GoogleAnalytics({ trackingId }: Props) {
       };
     };
 
-    log.info(`[${getTimestamp()}] Debug helper available: Run 'window.cookieConsentDebug.ga()' in console`);
+    window.cookieConsentDebug.consentMode = () => {
+      const cookie = CookieConsent.getCookie();
+      const currentState = cookie?.categories
+        ? getConsentStateFromCategories(cookie.categories)
+        : defaultConsent;
+
+      return {
+        consentModeVersion: 'v2',
+        detectedCountry: countryCode,
+        isEU: EU_COUNTRIES.includes(countryCode),
+        defaultConsentState: defaultConsent,
+        currentConsentState: currentState,
+        userMadeChoice: !!cookie,
+        description: 'Google Consent Mode v2 signals sent to Google Analytics',
+        parameters: {
+          ad_storage: 'Storage for advertising cookies and identifiers',
+          analytics_storage: 'Storage for analytics cookies (visit count, session duration)',
+          ad_user_data: 'Consent to send user data to Google for advertising',
+          ad_personalization: 'Consent for personalized advertising',
+        },
+      };
+    };
+
+    log.info(`[${getTimestamp()}] Debug helpers available:`);
+    log.info('  window.cookieConsentDebug.ga() - Google Analytics status');
+    log.info('  window.cookieConsentDebug.consentMode() - Consent Mode v2 state');
   }, [trackingId]);
 
   return null; // This component doesn't render anything
