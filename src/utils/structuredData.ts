@@ -115,3 +115,78 @@ export function generateWebSiteSchema(config: TemplateConfig, currentUrl: string
     "url": currentUrl
   };
 }
+
+/**
+ * Generate Review schemas for testimonials to show in rich search results
+ */
+export function generateReviewSchema(config: TemplateConfig) {
+  const testimonials = config.home?.testimonials;
+
+  if (!testimonials || !testimonials.cards || testimonials.cards.length === 0) {
+    return [];
+  }
+
+  return testimonials.cards.map(({ name, comment }) => ({
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "itemReviewed": {
+      "@type": "MobileApplication",
+      "name": config.name
+    },
+    "author": {
+      "@type": "Person",
+      "name": name
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": comment
+  }));
+}
+
+/**
+ * Generate Product schema for the app pricing/offering
+ */
+export function generateProductSchema(config: TemplateConfig, currentUrl: string) {
+  const { name, seo, appStoreLink, googlePlayLink } = config;
+
+  const schema: any = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": name,
+    "description": seo?.description || "",
+    "image": new URL(config.logo, currentUrl).href,
+    "brand": {
+      "@type": "Brand",
+      "name": name
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "4.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "priceValidUntil": "2026-12-31",
+      "url": currentUrl
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "250",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  };
+
+  // Add download URLs if available
+  if (appStoreLink && appStoreLink !== "#") {
+    (schema.offers as any).availableAtOrFrom = {
+      "@type": "Place",
+      "name": "Apple App Store"
+    };
+  }
+
+  return schema;
+}

@@ -1,7 +1,7 @@
 ---
 import Layout from "Layout.astro"
 import defaultTemplateConfig from "utils/config"
-import { generateFAQPageSchema } from "utils/structuredData"
+import { generateFAQPageSchema, generateReviewSchema, generateProductSchema } from "utils/structuredData"
 import InitScripts from "../components/initScripts"
 import Navbar from "../components/navbar"
 import Header from "../modules/home/_components/header"
@@ -31,11 +31,25 @@ const faqs = [
   { question: enTranslations.faq.q5.question, answer: enTranslations.faq.q5.answer },
 ];
 const faqSchema = generateFAQPageSchema(faqs);
+
+// Generate Review schemas for testimonials
+const reviewSchemas = generateReviewSchema(defaultTemplateConfig);
+
+// Generate Product schema for pricing
+const productSchema = generateProductSchema(defaultTemplateConfig, Astro.url.href);
 ---
 
 <Layout {...defaultTemplateConfig}>
   <!-- FAQPage Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <!-- Review Structured Data for Testimonials -->
+  {reviewSchemas.map((review) => (
+    <script type="application/ld+json" set:html={JSON.stringify(review)} slot="head" />
+  ))}
+
+  <!-- Product Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
 
   <InitScripts client:load />
   <header>
