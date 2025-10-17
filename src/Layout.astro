@@ -3,6 +3,7 @@ import "swiper/css";
 import "@styles/styles.scss";
 import type { TemplateConfig } from "utils/configType";
 import type { TranslationObject } from "utils/serverI18n";
+import { getLegalPageKeyFromSlug, getLegalPageSlug } from "utils/serverI18n";
 import {
   generateMobileApplicationSchema,
   generateOrganizationSchema,
@@ -35,24 +36,56 @@ const websiteSchema = generateWebSiteSchema(config, Astro.url.href);
 const siteUrl = Astro.site || new URL(Astro.url.origin);
 const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-cn'];
 
-// Get the current path without language prefix
-const getCurrentPath = () => {
+// Get the current path without language prefix and detect if it's a legal page
+const getCurrentPathInfo = () => {
   const pathname = Astro.url.pathname;
   // Remove language prefix if present
   const pathWithoutLang = pathname.replace(/^\/(es|tl|vi|zh-cn)(\/|$)/, '/');
-  return pathWithoutLang === '/' ? '' : pathWithoutLang.replace(/\/$/, '');
+  const cleanPath = pathWithoutLang === '/' ? '' : pathWithoutLang.replace(/\/$/, '');
+
+  // Extract the last segment to check if it's a legal page
+  const segments = cleanPath.split('/').filter(Boolean);
+  const lastSegment = segments[segments.length - 1];
+
+  // Check if this is a legal page by trying to match it in any language
+  let legalPageKey = null;
+  if (lastSegment) {
+    // Try to find which legal page this is
+    legalPageKey = getLegalPageKeyFromSlug(lastSegment, htmlLang);
+  }
+
+  return {
+    cleanPath,
+    isLegalPage: !!legalPageKey,
+    legalPageKey,
+    isHomepage: cleanPath === '' || cleanPath === '/'
+  };
 };
 
-const currentPath = getCurrentPath();
+const pathInfo = getCurrentPathInfo();
 
 // Generate language-specific URLs
 const languageUrls = supportedLanguages.map(lang => {
-  // English (default locale) doesn't have prefix
+  let targetPath;
+
+  if (pathInfo.isLegalPage && pathInfo.legalPageKey) {
+    // Translate the legal page slug for this language
+    const translatedSlug = getLegalPageSlug(pathInfo.legalPageKey, lang);
+    targetPath = `/${translatedSlug}`;
+  } else if (pathInfo.isHomepage) {
+    // Homepage
+    targetPath = '/';
+  } else {
+    // Other pages - keep the same path
+    targetPath = pathInfo.cleanPath || '/';
+  }
+
+  // English (default locale) doesn't have language prefix
   if (lang === 'en') {
-    return { lang, url: new URL(currentPath || '/', siteUrl).href };
+    return { lang, url: new URL(targetPath, siteUrl).href };
   }
   // Other languages have /{lang}/ prefix
-  return { lang, url: new URL(`/${lang}${currentPath || '/'}`, siteUrl).href };
+  return { lang, url: new URL(`/${lang}${targetPath}`, siteUrl).href };
 });
 ---
 

@@ -54,6 +54,9 @@ export default function LanguageSwitcher({ variant = 'desktop' }: LanguageSwitch
       newPath = `/${urlLang}${cleanPath}`;
     }
 
+    // Change i18n language before navigating (this updates localStorage)
+    i18n.changeLanguage(lng);
+
     // Navigate to new URL
     window.location.href = newPath;
     setIsOpen(false);
