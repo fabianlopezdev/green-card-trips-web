@@ -1,0 +1,147 @@
+---
+import Layout from "Layout.astro";
+import defaultTemplateConfig from "utils/config";
+import InitScripts from "../components/initScripts";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
+import { getLegalPageSlug } from "utils/serverI18n";
+
+// Import all translation files
+import enTranslations from "../i18n/locales/en.json";
+import esTranslations from "../i18n/locales/es.json";
+import tlTranslations from "../i18n/locales/tl.json";
+import viTranslations from "../i18n/locales/vi.json";
+import zhCnTranslations from "../i18n/locales/zh-cn.json";
+
+// Detect language from URL path
+const pathname = Astro.url.pathname;
+let currentLang = 'en';
+let langPrefix = '';
+
+// Check for language prefix in URL (e.g., /es/nonexistent)
+if (pathname.startsWith('/es/') || pathname === '/es') {
+  currentLang = 'es';
+  langPrefix = '/es';
+} else if (pathname.startsWith('/tl/') || pathname === '/tl') {
+  currentLang = 'tl';
+  langPrefix = '/tl';
+} else if (pathname.startsWith('/vi/') || pathname === '/vi') {
+  currentLang = 'vi';
+  langPrefix = '/vi';
+} else if (pathname.startsWith('/zh-cn/') || pathname === '/zh-cn') {
+  currentLang = 'zh-cn';
+  langPrefix = '/zh-cn';
+}
+
+// Select the appropriate translation file
+const translations = {
+  'en': enTranslations,
+  'es': esTranslations,
+  'tl': tlTranslations,
+  'vi': viTranslations,
+  'zh-cn': zhCnTranslations
+}[currentLang];
+
+// Generate language-specific legal page URLs
+const legalUrls = {
+  termsAndConditions: langPrefix + (currentLang === 'en' ? '/terms-and-conditions' : '/' + getLegalPageSlug('terms-and-conditions', currentLang)),
+  privacyPolicy: langPrefix + (currentLang === 'en' ? '/privacy-policy' : '/' + getLegalPageSlug('privacy-policy', currentLang)),
+  cookiesPolicy: langPrefix + (currentLang === 'en' ? '/cookies-policy' : '/' + getLegalPageSlug('cookies-policy', currentLang)),
+};
+
+// Custom SEO for 404 page - translated and noindex to prevent indexing
+const notFoundSeo = {
+  title: `${translations.notFound.title} - ${translations.notFound.heading} | Green Card Trips`,
+  description: translations.notFound.description
+};
+---
+
+<Layout {...defaultTemplateConfig} seo={notFoundSeo} currentLang={currentLang} translations={translations}>
+  <!-- Prevent indexing of 404 page -->
+  <meta name="robots" content="noindex, nofollow" slot="head" />
+
+  <InitScripts client:load />
+  <main id="main">
+    <Navbar client:load config={defaultTemplateConfig} translations={translations} currentLang={currentLang} />
+    <div class="container mx-auto px-4 pt-32 pb-24 md:pt-40 md:pb-32 min-h-[80vh] flex items-center justify-center">
+      <div class="max-w-3xl mx-auto text-center w-full">
+      <!-- 404 Error -->
+      <div class="mb-8">
+        <h1 class="text-9xl font-bold text-primary mb-4">{translations.notFound.title}</h1>
+        <h2 class="text-3xl font-semibold mb-4">{translations.notFound.heading}</h2>
+        <p class="text-lg text-base-content/70 mb-8">
+          {translations.notFound.description}
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-4 mb-12">
+        <a
+          href={langPrefix || '/'}
+          class="btn btn-primary btn-lg inline-flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          </svg>
+          {translations.notFound.goHome}
+        </a>
+      </div>
+
+      <!-- Helpful Links -->
+      <div class="max-w-4xl mx-auto">
+        <h3 class="text-xl font-semibold mb-6 text-center">{translations.notFound.quickLinks}</h3>
+        <div class="flex flex-wrap gap-3 justify-center mb-8">
+          <a href={langPrefix || '/'} class="btn btn-outline btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+            {translations.notFound.home}
+          </a>
+          <a href={`${langPrefix || '/'}#features`} class="btn btn-outline btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+            </svg>
+            {translations.nav.features}
+          </a>
+          <a href={`${langPrefix || '/'}#pricing`} class="btn btn-outline btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd" />
+            </svg>
+            {translations.nav.pricing}
+          </a>
+          <a href={`${langPrefix || '/'}#faq`} class="btn btn-outline btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+            </svg>
+            {translations.nav.faq}
+          </a>
+        </div>
+
+        <div class="divider">{translations.notFound.legal}</div>
+
+        <div class="flex flex-wrap gap-3 justify-center">
+          <a href={legalUrls.privacyPolicy} class="btn btn-ghost btn-sm">{translations.footer.privacyPolicy}</a>
+          <a href={legalUrls.termsAndConditions} class="btn btn-ghost btn-sm">{translations.footer.termsAndConditions}</a>
+          <a href={legalUrls.cookiesPolicy} class="btn btn-ghost btn-sm">{translations.footer.cookiesPolicy}</a>
+        </div>
+      </div>
+
+      <!-- Language Options -->
+      <div class="mt-12">
+        <p class="text-sm text-base-content/60 mb-4">
+          {translations.notFound.availableLanguages}
+        </p>
+        <div class="flex flex-wrap gap-2 justify-center">
+          <a href="/" class="btn btn-sm btn-outline">English</a>
+          <a href="/es/" class="btn btn-sm btn-outline">Español</a>
+          <a href="/tl/" class="btn btn-sm btn-outline">Tagalog</a>
+          <a href="/vi/" class="btn btn-sm btn-outline">Tiếng Việt</a>
+          <a href="/zh-cn/" class="btn btn-sm btn-outline">简体中文</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <Footer client:idle config={defaultTemplateConfig} translations={translations} currentLang={currentLang} legalUrls={legalUrls} />
+  </main>
+</Layout>

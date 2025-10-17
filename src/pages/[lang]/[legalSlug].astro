@@ -2,6 +2,7 @@
 import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
 import { getTranslations, getSupportedLanguages, getLegalPageKeyFromSlug, legalPageSlugs, type LegalPageKey } from "utils/serverI18n";
+import { generateBreadcrumbSchema } from "utils/structuredData";
 import InitScripts from "../../components/initScripts";
 import Navbar from "../../components/navbar";
 import AppBanner from "../../components/appBanner";
@@ -47,6 +48,19 @@ const legalUrls = {
   privacyPolicy: `/${lang}/${legalPageSlugs['privacy-policy'][lang as keyof typeof legalPageSlugs['privacy-policy']]}`,
   cookiesPolicy: `/${lang}/${legalPageSlugs['cookies-policy'][lang as keyof typeof legalPageSlugs['cookies-policy']]}`,
 };
+
+// Generate site URL for breadcrumbs
+const siteUrl = Astro.site || new URL(Astro.url.origin);
+
+// Get page title from SEO config
+const pageTitle = seo?.title || "";
+
+// Generate breadcrumb schema with language-specific URLs
+const breadcrumbs = [
+  { name: translations?.navbar?.home || "Home", url: new URL(`/${lang}`, siteUrl).href },
+  { name: pageTitle, url: new URL(`/${lang}/${legalSlug}`, siteUrl).href }
+];
+const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 ---
 
 <Layout
@@ -55,6 +69,9 @@ const legalUrls = {
   currentLang={lang}
   translations={translations}
 >
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
   <InitScripts client:load />
   <main id="main">
     <Navbar client:load config={defaultTemplateConfig} translations={translations} currentLang={lang} />

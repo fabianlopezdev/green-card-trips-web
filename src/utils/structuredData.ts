@@ -190,3 +190,19 @@ export function generateProductSchema(config: TemplateConfig, currentUrl: string
 
   return schema;
 }
+
+/**
+ * Generate BreadcrumbList schema for navigation breadcrumbs
+ */
+export function generateBreadcrumbSchema(breadcrumbs: Array<{ name: string; url: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      "item": crumb.url
+    }))
+  };
+}

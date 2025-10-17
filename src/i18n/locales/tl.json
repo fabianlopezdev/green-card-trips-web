@@ -116,5 +116,15 @@
     "termsAndConditions": "Mga tuntunin at kundisyon",
     "privacyPolicy": "Patakaran sa privacy",
     "cookiesPolicy": "Patakaran sa cookies"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Hindi Natagpuan ang Pahina",
+    "description": "Oops! Ang pahinang hinahanap mo ay hindi umiiral. Maaaring inilipat o tinanggal ito.",
+    "goHome": "Bumalik sa Homepage",
+    "quickLinks": "Mabilis na mga Link",
+    "home": "Home",
+    "legal": "Legal",
+    "availableLanguages": "Available sa maraming wika:"
   }
 }

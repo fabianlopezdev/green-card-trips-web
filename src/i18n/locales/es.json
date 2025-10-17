@@ -116,5 +116,15 @@
     "termsAndConditions": "Términos y condiciones",
     "privacyPolicy": "Política de privacidad",
     "cookiesPolicy": "Política de cookies"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Página No Encontrada",
+    "description": "¡Ups! La página que buscas no existe. Puede que haya sido movida o eliminada.",
+    "goHome": "Ir a Inicio",
+    "quickLinks": "Enlaces Rápidos",
+    "home": "Inicio",
+    "legal": "Legal",
+    "availableLanguages": "Disponible en varios idiomas:"
   }
 }

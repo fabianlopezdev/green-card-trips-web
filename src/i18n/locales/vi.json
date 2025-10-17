@@ -116,5 +116,15 @@
     "termsAndConditions": "Điều khoản và điều kiện",
     "privacyPolicy": "Chính sách bảo mật",
     "cookiesPolicy": "Chính sách cookies"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Không Tìm Thấy Trang",
+    "description": "Oops! Trang bạn đang tìm kiếm không tồn tại. Nó có thể đã được di chuyển hoặc xóa.",
+    "goHome": "Về Trang Chủ",
+    "quickLinks": "Liên Kết Nhanh",
+    "home": "Trang chủ",
+    "legal": "Pháp lý",
+    "availableLanguages": "Có sẵn bằng nhiều ngôn ngữ:"
   }
 }

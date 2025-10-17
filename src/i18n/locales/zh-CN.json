@@ -116,5 +116,15 @@
     "termsAndConditions": "条款和条件",
     "privacyPolicy": "隐私政策",
     "cookiesPolicy": "Cookies政策"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "页面未找到",
+    "description": "哎呀！您要找的页面不存在。它可能已被移动或删除。",
+    "goHome": "返回首页",
+    "quickLinks": "快速链接",
+    "home": "首页",
+    "legal": "法律",
+    "availableLanguages": "支持多种语言："
   }
 }

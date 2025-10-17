@@ -98,7 +98,10 @@ const languageUrls = supportedLanguages.map(lang => {
     <!-- Global Metadata -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/webp" href="/favicon.webp" />
+
+    <!-- Favicon with Dark Mode Support -->
+    <link rel="icon" type="image/webp" href="/favicon-dark.webp" id="favicon" />
+
     <meta name="generator" content={Astro.generator} />
 
     <!-- Preload Critical Fonts -->
@@ -184,6 +187,28 @@ const languageUrls = supportedLanguages.map(lang => {
       const theme = localStorage.getItem("theme") ?? getPreferredColorScheme();
       if (theme === "dark" && !forceTheme)
         document.documentElement.setAttribute("data-theme", theme);
+    </script>
+
+    <script is:inline>
+      // Dynamic favicon based on color scheme
+      const favicon = document.getElementById('favicon');
+
+      function updateFavicon(isDark) {
+        if (favicon) {
+          favicon.href = isDark ? '/favicon-light.webp' : '/favicon-dark.webp';
+        }
+      }
+
+      // Check on page load
+      if (window.matchMedia) {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        updateFavicon(isDark);
+
+        // Listen for changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          updateFavicon(e.matches);
+        });
+      }
     </script>
   </head>
   <body class="relative">
