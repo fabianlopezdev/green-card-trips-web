@@ -4,6 +4,13 @@ import * as CookieConsent from "vanilla-cookieconsent";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import { getConsentMode, getCookie } from "./config";
 
+// Import all locale files for cookie consent translations
+import enLocale from "../../i18n/locales/en.json";
+import esLocale from "../../i18n/locales/es.json";
+import tlLocale from "../../i18n/locales/tl.json";
+import viLocale from "../../i18n/locales/vi.json";
+import zhCNLocale from "../../i18n/locales/zh-CN.json";
+
 // Color-coded logging helpers for production debugging
 const log = {
   success: (msg: string, ...args: any[]) => {
@@ -21,6 +28,61 @@ const log = {
 };
 
 const getTimestamp = () => new Date().toISOString().split('T')[1].split('.')[0];
+
+// Helper function to build cookie consent translations from i18n locale files
+function buildCookieConsentTranslations() {
+  const locales = {
+    en: enLocale,
+    es: esLocale,
+    tl: tlLocale,
+    vi: viLocale,
+    'zh-CN': zhCNLocale,
+  };
+
+  const translations: any = {};
+
+  for (const [lang, locale] of Object.entries(locales)) {
+    const cc = (locale as any).cookieConsent;
+    translations[lang] = {
+      consentModal: {
+        title: cc.title,
+        description: cc.description,
+        acceptAllBtn: cc.acceptAll,
+        acceptNecessaryBtn: cc.acceptNecessary,
+        showPreferencesBtn: cc.settings,
+        footer: `
+          <a href="/privacy-policy">${cc.privacyPolicy}</a>
+          <a href="/cookies-policy">${cc.cookiePolicy}</a>
+        `,
+      },
+      preferencesModal: {
+        title: cc.preferences.title,
+        acceptAllBtn: cc.acceptAll,
+        acceptNecessaryBtn: cc.acceptNecessary,
+        savePreferencesBtn: cc.preferences.save,
+        closeIconLabel: cc.preferences.close,
+        sections: [
+          {
+            title: cc.preferences.usage,
+            description: cc.preferences.usageDesc,
+          },
+          {
+            title: cc.preferences.necessary,
+            description: cc.preferences.necessaryDesc,
+            linkedCategory: "necessary",
+          },
+          {
+            title: cc.preferences.analytics,
+            description: cc.preferences.analyticsDesc,
+            linkedCategory: "analytics",
+          },
+        ],
+      },
+    };
+  }
+
+  return translations;
+}
 
 export default function CookieConsentBanner() {
   const { t, i18n } = useTranslation();
@@ -106,61 +168,11 @@ export default function CookieConsentBanner() {
         },
       },
 
-      // Language settings
+      // Language settings with all supported languages
       language: {
         default: i18n.language || "en",
         autoDetect: "document",
-
-        translations: {
-          en: {
-            consentModal: {
-              title: t("cookieConsent.title", "We use cookies"),
-              description: t(
-                "cookieConsent.description",
-                "We use cookies to improve your experience and analyze site traffic. You can choose which cookies to accept."
-              ),
-              acceptAllBtn: t("cookieConsent.acceptAll", "Accept all"),
-              acceptNecessaryBtn: t("cookieConsent.acceptNecessary", "Reject all"),
-              showPreferencesBtn: t("cookieConsent.settings", "Settings"),
-              footer: `
-                <a href="/privacy-policy">${t("cookieConsent.privacyPolicy", "Privacy Policy")}</a>
-                <a href="/cookies-policy">${t("cookieConsent.cookiePolicy", "Cookie Policy")}</a>
-              `,
-            },
-            preferencesModal: {
-              title: t("cookieConsent.preferences.title", "Cookie preferences"),
-              acceptAllBtn: t("cookieConsent.acceptAll", "Accept all"),
-              acceptNecessaryBtn: t("cookieConsent.acceptNecessary", "Reject all"),
-              savePreferencesBtn: t("cookieConsent.preferences.save", "Save preferences"),
-              closeIconLabel: t("cookieConsent.preferences.close", "Close"),
-              sections: [
-                {
-                  title: t("cookieConsent.preferences.usage", "Cookie usage"),
-                  description: t(
-                    "cookieConsent.preferences.usageDesc",
-                    "We use cookies to ensure the basic functionalities of the website and to enhance your online experience."
-                  ),
-                },
-                {
-                  title: t("cookieConsent.preferences.necessary", "Strictly necessary cookies"),
-                  description: t(
-                    "cookieConsent.preferences.necessaryDesc",
-                    "These cookies are essential for the proper functioning of the website. Without these cookies, the website would not work properly."
-                  ),
-                  linkedCategory: "necessary",
-                },
-                {
-                  title: t("cookieConsent.preferences.analytics", "Analytics cookies"),
-                  description: t(
-                    "cookieConsent.preferences.analyticsDesc",
-                    "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously."
-                  ),
-                  linkedCategory: "analytics",
-                },
-              ],
-            },
-          },
-        },
+        translations: buildCookieConsentTranslations(),
       },
 
       // Callbacks for Google Analytics integration

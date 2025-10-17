@@ -1,10 +1,11 @@
+import "../../i18n";
 import AnimatedList from "../../components/animatedList";
 import MenuToggle from "../../components/menuToggle";
 import clsx from "clsx";
 import { easeIn, motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../utils/configType";
-import type { TranslationObject } from "../../utils/serverI18n";
 import ThemeSwitcher from "./themeSwitcher";
 import LanguageSwitcher from "../languageSwitcher";
 import AppStoreDropdown from "../appStoreDropdown";
@@ -12,11 +13,10 @@ import GreenCardLogoSimplified from "./GreenCardLogoSimplified";
 
 interface Props {
   config: TemplateConfig;
-  translations: TranslationObject;
-  currentLang?: string;
 }
 
-function Navbar({ config, translations, currentLang: lang }: Props) {
+function Navbar({ config }: Props) {
+  const { t } = useTranslation();
   const {
     name,
     showThemeSwitch,
@@ -58,21 +58,12 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
     ease: easeIn,
   });
 
-  // Helper to construct language-aware URLs
-  const getLocalizedUrl = (path: string) => {
-    if (!lang || lang === 'en') {
-      return path;
-    }
-    // For non-English languages, prepend language prefix
-    return `/${lang}${path}`;
-  };
-
-  // Map config links to translations
+  // Map config links to translation keys
   const navLinks = [
-    { href: getLocalizedUrl("/#features"), label: translations.nav.features },
-    { href: getLocalizedUrl("/#how-it-works"), label: translations.nav.howItWorks },
-    { href: getLocalizedUrl("/#pricing"), label: translations.nav.pricing },
-    { href: getLocalizedUrl("/#faq"), label: translations.nav.faq },
+    { href: "/#features", key: "nav.features" },
+    { href: "/#how-it-works", key: "nav.howItWorks" },
+    { href: "/#pricing", key: "nav.pricing" },
+    { href: "/#faq", key: "nav.faq" },
   ];
 
   return (
@@ -101,7 +92,7 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
           )}
         />
         <div className="navbar-start flex-1 max-nav:flex-auto">
-          <a href={getLocalizedUrl("/")} className="flex items-center" aria-label={translations.nav.homeLink}>
+          <a href="/" className="flex items-center" aria-label={t("nav.homeLink")}>
             <GreenCardLogoSimplified className="h-16" />
             <span className="font-logo font-medium mx-1 text-2xl tracking-[-0.01em]">{name}</span>
           </a>
@@ -110,38 +101,27 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
           <MenuToggle
             toggle={() => setIsMobileNavVisible((current) => !current)}
             isOpen={isMobileNavVisible}
-            openMenuLabel={translations.nav.openMenu}
-            closeMenuLabel={translations.nav.closeMenu}
           />
         </div>
         <div className="navbar-end hidden font-medium nav:flex">
           <ul className="flex gap-4 px-1 items-center">
-
-            {navLinks.map(({ label, href }, index) => (
+            
+            {navLinks.map(({ key, href }, index) => (
               <li key={index}>
                 <a
                   className="text-sm whitespace-nowrap link link-hover"
                   href={href}
                 >
-                  {label}
+                  {t(key)}
                 </a>
               </li>
             ))}
-            <li className="list-none">
-              <div className="flex border-l border-current pl-2">
-                <LanguageSwitcher currentLang={lang} />
-                {showThemeSwitch && <ThemeSwitcher config={config} />}
-              </div>
-            </li>
+            <div className="flex border-l border-current pl-2">
+            <LanguageSwitcher />
+            {showThemeSwitch && <ThemeSwitcher config={config} />}
+            </div>
           </ul>
-          {topNavbar.cta && (
-            <AppStoreDropdown
-              config={config}
-              getAppLabel={translations.nav.getApp}
-              downloadAppStoreLabel={translations.nav.downloadAppStore}
-              downloadPlayStoreLabel={translations.nav.downloadPlayStore}
-            />
-          )}
+          {topNavbar.cta && <AppStoreDropdown config={config} />}
         </div>
       </motion.div>
       <AnimatedList
@@ -162,7 +142,7 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
             </motion.div>
           )}
           <ul className="list-none flex flex-col gap-2 m-0 p-0">
-            {navLinks.map(({ label, href }, index) => (
+            {navLinks.map(({ key, href }, index) => (
               <li key={index}>
                 <motion.a
                   className="w-full py-3 px-4 text-center text-lg block"
@@ -173,7 +153,7 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
                     hidden: { x: "-100%" },
                   }}
                 >
-                  {label}
+                  {t(key)}
                 </motion.a>
               </li>
             ))}
@@ -185,7 +165,7 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
             }}
             className="w-full"
           >
-            <LanguageSwitcher variant="mobile" currentLang={lang} />
+            <LanguageSwitcher variant="mobile" />
           </motion.div>
         </nav>
         <motion.div
@@ -198,14 +178,14 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
           <ul className="flex gap-2 list-none m-0 p-0">
             {googlePlayLink && (
               <li>
-                <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label={translations.nav.downloadPlayStore}>
+                <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadPlayStore")}>
                   <img className="h-14" width={156} height={56} loading="lazy" src="/stores/google-play.svg" alt="Download on Google Play" />
                 </a>
               </li>
             )}
             {appStoreLink && (
               <li>
-                <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label={translations.nav.downloadAppStore}>
+                <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadAppStore")}>
                   <img className="h-14" width={156} height={56} loading="lazy" src="/stores/app-store.svg" alt="Download on the App Store" />
                 </a>
               </li>
