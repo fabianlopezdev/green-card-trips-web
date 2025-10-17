@@ -36,7 +36,11 @@ function SingleScreenshot({ scrollYProgress, index, totalCount, src, altText }: 
     <motion.img
       src={src}
       loading={index === 0 ? "eager" : "lazy"}
+      fetchPriority={index === 0 ? "high" : "low"}
+      decoding="async"
       alt={altText}
+      width={390}
+      height={844}
       style={{ translateX: x, translateY: y, scale: 1 }}
       className="absolute overflow-hidden w-full h-full object-cover"
     />

@@ -59,11 +59,11 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                     animate={{ opacity: 1, scale: 1 }}
                     className="flex items-center self-center h-8 md:h-12"
                   >
-                    <img src="/misc/wreath-left.webp" width={48} height={48} className="h-full" alt="" />
+                    <img src="/misc/wreath-left.webp" width={48} height={48} decoding="async" className="h-full" alt="" />
                     <p className="text-xs text-gray-500 whitespace-pre text-center">
                       {reward}
                     </p>
-                    <img src="/misc/wreath-right.webp" width={48} height={48} className="h-full" alt="" />
+                    <img src="/misc/wreath-right.webp" width={48} height={48} decoding="async" className="h-full" alt="" />
                   </motion.div>
                 ))}
               </div>
@@ -124,6 +124,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                         className="h-14"
                         width={156}
                         height={56}
+                        decoding="async"
                         alt="google play logo"
                         src="/stores/google-play.svg"
                       />
@@ -137,6 +138,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                         className="h-14"
                         width={156}
                         height={56}
+                        decoding="async"
                         alt="app store logo"
                         src="/stores/app-store.svg"
                       />
@@ -160,6 +162,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                             src={`/avatars/${index + 1}.webp`}
                             width={32}
                             height={32}
+                            decoding="async"
                             alt={`app user ${index + 1}`}
                           />
                         </div>
@@ -211,6 +214,9 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                 <img
                   src="/misc/iphone-frame.webp"
                   alt="iphone-frame"
+                  width={548}
+                  height={1120}
+                  decoding="async"
                   className="relative z-10 h-full"
                 />
               </motion.div>
