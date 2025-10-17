@@ -216,6 +216,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                   sizes="(max-width: 400px) 252px, (max-width: 768px) 331px, 298px"
                   src="/misc/iphone-frame-md.webp"
                   alt="iphone-frame"
+                  fetchpriority="high"
                   decoding="async"
                   className="relative z-10 h-full"
                 />
