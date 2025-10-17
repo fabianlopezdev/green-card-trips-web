@@ -126,5 +126,25 @@
     "home": "首页",
     "legal": "法律",
     "availableLanguages": "支持多种语言："
+  },
+  "cookieConsent": {
+    "title": "我们使用 cookies",
+    "description": "我们使用 cookies 通过 Google Analytics 分析网站流量。这有助于我们了解访问者如何使用我们的网站，以便我们可以改进它。您可以在下方接受或拒绝分析 cookies。",
+    "acceptAll": "接受全部",
+    "acceptNecessary": "拒绝全部",
+    "settings": "Cookie 设置",
+    "privacyPolicy": "隐私政策",
+    "cookiePolicy": "Cookie 政策",
+    "preferences": {
+      "title": "Cookie 偏好设置",
+      "save": "保存我的偏好",
+      "close": "关闭",
+      "usage": "Cookie 使用",
+      "usageDesc": "我们使用 cookies 来确保网站的基本功能并增强您的在线体验。您可以随时更改或撤回您的同意。",
+      "necessary": "绝对必要的 cookies",
+      "necessaryDesc": "这些 cookies 对于网站运行至关重要。它们启用核心功能，如语言偏好。没有这些 cookies，网站无法正常运行。",
+      "analytics": "分析 cookies",
+      "analyticsDesc": "这些 cookies 帮助我们通过匿名收集和报告信息来了解访问者如何与我们的网站互动。我们使用 Google Analytics，它设置像 _ga、_ga_* 和 _gid 这样的 cookies 来区分唯一访问者并跟踪使用模式。"
+    }
   }
 }

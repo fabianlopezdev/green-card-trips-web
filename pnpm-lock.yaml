@@ -62,6 +62,9 @@ importers:
       swiper:
         specifier: ^11.1.8
         version: 11.1.14
+      vanilla-cookieconsent:
+        specifier: 3.1.0
+        version: 3.1.0
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -93,6 +96,9 @@ importers:
       sass:
         specifier: ^1.77.6
         version: 1.80.4
+      sharp:
+        specifier: ^0.34.4
+        version: 0.34.4
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.14
@@ -3681,6 +3687,9 @@ packages:
     deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
     hasBin: true
 
+  vanilla-cookieconsent@3.1.0:
+    resolution: {integrity: sha512-/McNRtm/3IXzb9dhqMIcbquoU45SzbN2VB+To4jxEPqMmp7uVniP6BhGLjU8MC7ZCDsNQVOp27fhQTM/ruIXAA==}
+
   verror@1.10.0:
     resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
     engines: {'0': node >=0.6.0}
@@ -4414,8 +4423,7 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@img/colour@1.0.0':
-    optional: true
+  '@img/colour@1.0.0': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -7685,7 +7693,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.34.4
       '@img/sharp-win32-ia32': 0.34.4
       '@img/sharp-win32-x64': 0.34.4
-    optional: true
 
   shebang-command@2.0.0:
     dependencies:
@@ -7992,7 +7999,7 @@ snapshots:
 
   typescript-auto-import-cache@0.3.3:
     dependencies:
-      semver: 7.6.3
+      semver: 7.7.3
 
   typescript@5.5.2: {}
 
@@ -8125,6 +8132,8 @@ snapshots:
   utils-merge@1.0.1: {}
 
   uuid@3.4.0: {}
+
+  vanilla-cookieconsent@3.1.0: {}
 
   verror@1.10.0:
     dependencies:

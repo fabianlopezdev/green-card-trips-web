@@ -212,7 +212,9 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                   ))}
                 </div>
                 <img
-                  src="/misc/iphone-frame.webp"
+                  srcSet="/misc/iphone-frame-sm.webp 252w, /misc/iphone-frame-md.webp 331w, /misc/iphone-frame-lg.webp 298w, /misc/iphone-frame-xl.webp 331w"
+                  sizes="(max-width: 400px) 252px, (max-width: 768px) 331px, 298px"
+                  src="/misc/iphone-frame-md.webp"
                   alt="iphone-frame"
                   decoding="async"
                   className="relative z-10 h-full"

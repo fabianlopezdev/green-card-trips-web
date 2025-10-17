@@ -126,5 +126,25 @@
     "home": "Home",
     "legal": "Legal",
     "availableLanguages": "Available sa maraming wika:"
+  },
+  "cookieConsent": {
+    "title": "Gumagamit kami ng cookies",
+    "description": "Gumagamit kami ng cookies upang suriin ang trapiko ng site gamit ang Google Analytics. Tinutulungan kaming ito na maintindihan kung paano ginagamit ng mga bisita ang aming website upang mapabuti namin ito. Maaari kang tumanggap o tanggihan ang mga analytics cookies sa ibaba.",
+    "acceptAll": "Tanggapin lahat",
+    "acceptNecessary": "Tanggihan lahat",
+    "settings": "Mga setting ng cookie",
+    "privacyPolicy": "Patakaran sa Privacy",
+    "cookiePolicy": "Patakaran sa Cookies",
+    "preferences": {
+      "title": "Mga kagustuhan sa cookie",
+      "save": "I-save ang aking mga kagustuhan",
+      "close": "Isara",
+      "usage": "Paggamit ng cookie",
+      "usageDesc": "Gumagamit kami ng cookies upang masiguro ang mga pangunahing functionality ng website at mapahusay ang iyong online experience. Maaari mong baguhin o bawiin ang iyong pahintulot anumang oras.",
+      "necessary": "Mahigpit na kinakailangang cookies",
+      "necessaryDesc": "Ang mga cookies na ito ay mahalaga para gumana ang website. Pinagagana nila ang mga pangunahing functionality tulad ng kagustuhan sa wika. Ang website ay hindi makakapag-function nang maayos nang walang mga cookies na ito.",
+      "analytics": "Mga analytics cookies",
+      "analyticsDesc": "Tinutulungan kami ng mga cookies na ito na maintindihan kung paano nakikipag-ugnayan ang mga bisita sa aming website sa pamamagitan ng pagkolekta at pag-ulat ng impormasyon nang hindi nagpapakilala. Gumagamit kami ng Google Analytics, na nagtatakda ng mga cookies tulad ng _ga, _ga_*, at _gid upang makilala ang mga natatanging bisita at subaybayan ang mga pattern ng paggamit."
+    }
   }
 }

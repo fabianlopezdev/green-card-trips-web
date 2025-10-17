@@ -9,7 +9,8 @@
     "build": "astro build",
     "build:prod": "NODE_ENV=production astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -30,6 +31,7 @@
     "react-markdown": "^9.0.1",
     "remark-gfm": "^4.0.1",
     "swiper": "^11.1.8",
+    "vanilla-cookieconsent": "3.1.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -42,6 +44,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.14.0",
     "sass": "^1.77.6",
+    "sharp": "^0.34.4",
     "tailwindcss": "^3.4.1",
     "ttf2woff2": "^8.0.0",
     "typescript": "^5.4.5",

@@ -32,11 +32,16 @@ function SingleScreenshot({ scrollYProgress, index, totalCount, src, altText }: 
     }
     return 0;
   });
+  // Generate responsive image paths
+  const basePath = src.replace('.webp', '');
+
   return (
     <motion.img
-      src={src}
+      srcSet={`${basePath}-250.webp 250w, ${basePath}-298.webp 298w, ${basePath}-311.webp 311w, ${basePath}-327.webp 327w`}
+      sizes="(max-width: 768px) 327px, 298px"
+      src={`${basePath}-327.webp`}
       loading={index === 0 ? "eager" : "lazy"}
-      fetchPriority={index === 0 ? "high" : "low"}
+      fetchpriority={index === 0 ? "high" : "low"}
       decoding="async"
       alt={altText}
       style={{ translateX: x, translateY: y, scale: 1 }}

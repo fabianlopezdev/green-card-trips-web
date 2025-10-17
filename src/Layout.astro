@@ -8,6 +8,7 @@ import {
   generateOrganizationSchema,
   generateWebSiteSchema,
 } from "utils/structuredData";
+import CookieConsentBanner from "@components/cookieConsent/index.tsx";
 
 interface Props extends TemplateConfig {
   currentLang?: string;
@@ -207,5 +208,8 @@ const languageUrls = supportedLanguages.map(lang => {
     </a>
     {backgroundGrid && <div class="backgroundGrid" />}
     <slot />
+
+    <!-- Cookie Consent Banner -->
+    <CookieConsentBanner client:load />
   </body>
 </html>

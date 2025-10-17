@@ -46,3 +46,4 @@ docs/
 
 # playwright screenshots
 .playwright-mcp/
+COOKIE_CONSENT_IMPLEMENTATION.md

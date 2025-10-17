@@ -126,5 +126,25 @@
     "home": "Trang chủ",
     "legal": "Pháp lý",
     "availableLanguages": "Có sẵn bằng nhiều ngôn ngữ:"
+  },
+  "cookieConsent": {
+    "title": "Chúng tôi sử dụng cookies",
+    "description": "Chúng tôi sử dụng cookies để phân tích lưu lượng truy cập trang web với Google Analytics. Điều này giúp chúng tôi hiểu cách khách truy cập sử dụng trang web của chúng tôi để chúng tôi có thể cải thiện nó. Quý vị có thể chấp nhận hoặc từ chối cookies phân tích bên dưới.",
+    "acceptAll": "Chấp nhận tất cả",
+    "acceptNecessary": "Từ chối tất cả",
+    "settings": "Cài đặt cookie",
+    "privacyPolicy": "Chính Sách Bảo Mật",
+    "cookiePolicy": "Chính Sách Cookies",
+    "preferences": {
+      "title": "Tùy chọn cookie",
+      "save": "Lưu tùy chọn của tôi",
+      "close": "Đóng",
+      "usage": "Sử dụng cookie",
+      "usageDesc": "Chúng tôi sử dụng cookies để đảm bảo các chức năng cơ bản của trang web và nâng cao trải nghiệm trực tuyến của quý vị. Quý vị có thể thay đổi hoặc rút lại sự đồng ý của mình bất cứ lúc nào.",
+      "necessary": "Cookies thực sự cần thiết",
+      "necessaryDesc": "Những cookies này rất cần thiết để trang web hoạt động. Chúng cho phép các chức năng cốt lõi như tùy chọn ngôn ngữ. Trang web không thể hoạt động đúng cách nếu không có những cookies này.",
+      "analytics": "Cookies phân tích",
+      "analyticsDesc": "Những cookies này giúp chúng tôi hiểu cách khách truy cập tương tác với trang web của chúng tôi bằng cách thu thập và báo cáo thông tin một cách ẩn danh. Chúng tôi sử dụng Google Analytics, thiết lập các cookies như _ga, _ga_*, và _gid để phân biệt khách truy cập duy nhất và theo dõi các mẫu sử dụng."
+    }
   }
 }
