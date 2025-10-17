@@ -1,13 +1,14 @@
-import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import type { TemplateConfig } from '../../utils/configType';
 
 interface Props {
   config: TemplateConfig;
+  getAppLabel: string;
+  downloadAppStoreLabel: string;
+  downloadPlayStoreLabel: string;
 }
 
-export default function AppStoreDropdown({ config }: Props) {
-  const { t } = useTranslation();
+export default function AppStoreDropdown({ config, getAppLabel, downloadAppStoreLabel, downloadPlayStoreLabel }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { appStoreLink, googlePlayLink } = config;
@@ -16,8 +17,8 @@ export default function AppStoreDropdown({ config }: Props) {
   if (!appStoreLink && !googlePlayLink) return null;
 
   const stores = [
-    ...(appStoreLink ? [{ name: 'iOS', link: appStoreLink, icon: '/stores/app-store.svg' }] : []),
-    ...(googlePlayLink ? [{ name: 'Android', link: googlePlayLink, icon: '/stores/google-play.svg' }] : []),
+    ...(appStoreLink ? [{ name: 'iOS', link: appStoreLink, icon: '/stores/app-store.svg', label: downloadAppStoreLabel }] : []),
+    ...(googlePlayLink ? [{ name: 'Android', link: googlePlayLink, icon: '/stores/google-play.svg', label: downloadPlayStoreLabel }] : []),
   ];
 
   return (
@@ -27,7 +28,7 @@ export default function AppStoreDropdown({ config }: Props) {
         onClick={() => setIsOpen(!isOpen)}
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}
         className="btn btn-primary btn-outline nav:py-4 rounded-full nav:hover:!text-white whitespace-nowrap max-nav:btn-ghost max-nav:btn-sm max-nav:p-0 max-nav:border-0 max-nav:bg-transparent max-nav:min-h-0 max-nav:h-auto max-nav:hover:!bg-transparent max-nav:hover:!border-0"
-        aria-label="Get the app"
+        aria-label={getAppLabel}
         aria-expanded={isOpen}
         aria-haspopup="menu"
         aria-controls="app-store-menu"
@@ -47,7 +48,7 @@ export default function AppStoreDropdown({ config }: Props) {
           <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
         {/* Text for desktop */}
-        <span className="hidden nav:inline">{t("nav.getApp")}</span>
+        <span className="hidden nav:inline">{getAppLabel}</span>
       </button>
 
       {isOpen && (
@@ -66,7 +67,7 @@ export default function AppStoreDropdown({ config }: Props) {
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
                 className="flex items-center justify-center px-3 py-2 rounded-lg hover:bg-base-200 transition-colors"
-                aria-label={store.name === 'iOS' ? t("nav.downloadAppStore") : t("nav.downloadPlayStore")}
+                aria-label={store.label}
               >
                 <img src={store.icon} width={112} height={40} loading="lazy" alt="" className="h-10" />
               </a>

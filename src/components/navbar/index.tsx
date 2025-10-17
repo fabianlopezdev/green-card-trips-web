@@ -110,6 +110,8 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
           <MenuToggle
             toggle={() => setIsMobileNavVisible((current) => !current)}
             isOpen={isMobileNavVisible}
+            openMenuLabel={translations.nav.openMenu}
+            closeMenuLabel={translations.nav.closeMenu}
           />
         </div>
         <div className="navbar-end hidden font-medium nav:flex">
@@ -132,7 +134,14 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
               </div>
             </li>
           </ul>
-          {topNavbar.cta && <AppStoreDropdown config={config} />}
+          {topNavbar.cta && (
+            <AppStoreDropdown
+              config={config}
+              getAppLabel={translations.nav.getApp}
+              downloadAppStoreLabel={translations.nav.downloadAppStore}
+              downloadPlayStoreLabel={translations.nav.downloadPlayStore}
+            />
+          )}
         </div>
       </motion.div>
       <AnimatedList

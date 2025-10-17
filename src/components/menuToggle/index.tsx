@@ -1,9 +1,10 @@
 import { motion, type SVGMotionProps } from "framer-motion";
-import { useTranslation } from "react-i18next";
 
 interface Props {
   toggle: () => void;
   isOpen: boolean;
+  openMenuLabel: string;
+  closeMenuLabel: string;
 }
 
 const Path = (props: SVGMotionProps<SVGElement>) => (
@@ -16,13 +17,11 @@ const Path = (props: SVGMotionProps<SVGElement>) => (
   />
 );
 
-const MenuToggle = ({ toggle, isOpen }: Props) => {
-  const { t } = useTranslation();
-
+const MenuToggle = ({ toggle, isOpen, openMenuLabel, closeMenuLabel }: Props) => {
   return (
     <button
       onClick={toggle}
-      aria-label={isOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+      aria-label={isOpen ? closeMenuLabel : openMenuLabel}
       aria-expanded={isOpen}
       aria-controls="mobile-navigation-menu"
     >
