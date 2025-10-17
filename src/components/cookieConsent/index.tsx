@@ -16,6 +16,10 @@ export default function CookieConsentBanner() {
 
     // Initialize cookie consent
     CookieConsent.run({
+      // Set mode based on region: 'opt-in' for EU (GDPR), 'opt-out' for US/others
+      // Note: vanilla-cookieconsent only supports 'opt-in' and 'opt-out', so 'info' maps to 'opt-out'
+      mode: consentConfig.mode === "opt-in" ? "opt-in" : "opt-out",
+
       // Automatically show the consent modal on first visit
       autoShow: true,
 
