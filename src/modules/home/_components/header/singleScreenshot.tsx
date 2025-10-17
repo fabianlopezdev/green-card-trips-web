@@ -39,8 +39,6 @@ function SingleScreenshot({ scrollYProgress, index, totalCount, src, altText }: 
       fetchPriority={index === 0 ? "high" : "low"}
       decoding="async"
       alt={altText}
-      width={390}
-      height={844}
       style={{ translateX: x, translateY: y, scale: 1 }}
       className="absolute overflow-hidden w-full h-full object-cover"
     />

@@ -214,8 +214,6 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                 <img
                   src="/misc/iphone-frame.webp"
                   alt="iphone-frame"
-                  width={548}
-                  height={1120}
                   decoding="async"
                   className="relative z-10 h-full"
                 />
