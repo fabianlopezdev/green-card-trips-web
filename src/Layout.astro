@@ -1,5 +1,4 @@
 ---
-import "swiper/css";
 import "@styles/styles.scss";
 import type { TemplateConfig } from "utils/configType";
 import type { TranslationObject } from "utils/serverI18n";
@@ -118,6 +117,10 @@ const languageUrls = supportedLanguages.map(lang => {
     <link rel="dns-prefetch" href="https://tools.google.com" />
     <link rel="dns-prefetch" href="https://policies.google.com" />
     <link rel="dns-prefetch" href="https://www.google.com" />
+
+    <!-- Defer Swiper CSS - only used in testimonials section (below fold) -->
+    <link rel="stylesheet" href="/swiper.css" media="print" onload="this.media='all'; this.onload=null;" />
+    <noscript><link rel="stylesheet" href="/swiper.css" /></noscript>
 
     <!-- Primary Meta Tags -->
     <title>{pageSeo.title}</title>

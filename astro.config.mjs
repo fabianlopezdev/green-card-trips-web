@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
+import compress from "astro-compress";
 import compression from "vite-plugin-compression";
 
 // https://astro.build/config
@@ -44,6 +45,13 @@ export default defineConfig({
   integrations: [
     react(),
     tailwind(),
+    compress({
+      CSS: true,
+      HTML: true,
+      Image: false, // Don't compress images, they're already optimized
+      JavaScript: true,
+      SVG: false, // Don't compress SVGs to preserve animations
+    }),
     sitemap({
       i18n: {
         defaultLocale: "en",
