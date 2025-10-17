@@ -110,8 +110,11 @@ const languageUrls = supportedLanguages.map(lang => {
     <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/montserrat-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Resource Hints -->
-    <link rel="dns-prefetch" href="https://fabapps.dev" />
+    <!-- Preload LCP Image -->
+    <link rel="preload" href="/screenshots/en/dashboard.webp" as="image" type="image/webp" fetchpriority="high" />
+
+    <!-- Resource Hints - Upgrade to preconnect for critical domains -->
+    <link rel="preconnect" href="https://fabapps.dev" crossorigin />
     <link rel="dns-prefetch" href="https://tools.google.com" />
     <link rel="dns-prefetch" href="https://policies.google.com" />
     <link rel="dns-prefetch" href="https://www.google.com" />
