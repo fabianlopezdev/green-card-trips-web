@@ -105,7 +105,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 0.7, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, ease: "easeInOut" }}
                 className="whitespace-pre-wrap text-left m-0 my-1 max-w-md md:text-lg md:max-w-lg"
               >
