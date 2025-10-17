@@ -115,7 +115,8 @@
     "developedBy": "Phát triển bởi",
     "termsAndConditions": "Điều khoản và điều kiện",
     "privacyPolicy": "Chính sách bảo mật",
-    "cookiesPolicy": "Chính sách cookies"
+    "cookiesPolicy": "Chính sách cookies",
+    "cookieSettings": "Cài đặt cookie"
   },
   "notFound": {
     "title": "404",

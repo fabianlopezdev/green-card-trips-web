@@ -115,7 +115,8 @@
     "developedBy": "Desarrollado por",
     "termsAndConditions": "Términos y condiciones",
     "privacyPolicy": "Política de privacidad",
-    "cookiesPolicy": "Política de cookies"
+    "cookiesPolicy": "Política de cookies",
+    "cookieSettings": "Configuración de cookies"
   },
   "notFound": {
     "title": "404",

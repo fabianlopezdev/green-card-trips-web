@@ -20,8 +20,8 @@ export default function CookieConsentBanner() {
       // Note: vanilla-cookieconsent only supports 'opt-in' and 'opt-out', so 'info' maps to 'opt-out'
       mode: consentConfig.mode === "opt-in" ? "opt-in" : "opt-out",
 
-      // Automatically show the consent modal on first visit
-      autoShow: true,
+      // Only auto-show banner for EU (opt-in). For US/opt-out, no banner - just footer link
+      autoShow: consentConfig.mode === "opt-in",
 
       // Don't show the modal again if user already consented
       disablePageInteraction: consentConfig.mode === "opt-in",

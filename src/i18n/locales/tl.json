@@ -115,7 +115,8 @@
     "developedBy": "Nilikha ng",
     "termsAndConditions": "Mga tuntunin at kundisyon",
     "privacyPolicy": "Patakaran sa privacy",
-    "cookiesPolicy": "Patakaran sa cookies"
+    "cookiesPolicy": "Patakaran sa cookies",
+    "cookieSettings": "Mga setting ng cookie"
   },
   "notFound": {
     "title": "404",

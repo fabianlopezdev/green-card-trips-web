@@ -5,6 +5,7 @@ import FacebookLogo from "./svgs/facebook";
 import TwitterLogo from "./svgs/twitter";
 import Heart from "./svgs/Heart";
 import { motion } from "framer-motion";
+import * as CookieConsent from "vanilla-cookieconsent";
 
 interface Props {
   config: TemplateConfig;
@@ -182,6 +183,18 @@ function Footer({ config, translations, currentLang: lang, legalUrls }: Props) {
                   {translations.footer.cookiesPolicy}
                 </motion.a>
               )}
+              <motion.button
+                variants={{
+                  hidden: { opacity: 0, scale: 0.4 },
+                  visible: { opacity: 1, scale: 1 },
+                }}
+                transition={{ delay: 1 }}
+                className="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap cursor-pointer"
+                onClick={() => CookieConsent.showPreferences()}
+                type="button"
+              >
+                {translations.footer.cookieSettings}
+              </motion.button>
             </div>
             <motion.p
               variants={{

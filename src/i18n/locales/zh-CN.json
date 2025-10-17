@@ -115,7 +115,8 @@
     "developedBy": "开发者",
     "termsAndConditions": "条款和条件",
     "privacyPolicy": "隐私政策",
-    "cookiesPolicy": "Cookies政策"
+    "cookiesPolicy": "Cookies政策",
+    "cookieSettings": "Cookie设置"
   },
   "notFound": {
     "title": "404",
