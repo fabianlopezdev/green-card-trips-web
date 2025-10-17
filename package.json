@@ -37,6 +37,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "daisyui": "^4.12.8",
+    "glyphhanger": "^5.0.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.14.0",
     "sass": "^1.77.6",
