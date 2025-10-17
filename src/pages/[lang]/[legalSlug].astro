@@ -56,7 +56,7 @@ const legalUrls = {
   translations={translations}
 >
   <InitScripts client:load />
-  <main>
+  <main id="main">
     <Navbar client:load config={defaultTemplateConfig} translations={translations} currentLang={lang} />
     {pageKey === 'privacy-policy' && (
       <PrivacyPolicyContent client:only="react" config={defaultTemplateConfig} />

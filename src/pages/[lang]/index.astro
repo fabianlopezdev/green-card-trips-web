@@ -59,7 +59,7 @@ const faqSchema = generateFAQPageSchema(faqs);
   <header>
     <Navbar client:load config={defaultTemplateConfig} translations={translations} currentLang={lang} />
   </header>
-  <main>
+  <main id="main">
     <Header client:load config={defaultTemplateConfig} translations={translations} currentLang={lang} />
     <Partners client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
     <Features client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />

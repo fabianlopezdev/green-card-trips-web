@@ -21,7 +21,7 @@ const legalUrls = {
   seo={defaultTemplateConfig.termsAndConditions?.en?.seo}
 >
   <InitScripts client:load />
-  <main>
+  <main id="main">
     <Navbar client:load config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
     <TermsAndConditionsContent client:only="react" config={defaultTemplateConfig} />
     <AppBanner client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
