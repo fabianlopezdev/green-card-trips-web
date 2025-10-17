@@ -38,7 +38,7 @@ function SingleScreenshot({ scrollYProgress, index, totalCount, src, altText }: 
       loading={index === 0 ? "eager" : "lazy"}
       alt={altText}
       style={{ translateX: x, translateY: y, scale: 1 }}
-      className="absolute overflow-hidden w-full h-full"
+      className="absolute overflow-hidden w-full h-full object-cover"
     />
   );
 }

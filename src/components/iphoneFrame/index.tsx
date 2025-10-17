@@ -11,7 +11,7 @@ function IphoneFrame({ src, altText = "App screenshot" }: Props) {
           src={src}
           loading="lazy"
           alt={altText}
-          className="rounded-2xl h-full"
+          className="rounded-2xl h-full w-full object-cover"
         />
       </div>
       <img

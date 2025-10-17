@@ -114,7 +114,7 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
         </div>
         <div className="navbar-end hidden font-medium nav:flex">
           <ul className="flex gap-4 px-1 items-center">
-            
+
             {navLinks.map(({ label, href }, index) => (
               <li key={index}>
                 <a
@@ -125,10 +125,12 @@ function Navbar({ config, translations, currentLang: lang }: Props) {
                 </a>
               </li>
             ))}
-            <div className="flex border-l border-current pl-2">
-            <LanguageSwitcher currentLang={lang} />
-            {showThemeSwitch && <ThemeSwitcher config={config} />}
-            </div>
+            <li className="list-none">
+              <div className="flex border-l border-current pl-2">
+                <LanguageSwitcher currentLang={lang} />
+                {showThemeSwitch && <ThemeSwitcher config={config} />}
+              </div>
+            </li>
           </ul>
           {topNavbar.cta && <AppStoreDropdown config={config} />}
         </div>
