@@ -2,9 +2,11 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
+import compression from "vite-plugin-compression";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "static",
   site: "https://greencardtrips.com",
   i18n: {
     defaultLocale: "en",
@@ -17,6 +19,20 @@ export default defineConfig({
     remotePatterns: [],
   },
   vite: {
+    plugins: [
+      compression({
+        algorithm: 'brotliCompress',
+        ext: '.br',
+        threshold: 1024,
+        deleteOriginFile: false,
+      }),
+      compression({
+        algorithm: 'gzip',
+        ext: '.gz',
+        threshold: 1024,
+        deleteOriginFile: false,
+      }),
+    ],
     css: {
       preprocessorOptions: {
         scss: {
