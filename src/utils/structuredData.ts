@@ -12,7 +12,7 @@ interface FAQ {
 /**
  * Generate MobileApplication schema for the Green Card Trips app
  */
-export function generateMobileApplicationSchema(config: TemplateConfig, currentUrl: string) {
+export function generateMobileApplicationSchema(config: TemplateConfig, _currentUrl: string) {
   const { name, seo, appStoreLink, googlePlayLink } = config;
 
   const schema = {
@@ -151,7 +151,7 @@ export function generateReviewSchema(config: TemplateConfig) {
  * Generate Product schema for the app pricing/offering
  */
 export function generateProductSchema(config: TemplateConfig, currentUrl: string) {
-  const { name, seo, appStoreLink, googlePlayLink } = config;
+  const { name, seo, appStoreLink } = config;
 
   const schema: any = {
     "@context": "https://schema.org",

@@ -1,5 +1,4 @@
 import defaultTheme from "tailwindcss/defaultTheme";
-import config from "./src/utils/config";
 
 /** @type {import('tailwindcss').Config} */
 export default {

@@ -62,7 +62,7 @@ function Faq({ config, translations }: Props) {
                 }
                 className="text-start collapse-title text-lg font-medium"
               >
-                {translations.faq[key as keyof typeof translations.faq]?.question}
+                {(translations.faq[key as keyof typeof translations.faq] as { question: string; answer: string })?.question}
               </button>
               <div
                 className={clsx(
@@ -73,7 +73,7 @@ function Faq({ config, translations }: Props) {
                 )}
               >
                 <p className="overflow-hidden mx-4 opacity-[.7]">
-                  {translations.faq[key as keyof typeof translations.faq]?.answer}
+                  {(translations.faq[key as keyof typeof translations.faq] as { question: string; answer: string })?.answer}
                 </p>
               </div>
             </motion.div>

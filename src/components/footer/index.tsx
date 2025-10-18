@@ -88,7 +88,7 @@ function Footer({ config, translations, currentLang: lang, legalUrls }: Props) {
               width={400}
               height={200}
               loading="lazy"
-              alt="Green Card Trips Logo"
+              alt={translations.alt.misc.logo}
               className="h-32 md:h-[15rem] w-auto"
             />
           </motion.div>

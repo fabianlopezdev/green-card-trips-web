@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { TemplateConfig } from '../../utils/configType';
+import type { TranslationObject } from '../../utils/serverI18n';
 
 interface Props {
   config: TemplateConfig;
@@ -7,9 +8,10 @@ interface Props {
   downloadAppStoreLabel: string;
   downloadPlayStoreLabel: string;
   currentLang?: string;
+  translations: TranslationObject;
 }
 
-export default function AppStoreDropdown({ config, getAppLabel, downloadAppStoreLabel, downloadPlayStoreLabel, currentLang = "en" }: Props) {
+export default function AppStoreDropdown({ config, getAppLabel, downloadAppStoreLabel, downloadPlayStoreLabel, currentLang = "en", translations }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { appStoreLink, googlePlayLink } = config;
@@ -32,8 +34,8 @@ export default function AppStoreDropdown({ config, getAppLabel, downloadAppStore
   if (!appStoreLink && !googlePlayLink) return null;
 
   const stores = [
-    ...(appStoreLink ? [{ name: 'iOS', link: appStoreLink, icon: `/stores/${languageFolder}/app-store.svg`, label: downloadAppStoreLabel }] : []),
-    ...(googlePlayLink ? [{ name: 'Android', link: googlePlayLink, icon: `/stores/${languageFolder}/google-play.svg`, label: downloadPlayStoreLabel }] : []),
+    ...(appStoreLink ? [{ name: 'iOS', link: appStoreLink, icon: `/stores/${languageFolder}/app-store.svg`, label: downloadAppStoreLabel, alt: translations.alt.stores.appStoreLogo }] : []),
+    ...(googlePlayLink ? [{ name: 'Android', link: googlePlayLink, icon: `/stores/${languageFolder}/google-play.svg`, label: downloadPlayStoreLabel, alt: translations.alt.stores.googlePlayLogo }] : []),
   ];
 
   return (
@@ -84,7 +86,7 @@ export default function AppStoreDropdown({ config, getAppLabel, downloadAppStore
                 className="flex items-center justify-center px-3 py-2 rounded-lg hover:bg-base-200 transition-colors"
                 aria-label={store.label}
               >
-                <img src={store.icon} width={112} height={40} loading="lazy" alt="" className="h-10" />
+                <img src={store.icon} width={112} height={40} loading="lazy" alt={store.alt} className="h-10" />
               </a>
             </li>
           ))}

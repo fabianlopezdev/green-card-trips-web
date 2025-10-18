@@ -147,5 +147,43 @@
       "analytics": "Cookies phân tích",
       "analyticsDesc": "Những cookies này giúp chúng tôi hiểu cách khách truy cập tương tác với trang web của chúng tôi bằng cách thu thập và báo cáo thông tin một cách ẩn danh. Chúng tôi sử dụng Google Analytics, thiết lập các cookies như _ga, _ga_*, và _gid để phân biệt khách truy cập duy nhất và theo dõi các mẫu sử dụng."
     }
+  },
+  "alt": {
+    "stores": {
+      "appStore": "Tải trên App Store",
+      "googlePlay": "Tải trên Google Play",
+      "appStoreLogo": "Logo App Store",
+      "googlePlayLogo": "Logo Google Play"
+    },
+    "screenshots": {
+      "dashboard": "Bảng điều khiển ứng dụng hiển thị thống kê chuyến đi và tình trạng đủ điều kiện nhập tịch",
+      "trips": "Danh sách lịch sử chuyến đi hiển thị tất cả các chuyến đi quốc tế",
+      "modifyTrip": "Mẫu thêm hoặc chỉnh sửa chuyến đi với ngày khởi hành và trở về"
+    },
+    "features": {
+      "tracking": "Biểu tượng theo dõi chuyến đi thông minh",
+      "simulator": "Biểu tượng trình mô phỏng du lịch",
+      "dashboard": "Biểu tượng thông tin bảng điều khiển",
+      "privacy": "Biểu tượng riêng tư và bảo mật"
+    },
+    "pricing": {
+      "wallet": "Biểu tượng ví đại diện cho thanh toán một lần",
+      "money": "Biểu tượng tiền đại diện cho giá đăng ký",
+      "locker": "Biểu tượng tủ khóa đại diện cho các tính năng cao cấp an toàn"
+    },
+    "steps": {
+      "step1": "Người tải ứng dụng từ App Store trên điện thoại thông minh",
+      "step2": "Tay đang nhập chi tiết thẻ xanh vào ứng dụng",
+      "step3": "Người dùng ghi lại thông tin chuyến đi quốc tế với ngày tháng",
+      "step4": "Giao diện lập kế hoạch du lịch hiển thị mô phỏng chuyến đi",
+      "step5": "Bảng điều khiển hiển thị tình trạng tuân thủ và lời nhắc gia hạn"
+    },
+    "misc": {
+      "logo": "Logo Green Card Trips",
+      "iphoneFrame": "Khung iPhone",
+      "appScreenshot": "Ảnh chụp màn hình ứng dụng",
+      "partnerLogo": "Logo đối tác",
+      "appUser": "Người dùng ứng dụng"
+    }
   }
 }

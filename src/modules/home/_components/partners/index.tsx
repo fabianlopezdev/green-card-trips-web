@@ -9,7 +9,7 @@ interface Props {
   currentLang?: string;
 }
 
-function Partners({ config }: Props) {
+function Partners({ config, translations }: Props) {
   const {
     home: { partners },
   } = config;
@@ -35,7 +35,7 @@ function Partners({ config }: Props) {
               width={80}
               height={80}
               loading="lazy"
-              alt="partner logo"
+              alt={translations.alt.misc.partnerLogo}
               variants={{
                 hidden: { y: "-80%", opacity: 0 },
                 visible: { y: "0%", opacity: 1 },

@@ -28,11 +28,11 @@ function AppBanner({ config, translations, currentLang = "en" }: Props) {
   };
   const languageFolder = getLanguageFolder(currentLang);
 
-  // Map screenshot names to descriptive alt text
+  // Map screenshot names to alt text from translations
   const screenshotAltText: Record<string, string> = {
-    "dashboard": "App dashboard showing trip statistics and citizenship eligibility status",
-    "trips": "Trip history list showing all international travel",
-    "modify-trip": "Add or edit trip form with departure and return dates",
+    "dashboard": translations.alt.screenshots.dashboard,
+    "trips": translations.alt.screenshots.trips,
+    "modify-trip": translations.alt.screenshots.modifyTrip,
   };
 
   if (!appBanner) return null;
@@ -94,7 +94,7 @@ function AppBanner({ config, translations, currentLang = "en" }: Props) {
                       width={156}
                       height={56}
                       loading="lazy"
-                      alt="google play logo"
+                      alt={translations.alt.stores.googlePlayLogo}
                       src={`/stores/${languageFolder}/google-play.svg`}
                     />
                   </a>
@@ -108,7 +108,7 @@ function AppBanner({ config, translations, currentLang = "en" }: Props) {
                       width={156}
                       height={56}
                       loading="lazy"
-                      alt="app store logo"
+                      alt={translations.alt.stores.appStoreLogo}
                       src={`/stores/${languageFolder}/app-store.svg`}
                     />
                   </a>
@@ -152,7 +152,7 @@ function AppBanner({ config, translations, currentLang = "en" }: Props) {
               >
                 <IphoneFrame
                   src={`/screenshots/${languageFolder}/${name}.webp`}
-                  altText={screenshotAltText[name] || `App screenshot: ${name}`}
+                  altText={screenshotAltText[name] || translations.alt.misc.appScreenshot}
                 />
               </motion.div>
             ))}

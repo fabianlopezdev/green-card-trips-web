@@ -11,12 +11,6 @@ const planImages = [
   "/misc/locker-front-color.webp",
 ];
 
-const planImageAltText = [
-  "Wallet icon representing one-time payment",
-  "Money icon representing subscription pricing",
-  "Locker icon representing secure premium features",
-];
-
 const planBGs = ["bg-primary/80", "bg-secondary/80", "bg-accent/80"];
 
 interface Props {
@@ -30,6 +24,12 @@ function Pricing({ config, translations }: Props) {
     home: { pricing },
   } = config;
   if (!pricing) return null;
+
+  const planImageAltTexts = [
+    translations.alt.pricing.wallet,
+    translations.alt.pricing.money,
+    translations.alt.pricing.locker,
+  ];
 
   return (
     <section
@@ -87,7 +87,7 @@ function Pricing({ config, translations }: Props) {
                       width={160}
                       height={160}
                       loading="lazy"
-                      alt={planImageAltText[index]}
+                      alt={planImageAltTexts[index]}
                       className="m-0 h-full w-full object-contain"
                     />
                   </div>

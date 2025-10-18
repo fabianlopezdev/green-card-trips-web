@@ -17,7 +17,7 @@ interface Props extends TemplateConfig {
 }
 
 const config = Astro.props as Props;
-const { backgroundGrid, seo, logo, theme, forceTheme, currentLang, translations } = config;
+const { backgroundGrid, seo, theme, forceTheme, currentLang, translations } = config;
 
 // For new language routes, use translations; for old routes, use config seo
 const pageSeo = translations ? {
@@ -176,9 +176,9 @@ const languageUrls = supportedLanguages.map(lang => {
     <meta property="twitter:image" content={new URL('/og-image.png', siteUrl).href} />
 
     <!-- Structured Data (JSON-LD) for SEO -->
-    <script type="application/ld+json" set:html={JSON.stringify(mobileAppSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(mobileAppSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 
     <!-- Allow pages to inject additional head content (e.g., FAQPage schema) -->
     <slot name="head" />

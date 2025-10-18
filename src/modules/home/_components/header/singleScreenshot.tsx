@@ -41,6 +41,7 @@ function SingleScreenshot({ scrollYProgress, index, totalCount, src, altText }: 
       sizes="(max-width: 768px) 327px, 298px"
       src={`${basePath}-327.webp`}
       loading={index === 0 ? "eager" : "lazy"}
+      // @ts-ignore - fetchpriority is a valid HTML attribute
       fetchpriority={index === 0 ? "high" : "low"}
       decoding="async"
       alt={altText}

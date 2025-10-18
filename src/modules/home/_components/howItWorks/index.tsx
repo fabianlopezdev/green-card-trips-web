@@ -20,19 +20,19 @@ function HowItWorks({ config, translations }: Props) {
 
   if (!howItWorks) return null;
 
-  // Map step titles to descriptive alt text
-  const stepAltText = [
-    "Person downloading app from the App Store on smartphone",
-    "Hands entering green card details into the app",
-    "User logging international trip information with dates",
-    "Travel planning interface showing trip simulation",
-    "Dashboard displaying compliance status and renewal reminders",
+  // Map step numbers to alt text from translations
+  const stepAltTexts = [
+    translations.alt.steps.step1,
+    translations.alt.steps.step2,
+    translations.alt.steps.step3,
+    translations.alt.steps.step4,
+    translations.alt.steps.step5,
   ];
 
   const steps = howItWorks.steps.map((step, i) => ({
     image: step.image,
     key: `step${i + 1}`,
-    altText: stepAltText[i] || `Step ${i + 1}: ${step.title}`,
+    alt: stepAltTexts[i] || translations.alt.misc.appScreenshot,
   }));
 
   return (
@@ -116,10 +116,10 @@ function HowItWorks({ config, translations }: Props) {
                 {index + 1}
               </div>
               <h3 className="mt-0 text-2xl font-bold">
-                {translations.howItWorks[step.key as keyof typeof translations.howItWorks]?.title}
+                {(translations.howItWorks[step.key as keyof typeof translations.howItWorks] as { title: string; description: string })?.title}
               </h3>
               <p className="mx-auto max-w-sm opacity-[.7]">
-                {translations.howItWorks[step.key as keyof typeof translations.howItWorks]?.description}
+                {(translations.howItWorks[step.key as keyof typeof translations.howItWorks] as { title: string; description: string })?.description}
               </p>
             </motion.div>
             <motion.div
@@ -135,7 +135,7 @@ function HowItWorks({ config, translations }: Props) {
                 width={400}
                 height={300}
                 loading="lazy"
-                alt={step.altText}
+                alt={step.alt}
               />
             </motion.div>
           </motion.div>

@@ -147,5 +147,43 @@
       "analytics": "Mga analytics cookies",
       "analyticsDesc": "Tinutulungan kami ng mga cookies na ito na maintindihan kung paano nakikipag-ugnayan ang mga bisita sa aming website sa pamamagitan ng pagkolekta at pag-ulat ng impormasyon nang hindi nagpapakilala. Gumagamit kami ng Google Analytics, na nagtatakda ng mga cookies tulad ng _ga, _ga_*, at _gid upang makilala ang mga natatanging bisita at subaybayan ang mga pattern ng paggamit."
     }
+  },
+  "alt": {
+    "stores": {
+      "appStore": "I-download sa App Store",
+      "googlePlay": "I-download sa Google Play",
+      "appStoreLogo": "Logo ng App Store",
+      "googlePlayLogo": "Logo ng Google Play"
+    },
+    "screenshots": {
+      "dashboard": "Dashboard ng app na nagpapakita ng istatistika ng biyahe at katayuan ng pagiging karapat-dapat sa pagkamamamayan",
+      "trips": "Listahan ng kasaysayan ng biyahe na nagpapakita ng lahat ng internasyonal na paglalakbay",
+      "modifyTrip": "Form para magdagdag o mag-edit ng biyahe na may petsa ng pag-alis at pagbabalik"
+    },
+    "features": {
+      "tracking": "Icon ng matalinong pagsubaybay sa biyahe",
+      "simulator": "Icon ng simulator ng paglalakbay",
+      "dashboard": "Icon ng mga insight sa dashboard",
+      "privacy": "Icon ng privacy at seguridad"
+    },
+    "pricing": {
+      "wallet": "Icon ng pitaka na kumakatawan sa one-time na pagbabayad",
+      "money": "Icon ng pera na kumakatawan sa presyo ng subscription",
+      "locker": "Icon ng locker na kumakatawan sa secure premium features"
+    },
+    "steps": {
+      "step1": "Taong nag-download ng app mula sa App Store sa smartphone",
+      "step2": "Mga kamay na naglalagay ng detalye ng green card sa app",
+      "step3": "User na nagrerekord ng impormasyon ng internasyonal na biyahe na may mga petsa",
+      "step4": "Interface ng pagpaplano ng biyahe na nagpapakita ng simulation ng biyahe",
+      "step5": "Dashboard na nagpapakita ng katayuan ng pagsunod at mga paalala sa pag-renew"
+    },
+    "misc": {
+      "logo": "Logo ng Green Card Trips",
+      "iphoneFrame": "Frame ng iPhone",
+      "appScreenshot": "Screenshot ng app",
+      "partnerLogo": "Logo ng partner",
+      "appUser": "Gumagamit ng app"
+    }
   }
 }

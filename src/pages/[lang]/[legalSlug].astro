@@ -1,7 +1,7 @@
 ---
 import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
-import { getTranslations, getSupportedLanguages, getLegalPageKeyFromSlug, legalPageSlugs, type LegalPageKey } from "utils/serverI18n";
+import { getTranslations, getSupportedLanguages, legalPageSlugs, type LegalPageKey } from "utils/serverI18n";
 import { generateBreadcrumbSchema } from "utils/structuredData";
 import InitScripts from "../../components/initScripts";
 import Navbar from "../../components/navbar";
@@ -40,7 +40,8 @@ const { lang, legalSlug } = Astro.params;
 const { pageKey, translations } = Astro.props;
 
 // Get language-specific SEO from config
-const seo = defaultTemplateConfig[pageKey]?.[lang]?.seo || defaultTemplateConfig[pageKey]?.en?.seo;
+const configSection = defaultTemplateConfig[pageKey as keyof typeof defaultTemplateConfig] as any;
+const seo = configSection?.[lang as string]?.seo || configSection?.en?.seo;
 
 // Generate language-specific legal page URLs
 const legalUrls = {
@@ -70,7 +71,7 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   translations={translations}
 >
   <!-- BreadcrumbList Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
 
   <InitScripts client:load />
   <main id="main">

@@ -35,6 +35,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@netlify/edge-functions": "^2.19.0",
     "@tailwindcss/typography": "^0.5.13",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

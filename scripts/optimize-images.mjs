@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import sharp from 'sharp';
-import { readdir, unlink } from 'fs/promises';
+import { readdir } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 

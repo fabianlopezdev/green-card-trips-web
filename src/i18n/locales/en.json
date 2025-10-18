@@ -147,5 +147,43 @@
       "analytics": "Analytics cookies",
       "analyticsDesc": "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We use Google Analytics, which sets cookies like _ga, _ga_*, and _gid to distinguish unique visitors and track usage patterns."
     }
+  },
+  "alt": {
+    "stores": {
+      "appStore": "Download on the App Store",
+      "googlePlay": "Download on Google Play",
+      "appStoreLogo": "App Store logo",
+      "googlePlayLogo": "Google Play logo"
+    },
+    "screenshots": {
+      "dashboard": "App dashboard showing trip statistics and citizenship eligibility status",
+      "trips": "Trip history list showing all international travel",
+      "modifyTrip": "Add or edit trip form with departure and return dates"
+    },
+    "features": {
+      "tracking": "Smart trip tracking icon",
+      "simulator": "Travel simulator icon",
+      "dashboard": "Dashboard insights icon",
+      "privacy": "Privacy and security icon"
+    },
+    "pricing": {
+      "wallet": "Wallet icon representing one-time payment",
+      "money": "Money icon representing subscription pricing",
+      "locker": "Locker icon representing secure premium features"
+    },
+    "steps": {
+      "step1": "Person downloading app from the App Store on smartphone",
+      "step2": "Hands entering green card details into the app",
+      "step3": "User logging international trip information with dates",
+      "step4": "Travel planning interface showing trip simulation",
+      "step5": "Dashboard displaying compliance status and renewal reminders"
+    },
+    "misc": {
+      "logo": "Green Card Trips Logo",
+      "iphoneFrame": "iPhone frame",
+      "appScreenshot": "App screenshot",
+      "partnerLogo": "Partner logo",
+      "appUser": "App user"
+    }
   }
 }

@@ -108,11 +108,11 @@ export default function GoogleAnalytics({ trackingId }: Props) {
     // Initialize gtag function FIRST (required before any gtag calls)
     window.dataLayer = window.dataLayer || [];
     window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
+      window.dataLayer?.push(arguments);
     };
 
     // Set default consent state BEFORE any measurement code loads
-    window.gtag('consent', 'default', defaultConsent);
+    window.gtag?.('consent', 'default', defaultConsent);
 
     log.success(`[${getTimestamp()}] ✓ Consent Mode v2 defaults set successfully`);
     log.info('These defaults apply until user makes a choice in the cookie banner');
@@ -140,10 +140,15 @@ export default function GoogleAnalytics({ trackingId }: Props) {
       document.head.appendChild(script);
 
       // Configure Google Analytics (gtag already initialized with consent mode)
-      window.gtag("js", new Date());
-      window.gtag("config", trackingId, {
-        anonymize_ip: true, // Anonymize IP for privacy (GDPR compliance)
-      });
+      if (window.gtag) {
+        const gtag = window.gtag;
+        // @ts-ignore - gtag is properly initialized above
+        gtag("js", new Date());
+        // @ts-ignore - gtag is properly initialized above
+        gtag("config", trackingId, {
+          anonymize_ip: true, // Anonymize IP for privacy (GDPR compliance)
+        });
+      }
 
       log.success(`[${getTimestamp()}] Google Analytics initialized with tracking ID: ${trackingId}`);
       log.info('Check Network tab for requests to googletagmanager.com');
@@ -300,8 +305,8 @@ export default function GoogleAnalytics({ trackingId }: Props) {
 // Extend Window interface for TypeScript
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer?: any[];
+    gtag?: (...args: any[]) => void;
     cookieConsentDebug: any;
   }
 }

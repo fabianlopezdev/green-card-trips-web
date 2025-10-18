@@ -32,7 +32,7 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   seo={defaultTemplateConfig.privacyPolicy?.en?.seo}
 >
   <!-- BreadcrumbList Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
 
   <InitScripts client:load />
   <main id="main">

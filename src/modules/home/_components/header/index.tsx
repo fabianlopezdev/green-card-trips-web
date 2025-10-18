@@ -33,11 +33,11 @@ function Header({ config, translations, currentLang = "en" }: Props) {
   };
   const languageFolder = getLanguageFolder(currentLang);
 
-  // Map screenshot names to descriptive alt text
+  // Map screenshot names to alt text from translations
   const screenshotAltText: Record<string, string> = {
-    "dashboard": "App dashboard showing trip statistics and citizenship eligibility status",
-    "modify-trip": "Add or edit trip form with departure and return dates",
-    "trips": "Trip history list showing all international travel",
+    "dashboard": translations.alt.screenshots.dashboard,
+    "modify-trip": translations.alt.screenshots.modifyTrip,
+    "trips": translations.alt.screenshots.trips,
   };
 
   const ref = useRef<HTMLDivElement>(null);
@@ -125,7 +125,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                         width={156}
                         height={56}
                         decoding="async"
-                        alt="google play logo"
+                        alt={translations.alt.stores.googlePlayLogo}
                         src={`/stores/${languageFolder}/google-play.svg`}
                       />
                     </a>
@@ -139,7 +139,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                         width={156}
                         height={56}
                         decoding="async"
-                        alt="app store logo"
+                        alt={translations.alt.stores.appStoreLogo}
                         src={`/stores/${languageFolder}/app-store.svg`}
                       />
                     </a>
@@ -163,7 +163,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                             width={32}
                             height={32}
                             decoding="async"
-                            alt={`app user ${index + 1}`}
+                            alt={`${translations.alt.misc.appUser} ${index + 1}`}
                           />
                         </div>
                       </motion.li>
@@ -207,7 +207,7 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                       scrollYProgress={scrollYProgress}
                       index={index}
                       totalCount={header.screenshots.length}
-                      altText={screenshotAltText[name] || `App screenshot: ${name}`}
+                      altText={screenshotAltText[name] || translations.alt.misc.appScreenshot}
                     />
                   ))}
                 </div>
@@ -215,7 +215,8 @@ function Header({ config, translations, currentLang = "en" }: Props) {
                   srcSet="/misc/iphone-frame-sm.webp 252w, /misc/iphone-frame-md.webp 331w, /misc/iphone-frame-lg.webp 298w, /misc/iphone-frame-xl.webp 331w"
                   sizes="(max-width: 400px) 252px, (max-width: 768px) 331px, 298px"
                   src="/misc/iphone-frame-md.webp"
-                  alt="iphone-frame"
+                  alt={translations.alt.misc.iphoneFrame}
+                  // @ts-ignore - fetchpriority is a valid HTML attribute
                   fetchpriority="high"
                   decoding="async"
                   className="relative z-10 h-full"

@@ -17,10 +17,10 @@ function Features({ config, translations }: Props) {
   if (!features) return null;
 
   const featureCards = [
-    { icon: features.cards[0]?.icon, key: "tracking", altText: "Smart trip tracking icon" },
-    { icon: features.cards[1]?.icon, key: "simulator", altText: "Travel simulator icon" },
-    { icon: features.cards[2]?.icon, key: "dashboard", altText: "Dashboard insights icon" },
-    { icon: features.cards[3]?.icon, key: "privacy", altText: "Privacy and security icon" },
+    { icon: features.cards[0]?.icon, key: "tracking", alt: translations.alt.features.tracking },
+    { icon: features.cards[1]?.icon, key: "simulator", alt: translations.alt.features.simulator },
+    { icon: features.cards[2]?.icon, key: "dashboard", alt: translations.alt.features.dashboard },
+    { icon: features.cards[3]?.icon, key: "privacy", alt: translations.alt.features.privacy },
   ];
 
   const cardBackgroundColors = [
@@ -95,18 +95,18 @@ function Features({ config, translations }: Props) {
                   width={160}
                   height={160}
                   loading="lazy"
-                  alt={feat.altText}
+                  alt={feat.alt}
                   className="w-40 transition-transform group-hover:scale-90"
                 />
               </figure>
             </div>
             <div className="w-full pt-0 px-0 card-body items-center text-center transition-transform max-w-none group-hover:scale-95">
               <h2 className="card-title text-2xl font-bold">
-                {translations.features[feat.key as keyof typeof translations.features]?.title}
+                {(translations.features[feat.key as keyof typeof translations.features] as { title: string; description: string })?.title}
               </h2>
               <div className="h-0.5 w-full bg-primary/10" />
               <p className="opacity-[.7]">
-                {translations.features[feat.key as keyof typeof translations.features]?.description}
+                {(translations.features[feat.key as keyof typeof translations.features] as { title: string; description: string })?.description}
               </p>
             </div>
           </motion.article>

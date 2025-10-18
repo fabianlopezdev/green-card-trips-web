@@ -34,13 +34,14 @@ if (pathname.startsWith('/es/') || pathname === '/es') {
 }
 
 // Select the appropriate translation file
-const translations = {
+const translationsMap: Record<string, typeof enTranslations> = {
   'en': enTranslations,
   'es': esTranslations,
   'tl': tlTranslations,
   'vi': viTranslations,
   'zh-cn': zhCnTranslations
-}[currentLang];
+};
+const translations = translationsMap[currentLang] || enTranslations;
 
 // Generate language-specific legal page URLs
 const legalUrls = {

@@ -147,5 +147,43 @@
       "analytics": "分析 cookies",
       "analyticsDesc": "这些 cookies 帮助我们通过匿名收集和报告信息来了解访问者如何与我们的网站互动。我们使用 Google Analytics，它设置像 _ga、_ga_* 和 _gid 这样的 cookies 来区分唯一访问者并跟踪使用模式。"
     }
+  },
+  "alt": {
+    "stores": {
+      "appStore": "在 App Store 下载",
+      "googlePlay": "在 Google Play 下载",
+      "appStoreLogo": "App Store 标志",
+      "googlePlayLogo": "Google Play 标志"
+    },
+    "screenshots": {
+      "dashboard": "应用仪表板显示旅行统计和公民资格状态",
+      "trips": "旅行历史列表显示所有国际旅行",
+      "modifyTrip": "添加或编辑旅行表单，包含出发和返回日期"
+    },
+    "features": {
+      "tracking": "智能旅行追踪图标",
+      "simulator": "旅行模拟器图标",
+      "dashboard": "仪表板洞察图标",
+      "privacy": "隐私和安全图标"
+    },
+    "pricing": {
+      "wallet": "钱包图标代表一次性付款",
+      "money": "金钱图标代表订阅价格",
+      "locker": "储物柜图标代表安全高级功能"
+    },
+    "steps": {
+      "step1": "在智能手机上从 App Store 下载应用的人",
+      "step2": "在应用中输入绿卡详细信息的手",
+      "step3": "用户记录国际旅行信息和日期",
+      "step4": "显示旅行模拟的旅行规划界面",
+      "step5": "仪表板显示合规状态和续期提醒"
+    },
+    "misc": {
+      "logo": "Green Card Trips 标志",
+      "iphoneFrame": "iPhone 框架",
+      "appScreenshot": "应用截图",
+      "partnerLogo": "合作伙伴标志",
+      "appUser": "应用用户"
+    }
   }
 }

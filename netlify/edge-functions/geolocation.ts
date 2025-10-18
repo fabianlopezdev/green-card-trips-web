@@ -1,6 +1,6 @@
 import type { Context } from "@netlify/edge-functions";
 
-export default async (request: Request, context: Context) => {
+export default async (_request: Request, context: Context) => {
   const countryCode = context.geo?.country?.code || "UNKNOWN";
 
   // Check if country cookie already exists

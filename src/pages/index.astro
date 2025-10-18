@@ -43,15 +43,15 @@ const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUr
 
 <Layout {...defaultTemplateConfig}>
   <!-- FAQPage Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
 
   <!-- Review Structured Data for Testimonials -->
   {reviewSchemas.map((review) => (
-    <script type="application/ld+json" set:html={JSON.stringify(review)} slot="head" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(review)} slot="head" />
   ))}
 
   <!-- Product Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
 
   <InitScripts client:load />
   <header>

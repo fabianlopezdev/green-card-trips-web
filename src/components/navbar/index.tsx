@@ -6,6 +6,7 @@ import { easeIn, motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../utils/configType";
+import type { TranslationObject } from "../../utils/serverI18n";
 import ThemeSwitcher from "./themeSwitcher";
 import LanguageSwitcher from "../languageSwitcher";
 import AppStoreDropdown from "../appStoreDropdown";
@@ -13,10 +14,12 @@ import GreenCardLogoSimplified from "./GreenCardLogoSimplified";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
 }
 
-function Navbar({ config }: Props) {
-  const { t, i18n } = useTranslation();
+function Navbar({ config, translations, currentLang }: Props) {
+  const { i18n } = useTranslation();
   const {
     name,
     showThemeSwitch,
@@ -41,7 +44,6 @@ function Navbar({ config }: Props) {
 
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
   const [targetWidth, setTargetWidth] = useState("91%");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const calculateWidth = () => {
@@ -58,7 +60,6 @@ function Navbar({ config }: Props) {
     };
 
     calculateWidth();
-    setMounted(true);
     window.addEventListener('resize', calculateWidth);
     return () => window.removeEventListener('resize', calculateWidth);
   }, []);
@@ -110,7 +111,7 @@ function Navbar({ config }: Props) {
           suppressHydrationWarning
         />
         <div className="navbar-start flex-1 max-nav:flex-auto">
-          <a href="/" className="flex items-center" aria-label={t("nav.homeLink")}>
+          <a href="/" className="flex items-center" aria-label={translations.nav.homeLink}>
             <GreenCardLogoSimplified className="h-16" />
             <span className="font-logo font-medium mx-1 text-2xl tracking-[-0.01em]">{name}</span>
           </a>
@@ -119,8 +120,8 @@ function Navbar({ config }: Props) {
           <MenuToggle
             toggle={() => setIsMobileNavVisible((current) => !current)}
             isOpen={isMobileNavVisible}
-            openMenuLabel={t("nav.openMenu")}
-            closeMenuLabel={t("nav.closeMenu")}
+            openMenuLabel={translations.nav.openMenu}
+            closeMenuLabel={translations.nav.closeMenu}
           />
         </div>
         <div className="navbar-end hidden font-medium nav:flex">
@@ -132,7 +133,7 @@ function Navbar({ config }: Props) {
                   className="text-sm whitespace-nowrap link link-hover"
                   href={href}
                 >
-                  {t(key)}
+                  {translations.nav[key.split('.')[1] as keyof typeof translations.nav]}
                 </a>
               </li>
             ))}
@@ -144,10 +145,11 @@ function Navbar({ config }: Props) {
           {topNavbar.cta && (
             <AppStoreDropdown
               config={config}
-              getAppLabel={t("nav.getApp")}
-              downloadAppStoreLabel={t("nav.downloadAppStore")}
-              downloadPlayStoreLabel={t("nav.downloadPlayStore")}
-              currentLang={i18n.language}
+              getAppLabel={translations.nav.getApp}
+              downloadAppStoreLabel={translations.nav.downloadAppStore}
+              downloadPlayStoreLabel={translations.nav.downloadPlayStore}
+              currentLang={currentLang || i18n.language}
+              translations={translations}
             />
           )}
         </div>
@@ -181,7 +183,7 @@ function Navbar({ config }: Props) {
                     hidden: { x: "-100%" },
                   }}
                 >
-                  {t(key)}
+                  {translations.nav[key.split('.')[1] as keyof typeof translations.nav]}
                 </motion.a>
               </li>
             ))}
@@ -206,15 +208,15 @@ function Navbar({ config }: Props) {
           <ul className="flex gap-2 list-none m-0 p-0">
             {googlePlayLink && (
               <li>
-                <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadPlayStore")}>
-                  <img className="h-14" width={156} height={56} loading="lazy" src={`/stores/${languageFolder}/google-play.svg`} alt="Download on Google Play" />
+                <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label={translations.nav.downloadPlayStore}>
+                  <img className="h-14" width={156} height={56} loading="lazy" src={`/stores/${languageFolder}/google-play.svg`} alt={translations.alt.stores.googlePlay} />
                 </a>
               </li>
             )}
             {appStoreLink && (
               <li>
-                <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadAppStore")}>
-                  <img className="h-14" width={156} height={56} loading="lazy" src={`/stores/${languageFolder}/app-store.svg`} alt="Download on the App Store" />
+                <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label={translations.nav.downloadAppStore}>
+                  <img className="h-14" width={156} height={56} loading="lazy" src={`/stores/${languageFolder}/app-store.svg`} alt={translations.alt.stores.appStore} />
                 </a>
               </li>
             )}

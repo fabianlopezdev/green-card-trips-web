@@ -147,5 +147,43 @@
       "analytics": "Cookies de análisis",
       "analyticsDesc": "Estas cookies nos ayudan a comprender cómo los visitantes interactúan con nuestro sitio web mediante la recopilación y el informe de información de forma anónima. Utilizamos Google Analytics, que establece cookies como _ga, _ga_* y _gid para distinguir visitantes únicos y rastrear patrones de uso."
     }
+  },
+  "alt": {
+    "stores": {
+      "appStore": "Descargar en App Store",
+      "googlePlay": "Descargar en Google Play",
+      "appStoreLogo": "Logo de App Store",
+      "googlePlayLogo": "Logo de Google Play"
+    },
+    "screenshots": {
+      "dashboard": "Panel de la aplicación mostrando estadísticas de viajes y estado de elegibilidad para ciudadanía",
+      "trips": "Lista del historial de viajes mostrando todos los viajes internacionales",
+      "modifyTrip": "Formulario para agregar o editar viaje con fechas de salida y regreso"
+    },
+    "features": {
+      "tracking": "Icono de registro inteligente de viajes",
+      "simulator": "Icono de simulador de viajes",
+      "dashboard": "Icono de panel de información",
+      "privacy": "Icono de privacidad y seguridad"
+    },
+    "pricing": {
+      "wallet": "Icono de billetera representando pago único",
+      "money": "Icono de dinero representando precio de suscripción",
+      "locker": "Icono de casillero representando funciones premium seguras"
+    },
+    "steps": {
+      "step1": "Persona descargando la aplicación desde App Store en smartphone",
+      "step2": "Manos ingresando detalles de green card en la aplicación",
+      "step3": "Usuario registrando información de viaje internacional con fechas",
+      "step4": "Interfaz de planificación de viajes mostrando simulación de viaje",
+      "step5": "Panel mostrando estado de cumplimiento y recordatorios de renovación"
+    },
+    "misc": {
+      "logo": "Logo de Green Card Trips",
+      "iphoneFrame": "Marco de iPhone",
+      "appScreenshot": "Captura de pantalla de la aplicación",
+      "partnerLogo": "Logo de socio",
+      "appUser": "Usuario de la aplicación"
+    }
   }
 }
