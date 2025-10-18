@@ -21,7 +21,7 @@ export default {
       "3xs": "350px",
       "2xs": "400px",
       xs: "475px",
-      nav: "890px",
+      nav: "932px",
       ...defaultTheme.screens,
     },
     extend: {

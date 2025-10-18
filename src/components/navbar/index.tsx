@@ -26,18 +26,18 @@ function Navbar({ config }: Props) {
   } = config;
 
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
-  const [targetWidth, setTargetWidth] = useState("88%");
+  const [targetWidth, setTargetWidth] = useState("91%");
 
   useEffect(() => {
     const calculateWidth = () => {
       const vw = window.innerWidth;
       if (vw >= 1025) {
-        setTargetWidth("88%");
-      } else if (vw <= 890) {
-        setTargetWidth("98%");
+        setTargetWidth("91%");
+      } else if (vw <= 932) {
+        setTargetWidth("100%");
       } else {
-        // Linear interpolation between 890px (98%) and 1025px (88%)
-        const percent = 98 - ((vw - 890) / (1025 - 890)) * 10;
+        // Linear interpolation between 932px (100%) and 1025px (91%)
+        const percent = 100 - ((vw - 932) / (1025 - 932)) * 9;
         setTargetWidth(`${percent}%`);
       }
     };
@@ -121,7 +121,14 @@ function Navbar({ config }: Props) {
             {showThemeSwitch && <ThemeSwitcher config={config} />}
             </div>
           </ul>
-          {topNavbar.cta && <AppStoreDropdown config={config} />}
+          {topNavbar.cta && (
+            <AppStoreDropdown
+              config={config}
+              getAppLabel={t("nav.getApp")}
+              downloadAppStoreLabel={t("nav.downloadAppStore")}
+              downloadPlayStoreLabel={t("nav.downloadPlayStore")}
+            />
+          )}
         </div>
       </motion.div>
       <AnimatedList

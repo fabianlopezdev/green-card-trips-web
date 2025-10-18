@@ -219,6 +219,12 @@ export default function CookieConsentBanner() {
     log.success(`[${getTimestamp()}] Cookie consent system initialized successfully`);
     log.info('Auto-show modal:', consentConfig.mode === "opt-in" ? 'YES (EU)' : 'NO (US/other)');
 
+    // Expose CookieConsent globally so footer can call showPreferences()
+    if (!window.CookieConsent) {
+      window.CookieConsent = CookieConsent;
+      log.info(`[${getTimestamp()}] CookieConsent exposed globally on window.CookieConsent`);
+    }
+
     // Expose debug helpers to window for production testing
     if (!window.cookieConsentDebug) {
       window.cookieConsentDebug = {} as any;
@@ -292,4 +298,12 @@ export default function CookieConsentBanner() {
   }, [i18n.language, t]);
 
   return null; // This component only initializes the library
+}
+
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    CookieConsent: typeof CookieConsent;
+    cookieConsentDebug: any;
+  }
 }
