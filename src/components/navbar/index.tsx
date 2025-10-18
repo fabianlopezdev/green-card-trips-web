@@ -4,7 +4,6 @@ import MenuToggle from "../../components/menuToggle";
 import clsx from "clsx";
 import { easeIn, motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import type { TemplateConfig } from "../../utils/configType";
 import type { TranslationObject } from "../../utils/serverI18n";
 import ThemeSwitcher from "./themeSwitcher";
@@ -15,11 +14,10 @@ import GreenCardLogoSimplified from "./GreenCardLogoSimplified";
 interface Props {
   config: TemplateConfig;
   translations: TranslationObject;
-  currentLang?: string;
+  currentLang: string;
 }
 
 function Navbar({ config, translations, currentLang }: Props) {
-  const { i18n } = useTranslation();
   const {
     name,
     showThemeSwitch,
@@ -40,7 +38,7 @@ function Navbar({ config, translations, currentLang }: Props) {
     // Fallback to English
     return 'en';
   };
-  const languageFolder = getLanguageFolder(i18n.language);
+  const languageFolder = getLanguageFolder(currentLang);
 
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
   const [targetWidth, setTargetWidth] = useState("91%");
@@ -148,7 +146,7 @@ function Navbar({ config, translations, currentLang }: Props) {
               getAppLabel={translations.nav.getApp}
               downloadAppStoreLabel={translations.nav.downloadAppStore}
               downloadPlayStoreLabel={translations.nav.downloadPlayStore}
-              currentLang={currentLang || i18n.language}
+              currentLang={currentLang}
               translations={translations}
             />
           )}

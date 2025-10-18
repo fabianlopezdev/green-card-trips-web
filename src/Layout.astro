@@ -217,7 +217,7 @@ const languageUrls = supportedLanguages.map(lang => {
     <slot />
 
     <!-- Cookie Consent Banner -->
-    <CookieConsentBanner client:load />
+    <CookieConsentBanner client:load currentLang={htmlLang} />
 
     <!-- Google Analytics (loads conditionally based on cookie consent) -->
     <GoogleAnalytics trackingId={config.googleAnalytics} client:load />

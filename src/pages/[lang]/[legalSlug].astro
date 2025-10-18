@@ -77,13 +77,13 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   <main id="main">
     <Navbar client:load config={defaultTemplateConfig} translations={translations} currentLang={lang} />
     {pageKey === 'privacy-policy' && (
-      <PrivacyPolicyContent client:only="react" config={defaultTemplateConfig} />
+      <PrivacyPolicyContent client:only="react" config={defaultTemplateConfig} currentLang={lang} />
     )}
     {pageKey === 'terms-and-conditions' && (
-      <TermsAndConditionsContent client:only="react" config={defaultTemplateConfig} />
+      <TermsAndConditionsContent client:only="react" config={defaultTemplateConfig} currentLang={lang} />
     )}
     {pageKey === 'cookies-policy' && (
-      <CookiesPolicyContent client:only="react" config={defaultTemplateConfig} />
+      <CookiesPolicyContent client:only="react" config={defaultTemplateConfig} currentLang={lang} />
     )}
     <AppBanner client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
     <Footer client:idle config={defaultTemplateConfig} translations={translations} currentLang={lang} legalUrls={legalUrls} />

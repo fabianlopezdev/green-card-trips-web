@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import * as CookieConsent from "vanilla-cookieconsent";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import { getConsentMode, getCookie } from "./config";
@@ -84,9 +83,11 @@ function buildCookieConsentTranslations() {
   return translations;
 }
 
-export default function CookieConsentBanner() {
-  const { t, i18n } = useTranslation();
+interface Props {
+  currentLang?: string;
+}
 
+export default function CookieConsentBanner({ currentLang = 'en' }: Props) {
   useEffect(() => {
     // Get user's country from cookie set by edge function
     const countryCode = getCookie("user_country") || "UNKNOWN";
@@ -170,7 +171,7 @@ export default function CookieConsentBanner() {
 
       // Language settings with all supported languages
       language: {
-        default: i18n.language || "en",
+        default: currentLang,
         autoDetect: "document",
         translations: buildCookieConsentTranslations(),
       },
@@ -305,7 +306,7 @@ export default function CookieConsentBanner() {
     log.info('  window.cookieConsentDebug.test.rejectAll()   - Simulate rejecting');
     log.info('  window.cookieConsentDebug.test.clearConsent() - Clear consent to retest');
     log.info('═══════════════════════════════════════════════════════════════');
-  }, [i18n.language, t]);
+  }, [currentLang]);
 
   return null; // This component only initializes the library
 }

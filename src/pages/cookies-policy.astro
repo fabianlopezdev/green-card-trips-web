@@ -37,7 +37,7 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   <InitScripts client:load />
   <main id="main">
     <Navbar client:load config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <CookiesPolicyContent client:only="react" config={defaultTemplateConfig} />
+    <CookiesPolicyContent client:only="react" config={defaultTemplateConfig} currentLang="en" />
     <AppBanner client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
     <Footer client:idle config={defaultTemplateConfig} translations={enTranslations} currentLang="en" legalUrls={legalUrls} />
   </main>
