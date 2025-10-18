@@ -192,14 +192,6 @@ const languageUrls = supportedLanguages.map(lang => {
     <!-- Allow pages to inject additional head content (e.g., FAQPage schema) -->
     <slot name="head" />
 
-    <!-- Initialize i18next with the correct language for this page -->
-    {currentLang && (
-      <script is:inline define:vars={{ currentLang }}>
-        // Store the page's language in localStorage for i18next
-        localStorage.setItem('i18nextLng', currentLang);
-      </script>
-    )}
-
     <script is:inline define:vars={{ forceTheme }}>
       function getPreferredColorScheme() {
         if (!window.matchMedia) {
