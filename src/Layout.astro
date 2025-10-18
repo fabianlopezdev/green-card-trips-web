@@ -111,8 +111,9 @@ const languageUrls = supportedLanguages.map(lang => {
     <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/montserrat-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Preload LCP Image -->
-    <link rel="preload" href="/screenshots/en/dashboard.webp" as="image" type="image/webp" fetchpriority="high" />
+    <!-- Preload LCP Image (dashboard screenshot responsive variants) -->
+    <link rel="preload" href="/screenshots/en/dashboard-327.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width: 768px)" />
+    <link rel="preload" href="/screenshots/en/dashboard-298.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 769px)" />
 
     <!-- Resource Hints - Upgrade to preconnect for critical domains -->
     <link rel="preconnect" href="https://fabapps.dev" crossorigin />
@@ -135,7 +136,8 @@ const languageUrls = supportedLanguages.map(lang => {
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={currentPageUrl} />
 
-    <!-- Apple Mobile Web App Meta Tags -->
+    <!-- Mobile Web App Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Green Card Trips" />

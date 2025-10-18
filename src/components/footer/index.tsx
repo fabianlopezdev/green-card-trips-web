@@ -203,6 +203,7 @@ function Footer({ config, translations, currentLang: lang, legalUrls }: Props) {
               }}
               transition={{ delay: 1 }}
               className="md:whitespace-nowrap text-white"
+              suppressHydrationWarning
             >
               All rights reserved © {new Date().getFullYear()}
             </motion.p>

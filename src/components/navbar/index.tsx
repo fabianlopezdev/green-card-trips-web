@@ -41,6 +41,7 @@ function Navbar({ config }: Props) {
 
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
   const [targetWidth, setTargetWidth] = useState("91%");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const calculateWidth = () => {
@@ -57,6 +58,7 @@ function Navbar({ config }: Props) {
     };
 
     calculateWidth();
+    setMounted(true);
     window.addEventListener('resize', calculateWidth);
     return () => window.removeEventListener('resize', calculateWidth);
   }, []);
@@ -95,6 +97,7 @@ function Navbar({ config }: Props) {
           translateY: isMobileNavVisible ? 0 : y,
         }}
         className="will-change-[width,transform] transition-all mx-auto navbar relative px-4 max-nav:!w-full"
+        suppressHydrationWarning
       >
         <motion.div
           style={{ opacity: isMobileNavVisible ? 1 : opacity }}
@@ -104,6 +107,7 @@ function Navbar({ config }: Props) {
               "rounded-none": isMobileNavVisible,
             }
           )}
+          suppressHydrationWarning
         />
         <div className="navbar-start flex-1 max-nav:flex-auto">
           <a href="/" className="flex items-center" aria-label={t("nav.homeLink")}>
@@ -115,6 +119,8 @@ function Navbar({ config }: Props) {
           <MenuToggle
             toggle={() => setIsMobileNavVisible((current) => !current)}
             isOpen={isMobileNavVisible}
+            openMenuLabel={t("nav.openMenu")}
+            closeMenuLabel={t("nav.closeMenu")}
           />
         </div>
         <div className="navbar-end hidden font-medium nav:flex">

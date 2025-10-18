@@ -219,6 +219,16 @@ export default function CookieConsentBanner() {
     log.success(`[${getTimestamp()}] Cookie consent system initialized successfully`);
     log.info('Auto-show modal:', consentConfig.mode === "opt-in" ? 'YES (EU)' : 'NO (US/other)');
 
+    // For opt-out regions (US/others), if no consent cookie exists, automatically accept analytics
+    // This ensures analytics loads by default as expected in opt-out regions
+    const existingCookie = CookieConsent.getCookie();
+    if (consentConfig.mode !== "opt-in" && !existingCookie) {
+      log.info(`[${getTimestamp()}] No consent cookie found - auto-accepting analytics for opt-out region`);
+      CookieConsent.acceptCategory(['necessary', 'analytics']);
+      log.success(`[${getTimestamp()}] ✓ Analytics auto-accepted for opt-out region (US/other)`);
+      log.info('User can opt-out anytime via footer "Cookie Settings" link');
+    }
+
     // Expose CookieConsent globally so footer can call showPreferences()
     if (!window.CookieConsent) {
       window.CookieConsent = CookieConsent;

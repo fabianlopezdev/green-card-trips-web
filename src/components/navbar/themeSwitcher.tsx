@@ -6,7 +6,8 @@ interface Props {
 }
 
 function ThemeSwitcher({ config }: Props) {
-  const [mode, setMode] = useState<string>();
+  const [mode, setMode] = useState<string>(config.theme);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     function getPreferredColorScheme() {
@@ -17,10 +18,10 @@ function ThemeSwitcher({ config }: Props) {
         return "dark";
       }
     }
-    const theme = localStorage.getItem("theme") ?? getPreferredColorScheme();
-    if (!theme) return;
+    const theme = localStorage.getItem("theme") ?? getPreferredColorScheme() ?? config.theme;
     setMode(theme);
-  }, []);
+    setMounted(true);
+  }, [config.theme]);
 
   const toggleTheme = () => {
     const newMode = mode === "dark" ? config.theme : "dark";
@@ -31,6 +32,19 @@ function ThemeSwitcher({ config }: Props) {
   };
 
   const isDark = mode === "dark";
+
+  // Don't render anything until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <button
+        className="inline-flex items-center justify-center w-8 rounded-full text-sm font-medium"
+        aria-label="Toggle theme"
+        disabled
+      >
+        <span className="w-6 h-6 nav:w-4 nav:h-4" />
+      </button>
+    );
+  }
 
   return (
     <button
