@@ -89,6 +89,9 @@ interface Props {
 
 export default function CookieConsentBanner({ currentLang = 'en' }: Props) {
   useEffect(() => {
+    // Normalize language code: 'zh-cn' from URL -> 'zh-CN' for translations
+    const normalizedLang = currentLang === 'zh-cn' ? 'zh-CN' : currentLang;
+
     // Get user's country from cookie set by edge function
     const countryCode = getCookie("user_country") || "UNKNOWN";
     const consentConfig = getConsentMode(countryCode);
@@ -171,7 +174,7 @@ export default function CookieConsentBanner({ currentLang = 'en' }: Props) {
 
       // Language settings with all supported languages
       language: {
-        default: currentLang,
+        default: normalizedLang,
         autoDetect: "document",
         translations: buildCookieConsentTranslations(),
       },
