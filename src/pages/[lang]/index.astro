@@ -3,17 +3,16 @@ import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
 import { generateFAQPageSchema, generateReviewSchema, generateProductSchema } from "utils/structuredData";
 import { getTranslations, getSupportedLanguages, getLegalPageSlug } from "utils/serverI18n";
-import InitScripts from "../../components/initScripts";
-import Navbar from "../../components/navbar";
-import Header from "../../modules/home/_components/header";
-import Partners from "../../modules/home/_components/partners";
-import Features from "../../modules/home/_components/features";
-import HowItWorks from "../../modules/home/_components/howItWorks";
-import Pricing from "../../modules/home/_components/pricing";
-import Testimonials from "../../modules/home/_components/testimonials";
-import Faq from "../../modules/home/_components/faq";
-import AppBanner from "../../components/appBanner";
-import Footer from "../../components/footer";
+import Navbar from "../../components/navbar/index.astro";
+import Header from "../../modules/home/_components/header/index.astro";
+import Partners from "../../modules/home/_components/partners/partners.astro";
+import Features from "../../modules/home/_components/features/features.astro";
+import HowItWorks from "../../modules/home/_components/howItWorks/howItWorks.astro";
+import Pricing from "../../modules/home/_components/pricing/pricing.astro";
+import Testimonials from "../../modules/home/_components/testimonials/index.astro";
+import Faq from "../../modules/home/_components/faq/faq.astro";
+import AppBanner from "../../components/appBanner/index.astro";
+import Footer from "../../components/footer/index.astro";
 
 export function getStaticPaths() {
   const languages = getSupportedLanguages();
@@ -71,19 +70,19 @@ const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUr
   <!-- Product Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
 
-  <InitScripts client:load />
+  
   <header>
-    <Navbar client:load config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <Navbar config={defaultTemplateConfig} translations={translations} currentLang={lang} />
   </header>
   <main id="main">
-    <Header client:load config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <Partners client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <Features client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <HowItWorks client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <Pricing client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <Testimonials client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <Faq client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <AppBanner client:visible config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <Footer client:idle config={defaultTemplateConfig} translations={translations} currentLang={lang} legalUrls={legalUrls} />
+    <Header config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <Partners config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <Features config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <HowItWorks config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <Pricing config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <Testimonials config={defaultTemplateConfig} />
+    <Faq config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <AppBanner config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+    <Footer config={defaultTemplateConfig} translations={translations} currentLang={lang} legalUrls={legalUrls} />
   </main>
 </Layout>

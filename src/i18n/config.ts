@@ -17,20 +17,24 @@ const resources = {
   'zh-CN': { translation: zhCN },
 };
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: 'en',
-    supportedLngs: ['en', 'es', 'tl', 'vi', 'zh-CN'],
-    interpolation: {
-      escapeValue: false,
-    },
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-    },
-  });
+// Only initialize i18next in the browser to prevent SSR hydration mismatches
+// The language is set by Layout.astro before this component loads
+if (typeof window !== 'undefined') {
+  i18n
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      resources,
+      fallbackLng: 'en',
+      supportedLngs: ['en', 'es', 'tl', 'vi', 'zh-CN'],
+      interpolation: {
+        escapeValue: false,
+      },
+      detection: {
+        order: ['localStorage', 'navigator'],
+        caches: ['localStorage'],
+      },
+    });
+}
 
 export default i18n;

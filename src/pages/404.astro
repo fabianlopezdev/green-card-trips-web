@@ -1,9 +1,8 @@
 ---
 import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
-import InitScripts from "../components/initScripts";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../components/navbar/index.astro";
+import Footer from "../components/footer/index.astro";
 import { getLegalPageSlug } from "utils/serverI18n";
 
 // Import all translation files
@@ -61,9 +60,9 @@ const notFoundSeo = {
   <!-- Prevent indexing of 404 page -->
   <meta name="robots" content="noindex, nofollow" slot="head" />
 
-  <InitScripts client:load />
+  
   <main id="main">
-    <Navbar client:load config={defaultTemplateConfig} translations={translations} currentLang={currentLang} />
+    <Navbar config={defaultTemplateConfig} translations={translations} currentLang={currentLang} />
     <div class="container mx-auto px-4 pt-32 pb-24 md:pt-40 md:pb-32 min-h-[80vh] flex items-center justify-center">
       <div class="max-w-3xl mx-auto text-center w-full">
       <!-- 404 Error -->
@@ -143,6 +142,6 @@ const notFoundSeo = {
       </div>
     </div>
     </div>
-    <Footer client:idle config={defaultTemplateConfig} translations={translations} currentLang={currentLang} legalUrls={legalUrls} />
+    <Footer config={defaultTemplateConfig} translations={translations} currentLang={currentLang} legalUrls={legalUrls} />
   </main>
 </Layout>

@@ -8,8 +8,8 @@ import {
   generateOrganizationSchema,
   generateWebSiteSchema,
 } from "utils/structuredData";
-import CookieConsentBanner from "@components/cookieConsent/index.tsx";
-import GoogleAnalytics from "@components/googleAnalytics/index.tsx";
+import CookieConsentBanner from "@components/cookieConsent/index.astro";
+import GoogleAnalytics from "@components/googleAnalytics/index.astro";
 
 interface Props extends TemplateConfig {
   currentLang?: string;
@@ -39,6 +39,8 @@ const mobileAppSchema = generateMobileApplicationSchema(config, currentPageUrl);
 const organizationSchema = generateOrganizationSchema(config, currentPageUrl);
 const websiteSchema = generateWebSiteSchema(config, currentPageUrl);
 const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-cn'];
+const lenisModuleUrl = new URL("./components/initScripts/lenis-init.ts", import.meta.url);
+const lenisScript = `import("${lenisModuleUrl.href}");`;
 
 // Get the current path without language prefix and detect if it's a legal page
 const getCurrentPathInfo = () => {
@@ -111,9 +113,16 @@ const languageUrls = supportedLanguages.map(lang => {
     <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/montserrat-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Preload LCP Image (dashboard screenshot responsive variants) -->
-    <link rel="preload" href="/screenshots/en/dashboard-327.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width: 768px)" />
-    <link rel="preload" href="/screenshots/en/dashboard-298.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 769px)" />
+    <!-- Preload LCP Image (dashboard screenshot with srcset matching actual usage) -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+      href="/screenshots/en/dashboard-298.webp"
+      imagesrcset="/screenshots/en/dashboard-250.webp 250w, /screenshots/en/dashboard-298.webp 298w, /screenshots/en/dashboard-311.webp 311w, /screenshots/en/dashboard-327.webp 327w"
+      imagesizes="(max-width: 768px) 327px, 298px"
+    />
 
     <!-- Resource Hints - Upgrade to preconnect for critical domains -->
     <link rel="preconnect" href="https://fabapps.dev" crossorigin />
@@ -206,6 +215,12 @@ const languageUrls = supportedLanguages.map(lang => {
     </script>
   </head>
   <body class="relative">
+    <!-- Cookie Consent Banner -->
+    <CookieConsentBanner currentLang={htmlLang} />
+    <!-- Google Analytics (loads conditionally based on cookie consent) -->
+    <GoogleAnalytics trackingId={config.googleAnalytics} />
+    
+    <script is:inline type="module" set:html={lenisScript} />
     <!-- Skip to main content link for keyboard accessibility -->
     <a
       href="#main"
@@ -216,10 +231,6 @@ const languageUrls = supportedLanguages.map(lang => {
     {backgroundGrid && <div class="backgroundGrid" />}
     <slot />
 
-    <!-- Cookie Consent Banner -->
-    <CookieConsentBanner client:load currentLang={htmlLang} />
 
-    <!-- Google Analytics (loads conditionally based on cookie consent) -->
-    <GoogleAnalytics trackingId={config.googleAnalytics} client:load />
   </body>
 </html>

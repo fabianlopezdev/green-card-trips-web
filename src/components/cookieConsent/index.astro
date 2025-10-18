@@ -1,0 +1,17 @@
+---
+const { currentLang = "en" } = Astro.props as { currentLang?: string };
+const serializedOptions = JSON.stringify({ currentLang });
+const inlineScript = `(() => {
+  const options = ${serializedOptions};
+  if (!window.__cookieConsentLoader) {
+    window.__cookieConsentLoader = true;
+    import("./cookie-consent.client.ts").then((module) => {
+      if (typeof module?.initCookieConsent === "function") {
+        module.initCookieConsent(options);
+      }
+    });
+  }
+})();`;
+---
+
+<script is:inline set:html={inlineScript} />

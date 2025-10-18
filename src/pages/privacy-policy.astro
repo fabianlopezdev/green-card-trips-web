@@ -2,11 +2,11 @@
 import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
 import { generateBreadcrumbSchema } from "utils/structuredData";
-import InitScripts from "../components/initScripts";
-import Navbar from "../components/navbar";
-import AppBanner from "../components/appBanner";
-import Footer from "../components/footer";
-import PrivacyPolicyContent from "@modules/privacyPolicy";
+import Navbar from "../components/navbar/index.astro";
+import AppBanner from "../components/appBanner/index.astro";
+import Footer from "../components/footer/index.astro";
+import PrivacyPolicyContent from "@modules/privacyPolicy/index.astro";
+import { getLegalEntry } from "@modules/legal/getLegalEntry";
 import enTranslations from "../i18n/locales/en.json";
 
 // English legal page URLs (at root level)
@@ -19,26 +19,28 @@ const legalUrls = {
 // Generate site URL for breadcrumbs
 const siteUrl = Astro.site || new URL(Astro.url.origin);
 
+const privacyEntry = await getLegalEntry("privacy-policy", "en");
+
 // Generate breadcrumb schema
 const breadcrumbs = [
   { name: "Home", url: new URL('/', siteUrl).href },
-  { name: "Privacy Policy", url: new URL('/privacy-policy', siteUrl).href }
+  { name: privacyEntry.data.title, url: new URL('/privacy-policy', siteUrl).href }
 ];
 const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 ---
 
 <Layout
   {...defaultTemplateConfig}
-  seo={defaultTemplateConfig.privacyPolicy?.en?.seo}
+  seo={privacyEntry.data.seo}
 >
   <!-- BreadcrumbList Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
 
-  <InitScripts client:load />
+  
   <main id="main">
-    <Navbar client:load config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <PrivacyPolicyContent client:only="react" config={defaultTemplateConfig} currentLang="en" />
-    <AppBanner client:visible config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <Footer client:idle config={defaultTemplateConfig} translations={enTranslations} currentLang="en" legalUrls={legalUrls} />
+    <Navbar config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <PrivacyPolicyContent currentLang="en" />
+    <AppBanner config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+    <Footer config={defaultTemplateConfig} translations={enTranslations} currentLang="en" legalUrls={legalUrls} />
   </main>
 </Layout>

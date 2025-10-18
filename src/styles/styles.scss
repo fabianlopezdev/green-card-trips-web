@@ -34,6 +34,7 @@
 }
 html {
   scroll-behavior: auto; // Let Lenis handle smooth scrolling
+  position: relative; // Required for Framer Motion's useScroll() to calculate scroll offsets correctly
 }
 
 html.lenis,

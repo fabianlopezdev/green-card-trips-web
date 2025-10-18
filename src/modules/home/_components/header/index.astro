@@ -1,0 +1,181 @@
+---
+import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
+import Wave from "./svg/wave.astro";
+
+interface Props {
+  config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
+}
+
+const {
+  config,
+  translations,
+  currentLang = "en",
+} = Astro.props as Props;
+
+const {
+  googlePlayLink,
+  appStoreLink,
+  home: { header, partners },
+} = config;
+
+if (!header) {
+  return null;
+}
+
+const supportedLanguages = ["en", "es", "tl", "vi", "zh-CN"];
+const langKey = supportedLanguages.includes(currentLang) ? currentLang : currentLang.split("-")[0] || "en";
+const languageFolder = supportedLanguages.includes(langKey) ? langKey : "en";
+
+const screenshotAlts: Record<string, string> = {
+  "dashboard": translations.alt.screenshots.dashboard,
+  "modify-trip": translations.alt.screenshots.modifyTrip,
+  "trips": translations.alt.screenshots.trips,
+};
+
+const primaryScreenshot = header.screenshots?.[0];
+const screenshotBasePath = primaryScreenshot
+  ? `/screenshots/${languageFolder}/${primaryScreenshot}`
+  : undefined;
+
+const buildSrcSet = (base: string) =>
+  `${base}-250.webp 250w, ${base}-298.webp 298w, ${base}-311.webp 311w, ${base}-327.webp 327w`;
+
+let headlineSegments: { before?: string; highlight?: string; after?: string } = {};
+if (header.headlineMark) {
+  const words = translations.hero.headline.split(" ");
+  const [start, end] = header.headlineMark;
+  headlineSegments = {
+    before: words.slice(0, start).join(" "),
+    highlight: words.slice(start, end).join(" "),
+    after: words.slice(end).join(" "),
+  };
+}
+---
+
+<section id={header.id} class="relative pb-8 md:pb-4" aria-label="Hero section">
+  <div class="max-w-screen-lg mx-auto flex flex-col gap-12 px-4 pt-24 pb-4 md:flex-row md:items-center md:pt-32 md:pb-16">
+    <div class="flex flex-1 flex-col gap-6">
+      {header.rewards?.length ? (
+        <div class="flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center">
+          {header.rewards.map((reward) => (
+            <div class="flex h-12 items-center justify-center gap-2 rounded-full bg-base-200 px-4 text-xs text-gray-600 md:text-sm">
+              <img src="/misc/wreath-left.webp" width="32" height="32" alt="" loading="lazy" />
+              <span class="text-center">{reward}</span>
+              <img src="/misc/wreath-right.webp" width="32" height="32" alt="" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      <h1 class="text-4xl font-normal md:text-6xl">
+        {headlineSegments.before ? (
+          <>
+            {headlineSegments.before && <span>{headlineSegments.before} </span>}
+            {headlineSegments.highlight && (
+              <span class="relative inline-block">
+                <span class="relative z-10">{headlineSegments.highlight}</span>
+                <span class="absolute inset-x-0 bottom-0 top-2 z-0 rounded-lg bg-gradient-to-r from-primary/80 to-secondary/40"></span>
+              </span>
+            )}
+            {headlineSegments.after && <span> {headlineSegments.after}</span>}
+          </>
+        ) : (
+          translations.hero.headline
+        )}
+      </h1>
+
+      {translations.hero.subtitle && (
+        <p class="max-w-xl whitespace-pre-wrap text-base text-base-content/80 md:text-lg">
+          {translations.hero.subtitle}
+        </p>
+      )}
+
+      {(googlePlayLink || appStoreLink) && (
+        <ul class="flex list-none gap-4 p-0">
+          {googlePlayLink && (
+            <li>
+              <a href={googlePlayLink}>
+                <img
+                  src={`/stores/${languageFolder}/google-play.svg`}
+                  alt={translations.alt.stores.googlePlayLogo}
+                  width="156"
+                  height="56"
+                  loading="lazy"
+                  class="h-14"
+                />
+              </a>
+            </li>
+          )}
+          {appStoreLink && (
+            <li>
+              <a href={appStoreLink}>
+                <img
+                  src={`/stores/${languageFolder}/app-store.svg`}
+                  alt={translations.alt.stores.appStoreLogo}
+                  width="156"
+                  height="56"
+                  loading="lazy"
+                  class="h-14"
+                />
+              </a>
+            </li>
+          )}
+        </ul>
+      )}
+
+      {header.usersDescription && (
+        <div class="flex items-center gap-3">
+          <ul class="flex -space-x-4">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <li class="avatar" aria-hidden="true">
+                <div class="w-10">
+                  <img
+                    src={`/avatars/${index + 1}.webp`}
+                    alt={`${translations.alt.misc.appUser} ${index + 1}`}
+                    width="40"
+                    height="40"
+                    loading="lazy"
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p class="text-sm text-base-content/80">{translations.hero.usersDescription}</p>
+        </div>
+      )}
+    </div>
+
+    <div class="relative flex flex-1 justify-center md:justify-end">
+      <div class="absolute inset-0 -z-10 hidden max-w-[520px] rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl md:block" aria-hidden="true"></div>
+      {screenshotBasePath ? (
+        <div class="relative h-[520px] w-[260px] rounded-[3rem]">
+          <div class="absolute left-3 top-3 h-[calc(100%-24px)] w-[calc(100%-24px)] overflow-hidden rounded-[1.5rem] bg-base-100 shadow-lg">
+            <img
+              srcset={buildSrcSet(`${screenshotBasePath}`)}
+              sizes="(max-width: 768px) 240px, 260px"
+              src={`${screenshotBasePath}-327.webp`}
+              alt={screenshotAlts[primaryScreenshot!] ?? translations.alt.misc.appScreenshot}
+              loading="eager"
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <img
+            srcset="/misc/iphone-frame-sm.webp 252w, /misc/iphone-frame-md.webp 331w, /misc/iphone-frame-lg.webp 298w, /misc/iphone-frame-xl.webp 331w"
+            sizes="(max-width: 400px) 252px, (max-width: 768px) 331px, 298px"
+            src="/misc/iphone-frame-md.webp"
+            alt={translations.alt.misc.iphoneFrame}
+            loading="lazy"
+            decoding="async"
+            class="h-full w-auto"
+          />
+        </div>
+      ) : null}
+    </div>
+  </div>
+
+  {partners && <Wave class="absolute inset-x-0 -bottom-1 -z-10" aria-hidden="true" />}
+</section>

@@ -1,0 +1,218 @@
+---
+import type { TemplateConfig } from "../../utils/configType";
+import type { TranslationObject } from "../../utils/serverI18n";
+import InstagramLogo from "./svgs/instagram.astro";
+import FacebookLogo from "./svgs/facebook.astro";
+import TwitterLogo from "./svgs/twitter.astro";
+import Heart from "./svgs/Heart.astro";
+
+type LegalUrls = {
+  termsAndConditions: string;
+  privacyPolicy: string;
+  cookiesPolicy: string;
+};
+
+interface Props {
+  config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
+  legalUrls?: LegalUrls;
+}
+
+const {
+  config,
+  translations,
+  currentLang = "en",
+  legalUrls,
+} = Astro.props as Props;
+
+const {
+  footer: { legalLinks, socials },
+} = config;
+
+const getLocalizedUrl = (path: string) => {
+  if (!currentLang || currentLang === "en") {
+    return path;
+  }
+
+  return `/${currentLang}${path}`;
+};
+
+const resolvedLegalUrls: LegalUrls = legalUrls ?? {
+  termsAndConditions: "/terms-and-conditions",
+  privacyPolicy: "/privacy-policy",
+  cookiesPolicy: "/cookies-policy",
+};
+
+const footerLinks = [
+  { href: getLocalizedUrl("/#features"), label: translations.nav.features },
+  { href: getLocalizedUrl("/#how-it-works"), label: translations.nav.howItWorks },
+  { href: getLocalizedUrl("/#pricing"), label: translations.nav.pricing },
+  { href: getLocalizedUrl("/#faq"), label: translations.nav.faq },
+];
+
+const showSocials = Boolean(socials?.facebook || socials?.instagram || socials?.twitter);
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="relative mt-0 bg-gradient-to-b from-primary to-secondary/70">
+  <div class="absolute -top-12 left-0 w-full h-12 overflow-hidden">
+    <div class="w-full h-24 bg-primary rounded-t-[50%]"></div>
+  </div>
+
+  <div class="relative text-neutral-content px-4 pb-2 md:pb-0 pt-12">
+    <div class="max-w-screen-lg mx-auto mt-12">
+      <div class="flex flex-col md:flex-row gap-8 mb-4">
+        <nav class="flex flex-col items-center md:items-start justify-center gap-4">
+          {footerLinks.map(({ label, href }, index) => (
+            <a
+              class="text-xl font-bold block uppercase whitespace-nowrap link no-underline text-white hover:text-white/70 md:text-4xl transition-transform duration-200"
+              style={`transition-delay: ${index * 150}ms`}
+              href={href}
+            >
+              {label.toUpperCase()}
+            </a>
+          ))}
+        </nav>
+
+        <div class="flex-1 flex items-center justify-center md:justify-end md:pb-8">
+          <img
+            src="/green-card-trips-logo-footer.svg"
+            width="400"
+            height="200"
+            loading="lazy"
+            alt={translations.alt.misc.logo}
+            class="h-32 md:h-[15rem] w-auto"
+          />
+        </div>
+      </div>
+
+      <aside class="flex flex-col items-center justify-between mt-4 w-full overflow-hidden md:flex-row lg:overflow-visible border-b border-gray-500/30 pb-3 gap-4">
+        {showSocials ? (
+          <div class="flex items-center gap-3 text-primary mb-4 md:mb-0">
+            {socials?.facebook && (
+              <a
+                class="w-8 h-8 hover:text-primary/50"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={socials.facebook}
+                aria-label="Facebook"
+              >
+                <FacebookLogo />
+              </a>
+            )}
+            {socials?.instagram && (
+              <a
+                class="w-8 h-8 hover:text-primary/50"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={socials.instagram}
+                aria-label="Instagram"
+              >
+                <InstagramLogo />
+              </a>
+            )}
+            {socials?.twitter && (
+              <a
+                class="w-8 h-8 hover:text-primary/50"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={socials.twitter}
+                aria-label="Twitter"
+              >
+                <TwitterLogo />
+              </a>
+            )}
+          </div>
+        ) : (
+          <span class="hidden md:block" aria-hidden="true"></span>
+        )}
+
+        <div class="flex flex-col items-center md:flex-row md:items-center gap-4">
+          <div class="flex flex-wrap gap-4 justify-center">
+            {legalLinks.termsAndConditions && (
+              <a
+                class="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap transition-colors"
+                href={resolvedLegalUrls.termsAndConditions}
+              >
+                {translations.footer.termsAndConditions}
+              </a>
+            )}
+            {legalLinks.privacyPolicy && (
+              <a
+                class="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap transition-colors"
+                href={resolvedLegalUrls.privacyPolicy}
+              >
+                {translations.footer.privacyPolicy}
+              </a>
+            )}
+            {legalLinks.cookiesPolicy && (
+              <a
+                class="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap transition-colors"
+                href={resolvedLegalUrls.cookiesPolicy}
+              >
+                {translations.footer.cookiesPolicy}
+              </a>
+            )}
+            <button
+              id="cookie-settings-button"
+              class="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap cursor-pointer transition-colors"
+              type="button"
+            >
+              {translations.footer.cookieSettings}
+            </button>
+          </div>
+          <p class="md:whitespace-nowrap text-white">
+            <span>All rights reserved © </span>
+            <span>{currentYear}</span>
+          </p>
+        </div>
+      </aside>
+
+      <div class="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4 pt-4 md:pt-0 text-neutral-content">
+        <p
+          class="md:flex md:items-center md:gap-1 text-center md:text-left text-white"
+          style="font-family: 'PlaywriteAR', cursive; font-size: 0.7rem;"
+        >
+          {`${translations.footer.madeBy} ${translations.footer.madeByFor} `}
+          <Heart class="w-6 h-6 md:w-3 md:h-3 inline-block align-middle" />
+        </p>
+        <p
+          class="font-sans whitespace-nowrap md:pb-4 text-white text-center md:text-left"
+          style="font-size: 0.625rem;"
+        >
+          {translations.footer.developedBy}{" "}
+          <a
+            href="https://fabapps.dev/"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            class="underline hover:scale-105 transition-transform inline-block"
+          >
+            Fabulous Apps<span class="inline-block text-3xl text-blue-600 leading-none align-baseline">.</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    const attachCookieHandler = () => {
+      const button = document.getElementById("cookie-settings-button");
+      if (!button || button.dataset.cookieHandlerAttached === "true") {
+        return;
+      }
+
+      button.dataset.cookieHandlerAttached = "true";
+      button.addEventListener("click", () => {
+        if (typeof window === "undefined") return;
+        const api = window.CookieConsent;
+        if (api && typeof api.showPreferences === "function") {
+          api.showPreferences();
+        }
+      });
+    };
+
+    document.addEventListener("astro:page-load", attachCookieHandler);
+    document.addEventListener("astro:after-swap", attachCookieHandler);
+  </script>
+</footer>

@@ -1,0 +1,46 @@
+---
+import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
+
+interface Props {
+  config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
+}
+
+const { config, translations } = Astro.props as Props;
+
+const {
+  home: { faq },
+} = config;
+
+if (!faq) {
+  return null;
+}
+
+const faqs = faq.qa.map((_, i) => {
+  const key = `q${i + 1}`;
+  const faqData = translations.faq[key as keyof typeof translations.faq] as { question: string; answer: string };
+  return {
+    question: faqData?.question || "",
+    answer: faqData?.answer || "",
+  };
+});
+---
+
+<section id={faq.id} class="mx-auto mb-12 max-w-screen-lg px-4" aria-label="Frequently asked questions">
+  <div class="rounded-3xl bg-base-200/50 px-6 py-10 md:px-10">
+    <header class="mb-8 text-center md:text-left">
+      <h2 class="text-3xl font-semibold md:text-4xl">{translations.faq.title}</h2>
+    </header>
+
+    <dl class="space-y-4">
+      {faqs.map((faqItem) => (
+        <div class="rounded-2xl border border-base-300 bg-base-100 p-4">
+          <dt class="text-lg font-medium text-base-content">{faqItem.question}</dt>
+          <dd class="mt-2 text-base text-base-content/70">{faqItem.answer}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

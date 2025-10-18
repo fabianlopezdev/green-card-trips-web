@@ -12,27 +12,6 @@ export type TemplateConfig = {
     googleAnalytics?: string | undefined;
     googlePlayLink?: string | undefined;
     appStoreLink?: string | undefined;
-    termsAndConditions: Record<string, {
-        seo: {
-            title: string;
-            description: string;
-        };
-        content: string;
-    }>;
-    privacyPolicy: Record<string, {
-        seo: {
-            title: string;
-            description: string;
-        };
-        content: string;
-    }>;
-    cookiesPolicy: Record<string, {
-        seo: {
-            title: string;
-            description: string;
-        };
-        content: string;
-    }>;
     footer: {
         links: {
             title: string;

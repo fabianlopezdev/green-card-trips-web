@@ -1,9 +1,20 @@
 ---
-import AppRedirectionPage from "@modules/app"
 import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
+
+const redirectModuleUrl = new URL("../modules/app/redirect.client.ts", import.meta.url);
+const redirectScript = `import("${redirectModuleUrl.href}").then((module) => module.redirectToStore?.(${JSON.stringify({
+  appStoreLink: defaultTemplateConfig.appStoreLink,
+  googlePlayLink: defaultTemplateConfig.googlePlayLink,
+})}));`;
 ---
 
 <Layout {...defaultTemplateConfig}>
-  <AppRedirectionPage client:load config={defaultTemplateConfig} />
+  <main class="flex h-screen w-screen flex-col items-center justify-center gap-4">
+    <span class="loading loading-dots w-16" aria-hidden="true"></span>
+    <h2 class="max-w-xs text-center md:max-w-md">
+      We’re sending you to our app. If nothing happens, you’ll be redirected shortly.
+    </h2>
+  </main>
+  <script is:inline type="module" set:html={redirectScript} />
 </Layout>

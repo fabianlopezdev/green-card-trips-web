@@ -1,0 +1,40 @@
+---
+import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
+
+interface Props {
+  config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
+}
+
+const { config, translations } = Astro.props as Props;
+
+const {
+  home: { partners },
+} = config;
+
+if (!partners) {
+  return null;
+}
+---
+
+<section id={partners.id} class="relative bg-neutral py-12" aria-label="Partners and app stores">
+  <div class="mx-auto flex max-w-screen-lg flex-col items-center gap-8 px-4">
+    <h2 class="text-3xl font-semibold text-neutral-content md:text-4xl">{partners.title}</h2>
+    <div class="grid w-full grid-cols-[repeat(auto-fit,minmax(120px,1fr))] place-items-center gap-6 md:gap-10">
+      {partners.logos.map((logo) => (
+        <div class="flex h-24 w-24 items-center justify-center">
+          <img
+            src={logo}
+            width="96"
+            height="96"
+            loading="lazy"
+            alt={translations.alt.misc.partnerLogo}
+            class="h-20 w-20 object-contain"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import type { TemplateConfig } from "../../../../utils/configType";
+
+interface Props {
+  config: TemplateConfig;
+}
+
+const { config } = Astro.props as Props;
+
+const testimonials = config.home?.testimonials;
+
+if (!testimonials) {
+  return null;
+}
+---
+
+<section class="mx-auto max-w-screen-lg px-4 py-12" aria-label="User testimonials">
+  <div class="prose prose-lg mb-8 flex max-w-none flex-col items-center text-center">
+    <h2 class="mb-2 font-normal text-3xl">{testimonials.title}</h2>
+    {testimonials.subtitle && (
+      <p class="max-w-2xl text-base text-base-content/70">{testimonials.subtitle}</p>
+    )}
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {testimonials.cards.map(({ name, comment }) => (
+      <article class="flex h-full flex-col justify-between rounded-3xl bg-primary p-6 text-primary-content shadow-md">
+        <div>
+          <div class="mb-4 flex gap-1">
+            {Array.from({ length: 5 }).map(() => (
+              <span class="mask mask-star-2 h-5 w-5 bg-primary-content/90" aria-hidden="true"></span>
+            ))}
+          </div>
+          <p class="text-primary-content/90">{comment}</p>
+        </div>
+        <footer class="mt-6 text-lg font-semibold">{name}</footer>
+      </article>
+    ))}
+  </div>
+</section>

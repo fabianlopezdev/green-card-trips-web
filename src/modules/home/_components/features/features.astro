@@ -1,0 +1,88 @@
+---
+import clsx from "clsx";
+import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
+
+interface Props {
+  config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
+}
+
+const { config, translations } = Astro.props as Props;
+
+const {
+  home: { features },
+} = config;
+
+if (!features) {
+  return null;
+}
+
+const featureCards = [
+  { icon: features.cards[0]?.icon, key: "tracking", alt: translations.alt.features.tracking },
+  { icon: features.cards[1]?.icon, key: "simulator", alt: translations.alt.features.simulator },
+  { icon: features.cards[2]?.icon, key: "dashboard", alt: translations.alt.features.dashboard },
+  { icon: features.cards[3]?.icon, key: "privacy", alt: translations.alt.features.privacy },
+];
+
+const cardBackgroundColors = [
+  "rgb(249, 186, 17)",
+  "", // default secondary background
+  "rgba(81, 13, 178, 0.2)",
+  "rgb(50, 167, 137)",
+];
+---
+
+<section id={features.id} class="mx-auto max-w-screen-lg px-4 py-12" aria-label="App features">
+  <div class="prose prose-lg mb-12 flex max-w-none flex-col items-center text-center">
+    <h2 class="mb-3 font-normal">{translations.features.title}</h2>
+    <div class="h-2 w-[200px] overflow-hidden rounded-full bg-gradient-to-r from-primary to-secondary md:w-[350px]">
+      <span class="block h-full w-full bg-white/20"></span>
+    </div>
+    {features.subtitle && (
+      <p class="max-w-lg text-md text-base-content/70">{translations.features.subtitle}</p>
+    )}
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
+    {featureCards.map((feat, index) => {
+      const featureCopy = translations.features[feat.key as keyof typeof translations.features] as {
+        title: string;
+        description: string;
+      };
+      const isLastOdd = index === featureCards.length - 1 && featureCards.length % 2 === 1;
+
+      return (
+        <article
+          class={`group relative overflow-hidden rounded-3xl border-2 border-primary/10 px-10 py-8 shadow-md ${isLastOdd ? "sm:col-span-2" : ""}`}
+        >
+          <div class="relative mb-6 mt-2">
+            <div
+              class={clsx(
+                "absolute inset-0 -z-10 rounded-lg",
+                cardBackgroundColors[index] ? null : "bg-secondary/50"
+              )}
+              style={cardBackgroundColors[index] ? `background-color: ${cardBackgroundColors[index]}` : undefined}
+            />
+            <figure class="py-4">
+              <img
+                src={feat.icon}
+                width="160"
+                height="160"
+                loading="lazy"
+                alt={feat.alt}
+                class="w-40"
+              />
+            </figure>
+          </div>
+          <div class="flex flex-col items-center gap-2 text-center">
+            <h3 class="text-2xl font-bold">{featureCopy?.title}</h3>
+            <div class="h-0.5 w-full bg-primary/10" />
+            <p class="text-base text-base-content/70">{featureCopy?.description}</p>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>

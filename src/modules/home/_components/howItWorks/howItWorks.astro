@@ -1,0 +1,79 @@
+---
+import type { TemplateConfig } from "../../../../utils/configType";
+import type { TranslationObject } from "../../../../utils/serverI18n";
+
+interface Props {
+  config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
+}
+
+const { config, translations } = Astro.props as Props;
+
+const {
+  home: { howItWorks },
+} = config;
+
+if (!howItWorks) {
+  return null;
+}
+
+const stepAltTexts = [
+  translations.alt.steps.step1,
+  translations.alt.steps.step2,
+  translations.alt.steps.step3,
+  translations.alt.steps.step4,
+  translations.alt.steps.step5,
+];
+
+const steps = howItWorks.steps.map((step, i) => ({
+  image: step.image,
+  key: `step${i + 1}`,
+  alt: stepAltTexts[i] || translations.alt.misc.appScreenshot,
+}));
+---
+
+<section
+  id={howItWorks.id}
+  class="mx-auto max-w-screen-lg px-4 py-12"
+  aria-label="How the app works"
+>
+  <div class="prose prose-lg mb-12 flex max-w-none flex-col items-center text-center">
+    <h2 class="mb-3 font-normal">{translations.howItWorks.title}</h2>
+    {howItWorks.subtitle && (
+      <p class="max-w-lg text-md text-base-content/70">{translations.howItWorks.subtitle}</p>
+    )}
+  </div>
+
+  <div class="flex flex-col gap-24">
+    {steps.map((step, index) => {
+      const stepCopy = translations.howItWorks[step.key as keyof typeof translations.howItWorks] as {
+        title: string;
+        description: string;
+      };
+      const isEven = index % 2 === 0;
+
+      return (
+        <article class={`flex flex-col items-center gap-12 rounded-3xl bg-base-200/40 p-8 md:flex-row ${isEven ? "md:flex-row-reverse" : ""}`}>
+          <div class="flex flex-1 justify-center">
+            <img
+              class="max-w-xs rounded-3xl shadow-lg md:max-w-sm"
+              src={step.image}
+              width="400"
+              height="300"
+              loading="lazy"
+              alt={step.alt}
+            />
+          </div>
+          <div class="flex flex-1 flex-col items-center text-center md:items-start md:text-left">
+            <div class="font-sketch text-5xl text-primary md:text-6xl">
+              {index + 1 < 10 ? `0${index + 1}` : index + 1}
+            </div>
+            <h3 class="mt-2 text-2xl font-bold text-base-content">{stepCopy?.title}</h3>
+            <p class="mt-3 max-w-md text-base text-base-content/70">{stepCopy?.description}</p>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>

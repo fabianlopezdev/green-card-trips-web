@@ -1,0 +1,211 @@
+---
+import type { TemplateConfig } from "../../utils/configType";
+import type { TranslationObject } from "../../utils/serverI18n";
+import { getLegalPageKeyFromSlug, getLegalPageSlug } from "../../utils/legalPageSlugs";
+import GreenCardLogoSimplified from "./GreenCardLogoSimplified.astro";
+
+interface Props {
+  config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
+}
+
+const { config, translations, currentLang = "en" } = Astro.props as Props;
+
+const normalizedLang = currentLang.toLowerCase();
+const languageOptions = [
+  { code: "en", name: "English" },
+  { code: "es", name: "Español" },
+  { code: "tl", name: "Tagalog" },
+  { code: "vi", name: "Tiếng Việt" },
+  { code: "zh-CN", name: "简体中文" },
+];
+
+const storeFolders = ["en", "es", "tl", "vi", "zh-CN"];
+const languageFolder =
+  storeFolders.find((code) => code.toLowerCase() === normalizedLang) ?? "en";
+
+const prefix = normalizedLang === "en" ? "" : `/${normalizedLang}`;
+const toSection = (id: string) => `${prefix}/#${id}`;
+
+const navItems = [
+  { href: toSection("features"), label: translations.nav.features },
+  { href: toSection("how-it-works"), label: translations.nav.howItWorks },
+  { href: toSection("pricing"), label: translations.nav.pricing },
+  { href: toSection("faq"), label: translations.nav.faq },
+];
+
+const pathname = Astro.url.pathname;
+const pathWithoutLang = pathname.replace(/^\/(es|tl|vi|zh-cn)(\/|$)/, "/") || "/";
+const segments = pathWithoutLang.split("/").filter(Boolean);
+const lastSegment = segments[segments.length - 1];
+const legalKey = lastSegment
+  ? getLegalPageKeyFromSlug(lastSegment, normalizedLang)
+  : null;
+
+const buildLanguageUrl = (code: string) => {
+  const target = code.toLowerCase();
+  let targetPath = pathWithoutLang;
+
+  if (legalKey) {
+    const translatedSlug = getLegalPageSlug(legalKey, target);
+    targetPath = `/${translatedSlug}`;
+  }
+
+  if (targetPath === "") {
+    targetPath = "/";
+  }
+
+  if (target === "en") {
+    return targetPath === "" ? "/" : targetPath;
+  }
+
+  return `/${target}${targetPath === "/" ? "/" : targetPath}`;
+};
+
+const currentLanguage =
+  languageOptions.find((lang) => lang.code.toLowerCase() === normalizedLang) ??
+  languageOptions[0];
+---
+
+<nav class="border-b border-base-200 bg-base-100/95 backdrop-blur supports-[backdrop-filter]:bg-base-100/80">
+  <div class="mx-auto flex max-w-screen-lg items-center justify-between gap-4 px-4 py-4">
+    <a href={buildLanguageUrl(currentLanguage.code)} class="flex items-center gap-2 text-lg font-semibold text-base-content">
+      <GreenCardLogoSimplified class="h-10 w-auto" />
+      <span class="hidden sm:inline">{config.name}</span>
+    </a>
+
+    <details class="group relative w-full max-w-xs md:hidden">
+      <summary class="flex cursor-pointer items-center justify-between rounded-lg border border-base-300 px-3 py-2 text-sm font-medium text-base-content">
+        <span>{translations.nav.openMenu}</span>
+        <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </summary>
+      <div class="mt-3 space-y-4 rounded-lg border border-base-200 bg-base-100 p-4 shadow-md">
+        <ul class="flex flex-col gap-3 text-sm font-medium text-base-content">
+          {navItems.map((item) => (
+            <li>
+              <a href={item.href} class="block rounded-lg px-3 py-2 hover:bg-base-200">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-base-content/60">
+            {translations.nav.language}
+          </p>
+          <ul class="space-y-1 text-sm">
+            {languageOptions.map((lang) => (
+              <li>
+                <a
+                  href={buildLanguageUrl(lang.code)}
+                  class={`block rounded-lg px-3 py-2 hover:bg-base-200 ${
+                    lang.code.toLowerCase() === normalizedLang ? "font-semibold" : ""
+                  }`}
+                >
+                  {lang.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {(config.appStoreLink || config.googlePlayLink) && (
+          <div class="flex flex-col gap-3">
+            {config.appStoreLink && (
+              <a href={config.appStoreLink} class="flex items-center justify-center" aria-label={translations.nav.downloadAppStore}>
+                <img
+                  src={`/stores/${languageFolder}/app-store.svg`}
+                  alt={translations.alt.stores.appStore}
+                  width="156"
+                  height="56"
+                  loading="lazy"
+                  class="h-12 w-auto"
+                />
+              </a>
+            )}
+            {config.googlePlayLink && (
+              <a href={config.googlePlayLink} class="flex items-center justify-center" aria-label={translations.nav.downloadPlayStore}>
+                <img
+                  src={`/stores/${languageFolder}/google-play.svg`}
+                  alt={translations.alt.stores.googlePlay}
+                  width="156"
+                  height="56"
+                  loading="lazy"
+                  class="h-12 w-auto"
+                />
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </details>
+
+    <div class="hidden flex-1 items-center justify-end gap-6 text-sm font-medium text-base-content md:flex">
+      <ul class="flex items-center gap-6">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} class="transition-colors hover:text-primary">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <details class="relative group">
+        <summary class="flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 text-sm transition-colors hover:bg-base-200">
+          <span>{currentLanguage.name}</span>
+          <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+        </summary>
+        <ul class="absolute right-0 mt-2 w-44 space-y-1 rounded-lg border border-base-200 bg-base-100 p-2 text-sm shadow-lg">
+          {languageOptions.map((lang) => (
+            <li>
+              <a
+                href={buildLanguageUrl(lang.code)}
+                class={`block rounded-lg px-3 py-2 hover:bg-base-200 ${
+                  lang.code.toLowerCase() === normalizedLang ? "font-semibold" : ""
+                }`}
+              >
+                {lang.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+
+      {(config.appStoreLink || config.googlePlayLink) && (
+        <div class="flex items-center gap-2">
+          {config.appStoreLink && (
+            <a href={config.appStoreLink} aria-label={translations.nav.downloadAppStore}>
+              <img
+                src={`/stores/${languageFolder}/app-store.svg`}
+                alt={translations.alt.stores.appStore}
+                width="156"
+                height="56"
+                loading="lazy"
+                class="h-12 w-auto"
+              />
+            </a>
+          )}
+          {config.googlePlayLink && (
+            <a href={config.googlePlayLink} aria-label={translations.nav.downloadPlayStore}>
+              <img
+                src={`/stores/${languageFolder}/google-play.svg`}
+                alt={translations.alt.stores.googlePlay}
+                width="156"
+                height="56"
+                loading="lazy"
+                class="h-12 w-auto"
+              />
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</nav>

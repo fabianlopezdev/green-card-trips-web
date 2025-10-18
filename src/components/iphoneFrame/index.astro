@@ -1,0 +1,34 @@
+---
+const props = Astro.props as {
+  src: string;
+  altText?: string;
+};
+
+const {
+  src,
+  altText = "App screenshot",
+} = props;
+
+const basePath = src.endsWith(".webp") ? src.slice(0, -5) : src;
+---
+
+<div class="relative h-full overflow-hidden">
+  <div class="absolute inset-y-2 inset-x-2.5">
+    <img
+      srcset={`${basePath}-250.webp 250w, ${basePath}-298.webp 298w, ${basePath}-311.webp 311w, ${basePath}-327.webp 327w`}
+      sizes="(max-width: 768px) 311px, 298px"
+      src={`${basePath}-311.webp`}
+      loading="lazy"
+      alt={altText}
+      class="h-full w-full rounded-2xl object-cover"
+    />
+  </div>
+  <img
+    srcset="/misc/iphone-frame-sm.webp 252w, /misc/iphone-frame-md.webp 331w, /misc/iphone-frame-lg.webp 298w, /misc/iphone-frame-xl.webp 331w"
+    sizes="(max-width: 768px) 331px, 298px"
+    src="/misc/iphone-frame-md.webp"
+    loading="lazy"
+    alt="iPhone frame"
+    class="relative z-10 h-full"
+  />
+</div>
