@@ -6,19 +6,34 @@ interface Props {
   getAppLabel: string;
   downloadAppStoreLabel: string;
   downloadPlayStoreLabel: string;
+  currentLang?: string;
 }
 
-export default function AppStoreDropdown({ config, getAppLabel, downloadAppStoreLabel, downloadPlayStoreLabel }: Props) {
+export default function AppStoreDropdown({ config, getAppLabel, downloadAppStoreLabel, downloadPlayStoreLabel, currentLang = "en" }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { appStoreLink, googlePlayLink } = config;
+
+  // Map browser language to supported language folders
+  // Supported: en, es, tl, vi, zh-CN
+  const getLanguageFolder = (lang: string) => {
+    const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-CN'];
+    // If exact match, use it
+    if (supportedLanguages.includes(lang)) return lang;
+    // Otherwise try base language (e.g., en-US -> en)
+    const baseLang = lang.split('-')[0];
+    if (supportedLanguages.includes(baseLang)) return baseLang;
+    // Fallback to English
+    return 'en';
+  };
+  const languageFolder = getLanguageFolder(currentLang);
 
   // Don't show dropdown if neither link is available
   if (!appStoreLink && !googlePlayLink) return null;
 
   const stores = [
-    ...(appStoreLink ? [{ name: 'iOS', link: appStoreLink, icon: '/stores/app-store.svg', label: downloadAppStoreLabel }] : []),
-    ...(googlePlayLink ? [{ name: 'Android', link: googlePlayLink, icon: '/stores/google-play.svg', label: downloadPlayStoreLabel }] : []),
+    ...(appStoreLink ? [{ name: 'iOS', link: appStoreLink, icon: `/stores/${languageFolder}/app-store.svg`, label: downloadAppStoreLabel }] : []),
+    ...(googlePlayLink ? [{ name: 'Android', link: googlePlayLink, icon: `/stores/${languageFolder}/google-play.svg`, label: downloadPlayStoreLabel }] : []),
   ];
 
   return (

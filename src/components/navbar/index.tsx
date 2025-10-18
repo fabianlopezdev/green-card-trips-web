@@ -16,7 +16,7 @@ interface Props {
 }
 
 function Navbar({ config }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     name,
     showThemeSwitch,
@@ -24,6 +24,20 @@ function Navbar({ config }: Props) {
     googlePlayLink,
     appStoreLink,
   } = config;
+
+  // Map browser language to supported language folders
+  // Supported: en, es, tl, vi, zh-CN
+  const getLanguageFolder = (lang: string) => {
+    const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-CN'];
+    // If exact match, use it
+    if (supportedLanguages.includes(lang)) return lang;
+    // Otherwise try base language (e.g., en-US -> en)
+    const baseLang = lang.split('-')[0];
+    if (supportedLanguages.includes(baseLang)) return baseLang;
+    // Fallback to English
+    return 'en';
+  };
+  const languageFolder = getLanguageFolder(i18n.language);
 
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
   const [targetWidth, setTargetWidth] = useState("91%");
@@ -127,6 +141,7 @@ function Navbar({ config }: Props) {
               getAppLabel={t("nav.getApp")}
               downloadAppStoreLabel={t("nav.downloadAppStore")}
               downloadPlayStoreLabel={t("nav.downloadPlayStore")}
+              currentLang={i18n.language}
             />
           )}
         </div>
@@ -186,14 +201,14 @@ function Navbar({ config }: Props) {
             {googlePlayLink && (
               <li>
                 <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadPlayStore")}>
-                  <img className="h-14" width={156} height={56} loading="lazy" src="/stores/google-play.svg" alt="Download on Google Play" />
+                  <img className="h-14" width={156} height={56} loading="lazy" src={`/stores/${languageFolder}/google-play.svg`} alt="Download on Google Play" />
                 </a>
               </li>
             )}
             {appStoreLink && (
               <li>
                 <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label={t("nav.downloadAppStore")}>
-                  <img className="h-14" width={156} height={56} loading="lazy" src="/stores/app-store.svg" alt="Download on the App Store" />
+                  <img className="h-14" width={156} height={56} loading="lazy" src={`/stores/${languageFolder}/app-store.svg`} alt="Download on the App Store" />
                 </a>
               </li>
             )}

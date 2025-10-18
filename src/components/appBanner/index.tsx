@@ -95,7 +95,7 @@ function AppBanner({ config, translations, currentLang = "en" }: Props) {
                       height={56}
                       loading="lazy"
                       alt="google play logo"
-                      src="/stores/google-play.svg"
+                      src={`/stores/${languageFolder}/google-play.svg`}
                     />
                   </a>
                 </li>
@@ -109,7 +109,7 @@ function AppBanner({ config, translations, currentLang = "en" }: Props) {
                       height={56}
                       loading="lazy"
                       alt="app store logo"
-                      src="/stores/app-store.svg"
+                      src={`/stores/${languageFolder}/app-store.svg`}
                     />
                   </a>
                 </li>
