@@ -37,9 +37,13 @@ const steps = howItWorks.steps.map((step, i) => ({
   id={howItWorks.id}
   class="mx-auto max-w-screen-lg px-4 py-12"
   aria-label="How the app works"
+  data-interactive="animations"
 >
   <div class="prose prose-lg mb-12 flex max-w-none flex-col items-center text-center">
     <h2 class="mb-3 font-normal">{translations.howItWorks.title}</h2>
+    <div class="h-2 w-[200px] overflow-hidden rounded-full bg-gradient-to-r from-primary to-secondary md:w-[350px]">
+      <span class="block h-full w-full bg-white/20"></span>
+    </div>
     <p class="max-w-lg text-md text-base-content/70">{translations.howItWorks.subtitle}</p>
   </div>
 
@@ -52,11 +56,21 @@ const steps = howItWorks.steps.map((step, i) => ({
       const isEven = index % 2 === 0;
 
       return (
-        <article class={`relative flex flex-col items-center gap-12 rounded-3xl bg-base-200/40 px-8 pb-8 pt-3 md:flex-row md:pt-8 ${isEven ? "md:flex-row-reverse" : ""}`}>
+        <article
+          class={`relative flex flex-col items-center gap-12 rounded-3xl bg-base-200/40 px-8 pb-8 pt-3 md:flex-row md:pt-8 ${isEven ? "md:flex-row-reverse" : ""}`}
+          data-animate="slide-up"
+          data-threshold="0.2"
+          data-once="true"
+        >
           {index < steps.length - 1 && (
             <>
               <!-- Desktop: Alternating swirl arrows -->
-              <div class="absolute -bottom-44 left-1/2 hidden w-48 -translate-x-1/2 text-primary md:block">
+              <div
+                class="absolute -bottom-44 left-1/2 hidden w-48 -translate-x-1/2 text-primary md:block"
+                data-animate="scale-in"
+                data-threshold="0.5"
+                data-once="true"
+              >
                 {isEven ? (
                   <!-- SwirlArrowBottomRight -->
                   <svg viewBox="0 0 512 442.137">
@@ -85,7 +99,12 @@ const steps = howItWorks.steps.map((step, i) => ({
               </div>
 
               <!-- Mobile: Simple down arrow -->
-              <div class="absolute -bottom-48 left-1/2 w-16 -translate-x-1/2 text-primary md:hidden">
+              <div
+                class="absolute -bottom-48 left-1/2 w-16 -translate-x-1/2 text-primary md:hidden"
+                data-animate="scale-in"
+                data-threshold="0.5"
+                data-once="true"
+              >
                 <svg fill-rule="evenodd" viewBox="0 0 190 511.232">
                   <path
                     fill="currentColor"

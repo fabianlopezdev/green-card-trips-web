@@ -77,7 +77,7 @@
     "title": "Simple, Transparent Pricing",
     "subtitle": "One-time purchase. Lifetime clarity.",
     "price": "$4.99",
-    "cta": "Download Now",
+    "cta": "Download",
     "features": [
       "Unlimited trip tracking",
       "Trip impact simulator",
@@ -132,7 +132,7 @@
   "appBanner": {
     "title": "Ready to Take Control of Your Citizenship Journey?",
     "subtitle": "Join other green card holders who use Green Card Trips to stay compliant, confident, and in control of their travel history.",
-    "cta": "Download Now"
+    "cta": "Download"
   },
   "footer": {
     "description": "Green Card Trips helps U.S. green card holders track physical presence and manage their path to citizenship with confidence.",

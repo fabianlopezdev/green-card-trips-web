@@ -133,6 +133,15 @@ html.lenis body {
   transform: translateX(-100px);
 }
 
+/* Scale in animation */
+.animate-scale-in {
+  transform: scale(1);
+}
+
+.animate-scale-in.animate-hidden {
+  transform: scale(0.6);
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .animate-visible,
