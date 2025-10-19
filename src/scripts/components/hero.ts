@@ -100,7 +100,7 @@ function initScreenshotTransitions(
   root: HTMLElement,
   events: ReturnType<typeof createEventManager>
 ): void {
-  const scrollContainer = root.querySelector<HTMLElement>("[data-hero-scroll-container]");
+  const scrollContainer = root.querySelector<HTMLElement>("[data-hero-phone-container]");
   const screenshots = root.querySelectorAll<HTMLImageElement>("[data-hero-screenshot]");
 
   if (!scrollContainer || screenshots.length === 0) {
@@ -190,7 +190,7 @@ function initScreenshotTransitions(
  * - Parallax scroll effect on container
  */
 function initGradientBlobs(root: HTMLElement, events: ReturnType<typeof createEventManager>): void {
-  const scrollContainer = root.querySelector<HTMLElement>("[data-hero-scroll-container]");
+  const scrollContainer = root.querySelector<HTMLElement>("[data-hero-phone-container]");
   const blobsContainer = root.querySelector<HTMLElement>("[data-hero-blobs]");
   const blobs = root.querySelectorAll<HTMLElement>("[data-hero-blob]");
 
