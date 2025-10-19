@@ -2,7 +2,6 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import defaultTemplateConfig from "@utils/config";
 import { generateBreadcrumbSchema } from "@utils/structuredData";
-import AppBanner from "@components/appBanner/index.astro";
 import CookiesPolicyContent from "@modules/cookiesPolicy/index.astro";
 import { getLegalEntry } from "@modules/legal/getLegalEntry";
 import enTranslations from "@i18n/locales/en.json";
@@ -30,5 +29,4 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
 
   <CookiesPolicyContent currentLang="en" />
-  <AppBanner config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
 </BaseLayout>

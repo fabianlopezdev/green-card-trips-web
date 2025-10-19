@@ -9,7 +9,6 @@ import HowItWorks from "@modules/home/_components/howItWorks/howItWorks.astro"
 import Pricing from "@modules/home/_components/pricing/pricing.astro"
 import Testimonials from "@modules/home/_components/testimonials/index.astro"
 import Faq from "@modules/home/_components/faq/faq.astro"
-import AppBanner from "@components/appBanner/index.astro"
 import enTranslations from "@i18n/locales/en.json"
 
 // Generate FAQPage schema with actual FAQ content from translations
@@ -44,11 +43,10 @@ const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUr
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
 
   <Header config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-  <Partners config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+  <!-- <Partners config={defaultTemplateConfig} translations={enTranslations} currentLang="en" /> -->
   <Features config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
   <HowItWorks config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
   <Pricing config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-  <Testimonials config={defaultTemplateConfig} />
+  <!-- <Testimonials config={defaultTemplateConfig} /> -->
   <Faq config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-  <AppBanner config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
 </BaseLayout>

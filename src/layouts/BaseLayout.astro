@@ -11,6 +11,7 @@ import {
 import CookieConsentBanner from "@components/cookieConsent/index.astro";
 import GoogleAnalytics from "@components/googleAnalytics/index.astro";
 import Header from "@components/header/index.astro";
+import AppBanner from "@components/appBanner/index.astro";
 import Footer from "@components/footer/index.astro";
 import enTranslations from "@i18n/locales/en.json";
 
@@ -18,11 +19,12 @@ interface Props extends TemplateConfig {
   currentLang?: string;
   translations?: TranslationObject;
   showHeader?: boolean;
+  showAppBanner?: boolean;
   showFooter?: boolean;
 }
 
 const config = Astro.props as Props;
-const { backgroundGrid, seo, theme, forceTheme, currentLang, translations, showHeader = true, showFooter = true } = config;
+const { backgroundGrid, seo, theme, forceTheme, currentLang, translations, showHeader = true, showAppBanner = true, showFooter = true } = config;
 
 // Use provided translations or fallback to English
 const activeTranslations = translations || enTranslations;
@@ -248,6 +250,8 @@ const languageUrls = supportedLanguages.map(lang => {
     <main id="main">
       <slot />
     </main>
+
+    {showAppBanner && <AppBanner config={config} translations={activeTranslations} currentLang={htmlLang} />}
 
     {showFooter && <Footer config={config} translations={activeTranslations} currentLang={htmlLang} legalUrls={legalUrls} />}
 

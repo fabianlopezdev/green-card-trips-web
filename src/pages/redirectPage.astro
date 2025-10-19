@@ -9,7 +9,7 @@ const redirectScript = `import("${redirectModuleUrl}").then((module) => module.r
 })}));`;
 ---
 
-<BaseLayout {...defaultTemplateConfig} showHeader={false} showFooter={false}>
+<BaseLayout {...defaultTemplateConfig} showHeader={false} showAppBanner={false} showFooter={false}>
   <main class="flex h-screen w-screen flex-col items-center justify-center gap-4">
     <span class="loading loading-dots w-16" aria-hidden="true"></span>
     <h2 class="max-w-xs text-center md:max-w-md">

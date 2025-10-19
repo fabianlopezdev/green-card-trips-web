@@ -10,7 +10,6 @@ import HowItWorks from "@modules/home/_components/howItWorks/howItWorks.astro";
 import Pricing from "@modules/home/_components/pricing/pricing.astro";
 import Testimonials from "@modules/home/_components/testimonials/index.astro";
 import Faq from "@modules/home/_components/faq/faq.astro";
-import AppBanner from "@components/appBanner/index.astro";
 
 export function getStaticPaths() {
   const languages = getSupportedLanguages();
@@ -68,5 +67,4 @@ const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUr
   <Pricing config={defaultTemplateConfig} translations={translations} currentLang={lang} />
   <Testimonials config={defaultTemplateConfig} />
   <Faq config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-  <AppBanner config={defaultTemplateConfig} translations={translations} currentLang={lang} />
 </BaseLayout>
