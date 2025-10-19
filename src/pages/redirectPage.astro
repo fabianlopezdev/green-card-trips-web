@@ -1,5 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import defaultTemplateConfig from "@utils/config";
 import redirectModuleUrl from "@modules/app/redirect.client.ts?url";
 
@@ -9,7 +9,7 @@ const redirectScript = `import("${redirectModuleUrl}").then((module) => module.r
 })}));`;
 ---
 
-<Layout {...defaultTemplateConfig}>
+<BaseLayout {...defaultTemplateConfig} showHeader={false} showFooter={false}>
   <main class="flex h-screen w-screen flex-col items-center justify-center gap-4">
     <span class="loading loading-dots w-16" aria-hidden="true"></span>
     <h2 class="max-w-xs text-center md:max-w-md">
@@ -17,4 +17,4 @@ const redirectScript = `import("${redirectModuleUrl}").then((module) => module.r
     </h2>
   </main>
   <script is:inline type="module" set:html={redirectScript} />
-</Layout>
+</BaseLayout>

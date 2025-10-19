@@ -10,14 +10,22 @@ import {
 } from "@utils/structuredData";
 import CookieConsentBanner from "@components/cookieConsent/index.astro";
 import GoogleAnalytics from "@components/googleAnalytics/index.astro";
+import Header from "@components/header/index.astro";
+import Footer from "@components/footer/index.astro";
+import enTranslations from "@i18n/locales/en.json";
 
 interface Props extends TemplateConfig {
   currentLang?: string;
   translations?: TranslationObject;
+  showHeader?: boolean;
+  showFooter?: boolean;
 }
 
 const config = Astro.props as Props;
-const { backgroundGrid, seo, theme, forceTheme, currentLang, translations } = config;
+const { backgroundGrid, seo, theme, forceTheme, currentLang, translations, showHeader = true, showFooter = true } = config;
+
+// Use provided translations or fallback to English
+const activeTranslations = translations || enTranslations;
 
 // For new language routes, use translations; for old routes, use config seo
 const pageSeo = translations ? {
@@ -69,6 +77,19 @@ const getCurrentPathInfo = () => {
 };
 
 const pathInfo = getCurrentPathInfo();
+
+// Generate legal page URLs based on current language
+const legalUrls = htmlLang === 'en'
+  ? {
+      termsAndConditions: '/terms-and-conditions',
+      privacyPolicy: '/privacy-policy',
+      cookiesPolicy: '/cookies-policy',
+    }
+  : {
+      termsAndConditions: `/${htmlLang}/${getLegalPageSlug('terms-and-conditions', htmlLang)}`,
+      privacyPolicy: `/${htmlLang}/${getLegalPageSlug('privacy-policy', htmlLang)}`,
+      cookiesPolicy: `/${htmlLang}/${getLegalPageSlug('cookies-policy', htmlLang)}`,
+    };
 
 // Generate language-specific URLs
 const languageUrls = supportedLanguages.map(lang => {
@@ -221,9 +242,14 @@ const languageUrls = supportedLanguages.map(lang => {
       Skip to main content
     </a>
     {backgroundGrid && <div class="backgroundGrid" />}
-    
-    <slot />
 
+    {showHeader && <Header config={config} translations={activeTranslations} currentLang={htmlLang} />}
+
+    <main id="main">
+      <slot />
+    </main>
+
+    {showFooter && <Footer config={config} translations={activeTranslations} currentLang={htmlLang} legalUrls={legalUrls} />}
 
   </body>
 </html>

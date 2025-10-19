@@ -1,8 +1,6 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import defaultTemplateConfig from "@utils/config";
-import Navbar from "@components/navbar/index.astro";
-import Footer from "@components/footer/index.astro";
 import { getLegalPageSlug } from "@utils/serverI18n";
 
 // Import all translation files
@@ -42,7 +40,7 @@ const translationsMap: Record<string, typeof enTranslations> = {
 };
 const translations = translationsMap[currentLang] || enTranslations;
 
-// Generate language-specific legal page URLs
+// Generate language-specific legal page URLs for the page content links
 const legalUrls = {
   termsAndConditions: langPrefix + (currentLang === 'en' ? '/terms-and-conditions' : '/' + getLegalPageSlug('terms-and-conditions', currentLang)),
   privacyPolicy: langPrefix + (currentLang === 'en' ? '/privacy-policy' : '/' + getLegalPageSlug('privacy-policy', currentLang)),
@@ -56,13 +54,9 @@ const notFoundSeo = {
 };
 ---
 
-<Layout {...defaultTemplateConfig} seo={notFoundSeo} currentLang={currentLang} translations={translations}>
+<BaseLayout {...defaultTemplateConfig} seo={notFoundSeo} currentLang={currentLang} translations={translations}>
   <!-- Prevent indexing of 404 page -->
   <meta name="robots" content="noindex, nofollow" slot="head" />
-
-  
-  <main id="main">
-    <Navbar config={defaultTemplateConfig} translations={translations} currentLang={currentLang} />
     <div class="container mx-auto px-4 pt-32 pb-24 md:pt-40 md:pb-32 min-h-[80vh] flex items-center justify-center">
       <div class="max-w-3xl mx-auto text-center w-full">
       <!-- 404 Error -->
@@ -142,6 +136,4 @@ const notFoundSeo = {
       </div>
     </div>
     </div>
-    <Footer config={defaultTemplateConfig} translations={translations} currentLang={currentLang} legalUrls={legalUrls} />
-  </main>
-</Layout>
+</BaseLayout>

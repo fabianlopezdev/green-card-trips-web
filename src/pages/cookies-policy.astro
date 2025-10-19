@@ -1,20 +1,11 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import defaultTemplateConfig from "@utils/config";
 import { generateBreadcrumbSchema } from "@utils/structuredData";
-import Navbar from "@components/navbar/index.astro";
 import AppBanner from "@components/appBanner/index.astro";
-import Footer from "@components/footer/index.astro";
 import CookiesPolicyContent from "@modules/cookiesPolicy/index.astro";
 import { getLegalEntry } from "@modules/legal/getLegalEntry";
 import enTranslations from "@i18n/locales/en.json";
-
-// English legal page URLs (at root level)
-const legalUrls = {
-  termsAndConditions: '/terms-and-conditions',
-  privacyPolicy: '/privacy-policy',
-  cookiesPolicy: '/cookies-policy',
-};
 
 // Generate site URL for breadcrumbs
 const siteUrl = Astro.site || new URL(Astro.url.origin);
@@ -29,18 +20,15 @@ const breadcrumbs = [
 const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 ---
 
-<Layout
+<BaseLayout
   {...defaultTemplateConfig}
   seo={cookiesEntry.data.seo}
+  currentLang="en"
+  translations={enTranslations}
 >
   <!-- BreadcrumbList Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
 
-  
-  <main id="main">
-    <Navbar config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <CookiesPolicyContent currentLang="en" />
-    <AppBanner config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <Footer config={defaultTemplateConfig} translations={enTranslations} currentLang="en" legalUrls={legalUrls} />
-  </main>
-</Layout>
+  <CookiesPolicyContent currentLang="en" />
+  <AppBanner config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+</BaseLayout>

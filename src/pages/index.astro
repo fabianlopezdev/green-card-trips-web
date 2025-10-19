@@ -1,8 +1,7 @@
 ---
-import Layout from "@layouts/Layout.astro"
+import BaseLayout from "@layouts/BaseLayout.astro"
 import defaultTemplateConfig from "@utils/config"
 import { generateFAQPageSchema, generateReviewSchema, generateProductSchema } from "@utils/structuredData"
-import Navbar from "@components/navbar/index.astro"
 import Header from "@modules/home/_components/header/index.astro"
 import Partners from "@modules/home/_components/partners/partners.astro"
 import Features from "@modules/home/_components/features/features.astro"
@@ -11,15 +10,7 @@ import Pricing from "@modules/home/_components/pricing/pricing.astro"
 import Testimonials from "@modules/home/_components/testimonials/index.astro"
 import Faq from "@modules/home/_components/faq/faq.astro"
 import AppBanner from "@components/appBanner/index.astro"
-import Footer from "@components/footer/index.astro"
 import enTranslations from "@i18n/locales/en.json"
-
-// English legal page URLs (at root level)
-const legalUrls = {
-  termsAndConditions: '/terms-and-conditions',
-  privacyPolicy: '/privacy-policy',
-  cookiesPolicy: '/cookies-policy',
-};
 
 // Generate FAQPage schema with actual FAQ content from translations
 const faqs = [
@@ -40,7 +31,7 @@ const currentPageUrl = new URL(Astro.url.pathname, siteUrl).href;
 const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUrl);
 ---
 
-<Layout {...defaultTemplateConfig}>
+<BaseLayout {...defaultTemplateConfig} currentLang="en" translations={enTranslations}>
   <!-- FAQPage Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
 
@@ -52,19 +43,12 @@ const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUr
   <!-- Product Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
 
-  
-  <header>
-    <Navbar config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-  </header>
-  <main id="main">
-    <Header config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <Partners config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <Features config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <HowItWorks config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <Pricing config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <Testimonials config={defaultTemplateConfig} />
-    <Faq config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <AppBanner config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
-    <Footer config={defaultTemplateConfig} translations={enTranslations} currentLang="en" legalUrls={legalUrls} />
-  </main>
-</Layout>
+  <Header config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+  <Partners config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+  <Features config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+  <HowItWorks config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+  <Pricing config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+  <Testimonials config={defaultTemplateConfig} />
+  <Faq config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+  <AppBanner config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+</BaseLayout>

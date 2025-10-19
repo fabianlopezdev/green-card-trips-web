@@ -1,11 +1,9 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import defaultTemplateConfig from "@utils/config";
 import { getTranslations, getSupportedLanguages, legalPageSlugs, type LegalPageKey } from "@utils/serverI18n";
 import { generateBreadcrumbSchema } from "@utils/structuredData";
-import Navbar from "@components/navbar/index.astro";
 import AppBanner from "@components/appBanner/index.astro";
-import Footer from "@components/footer/index.astro";
 import PrivacyPolicyContent from "@modules/privacyPolicy/index.astro";
 import TermsAndConditionsContent from "@modules/termsAndConditions/index.astro";
 import CookiesPolicyContent from "@modules/cookiesPolicy/index.astro";
@@ -42,13 +40,6 @@ const { pageKey, translations } = Astro.props;
 const legalEntry = await getLegalEntry(pageKey, lang);
 const seo = legalEntry.data.seo;
 
-// Generate language-specific legal page URLs
-const legalUrls = {
-  termsAndConditions: `/${lang}/${legalPageSlugs['terms-and-conditions'][lang as keyof typeof legalPageSlugs['terms-and-conditions']]}`,
-  privacyPolicy: `/${lang}/${legalPageSlugs['privacy-policy'][lang as keyof typeof legalPageSlugs['privacy-policy']]}`,
-  cookiesPolicy: `/${lang}/${legalPageSlugs['cookies-policy'][lang as keyof typeof legalPageSlugs['cookies-policy']]}`,
-};
-
 // Generate site URL for breadcrumbs
 const siteUrl = Astro.site || new URL(Astro.url.origin);
 
@@ -62,7 +53,7 @@ const breadcrumbs = [
 const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 ---
 
-<Layout
+<BaseLayout
   {...defaultTemplateConfig}
   seo={seo}
   currentLang={lang}
@@ -71,19 +62,14 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   <!-- BreadcrumbList Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
 
-  
-  <main id="main">
-    <Navbar config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    {pageKey === 'privacy-policy' && (
-      <PrivacyPolicyContent currentLang={lang} />
-    )}
-    {pageKey === 'terms-and-conditions' && (
-      <TermsAndConditionsContent currentLang={lang} />
-    )}
-    {pageKey === 'cookies-policy' && (
-      <CookiesPolicyContent currentLang={lang} />
-    )}
-    <AppBanner config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-    <Footer config={defaultTemplateConfig} translations={translations} currentLang={lang} legalUrls={legalUrls} />
-  </main>
-</Layout>
+  {pageKey === 'privacy-policy' && (
+    <PrivacyPolicyContent currentLang={lang} />
+  )}
+  {pageKey === 'terms-and-conditions' && (
+    <TermsAndConditionsContent currentLang={lang} />
+  )}
+  {pageKey === 'cookies-policy' && (
+    <CookiesPolicyContent currentLang={lang} />
+  )}
+  <AppBanner config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+</BaseLayout>
