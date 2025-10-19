@@ -76,3 +76,84 @@ html.lenis body {
     ),
     linear-gradient(to right, rgba(200, 200, 200, 0.03) 1px, transparent 1px);
 }
+
+/* ============================================================================
+   Scroll Animation Classes
+   Used by src/scripts/components/animations.ts
+   ============================================================================ */
+
+/* Base animation states */
+.animate-hidden {
+  opacity: 0;
+}
+
+.animate-visible {
+  opacity: 1;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Fade in animation */
+.animate-fade-in {
+  opacity: 1;
+}
+
+/* Slide up animation */
+.animate-slide-up {
+  transform: translateY(0);
+}
+
+.animate-slide-up.animate-hidden {
+  transform: translateY(50px);
+}
+
+/* Slide down animation */
+.animate-slide-down {
+  transform: translateY(0);
+}
+
+.animate-slide-down.animate-hidden {
+  transform: translateY(-50px);
+}
+
+/* Slide left animation */
+.animate-slide-left {
+  transform: translateX(0);
+}
+
+.animate-slide-left.animate-hidden {
+  transform: translateX(100px);
+}
+
+/* Slide right animation */
+.animate-slide-right {
+  transform: translateX(0);
+}
+
+.animate-slide-right.animate-hidden {
+  transform: translateX(-100px);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-visible,
+  .animate-hidden {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================================
+   Theme Transition
+   Used by src/scripts/components/theme.ts
+   ============================================================================ */
+
+/* Smooth theme transition */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.3s ease-in-out,
+              color 0.3s ease-in-out,
+              border-color 0.3s ease-in-out !important;
+}

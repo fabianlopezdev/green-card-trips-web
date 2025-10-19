@@ -69,7 +69,7 @@ const currentLanguage =
   languageOptions[0];
 ---
 
-<header class="pointer-events-none">
+<header class="pointer-events-none" data-interactive="header" data-sticky="true">
   <nav class="fixed left-0 right-0 top-4 z-50 flex justify-center px-4">
     <div class="relative w-full max-w-screen-lg pointer-events-auto">
       <div class="pointer-events-none absolute inset-0 -z-[1] rounded-full border border-base-200/60 bg-base-100/95 shadow-xl backdrop-blur supports-[backdrop-filter]:bg-base-100/80"></div>
@@ -85,7 +85,7 @@ const currentLanguage =
           </a>
         </div>
 
-        <details class="relative flex-shrink-0 nav:hidden">
+        <details class="relative flex-shrink-0 nav:hidden" data-mobile-menu>
           <summary class="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-base-300 text-base-content transition-colors hover:bg-base-200">
             <span class="sr-only">{translations.nav.openMenu}</span>
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -98,6 +98,7 @@ const currentLanguage =
               type="button"
               class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-base-300 text-base-content transition hover:bg-base-200"
               aria-label="Toggle theme"
+              data-theme-toggle
               >
                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -106,7 +107,7 @@ const currentLanguage =
             </div>
             <nav aria-label="Mobile navigation" class="flex flex-col gap-2 text-lg font-medium text-base-content">
               {navItems.map((item) => (
-                <a href={item.href} class="rounded-2xl px-4 py-3 text-center whitespace-nowrap transition hover:bg-base-200">
+                <a href={item.href} class="rounded-2xl px-4 py-3 text-center whitespace-nowrap transition hover:bg-base-200" data-nav-link>
                   {item.label}
                 </a>
               ))}
@@ -176,6 +177,7 @@ const currentLanguage =
                 <a
                   href={item.href}
                   class="inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-sm font-medium text-base-content transition duration-300 hover:bg-neutral-200 hover:text-primary whitespace-nowrap"
+                  data-nav-link
                 >
                   {item.label}
                 </a>
@@ -214,6 +216,7 @@ const currentLanguage =
               type="button"
               class="inline-flex h-7 w-7 p-1.5 items-center justify-center rounded-full text-base-content transition duration-300 hover:bg-neutral-200 hover:text-primary"
               aria-label="Toggle theme"
+              data-theme-toggle
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>

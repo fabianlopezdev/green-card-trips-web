@@ -51,6 +51,8 @@ const websiteSchema = generateWebSiteSchema(config, currentPageUrl);
 const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-cn'];
 const lenisModuleUrl = new URL("./components/initScripts/lenis-init.ts", import.meta.url);
 const lenisScript = `import("${lenisModuleUrl.href}");`;
+const interactivityModuleUrl = new URL("./components/initScripts/interactivity-init.ts", import.meta.url);
+const interactivityScript = `import("${interactivityModuleUrl.href}");`;
 
 // Get the current path without language prefix and detect if it's a legal page
 const getCurrentPathInfo = () => {
@@ -236,6 +238,7 @@ const languageUrls = supportedLanguages.map(lang => {
     <GoogleAnalytics trackingId={config.googleAnalytics} />
     
     <script is:inline type="module" set:html={lenisScript} />
+    <script is:inline type="module" set:html={interactivityScript} />
     <!-- Skip to main content link for keyboard accessibility -->
     <a
       href="#main"
