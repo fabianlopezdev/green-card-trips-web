@@ -1,12 +1,12 @@
 ---
-import { getLegalEntry } from "@modules/legal/getLegalEntry";
+import { getLegalEntry } from "@utils/getLegalEntry";
 
 interface Props {
   currentLang?: string;
 }
 
 const { currentLang = "en" } = Astro.props as Props;
-const entry = await getLegalEntry("cookies-policy", currentLang);
+const entry = await getLegalEntry("terms-and-conditions", currentLang);
 const { Content } = await entry.render();
 ---
 

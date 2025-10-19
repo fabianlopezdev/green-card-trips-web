@@ -6,7 +6,6 @@
     "resolveJsonModule": true,
     "baseUrl": "./src",
     "paths": {
-      "@modules/*": ["modules/*"],
       "@styles/*": ["styles/*"],
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],

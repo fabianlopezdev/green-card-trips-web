@@ -1,4 +1,4 @@
-import { EU_COUNTRIES, getCookie } from "@components/cookieConsent/config";
+import { EU_COUNTRIES, getCookie } from "@components/ui/CookieConsent/config";
 
 type ConsentStatus = "granted" | "denied";
 

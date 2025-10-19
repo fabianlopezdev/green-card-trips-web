@@ -8,11 +8,11 @@ import {
   generateOrganizationSchema,
   generateWebSiteSchema,
 } from "@utils/structuredData";
-import CookieConsentBanner from "@components/cookieConsent/index.astro";
-import GoogleAnalytics from "@components/googleAnalytics/index.astro";
-import Header from "@components/header/index.astro";
-import AppBanner from "@components/appBanner/index.astro";
-import Footer from "@components/footer/index.astro";
+import CookieConsentBanner from "@components/ui/CookieConsent/CookieConsent.astro";
+import GoogleAnalytics from "@components/ui/GoogleAnalytics/GoogleAnalytics.astro";
+import Header from "@components/layout/Header/Header.astro";
+import AppBanner from "@components/layout/AppBanner/AppBanner.astro";
+import Footer from "@components/layout/Footer/Footer.astro";
 import enTranslations from "@i18n/locales/en.json";
 
 interface Props extends TemplateConfig {
@@ -49,9 +49,9 @@ const mobileAppSchema = generateMobileApplicationSchema(config, currentPageUrl);
 const organizationSchema = generateOrganizationSchema(config, currentPageUrl);
 const websiteSchema = generateWebSiteSchema(config, currentPageUrl);
 const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-cn'];
-const lenisModuleUrl = new URL("./components/initScripts/lenis-init.ts", import.meta.url);
+const lenisModuleUrl = new URL("./components/ui/initScripts/lenis-init.ts", import.meta.url);
 const lenisScript = `import("${lenisModuleUrl.href}");`;
-const interactivityModuleUrl = new URL("./components/initScripts/interactivity-init.ts", import.meta.url);
+const interactivityModuleUrl = new URL("./components/ui/initScripts/interactivity-init.ts", import.meta.url);
 const interactivityScript = `import("${interactivityModuleUrl.href}");`;
 
 // Get the current path without language prefix and detect if it's a legal page

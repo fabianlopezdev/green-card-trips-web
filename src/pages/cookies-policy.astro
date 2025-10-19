@@ -2,8 +2,8 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import defaultTemplateConfig from "@utils/config";
 import { generateBreadcrumbSchema } from "@utils/structuredData";
-import CookiesPolicyContent from "@modules/cookiesPolicy/index.astro";
-import { getLegalEntry } from "@modules/legal/getLegalEntry";
+import CookiesPolicyContent from "@components/legal/CookiesPolicy.astro";
+import { getLegalEntry } from "@utils/getLegalEntry";
 import enTranslations from "@i18n/locales/en.json";
 
 // Generate site URL for breadcrumbs
