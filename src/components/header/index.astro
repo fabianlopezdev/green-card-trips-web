@@ -3,6 +3,7 @@ import type { TemplateConfig } from "@utils/configType";
 import type { TranslationObject } from "@utils/serverI18n";
 import { getLegalPageKeyFromSlug, getLegalPageSlug } from "@utils/legalPageSlugs";
 import GreenCardLogoSimplified from "./GreenCardLogoSimplified.astro";
+import CtaButton from "@components/ctaButton/index.astro";
 
 interface Props {
   config: TemplateConfig;
@@ -68,146 +69,214 @@ const currentLanguage =
   languageOptions[0];
 ---
 
-<header>
-<nav class="border-b border-base-200 bg-base-100/95 backdrop-blur supports-[backdrop-filter]:bg-base-100/80">
-  <div class="mx-auto flex max-w-screen-lg items-center justify-between gap-4 px-4 py-4">
-    <a href={buildLanguageUrl(currentLanguage.code)} class="flex items-center gap-2 text-lg font-semibold text-base-content">
-      <GreenCardLogoSimplified class="h-10 w-auto" />
-      <span class="hidden sm:inline">{config.name}</span>
-    </a>
+<header class="pointer-events-none">
+  <nav class="fixed left-0 right-0 top-4 z-50 flex justify-center px-4">
+    <div class="relative w-full max-w-screen-lg pointer-events-auto">
+      <div class="pointer-events-none absolute inset-0 -z-[1] rounded-full border border-base-200/60 bg-base-100/95 shadow-xl backdrop-blur supports-[backdrop-filter]:bg-base-100/80"></div>
+      <div class="navbar relative px-3 py-0">
+        <div class="navbar-start flex-1 max-nav:flex-auto">
+          <a
+            href={buildLanguageUrl(currentLanguage.code)}
+            class="flex items-center gap-2 text-2xl font-medium text-base-content"
+            aria-label={translations.nav.homeLink}
+          >
+            <GreenCardLogoSimplified class="h-16 w-auto nav:h-12" />
+            <span class="font-logo tracking-[-0.01em]">{config.name}</span>
+          </a>
+        </div>
 
-    <details class="group relative w-full max-w-xs md:hidden">
-      <summary class="flex cursor-pointer items-center justify-between rounded-lg border border-base-300 px-3 py-2 text-sm font-medium text-base-content">
-        <span>{translations.nav.openMenu}</span>
-        <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m6 9 6 6 6-6"></path>
-        </svg>
-      </summary>
-      <div class="mt-3 space-y-4 rounded-lg border border-base-200 bg-base-100 p-4 shadow-md">
-        <ul class="flex flex-col gap-3 text-sm font-medium text-base-content">
-          {navItems.map((item) => (
-            <li>
-              <a href={item.href} class="block rounded-lg px-3 py-2 hover:bg-base-200">
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <details class="relative flex-shrink-0 nav:hidden">
+          <summary class="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-base-300 text-base-content transition-colors hover:bg-base-200">
+            <span class="sr-only">{translations.nav.openMenu}</span>
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M3 6h18M3 12h18M3 18h18"></path>
+            </svg>
+          </summary>
+        <div class="absolute left-1/2 top-[calc(100%+1rem)] z-20 w-[min(20rem,92vw)] -translate-x-1/2 space-y-6 rounded-3xl border border-base-200 bg-base-100 p-6 shadow-2xl">
+          <div class="flex justify-center">
+            <button
+              type="button"
+              class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-base-300 text-base-content transition hover:bg-base-200"
+              aria-label="Toggle theme"
+              >
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </button>
+            </div>
+            <nav aria-label="Mobile navigation" class="flex flex-col gap-2 text-lg font-medium text-base-content">
+              {navItems.map((item) => (
+                <a href={item.href} class="rounded-2xl px-4 py-3 text-center whitespace-nowrap transition hover:bg-base-200">
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+            <details class="relative group">
+              <summary class="flex cursor-pointer items-center justify-center gap-2 rounded-2xl px-4 py-3 text-base font-medium transition hover:bg-base-200" aria-label={translations.nav.language}>
+                <span class="inline-flex items-center gap-2">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m20.893 13.393-1.135-1.135a2.252 2.252 0 0 1-.421-.585l-1.08-2.16a.414.414 0 0 0-.663-.107.827.827 0 0 1-.812.21l-1.273-.363a.89.89 0 0 0-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.212.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 0 1-1.81 1.025 1.055 1.055 0 0 1-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.655-.261a2.25 2.25 0 0 1-1.383-2.46l.007-.042a2.25 2.25 0 0 1 .29-.787l.09-.15a2.25 2.25 0 0 1 2.37-1.048l1.178.236a1.125 1.125 0 0 0 1.302-.795l.208-.73a1.125 1.125 0 0 0-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 0 1-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 0 1-1.458-1.137l1.411-2.353a2.25 2.25 0 0 0 .286-.76m11.928 9.869A9 9 0 0 0 8.965 3.525m11.928 9.868A9 9 0 1 1 8.965 3.525"></path>
+                  </svg>
+                  <span>{currentLanguage.name}</span>
+                </span>
+                <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6"></path>
+                </svg>
+              </summary>
+              <ul class="mt-3 space-y-1 rounded-3xl border border-base-200 bg-base-100 p-2 text-base shadow-lg">
+                {languageOptions.map((lang) => (
+                  <li>
+                    <a
+                      href={buildLanguageUrl(lang.code)}
+                      class={`block rounded-2xl px-3 py-2 text-center transition hover:bg-base-200 ${
+                        lang.code.toLowerCase() === normalizedLang ? "font-semibold" : ""
+                      }`}
+                    >
+                      {lang.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+            {(config.appStoreLink || config.googlePlayLink) && (
+              <div class="flex flex-wrap items-center justify-center gap-3">
+                {config.googlePlayLink && (
+                  <a href={config.googlePlayLink} class="inline-flex justify-center" aria-label={translations.nav.downloadPlayStore}>
+                    <img
+                      src={`/stores/${languageFolder}/google-play.svg`}
+                      alt={translations.alt.stores.googlePlay}
+                      width="156"
+                      height="56"
+                      loading="lazy"
+                      class="h-14 w-auto"
+                    />
+                  </a>
+                )}
+                {config.appStoreLink && (
+                  <a href={config.appStoreLink} class="inline-flex justify-center" aria-label={translations.nav.downloadAppStore}>
+                    <img
+                      src={`/stores/${languageFolder}/app-store.svg`}
+                      alt={translations.alt.stores.appStore}
+                      width="156"
+                      height="56"
+                      loading="lazy"
+                      class="h-14 w-auto"
+                    />
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </details>
 
-        <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-base-content/60">
-            {translations.nav.language}
-          </p>
-          <ul class="space-y-1 text-sm">
-            {languageOptions.map((lang) => (
-              <li>
+        <div class="hidden flex-1 items-center justify-end text-sm font-medium text-base-content nav:flex">
+          <ul class="flex items-center px-1 whitespace-nowrap">
+            {navItems.map((item, index) => (
+              <li >
                 <a
-                  href={buildLanguageUrl(lang.code)}
-                  class={`block rounded-lg px-3 py-2 hover:bg-base-200 ${
-                    lang.code.toLowerCase() === normalizedLang ? "font-semibold" : ""
-                  }`}
+                  href={item.href}
+                  class="inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-sm font-medium text-base-content transition duration-300 hover:bg-neutral-200 hover:text-primary whitespace-nowrap"
                 >
-                  {lang.name}
+                  {item.label}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-
-        {(config.appStoreLink || config.googlePlayLink) && (
-          <div class="flex flex-col gap-3">
-            {config.appStoreLink && (
-              <a href={config.appStoreLink} class="flex items-center justify-center" aria-label={translations.nav.downloadAppStore}>
-                <img
-                  src={`/stores/${languageFolder}/app-store.svg`}
-                  alt={translations.alt.stores.appStore}
-                  width="156"
-                  height="56"
-                  loading="lazy"
-                  class="h-12 w-auto"
-                />
-              </a>
-            )}
-            {config.googlePlayLink && (
-              <a href={config.googlePlayLink} class="flex items-center justify-center" aria-label={translations.nav.downloadPlayStore}>
-                <img
-                  src={`/stores/${languageFolder}/google-play.svg`}
-                  alt={translations.alt.stores.googlePlay}
-                  width="156"
-                  height="56"
-                  loading="lazy"
-                  class="h-12 w-auto"
-                />
-              </a>
-            )}
+          <span aria-hidden="true" class="block h-6 w-px bg-base-300"></span>
+          <div class="hidden items-center pl-1 pr-2 xl:flex">
+            <details class="dropdown dropdown-end relative">
+              <summary class="inline-flex cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1.5 text-sm font-medium text-base-content transition duration-300 hover:bg-neutral-200 hover:text-primary focus:outline-none">
+                <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m20.893 13.393-1.135-1.135a2.252 2.252 0 0 1-.421-.585l-1.08-2.16a.414.414 0 0 0-.663-.107.827.827 0 0 1-.812.21l-1.273-.363a.89.89 0 0 0-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.212.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 0 1-1.81 1.025 1.055 1.055 0 0 1-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.655-.261a2.25 2.25 0 0 1-1.383-2.46l.007-.042a2.25 2.25 0 0 1 .29-.787l.09-.15a2.25 2.25 0 0 1 2.37-1.048l1.178.236a1.125 1.125 0 0 0 1.302-.795l.208-.73a1.125 1.125 0 0 0-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 0 1-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 0 1-1.458-1.137l1.411-2.353a2.25 2.25 0 0 0 .286-.76m11.928 9.869A9 9 0 0 0 8.965 3.525m11.928 9.868A9 9 0 1 1 8.965 3.525"></path>
+                </svg>
+                <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6"></path>
+                </svg>
+                <span class="sr-only">{currentLanguage.name}</span>
+                <span class="sr-only">{translations.nav.language}</span>
+              </summary>
+              <ul class="dropdown-content menu mt-2 w-44 space-y-1 rounded-xl border border-base-200 bg-base-100 p-2 text-sm shadow-lg">
+                {languageOptions.map((lang) => (
+                  <li>
+                    <a
+                      href={buildLanguageUrl(lang.code)}
+                      class={`rounded-lg px-3 py-2 transition hover:bg-base-200 ${
+                        lang.code.toLowerCase() === normalizedLang ? "font-semibold" : ""
+                      }`}
+                    >
+                      {lang.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+            <button
+              type="button"
+              class="inline-flex h-7 w-7 p-1.5 items-center justify-center rounded-full text-base-content transition duration-300 hover:bg-neutral-200 hover:text-primary"
+              aria-label="Toggle theme"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
           </div>
-        )}
-      </div>
-    </details>
 
-    <div class="hidden flex-1 items-center justify-end gap-6 text-sm font-medium text-base-content md:flex">
-      <ul class="flex items-center gap-6">
-        {navItems.map((item) => (
-          <li>
-            <a href={item.href} class="transition-colors hover:text-primary">
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <details class="relative group">
-        <summary class="flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 text-sm transition-colors hover:bg-base-200">
-          <span>{currentLanguage.name}</span>
-          <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 9 6 6 6-6"></path>
-          </svg>
-        </summary>
-        <ul class="absolute right-0 mt-2 w-44 space-y-1 rounded-lg border border-base-200 bg-base-100 p-2 text-sm shadow-lg">
-          {languageOptions.map((lang) => (
-            <li>
-              <a
-                href={buildLanguageUrl(lang.code)}
-                class={`block rounded-lg px-3 py-2 hover:bg-base-200 ${
-                  lang.code.toLowerCase() === normalizedLang ? "font-semibold" : ""
-                }`}
-              >
-                {lang.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </details>
-
-      {(config.appStoreLink || config.googlePlayLink) && (
-        <div class="flex items-center gap-2">
-          {config.appStoreLink && (
-            <a href={config.appStoreLink} aria-label={translations.nav.downloadAppStore}>
-              <img
-                src={`/stores/${languageFolder}/app-store.svg`}
-                alt={translations.alt.stores.appStore}
-                width="156"
-                height="56"
-                loading="lazy"
-                class="h-12 w-auto"
+          {config.googlePlayLink ? (
+            <details class="dropdown dropdown-end relative">
+              <CtaButton
+                variant="outline"
+                text={translations.nav.getApp}
+                as="summary"
               />
-            </a>
-          )}
-          {config.googlePlayLink && (
-            <a href={config.googlePlayLink} aria-label={translations.nav.downloadPlayStore}>
-              <img
-                src={`/stores/${languageFolder}/google-play.svg`}
-                alt={translations.alt.stores.googlePlay}
-                width="156"
-                height="56"
-                loading="lazy"
-                class="h-12 w-auto"
-              />
-            </a>
-          )}
+              <ul class="dropdown-content menu mt-2 w-48 space-y-2 rounded-xl border border-base-200 bg-base-100 p-3 shadow-lg">
+                {config.appStoreLink && (
+                  <li>
+                    <a
+                      href={config.appStoreLink}
+                      class="flex justify-center rounded-lg border border-base-300 px-3 py-2 hover:bg-base-200"
+                      aria-label={translations.nav.downloadAppStore}
+                    >
+                      <img
+                        src={`/stores/${languageFolder}/app-store.svg`}
+                        alt={translations.alt.stores.appStore}
+                        width="140"
+                        height="48"
+                        loading="lazy"
+                        class="h-12 w-auto"
+                      />
+                    </a>
+                  </li>
+                )}
+                <li>
+                  <a
+                    href={config.googlePlayLink}
+                    class="flex justify-center rounded-lg border border-base-300 px-3 py-2 hover:bg-base-200"
+                    aria-label={translations.nav.downloadPlayStore}
+                  >
+                    <img
+                      src={`/stores/${languageFolder}/google-play.svg`}
+                      alt={translations.alt.stores.googlePlay}
+                      width="140"
+                      height="48"
+                      loading="lazy"
+                      class="h-12 w-auto"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </details>
+          ) : config.appStoreLink ? (
+            <CtaButton
+              variant="outline"
+              href={config.appStoreLink}
+              text="Download"
+              showIcon={true}
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+          ) : null}
         </div>
-      )}
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 </header>
