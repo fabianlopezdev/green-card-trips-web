@@ -1,4 +1,4 @@
-import { getMobileOperatingSystem } from "utils/common";
+import { getMobileOperatingSystem } from "@utils/common";
 
 type Links = {
   appStoreLink?: string;

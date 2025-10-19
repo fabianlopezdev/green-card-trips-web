@@ -8,7 +8,11 @@
     "paths": {
       "@modules/*": ["modules/*"],
       "@styles/*": ["styles/*"],
-      "@components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@layouts/*": ["layouts/*"],
+      "@utils/*": ["utils/*"],
+      "@i18n/*": ["i18n/*"],
+      "@types/*": ["types/*"]
     }
   }
 }

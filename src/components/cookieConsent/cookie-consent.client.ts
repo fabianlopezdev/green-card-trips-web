@@ -1,10 +1,10 @@
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import { getConsentMode, getCookie } from "./config";
-import enLocale from "../../i18n/locales/en.json";
-import esLocale from "../../i18n/locales/es.json";
-import tlLocale from "../../i18n/locales/tl.json";
-import viLocale from "../../i18n/locales/vi.json";
-import zhCNLocale from "../../i18n/locales/zh-CN.json";
+import enLocale from "@i18n/locales/en.json";
+import esLocale from "@i18n/locales/es.json";
+import tlLocale from "@i18n/locales/tl.json";
+import viLocale from "@i18n/locales/vi.json";
+import zhCNLocale from "@i18n/locales/zh-CN.json";
 
 const log = {
   success: (msg: string, ...args: unknown[]) => {

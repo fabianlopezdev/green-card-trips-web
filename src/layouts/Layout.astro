@@ -1,13 +1,13 @@
 ---
 import "@styles/styles.scss";
-import type { TemplateConfig } from "utils/configType";
-import type { TranslationObject } from "utils/serverI18n";
-import { getLegalPageKeyFromSlug, getLegalPageSlug } from "utils/serverI18n";
+import type { TemplateConfig } from "@utils/configType";
+import type { TranslationObject } from "@utils/serverI18n";
+import { getLegalPageKeyFromSlug, getLegalPageSlug } from "@utils/serverI18n";
 import {
   generateMobileApplicationSchema,
   generateOrganizationSchema,
   generateWebSiteSchema,
-} from "utils/structuredData";
+} from "@utils/structuredData";
 import CookieConsentBanner from "@components/cookieConsent/index.astro";
 import GoogleAnalytics from "@components/googleAnalytics/index.astro";
 
@@ -221,6 +221,7 @@ const languageUrls = supportedLanguages.map(lang => {
       Skip to main content
     </a>
     {backgroundGrid && <div class="backgroundGrid" />}
+    
     <slot />
 
 

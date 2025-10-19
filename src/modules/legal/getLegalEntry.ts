@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import type { LegalPageKey } from "../../utils/serverI18n";
+import type { LegalPageKey } from "@utils/serverI18n";
 
 type LegalEntry = CollectionEntry<"legal">;
 

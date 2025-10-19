@@ -1,13 +1,13 @@
 ---
-import Layout from "Layout.astro";
-import defaultTemplateConfig from "utils/config";
-import { generateBreadcrumbSchema } from "utils/structuredData";
-import Navbar from "../components/navbar/index.astro";
-import AppBanner from "../components/appBanner/index.astro";
-import Footer from "../components/footer/index.astro";
+import Layout from "@layouts/Layout.astro";
+import defaultTemplateConfig from "@utils/config";
+import { generateBreadcrumbSchema } from "@utils/structuredData";
+import Navbar from "@components/navbar/index.astro";
+import AppBanner from "@components/appBanner/index.astro";
+import Footer from "@components/footer/index.astro";
 import CookiesPolicyContent from "@modules/cookiesPolicy/index.astro";
 import { getLegalEntry } from "@modules/legal/getLegalEntry";
-import enTranslations from "../i18n/locales/en.json";
+import enTranslations from "@i18n/locales/en.json";
 
 // English legal page URLs (at root level)
 const legalUrls = {

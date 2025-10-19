@@ -1,18 +1,18 @@
 ---
-import Layout from "Layout.astro";
-import defaultTemplateConfig from "utils/config";
-import { generateFAQPageSchema, generateReviewSchema, generateProductSchema } from "utils/structuredData";
-import { getTranslations, getSupportedLanguages, getLegalPageSlug } from "utils/serverI18n";
-import Navbar from "../../components/navbar/index.astro";
-import Header from "../../modules/home/_components/header/index.astro";
-import Partners from "../../modules/home/_components/partners/partners.astro";
-import Features from "../../modules/home/_components/features/features.astro";
-import HowItWorks from "../../modules/home/_components/howItWorks/howItWorks.astro";
-import Pricing from "../../modules/home/_components/pricing/pricing.astro";
-import Testimonials from "../../modules/home/_components/testimonials/index.astro";
-import Faq from "../../modules/home/_components/faq/faq.astro";
-import AppBanner from "../../components/appBanner/index.astro";
-import Footer from "../../components/footer/index.astro";
+import Layout from "@layouts/Layout.astro";
+import defaultTemplateConfig from "@utils/config";
+import { generateFAQPageSchema, generateReviewSchema, generateProductSchema } from "@utils/structuredData";
+import { getTranslations, getSupportedLanguages, getLegalPageSlug } from "@utils/serverI18n";
+import Navbar from "@components/navbar/index.astro";
+import Header from "@modules/home/_components/header/index.astro";
+import Partners from "@modules/home/_components/partners/partners.astro";
+import Features from "@modules/home/_components/features/features.astro";
+import HowItWorks from "@modules/home/_components/howItWorks/howItWorks.astro";
+import Pricing from "@modules/home/_components/pricing/pricing.astro";
+import Testimonials from "@modules/home/_components/testimonials/index.astro";
+import Faq from "@modules/home/_components/faq/faq.astro";
+import AppBanner from "@components/appBanner/index.astro";
+import Footer from "@components/footer/index.astro";
 
 export function getStaticPaths() {
   const languages = getSupportedLanguages();

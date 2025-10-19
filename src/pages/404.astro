@@ -1,16 +1,16 @@
 ---
-import Layout from "Layout.astro";
-import defaultTemplateConfig from "utils/config";
-import Navbar from "../components/navbar/index.astro";
-import Footer from "../components/footer/index.astro";
-import { getLegalPageSlug } from "utils/serverI18n";
+import Layout from "@layouts/Layout.astro";
+import defaultTemplateConfig from "@utils/config";
+import Navbar from "@components/navbar/index.astro";
+import Footer from "@components/footer/index.astro";
+import { getLegalPageSlug } from "@utils/serverI18n";
 
 // Import all translation files
-import enTranslations from "../i18n/locales/en.json";
-import esTranslations from "../i18n/locales/es.json";
-import tlTranslations from "../i18n/locales/tl.json";
-import viTranslations from "../i18n/locales/vi.json";
-import zhCnTranslations from "../i18n/locales/zh-CN.json";
+import enTranslations from "@i18n/locales/en.json";
+import esTranslations from "@i18n/locales/es.json";
+import tlTranslations from "@i18n/locales/tl.json";
+import viTranslations from "@i18n/locales/vi.json";
+import zhCnTranslations from "@i18n/locales/zh-CN.json";
 
 // Detect language from URL path
 const pathname = Astro.url.pathname;

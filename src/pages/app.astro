@@ -1,9 +1,9 @@
 ---
-import Layout from "Layout.astro";
-import defaultTemplateConfig from "utils/config";
+import Layout from "@layouts/Layout.astro";
+import defaultTemplateConfig from "@utils/config";
+import redirectModuleUrl from "@modules/app/redirect.client.ts?url";
 
-const redirectModuleUrl = new URL("../modules/app/redirect.client.ts", import.meta.url);
-const redirectScript = `import("${redirectModuleUrl.href}").then((module) => module.redirectToStore?.(${JSON.stringify({
+const redirectScript = `import("${redirectModuleUrl}").then((module) => module.redirectToStore?.(${JSON.stringify({
   appStoreLink: defaultTemplateConfig.appStoreLink,
   googlePlayLink: defaultTemplateConfig.googlePlayLink,
 })}));`;

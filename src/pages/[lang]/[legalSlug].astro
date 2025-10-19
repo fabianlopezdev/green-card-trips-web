@@ -1,11 +1,11 @@
 ---
-import Layout from "Layout.astro";
-import defaultTemplateConfig from "utils/config";
-import { getTranslations, getSupportedLanguages, legalPageSlugs, type LegalPageKey } from "utils/serverI18n";
-import { generateBreadcrumbSchema } from "utils/structuredData";
-import Navbar from "../../components/navbar/index.astro";
-import AppBanner from "../../components/appBanner/index.astro";
-import Footer from "../../components/footer/index.astro";
+import Layout from "@layouts/Layout.astro";
+import defaultTemplateConfig from "@utils/config";
+import { getTranslations, getSupportedLanguages, legalPageSlugs, type LegalPageKey } from "@utils/serverI18n";
+import { generateBreadcrumbSchema } from "@utils/structuredData";
+import Navbar from "@components/navbar/index.astro";
+import AppBanner from "@components/appBanner/index.astro";
+import Footer from "@components/footer/index.astro";
 import PrivacyPolicyContent from "@modules/privacyPolicy/index.astro";
 import TermsAndConditionsContent from "@modules/termsAndConditions/index.astro";
 import CookiesPolicyContent from "@modules/cookiesPolicy/index.astro";
