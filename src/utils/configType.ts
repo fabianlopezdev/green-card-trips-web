@@ -49,7 +49,7 @@ export type TemplateConfig = {
             title: string;
             description: string;
         };
-        header: {
+        hero: {
             id?: string | undefined;
             headline: string;
             subtitle: string;

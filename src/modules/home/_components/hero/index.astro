@@ -18,10 +18,10 @@ const {
 const {
   googlePlayLink,
   appStoreLink,
-  home: { header, partners },
+  home: { hero, partners },
 } = config;
 
-if (!header) {
+if (!hero) {
   return null;
 }
 
@@ -35,7 +35,7 @@ const screenshotAlts: Record<string, string> = {
   "trips": translations.alt.screenshots.trips,
 };
 
-const primaryScreenshot = header.screenshots?.[0];
+const primaryScreenshot = hero.screenshots?.[0];
 const screenshotBasePath = primaryScreenshot
   ? `/screenshots/${languageFolder}/${primaryScreenshot}`
   : undefined;
@@ -44,9 +44,9 @@ const buildSrcSet = (base: string) =>
   `${base}-250.webp 250w, ${base}-298.webp 298w, ${base}-311.webp 311w, ${base}-327.webp 327w`;
 
 let headlineSegments: { before?: string; highlight?: string; after?: string } = {};
-if (header.headlineMark) {
+if (hero.headlineMark) {
   const words = translations.hero.headline.split(" ");
-  const [start, end] = header.headlineMark;
+  const [start, end] = hero.headlineMark;
   headlineSegments = {
     before: words.slice(0, start).join(" "),
     highlight: words.slice(start, end).join(" "),
@@ -55,12 +55,12 @@ if (header.headlineMark) {
 }
 ---
 
-<section id={header.id} class="relative pb-8 md:pb-4" aria-label="Hero section">
+<section id={hero.id} class="relative pb-8 md:pb-4" aria-label="Hero section">
   <div class="max-w-screen-lg mx-auto flex flex-col gap-12 px-4 pt-24 pb-4 md:flex-row md:items-center md:pt-32 md:pb-16">
     <div class="flex flex-1 flex-col gap-6">
-      {header.rewards?.length ? (
+      {hero.rewards?.length ? (
         <div class="flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center">
-          {header.rewards.map((reward) => (
+          {hero.rewards.map((reward) => (
             <div class="flex h-12 items-center justify-center gap-2 rounded-full bg-base-200 px-4 text-xs text-gray-600 md:text-sm">
               <img src="/misc/wreath-left.webp" width="32" height="32" alt="" loading="lazy" />
               <span class="text-center">{reward}</span>
@@ -126,7 +126,7 @@ if (header.headlineMark) {
         </ul>
       )}
 
-      {header.usersDescription && (
+      {hero.usersDescription && (
         <div class="flex items-center gap-3">
           <ul class="flex -space-x-4">
             {Array.from({ length: 5 }).map((_, index) => (

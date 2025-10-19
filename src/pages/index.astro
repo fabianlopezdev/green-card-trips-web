@@ -2,7 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro"
 import defaultTemplateConfig from "@utils/config"
 import { generateFAQPageSchema, generateReviewSchema, generateProductSchema } from "@utils/structuredData"
-import Header from "@modules/home/_components/header/index.astro"
+import Hero from "@modules/home/_components/hero/index.astro"
 import Partners from "@modules/home/_components/partners/partners.astro"
 import Features from "@modules/home/_components/features/features.astro"
 import HowItWorks from "@modules/home/_components/howItWorks/howItWorks.astro"
@@ -42,7 +42,7 @@ const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUr
   <!-- Product Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
 
-  <Header config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
+  <Hero config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
   <!-- <Partners config={defaultTemplateConfig} translations={enTranslations} currentLang="en" /> -->
   <Features config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />
   <HowItWorks config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />

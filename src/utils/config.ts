@@ -165,7 +165,7 @@ const templateConfig: TemplateConfig = {
         },
       ],
     },
-    header: {
+    hero: {
       headline: "Your Peace of Mind Partner on the Path to U.S. Citizenship",
       subtitle:
         "Track your trips, plan your travel, and stay compliant with USCIS requirements. Green Card Trips makes citizenship eligibility simple and stress-free.",
