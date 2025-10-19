@@ -163,8 +163,7 @@ const currentYear = new Date().getFullYear();
             </button>
           </div>
           <p class="md:whitespace-nowrap text-white">
-            <span>All rights reserved © </span>
-            <span>{currentYear}</span>
+            {translations.footer.allRightsReserved}
           </p>
         </div>
       </aside>
@@ -174,8 +173,7 @@ const currentYear = new Date().getFullYear();
           class="md:flex md:items-center md:gap-1 text-center md:text-left text-white"
           style="font-family: 'PlaywriteAR', cursive; font-size: 0.7rem;"
         >
-          {`${translations.footer.madeBy} ${translations.footer.madeByFor} `}
-          <Heart class="w-6 h-6 md:w-3 md:h-3 inline-block align-middle" />
+          {translations.footer.madeBy}
         </p>
         <p
           class="font-sans whitespace-nowrap md:pb-4 text-white text-center md:text-left"

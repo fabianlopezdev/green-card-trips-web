@@ -19,7 +19,7 @@ const {
 const {
   googlePlayLink,
   appStoreLink,
-  home: { hero, partners },
+  home: { hero, highlight },
 } = config;
 
 if (!hero) {
@@ -56,10 +56,10 @@ if (hero.headlineMark) {
 }
 ---
 
-<section id={hero.id} class="relative pb-8 md:pb-4" aria-label="Hero section">
+<section id={hero.id} class="relative pb-8 md:pb-4" aria-label="Hero section" data-interactive="hero">
   <div class="max-w-screen-lg mx-auto pt-24 pb-4 px-4 md:pt-32 md:pb-16">
     <div class="flex flex-col md:flex-row">
-      <div class="flex flex-1 items-center md:items-start md:h-[300vh]">
+      <div class="flex flex-1 items-center md:items-start md:h-[300vh]" data-hero-scroll-container>
         <div class="static top-40 flex flex-col prose justify-center py-8 md:sticky md:h-[548px]">
           {hero.rewards?.length ? (
             <div class="flex flex-col gap-2 my-4 3xs:flex-row">
@@ -73,14 +73,14 @@ if (hero.headlineMark) {
             </div>
           ) : null}
 
-          <h1 class="mt-0 mb-4 text-4xl font-semibold md:text-6xl text-balance">
+          <h1 class="mt-0 mb-4 text-4xl font-semibold md:text-6xl text-balance" data-hero-heading>
             {headlineSegments.before ? (
               <>
                 {headlineSegments.before && <span>{headlineSegments.before} </span>}
                 {headlineSegments.highlight && (
                   <span class="inline-block relative">
                     <span>{headlineSegments.highlight}</span>
-                    <span class="w-0 h-full top-0 left-0 z-[-1] absolute inline-block bg-gradient-to-r from-primary/80 to-secondary/40 rounded-lg" style="width: 100%; height: 100%;"></span>
+                    <span class="w-0 h-full top-0 left-0 z-[-1] absolute inline-block bg-gradient-to-r from-primary/80 to-secondary/40 rounded-lg" data-hero-highlight></span>
                   </span>
                 )}
                 {headlineSegments.after && <span> {headlineSegments.after}</span>}
@@ -91,13 +91,13 @@ if (hero.headlineMark) {
           </h1>
 
           {translations.hero.subtitle && (
-            <p class="whitespace-pre-wrap text-left m-0 my-1 max-w-md md:text-lg md:max-w-lg">
+            <p class="text-left m-0 my-1 max-w-md md:text-lg md:max-w-lg text-pretty" data-hero-subtitle>
               {translations.hero.subtitle}
             </p>
           )}
 
           {(googlePlayLink || appStoreLink) && (
-            <ul class="list-none flex gap-4 m-0 p-0">
+            <ul class="list-none flex gap-4 m-0 p-0" data-hero-cta>
               {googlePlayLink && (
                 <li class="m-0 p-0">
                   <a href={googlePlayLink}>
@@ -127,8 +127,8 @@ if (hero.headlineMark) {
             </ul>
           )}
 
-          {hero.usersDescription && (
-            <div class="not-prose flex items-center gap-2 my-1">
+          {translations.hero.usersDescription && (
+            <div class="not-prose flex items-center gap-2 my-1" data-hero-avatars>
               <ul class="avatar-group -space-x-4">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <li class="avatar" aria-hidden="true">
@@ -151,20 +151,27 @@ if (hero.headlineMark) {
       </div>
 
       <div class="min-h-[300vh] z-[-1]">
-        <div class="flex justify-center sticky top-28 md:top-40">
-          <div class="absolute inset-0 -z-10 hidden max-w-[520px] rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl md:block" aria-hidden="true"></div>
-          {screenshotBasePath ? (
+        <div class="flex justify-center sticky top-28 md:top-40" data-hero-phone>
+          <div class="-z-10 absolute w-[800px] -top-20 -right-60 hidden md:block" data-hero-blobs aria-hidden="true">
+            <div data-hero-blob="0"></div>
+            <div data-hero-blob="1"></div>
+            <div data-hero-blob="2"></div>
+          </div>
+          {hero.screenshots && hero.screenshots.length > 0 ? (
             <div class="relative h-[548px] 2xs:h-[720px] sm:h-[648px] md:h-[548px] rounded-[3rem]">
               <div class="absolute top-2.5 left-3 w-[calc(100%-24px)] h-[calc(100%-16px)] rounded-[1rem] 2xs:rounded-[2rem] overflow-hidden">
-                <img
-                  srcset={buildSrcSet(`${screenshotBasePath}`)}
-                  sizes="(max-width: 768px) 240px, 260px"
-                  src={`${screenshotBasePath}-327.webp`}
-                  alt={screenshotAlts[primaryScreenshot!] ?? translations.alt.misc.appScreenshot}
-                  loading="eager"
-                  decoding="async"
-                  class="h-full w-full object-cover"
-                />
+                {hero.screenshots.map((screenshot, index) => (
+                  <img
+                    srcset={buildSrcSet(`/screenshots/${languageFolder}/${screenshot}`)}
+                    sizes="(max-width: 768px) 240px, 260px"
+                    src={`/screenshots/${languageFolder}/${screenshot}-327.webp`}
+                    alt={screenshotAlts[screenshot] ?? translations.alt.misc.appScreenshot}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    class="absolute inset-0 h-full w-full object-cover"
+                    data-hero-screenshot={index}
+                  />
+                ))}
               </div>
               <img
                 srcset="/misc/iphone-frame-sm.webp 252w, /misc/iphone-frame-md.webp 331w, /misc/iphone-frame-lg.webp 298w, /misc/iphone-frame-xl.webp 331w"
@@ -182,5 +189,5 @@ if (hero.headlineMark) {
     </div>
   </div>
 
-  {partners && <Wave class="absolute -bottom-1 left-0 right-0 -z-10" aria-hidden="true" />}
+  {highlight && <Wave class="absolute -bottom-1 left-0 right-0 -z-10" aria-hidden="true" />}
 </section>

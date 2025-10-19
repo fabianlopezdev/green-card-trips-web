@@ -40,8 +40,6 @@ export type TemplateConfig = {
     };
     appBanner?: {
         id?: string | undefined;
-        title: string;
-        subtitle: string;
         screenshots: string[];
     } | undefined;
     home: {
@@ -51,12 +49,9 @@ export type TemplateConfig = {
         };
         hero: {
             id?: string | undefined;
-            headline: string;
-            subtitle: string;
             headlineMark?: number[] | undefined;
             screenshots: string[];
             rewards?: string[] | undefined;
-            usersDescription?: string | undefined;
         };
         testimonials?: {
             id?: string | undefined;
@@ -67,49 +62,31 @@ export type TemplateConfig = {
                 comment: string;
             }[];
         } | undefined;
-        partners?: {
+        highlight?: {
             id?: string | undefined;
-            title: string;
-            logos: string[];
         } | undefined;
         faq?: {
             id?: string | undefined;
-            title: string;
-            qa: {
-                question: string;
-                answer: string;
-            }[];
+            qa: Record<string, never>[];
         } | undefined;
         howItWorks?: {
             id?: string | undefined;
-            title: string;
-            subtitle?: string | undefined;
             steps: {
                 image: string;
-                title: string;
-                subtitle: string;
             }[];
         } | undefined;
         features?: {
             id?: string | undefined;
-            title: string;
-            subtitle?: string | undefined;
             cards: {
                 icon: string;
-                title: string;
-                subtitle: string;
             }[];
         } | undefined;
         pricing?: {
             id?: string | undefined;
-            title: string;
-            actionText?: string | undefined;
-            subtitle?: string | undefined;
             plans?: {
                 featured?: boolean | undefined;
-                title: string;
                 price: string;
-                rows: string[];
+                icon?: string | undefined;
             }[] | undefined;
         } | undefined;
     };

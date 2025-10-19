@@ -191,3 +191,109 @@ header[data-interactive="header"] nav {
     }
   }
 }
+
+/* ============================================================================
+   Hero Section Page Load Animations
+   Used by src/scripts/components/hero.ts
+   ============================================================================ */
+
+/* Initial hidden state for hero elements */
+[data-hero-heading],
+[data-hero-subtitle],
+[data-hero-cta],
+[data-hero-avatars],
+[data-hero-phone] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Visible state - applied by JavaScript with staggered delays */
+[data-hero-heading].hero-visible,
+[data-hero-subtitle].hero-visible,
+[data-hero-cta].hero-visible,
+[data-hero-avatars].hero-visible,
+[data-hero-phone].hero-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* H1 Highlight background animation */
+[data-hero-highlight] {
+  width: 0%;
+  height: 100%;
+}
+
+[data-hero-highlight].hero-visible {
+  width: 100%;
+  transition: width 0.8s ease-out;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-heading],
+  [data-hero-subtitle],
+  [data-hero-cta],
+  [data-hero-avatars],
+  [data-hero-phone] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  [data-hero-highlight] {
+    width: 100% !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================================
+   Gradient Blob Floating Animations
+   Used by src/scripts/components/hero.ts
+   ============================================================================ */
+
+/* Blob 1 - Large blob floating animation */
+@keyframes blob-float-1 {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  33% {
+    transform: translate(120px, -80px);
+  }
+  66% {
+    transform: translate(-40px, 60px);
+  }
+}
+
+/* Blob 2 - Medium blob floating animation */
+@keyframes blob-float-2 {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  33% {
+    transform: translate(-100px, 120px);
+  }
+  66% {
+    transform: translate(80px, -60px);
+  }
+}
+
+/* Blob 3 - Small blob floating animation */
+@keyframes blob-float-3 {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  33% {
+    transform: translate(60px, -100px);
+  }
+  66% {
+    transform: translate(-80px, 40px);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-blob] {
+    animation: none !important;
+  }
+}

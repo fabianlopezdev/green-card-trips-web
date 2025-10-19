@@ -4,7 +4,7 @@ import defaultTemplateConfig from "@utils/config";
 import { generateFAQPageSchema, generateReviewSchema, generateProductSchema } from "@utils/structuredData";
 import { getTranslations, getSupportedLanguages } from "@utils/serverI18n";
 import Hero from "@components/home/Hero/Hero.astro";
-import Partners from "@components/home/Partners.astro";
+import Highlight from "@components/home/Highlight.astro";
 import Features from "@components/home/Features.astro";
 import HowItWorks from "@components/home/HowItWorks.astro";
 import Pricing from "@components/home/Pricing.astro";
@@ -36,7 +36,12 @@ const faqs = [
   { question: translations.faq.q3.question, answer: translations.faq.q3.answer },
   { question: translations.faq.q4.question, answer: translations.faq.q4.answer },
   { question: translations.faq.q5.question, answer: translations.faq.q5.answer },
-];
+  { question: translations.faq.q6?.question, answer: translations.faq.q6?.answer },
+  { question: translations.faq.q7?.question, answer: translations.faq.q7?.answer },
+  { question: translations.faq.q8?.question, answer: translations.faq.q8?.answer },
+  { question: translations.faq.q9?.question, answer: translations.faq.q9?.answer },
+  { question: translations.faq.q10?.question, answer: translations.faq.q10?.answer },
+].filter(faq => faq.question && faq.answer);
 const faqSchema = generateFAQPageSchema(faqs);
 
 // Generate Review schemas for testimonials
@@ -61,7 +66,7 @@ const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUr
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
 
   <Hero config={defaultTemplateConfig} translations={translations} currentLang={lang} />
-  <Partners config={defaultTemplateConfig} translations={translations} currentLang={lang} />
+  <Highlight config={defaultTemplateConfig} translations={translations} currentLang={lang} />
   <Features config={defaultTemplateConfig} translations={translations} currentLang={lang} />
   <HowItWorks config={defaultTemplateConfig} translations={translations} currentLang={lang} />
   <Pricing config={defaultTemplateConfig} translations={translations} currentLang={lang} />

@@ -1,0 +1,44 @@
+---
+import type { TemplateConfig } from "@utils/configType";
+import type { TranslationObject } from "@utils/serverI18n";
+
+interface Props {
+  config: TemplateConfig;
+  translations: TranslationObject;
+  currentLang?: string;
+}
+
+const { config, translations } = Astro.props as Props;
+
+const {
+  home: { highlight },
+} = config;
+
+if (!highlight) {
+  return null;
+}
+---
+
+<section id={highlight.id} class="relative bg-neutral py-12 px-4" aria-label="Protect Your Green Card">
+  <div class="mx-auto max-w-screen-lg">
+    <div class="prose prose-lg max-w-none text-center mb-8">
+      <h2 class="text-3xl font-semibold text-neutral-content md:text-4xl mb-4">
+        {translations.highlight.title}
+      </h2>
+      {translations.highlight.subtitle && (
+        <p class="text-xl text-neutral-content/80 max-w-2xl mx-auto">
+          {translations.highlight.subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class="prose prose-lg max-w-none text-neutral-content/70">
+      <p class="text-base md:text-lg mb-4">
+        {translations.highlight.paragraph1}
+      </p>
+      <p class="text-base md:text-lg">
+        {translations.highlight.paragraph2}
+      </p>
+    </div>
+  </div>
+</section>

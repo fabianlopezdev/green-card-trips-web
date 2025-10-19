@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Green Card Trips - Track Your Path to U.S. Citizenship",
-    "description": "Simple, beautiful app for green card holders to track physical presence in the USA and manage their journey to citizenship with confidence."
+    "title": "Green Card Trips - Physical Presence & Continuous Residence Calculator",
+    "description": "Green Card Trips helps U.S. permanent residents track physical presence, understand USCIS travel rules, and protect their path to citizenship. Calculate days in the U.S., avoid continuous residence breaks, and plan travel confidently."
   },
   "nav": {
     "features": "Features",
@@ -19,104 +19,130 @@
   },
   "hero": {
     "headline": "Your Green Card Travel & Presence Calculator",
-    "subtitle": "Track your trips, plan your travel, and stay compliant with USCIS requirements. Green Card Trips makes citizenship eligibility simple and stress-free.",
+    "subtitle": "Track trips, calculate physical presence and continuous residence, and see your estimated earliest N-400 filing date (including the 90-day early filing window). Green Card Trips helps you stay compliant and confident every step of the way.",
     "usersDescription": "Trusted by green card holders",
     "downloadNow": "Download Now"
   },
+  "highlight": {
+    "title": "Travel with Confidence — Protect Your Green Card",
+    "subtitle": "Avoid surprises and stay in control of your residency status.",
+    "paragraph1": "Your Green Card is valuable — and time abroad can put it at risk if not carefully tracked. The app helps you understand when a trip could raise questions about continuous residence or even risk what's called 'abandonment of residence.' It highlights when an upcoming trip may require a reentry permit (Form I-131), and keeps you fully aware of your travel history, so you can make informed choices long before a problem arises.",
+    "paragraph2": "Green Card Trips also calculates your estimated earliest N-400 filing date and shows the 90-day early filing window when applicable — so you know not only if you meet residence requirements, but when you can file."
+  },
   "features": {
     "title": "Everything You Need to Stay Compliant",
-    "subtitle": "Simple tools to track your presence, plan travel, and achieve your citizenship goals",
+    "subtitle": "Simple tools to calculate days, plan travel, and protect your path to citizenship",
     "tracking": {
       "title": "Smart Trip Tracking",
-      "description": "Easily log all your international trips with dates and destinations. See your days in the USA at a glance."
+      "description": "Log every trip abroad with exact dates. Your dashboard updates instantly to show total days outside the U.S. and remaining physical presence required (548 or 913 days depending on your eligibility path)."
     },
     "simulator": {
-      "title": "Travel Simulator",
-      "description": "Plan future trips with confidence. See exactly how travel affects your citizenship eligibility before you book."
+      "title": "Trip Impact Simulator",
+      "description": "Add a future trip and see how it changes your continuous residence and physical presence totals — before you travel. Plan smarter with instant, visual feedback and see how a trip might shift your earliest filing date."
     },
     "dashboard": {
-      "title": "Dashboard Insights",
-      "description": "Real-time presence statistics with 180-day and 365-day warnings. Know your status instantly."
+      "title": "Continuous Residence Dashboard",
+      "description": "Get clear indicators when a single trip exceeds 180 or 365 days, and when your total time abroad approaches limits that could delay your earliest N-400 filing date — including the 90-day early filing window where applicable."
     },
     "privacy": {
-      "title": "Privacy & Security",
-      "description": "Offline-first design with field-level encryption. Your data never leaves your device unless you choose cloud sync."
+      "title": "Your Data, Your Control",
+      "description": "Your travel records are stored securely on your device. You decide if and when to back them up. No personal data leaves your phone unless you choose to sync."
     }
   },
   "howItWorks": {
     "title": "How It Works",
-    "subtitle": "Get started in minutes and take control of your citizenship journey",
+    "subtitle": "Get started in minutes — clarity and confidence included",
     "step1": {
       "title": "Download the App",
-      "description": "Install Green Card Trips on your iOS device."
+      "description": "Install Green Card Trips on your iPhone or iPad."
     },
     "step2": {
-      "title": "Enter Green Card Details",
-      "description": "Add your green card date and select your eligibility path (3-year or 5-year)."
+      "title": "Enter Your Green Card Details",
+      "description": "Add your Green Card date and choose your eligibility path — 3-year or 5-year."
     },
     "step3": {
       "title": "Log Your Trips",
-      "description": "Manually enter past and upcoming trips with departure and return dates."
+      "description": "Add past and upcoming trips with departure and return dates. The app instantly calculates total days abroad and in the U.S."
     },
     "step4": {
-      "title": "Plan Travel Safely",
-      "description": "Use the simulator to check how future trips affect your eligibility before booking."
+      "title": "Check Continuous Residence",
+      "description": "See if any single trip passes 180 or 365 days and how that affects continuous residence."
     },
     "step5": {
-      "title": "Stay Compliant",
-      "description": "Monitor your dashboard for warnings, track renewal dates, and maintain your status."
+      "title": "Know When You Can File (90-Day Rule)",
+      "description": "The app calculates your earliest possible N-400 filing date and shows the 90-day early filing window when you're within reach — so you know exactly when you can submit your application."
     }
   },
   "pricing": {
     "title": "Simple, Transparent Pricing",
-    "subtitle": "One-time purchase.",
+    "subtitle": "One-time purchase. Lifetime clarity.",
     "price": "$4.99",
     "cta": "Download Now",
     "features": [
       "Unlimited trip tracking",
-      "Travel simulator",
-      "Dashboard insights",
-      "Compliance reminders",
-      "Offline mode"
+      "Trip impact simulator",
+      "Continuous residence and physical presence calculator",
+      "Dashboard with friendly warnings and filing-date projections (including the 90-day window)",
+      "Offline access"
     ]
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Common Questions About Travel, Continuous Residence, and Protecting Your Green Card",
     "q1": {
       "question": "What is Green Card Trips?",
-      "answer": "Green Card Trips is a mobile app that helps U.S. green card holders track their physical presence in the United States to meet citizenship eligibility requirements. It prevents costly mistakes by monitoring critical travel thresholds."
+      "answer": "Green Card Trips is an app that helps U.S. permanent residents track trips abroad, calculate physical presence, and understand how travel affects continuous residence and citizenship eligibility."
     },
     "q2": {
       "question": "How accurate are the calculations?",
-      "answer": "Our calculations follow official USCIS rules precisely. Departure and return days count as physical presence. And we monitor thresholds that affect continuous residence and physical presence for green card status."
+      "answer": "Calculations follow USCIS rules. Departure and return days count as presence in the U.S. The app calculates both continuous residence (single trips over 180 or 365 days) and physical presence (total days abroad vs. required 548 or 913 days in the U.S.)."
     },
     "q3": {
-      "question": "Is my data private and secure?",
-      "answer": "Absolutely. All data is stored locally on your device. Your information never leaves your phone. We don't have access to your data."
+      "question": "What is the 90-day early filing rule?",
+      "answer": "USCIS allows certain applicants to file Form N-400 up to 90 days before meeting the continuous residence requirement. Green Card Trips calculates your earliest possible filing date and shows when you enter that 90-day window so you know when you can confidently submit your application."
     },
     "q4": {
-      "question": "Can I use it offline?",
-      "answer": "Yes! The entire app works offline. Log trips, use the simulator, and check your dashboard anywhere without internet."
+      "question": "Is my data private and secure?",
+      "answer": "Yes. All travel data is stored on your device and never shared. You have full control over backups and sync options."
     },
     "q5": {
+      "question": "Can I use it offline?",
+      "answer": "Absolutely. You can log trips and check your calculations without any internet connection."
+    },
+    "q6": {
       "question": "Is the app available on Android?",
-      "answer": "Not yet, but we're working on bringing Green Card Trips to Android soon! Currently, the app is only available for iOS devices. We'll announce the Android launch as soon as it's ready."
+      "answer": "Currently, Green Card Trips is available for iOS. Android support is coming soon."
+    },
+    "q7": {
+      "question": "Can I lose my Green Card if I travel too long?",
+      "answer": "Spending too much time outside the U.S. can make USCIS question whether you've abandoned your permanent residence. Trips over 180 days may raise concerns, and over 365 days almost always require proof you still live in the U.S. Green Card Trips helps you see this risk early by flagging long trips and showing how they affect your total time abroad — so you can plan reentry and protect your status with confidence."
+    },
+    "q8": {
+      "question": "What is 'abandonment of residence'?",
+      "answer": "Abandonment of residence happens when a permanent resident stays abroad so long — or so often — that it seems their main home is no longer in the U.S. Green Card Trips keeps your travel record clear and your days counted, helping you spot when your absences might raise questions and giving you the knowledge to act before issues arise."
+    },
+    "q9": {
+      "question": "Do I need a reentry permit (Form I-131)?",
+      "answer": "If you expect to be outside the U.S. for close to or more than a year, a reentry permit (Form I-131) can show you didn't intend to abandon your residence. Green Card Trips helps by warning you when a planned trip might be long enough to require one, giving you time to apply before you leave and avoid future complications."
+    },
+    "q10": {
+      "question": "How many days can I stay abroad without losing my Green Card?",
+      "answer": "There's no single magic number, but USCIS pays attention to absences over 180 days and especially over 365 days. The app helps you stay well within safe limits by tracking every trip and showing how your time abroad affects both continuous residence and physical presence — so you're always in control and never caught off guard."
     }
   },
   "appBanner": {
     "title": "Ready to Take Control of Your Citizenship Journey?",
-    "subtitle": "Join green card holders who trust Green Card Trips to stay compliant and achieve their citizenship goals.",
+    "subtitle": "Join other green card holders who use Green Card Trips to stay compliant, confident, and in control of their travel history.",
     "cta": "Download Now"
   },
   "footer": {
     "description": "Green Card Trips helps U.S. green card holders track physical presence and manage their path to citizenship with confidence.",
-    "madeBy": "Made by Green Card Holders",
-    "madeByFor": "for Green Card Holders",
-    "developedBy": "Developed by",
+    "madeBy": "Made by Green Card Holders for Green Card Holders ❤",
+    "developedBy": "Developed by Fabulous Apps.",
     "termsAndConditions": "Terms & conditions",
     "privacyPolicy": "Privacy policy",
     "cookiesPolicy": "Cookies policy",
-    "cookieSettings": "Cookie settings"
+    "cookieSettings": "Cookie settings",
+    "allRightsReserved": "All rights reserved © 2025"
   },
   "notFound": {
     "title": "404",
