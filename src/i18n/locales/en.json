@@ -26,12 +26,12 @@
   "highlight": {
     "title": "Protect Your Green Card",
     "subtitle": "Stay in control of your residency status and travel with confidence.",
-    "paragraph1": "Your Green Card is valuable — and time abroad can put it at risk if not carefully tracked. The app helps you understand when a trip could raise questions about continuous residence or even risk what's called 'abandonment of residence.' It highlights when an upcoming trip may require a reentry permit (Form I-131), and keeps you fully aware of your travel history, so you can make informed choices long before a problem arises.",
-    "paragraph2": "Green Card Trips also calculates your estimated earliest N-400 filing date and shows the 90-day early filing window when applicable — so you know not only if you meet residence requirements, but when you can file."
+    "paragraph1": "Your Green Card is valuable — and time abroad can put it at risk if not carefully tracked. The app helps you understand when a trip could raise questions about continuous residence. It also tracks the required physical presence.",
+    "paragraph2": "With Green Card Trips  you are fully aware of your travel history, so you can make informed choices."
   },
   "features": {
     "title": "Everything You Need to Stay Compliant",
-    "subtitle": "Simple tools to calculate days, plan travel, and protect your path to citizenship",
+    "subtitle": "Plan travel and protect your path to citizenship",
     "tracking": {
       "title": "Smart Trip Tracking",
       "description": "Log every trip abroad with exact dates. Your dashboard updates instantly to show total days outside the U.S. and remaining physical presence required (548 or 913 days depending on your eligibility path)."
@@ -42,7 +42,7 @@
     },
     "dashboard": {
       "title": "Dashboard Insights",
-      "description": "Get clear indicators when a single trip exceeds 180 or 365 days, and when your total time abroad approaches limits that could delay your earliest N-400 filing date."
+      "description": "Get clear indicators when a single trip exceeds 180 or 365 days, and when your total time abroad approaches limits that could delay your earliest N-400 filing date (filing for citizenship)."
     },
     "privacy": {
       "title": "Your Data is Safe",
@@ -70,7 +70,7 @@
     },
     "step5": {
       "title": "Know When You Can File",
-      "description": "The app calculates your earliest possible N-400 filing date and shows the 90-day early filing window when you're within reach — so you know when you can submit your application."
+      "description": "The app calculates your earliest possible N-400 filing date (filing for citizenship) and shows the 90-day early filing window when you're within reach — so you know when you can submit your application."
     }
   },
   "pricing": {
@@ -97,36 +97,28 @@
       "answer": "Calculations follow USCIS rules. Departure and return days count as presence in the U.S. The app calculates both continuous residence (single trips over 180 or 365 days) and physical presence (total days abroad vs. required 548 or 913 days in the U.S.)."
     },
     "q3": {
-      "question": "What is the 90-day early filing rule?",
-      "answer": "USCIS allows certain applicants to file Form N-400 up to 90 days before meeting the continuous residence requirement. Green Card Trips calculates your earliest possible filing date and shows when you enter that 90-day window so you know when you can confidently submit your application."
+      "question": "Is my data private and secure?",
+      "answer": "Absolutely. The app is offline-first. All data is stored locally on your device. Your information never leaves your phone. We don't have access to your data."
     },
     "q4": {
-      "question": "Is my data private and secure?",
-      "answer": "Yes. All travel data is stored on your device and never shared. You have full control over backups and sync options."
-    },
-    "q5": {
-      "question": "Can I use it offline?",
-      "answer": "Absolutely. You can log trips and check your calculations without any internet connection."
-    },
-    "q6": {
       "question": "Is the app available on Android?",
       "answer": "Currently, Green Card Trips is available for iOS. Android support is coming soon."
     },
-    "q7": {
+    "q5": {
+      "question": "What is the 90-day early filing rule?",
+      "answer": "USCIS allows certain applicants to file Form N-400 up to 90 days before meeting the continuous residence requirement. Green Card Trips calculates your earliest possible filing date and shows when you enter that 90-day window so you know when you can confidently submit your application."
+    },
+    "q6": {
       "question": "Can I lose my Green Card if I travel too long?",
       "answer": "Spending too much time outside the U.S. can make USCIS question whether you've abandoned your permanent residence. Trips over 180 days may raise concerns, and over 365 days almost always require proof you still live in the U.S. Green Card Trips helps you see this risk early by flagging long trips and showing how they affect your total time abroad — so you can plan reentry and protect your status with confidence."
+    },
+    "q7": {
+      "question": "Do I need a reentry permit?",
+      "answer": "If you expect to be outside the U.S. for close to or more than a year, a reentry permit (Form I-131) can show you didn't intend to abandon your residence. Green Card Trips helps by warning you when a planned trip might be long enough to require one, giving you time to apply before you leave and avoid future complications."
     },
     "q8": {
       "question": "What is 'abandonment of residence'?",
       "answer": "Abandonment of residence happens when a permanent resident stays abroad so long — or so often — that it seems their main home is no longer in the U.S. Green Card Trips keeps your travel record clear and your days counted, helping you spot when your absences might raise questions and giving you the knowledge to act before issues arise."
-    },
-    "q9": {
-      "question": "Do I need a reentry permit (Form I-131)?",
-      "answer": "If you expect to be outside the U.S. for close to or more than a year, a reentry permit (Form I-131) can show you didn't intend to abandon your residence. Green Card Trips helps by warning you when a planned trip might be long enough to require one, giving you time to apply before you leave and avoid future complications."
-    },
-    "q10": {
-      "question": "How many days can I stay abroad without losing my Green Card?",
-      "answer": "There's no single magic number, but USCIS pays attention to absences over 180 days and especially over 365 days. The app helps you stay well within safe limits by tracking every trip and showing how your time abroad affects both continuous residence and physical presence — so you're always in control and never caught off guard."
     }
   },
   "appBanner": {
@@ -136,8 +128,8 @@
   },
   "footer": {
     "description": "Green Card Trips helps U.S. green card holders track physical presence and manage their path to citizenship with confidence.",
-    "madeBy": "Made by Green Card Holders for Green Card Holders ❤",
-    "developedBy": "Developed by Fabulous Apps.",
+    "madeBy": "Made by Green Card Holders for Green Card Holders",
+    "developedBy": "Developed by",
     "termsAndConditions": "Terms & conditions",
     "privacyPolicy": "Privacy policy",
     "cookiesPolicy": "Cookies policy",

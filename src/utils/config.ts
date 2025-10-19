@@ -82,7 +82,7 @@ const templateConfig: TemplateConfig = {
     },
     faq: {
       id: "faq",
-      qa: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+      qa: [{}, {}, {}, {}, {}, {}, {}, {}],
     },
     hero: {
       id: "hero",

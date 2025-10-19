@@ -2,6 +2,7 @@
 import type { TemplateConfig } from "@utils/configType";
 import type { TranslationObject } from "@utils/serverI18n";
 import IphoneFrame from "@components/ui/IPhoneFrame.astro";
+import CtaButton from "@components/ui/CtaButton.astro";
 
 interface Props {
   config: TemplateConfig;
@@ -9,11 +10,7 @@ interface Props {
   currentLang?: string;
 }
 
-const {
-  config,
-  translations,
-  currentLang = "en",
-} = Astro.props as Props;
+const { config, translations, currentLang = "en" } = Astro.props as Props;
 
 const { googlePlayLink, appStoreLink, appBanner } = config;
 
@@ -25,18 +22,21 @@ const supportedFolders = ["en", "es", "tl", "vi", "zh-CN"];
 const normalizedLang = currentLang.toLowerCase();
 const matchedFolder =
   supportedFolders.find((code) => code.toLowerCase() === normalizedLang) ??
-  supportedFolders.find((code) => code.toLowerCase() === normalizedLang.split("-")[0]) ??
+  supportedFolders.find(
+    (code) => code.toLowerCase() === normalizedLang.split("-")[0],
+  ) ??
   "en";
 
 const screenshotAltText: Record<string, string> = {
-  "dashboard": translations.alt.screenshots.dashboard,
-  "trips": translations.alt.screenshots.trips,
+  dashboard: translations.alt.screenshots.dashboard,
+  trips: translations.alt.screenshots.trips,
   "modify-trip": translations.alt.screenshots.modifyTrip,
 };
 
 const screenshotClasses = (index: number) => {
   if (index === 0) return "relative z-20 block h-[30rem]";
-  if (index === 1) return "absolute left-8 bottom-8 hidden h-[26rem] origin-bottom-left xl:block";
+  if (index === 1)
+    return "absolute left-8 bottom-8 hidden h-[26rem] origin-bottom-left xl:block";
   return "absolute right-8 bottom-8 hidden h-[26rem] origin-bottom-right xl:block";
 };
 ---
@@ -47,62 +47,81 @@ const screenshotClasses = (index: number) => {
   aria-label="Download the app"
   data-interactive="animations"
 >
-  <div class="flex flex-col items-center gap-8 rounded-t-[var(--rounded-box)] bg-primary p-6 pb-20 md:flex-row">
-    <div class="flex flex-1 flex-col items-center gap-6 text-center md:items-start md:text-left">
+  <div
+    class="flex flex-col items-center gap-8 rounded-t-[var(--rounded-box)] bg-primary p-6 pb-20 md:flex-row"
+  >
+    <div
+      class="flex flex-1 flex-col items-center gap-6 text-center md:items-start md:text-left"
+    >
       <h2 class="mt-0 text-4xl font-semibold md:text-6xl">
         {translations.appBanner.title}
       </h2>
-      <p class="max-w-xl whitespace-pre-wrap text-base text-primary-content/80 md:text-lg">
+      <p
+        class="max-w-xl text-base text-primary-content/80 md:text-lg"
+      >
         {translations.appBanner.subtitle}
       </p>
-      {(googlePlayLink || appStoreLink) && (
-        <ul class="flex list-none gap-4 p-0">
-          {googlePlayLink && (
-            <li>
-              <a href={googlePlayLink} aria-label={translations.nav.downloadPlayStore}>
-                <img
-                  class="h-14 w-auto"
-                  width="156"
-                  height="56"
-                  loading="lazy"
-                  src={`/stores/${matchedFolder}/google-play.svg`}
-                  alt={translations.alt.stores.googlePlayLogo}
+      {
+        (googlePlayLink || appStoreLink) && (
+          <ul class="flex list-none gap-4 p-0">
+            {googlePlayLink && (
+              <li>
+                <a
+                  href={googlePlayLink}
+                  aria-label={translations.nav.downloadPlayStore}
+                >
+                  <img
+                    class="h-14 w-auto"
+                    width="156"
+                    height="56"
+                    loading="lazy"
+                    src={`/stores/${matchedFolder}/google-play.svg`}
+                    alt={translations.alt.stores.googlePlayLogo}
+                  />
+                </a>
+              </li>
+            )}
+            {appStoreLink && (
+              <li>
+                <CtaButton
+                  variant="filled"
+                  href={appStoreLink}
+                  text="Download"
+                  showIcon={true}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 />
-              </a>
-            </li>
-          )}
-          {appStoreLink && (
-            <li>
-              <a href={appStoreLink} aria-label={translations.nav.downloadAppStore}>
-                <img
-                  class="h-14 w-auto"
-                  width="156"
-                  height="56"
-                  loading="lazy"
-                  src={`/stores/${matchedFolder}/app-store.svg`}
-                  alt={translations.alt.stores.appStoreLogo}
-                />
-              </a>
-            </li>
-          )}
-        </ul>
-      )}
+              </li>
+            )}
+          </ul>
+        )
+      }
     </div>
 
     <div class="relative flex flex-1 justify-center">
-      {appBanner.screenshots.map((name, index) => (
-        <div
-          class={screenshotClasses(index)}
-          data-animate={index === 0 ? "fade-in" : index === 1 ? "slide-left" : "slide-right"}
-          data-threshold="0.2"
-          data-once="true"
-        >
-          <IphoneFrame
-            src={`/screenshots/${matchedFolder}/${name}.webp`}
-            altText={screenshotAltText[name] ?? translations.alt.misc.appScreenshot}
-          />
-        </div>
-      ))}
+      {
+        appBanner.screenshots.map((name, index) => (
+          <div
+            class={screenshotClasses(index)}
+            data-animate={
+              index === 0
+                ? "fade-in"
+                : index === 1
+                  ? "slide-left"
+                  : "slide-right"
+            }
+            data-threshold="0.2"
+            data-once="true"
+          >
+            <IphoneFrame
+              src={`/screenshots/${matchedFolder}/${name}.webp`}
+              altText={
+                screenshotAltText[name] ?? translations.alt.misc.appScreenshot
+              }
+            />
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
