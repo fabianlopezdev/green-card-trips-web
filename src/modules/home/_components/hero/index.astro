@@ -2,6 +2,7 @@
 import type { TemplateConfig } from "@utils/configType";
 import type { TranslationObject } from "@utils/serverI18n";
 import Wave from "./svg/wave.astro";
+import CtaButton from "@components/ctaButton/index.astro";
 
 interface Props {
   config: TemplateConfig;
@@ -56,126 +57,130 @@ if (hero.headlineMark) {
 ---
 
 <section id={hero.id} class="relative pb-8 md:pb-4" aria-label="Hero section">
-  <div class="max-w-screen-lg mx-auto flex flex-col gap-12 px-4 pt-24 pb-4 md:flex-row md:items-center md:pt-32 md:pb-16">
-    <div class="flex flex-1 flex-col gap-6">
-      {hero.rewards?.length ? (
-        <div class="flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center">
-          {hero.rewards.map((reward) => (
-            <div class="flex h-12 items-center justify-center gap-2 rounded-full bg-base-200 px-4 text-xs text-gray-600 md:text-sm">
-              <img src="/misc/wreath-left.webp" width="32" height="32" alt="" loading="lazy" />
-              <span class="text-center">{reward}</span>
-              <img src="/misc/wreath-right.webp" width="32" height="32" alt="" loading="lazy" />
-            </div>
-          ))}
-        </div>
-      ) : null}
-
-      <h1 class="text-4xl font-normal md:text-6xl">
-        {headlineSegments.before ? (
-          <>
-            {headlineSegments.before && <span>{headlineSegments.before} </span>}
-            {headlineSegments.highlight && (
-              <span class="relative inline-block">
-                <span class="relative z-10">{headlineSegments.highlight}</span>
-                <span class="absolute inset-x-0 bottom-0 top-2 z-0 rounded-lg bg-gradient-to-r from-primary/80 to-secondary/40"></span>
-              </span>
-            )}
-            {headlineSegments.after && <span> {headlineSegments.after}</span>}
-          </>
-        ) : (
-          translations.hero.headline
-        )}
-      </h1>
-
-      {translations.hero.subtitle && (
-        <p class="max-w-xl whitespace-pre-wrap text-base text-base-content/80 md:text-lg">
-          {translations.hero.subtitle}
-        </p>
-      )}
-
-      {(googlePlayLink || appStoreLink) && (
-        <ul class="flex list-none gap-4 p-0">
-          {googlePlayLink && (
-            <li>
-              <a href={googlePlayLink}>
-                <img
-                  src={`/stores/${languageFolder}/google-play.svg`}
-                  alt={translations.alt.stores.googlePlayLogo}
-                  width="156"
-                  height="56"
-                  loading="lazy"
-                  class="h-14"
-                />
-              </a>
-            </li>
-          )}
-          {appStoreLink && (
-            <li>
-              <a href={appStoreLink}>
-                <img
-                  src={`/stores/${languageFolder}/app-store.svg`}
-                  alt={translations.alt.stores.appStoreLogo}
-                  width="156"
-                  height="56"
-                  loading="lazy"
-                  class="h-14"
-                />
-              </a>
-            </li>
-          )}
-        </ul>
-      )}
-
-      {hero.usersDescription && (
-        <div class="flex items-center gap-3">
-          <ul class="flex -space-x-4">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <li class="avatar" aria-hidden="true">
-                <div class="w-10">
-                  <img
-                    src={`/avatars/${index + 1}.webp`}
-                    alt={`${translations.alt.misc.appUser} ${index + 1}`}
-                    width="40"
-                    height="40"
-                    loading="lazy"
-                  />
+  <div class="max-w-screen-lg mx-auto pt-24 pb-4 px-4 md:pt-32 md:pb-16">
+    <div class="flex flex-col md:flex-row">
+      <div class="flex flex-1 items-center md:items-start md:h-[300vh]">
+        <div class="static top-40 flex flex-col prose justify-center py-8 md:sticky md:h-[548px]">
+          {hero.rewards?.length ? (
+            <div class="flex flex-col gap-2 my-4 3xs:flex-row">
+              {hero.rewards.map((reward) => (
+                <div class="flex items-center self-center h-8 md:h-12">
+                  <img src="/misc/wreath-left.webp" width="48" height="48" alt="" loading="lazy" class="h-full" />
+                  <p class="text-xs text-gray-500 whitespace-pre text-center">{reward}</p>
+                  <img src="/misc/wreath-right.webp" width="48" height="48" alt="" loading="lazy" class="h-full" />
                 </div>
-              </li>
-            ))}
-          </ul>
-          <p class="text-sm text-base-content/80">{translations.hero.usersDescription}</p>
-        </div>
-      )}
-    </div>
+              ))}
+            </div>
+          ) : null}
 
-    <div class="relative flex flex-1 justify-center md:justify-end">
-      <div class="absolute inset-0 -z-10 hidden max-w-[520px] rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl md:block" aria-hidden="true"></div>
-      {screenshotBasePath ? (
-        <div class="relative h-[520px] w-[260px] rounded-[3rem]">
-          <div class="absolute left-3 top-3 h-[calc(100%-24px)] w-[calc(100%-24px)] overflow-hidden rounded-[1.5rem] bg-base-100 shadow-lg">
-            <img
-              srcset={buildSrcSet(`${screenshotBasePath}`)}
-              sizes="(max-width: 768px) 240px, 260px"
-              src={`${screenshotBasePath}-327.webp`}
-              alt={screenshotAlts[primaryScreenshot!] ?? translations.alt.misc.appScreenshot}
-              loading="eager"
-              decoding="async"
-              class="h-full w-full object-cover"
-            />
-          </div>
-          <img
-            srcset="/misc/iphone-frame-sm.webp 252w, /misc/iphone-frame-md.webp 331w, /misc/iphone-frame-lg.webp 298w, /misc/iphone-frame-xl.webp 331w"
-            sizes="(max-width: 400px) 252px, (max-width: 768px) 331px, 298px"
-            src="/misc/iphone-frame-md.webp"
-            alt={translations.alt.misc.iphoneFrame}
-            loading="lazy"
-            decoding="async"
-            class="h-full w-auto"
-          />
+          <h1 class="mt-0 mb-4 text-4xl font-semibold md:text-6xl text-balance">
+            {headlineSegments.before ? (
+              <>
+                {headlineSegments.before && <span>{headlineSegments.before} </span>}
+                {headlineSegments.highlight && (
+                  <span class="inline-block relative">
+                    <span>{headlineSegments.highlight}</span>
+                    <span class="w-0 h-full top-0 left-0 z-[-1] absolute inline-block bg-gradient-to-r from-primary/80 to-secondary/40 rounded-lg" style="width: 100%; height: 100%;"></span>
+                  </span>
+                )}
+                {headlineSegments.after && <span> {headlineSegments.after}</span>}
+              </>
+            ) : (
+              translations.hero.headline
+            )}
+          </h1>
+
+          {translations.hero.subtitle && (
+            <p class="whitespace-pre-wrap text-left m-0 my-1 max-w-md md:text-lg md:max-w-lg">
+              {translations.hero.subtitle}
+            </p>
+          )}
+
+          {(googlePlayLink || appStoreLink) && (
+            <ul class="list-none flex gap-4 m-0 p-0">
+              {googlePlayLink && (
+                <li class="m-0 p-0">
+                  <a href={googlePlayLink}>
+                    <img
+                      class="h-14"
+                      width="156"
+                      height="56"
+                      loading="lazy"
+                      alt={translations.alt.stores.googlePlayLogo}
+                      src={`/stores/${languageFolder}/google-play.svg`}
+                    />
+                  </a>
+                </li>
+              )}
+              {appStoreLink && (
+                <li class="m-0 my-8 p-0">
+                  <CtaButton
+                    variant="filled"
+                    href={appStoreLink}
+                    text="Download"
+                    showIcon={true}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
+                </li>
+              )}
+            </ul>
+          )}
+
+          {hero.usersDescription && (
+            <div class="not-prose flex items-center gap-2 my-1">
+              <ul class="avatar-group -space-x-4">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <li class="avatar" aria-hidden="true">
+                    <div class="w-8">
+                      <img
+                        src={`/avatars/${index + 1}.webp`}
+                        alt={`${translations.alt.misc.appUser} ${index + 1}`}
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                      />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <p class="text-sm">{translations.hero.usersDescription}</p>
+            </div>
+          )}
         </div>
-      ) : null}
+      </div>
+
+      <div class="min-h-[300vh] z-[-1]">
+        <div class="flex justify-center sticky top-28 md:top-40">
+          <div class="absolute inset-0 -z-10 hidden max-w-[520px] rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl md:block" aria-hidden="true"></div>
+          {screenshotBasePath ? (
+            <div class="relative h-[548px] 2xs:h-[720px] sm:h-[648px] md:h-[548px] rounded-[3rem]">
+              <div class="absolute top-2.5 left-3 w-[calc(100%-24px)] h-[calc(100%-16px)] rounded-[1rem] 2xs:rounded-[2rem] overflow-hidden">
+                <img
+                  srcset={buildSrcSet(`${screenshotBasePath}`)}
+                  sizes="(max-width: 768px) 240px, 260px"
+                  src={`${screenshotBasePath}-327.webp`}
+                  alt={screenshotAlts[primaryScreenshot!] ?? translations.alt.misc.appScreenshot}
+                  loading="eager"
+                  decoding="async"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <img
+                srcset="/misc/iphone-frame-sm.webp 252w, /misc/iphone-frame-md.webp 331w, /misc/iphone-frame-lg.webp 298w, /misc/iphone-frame-xl.webp 331w"
+                sizes="(max-width: 400px) 252px, (max-width: 768px) 331px, 298px"
+                src="/misc/iphone-frame-md.webp"
+                alt={translations.alt.misc.iphoneFrame}
+                loading="lazy"
+                decoding="async"
+                class="relative z-10 h-full"
+              />
+            </div>
+          ) : null}
+        </div>
+      </div>
     </div>
   </div>
 
-  {partners && <Wave class="absolute inset-x-0 -bottom-1 -z-10" aria-hidden="true" />}
+  {partners && <Wave class="absolute -bottom-1 left-0 right-0 -z-10" aria-hidden="true" />}
 </section>
