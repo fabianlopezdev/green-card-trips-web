@@ -31,11 +31,17 @@ function initHeader(root: HTMLElement): void {
 
   const events = createEventManager();
 
+  // Shared state for menu integration with detach animation
+  const sharedState = {
+    menuOpen: false,
+    onMenuToggle: null as ((isOpen: boolean) => void) | null,
+  };
+
   // Feature: Detach and shrink animation (NEW!)
-  initDetachAnimation(root, events);
+  initDetachAnimation(root, events, sharedState);
 
   // Feature: Mobile menu toggle
-  initMobileMenu(root, events);
+  initMobileMenu(root, events, sharedState);
 
   // Feature: Theme switcher
   initThemeSwitcher(root, events);
@@ -56,10 +62,12 @@ function initHeader(root: HTMLElement): void {
  * Detach and shrink animation - triggered by scroll position
  * Animates header width, position, and backdrop opacity
  * Works on both mobile and desktop with different width behaviors
+ * Mobile menu integration: Un-detaches when menu opens, re-detaches when menu closes
  */
 function initDetachAnimation(
   root: HTMLElement,
-  events: ReturnType<typeof createEventManager>
+  events: ReturnType<typeof createEventManager>,
+  sharedState: { menuOpen: boolean; onMenuToggle: ((isOpen: boolean) => void) | null }
 ): void {
   const nav = root.querySelector<HTMLElement>("nav");
   const navInner = nav?.querySelector<HTMLElement>(".nav-inner");
@@ -96,7 +104,20 @@ function initDetachAnimation(
   const OPACITY_END = 0.8; // backdrop opacity (same for mobile and desktop, matches bg-base-100/80)
   const BLUR_END = 12; // px backdrop blur (same for mobile and desktop)
 
-  const updateAnimation = (scrollY: number) => {
+  const updateAnimation = (scrollY: number, force = false) => {
+    // If mobile menu is open (on mobile only), force header to attached state
+    if (isMobile && sharedState.menuOpen) {
+      navInner.style.setProperty('width', `${MAX_WIDTH_START}px`, 'important');
+      navInner.style.setProperty('min-width', `${MAX_WIDTH_START}px`, 'important');
+      navInner.style.setProperty('max-width', `${MAX_WIDTH_START}px`, 'important');
+      navInner.style.transform = `translateY(0px)`;
+      backdrop.style.opacity = `0`;
+      if (CSS.supports("backdrop-filter", "blur(12px)")) {
+        backdrop.style.backdropFilter = `blur(0px)`;
+      }
+      return;
+    }
+
     const progress = Math.min(scrollY / SCROLL_THRESHOLD, 1);
 
     // Easing function (ease-out cubic)
@@ -137,14 +158,37 @@ function initDetachAnimation(
     events.on(window, "scroll", memoizedUpdate, { passive: true });
   }
 
+  // Expose callback for mobile menu toggle (only on mobile)
+  if (isMobile) {
+    sharedState.onMenuToggle = (isOpen: boolean) => {
+      // Add faster transition class for menu open/close
+      navInner.style.transition = 'width 0.3s ease-out, min-width 0.3s ease-out, max-width 0.3s ease-out, transform 0.3s ease-out';
+      backdrop.style.transition = 'opacity 0.3s ease-out, backdrop-filter 0.3s ease-out';
+
+      // Trigger animation update
+      updateAnimation(window.scrollY || 0);
+
+      // Reset transition to default after animation completes
+      setTimeout(() => {
+        navInner.style.transition = '';
+        backdrop.style.transition = '';
+      }, 300);
+    };
+  }
+
   // Initial state
   updateAnimation(window.scrollY || 0);
 }
 
 /**
  * Mobile menu toggle behavior with animations
+ * Integrates with header detach animation to un-detach when menu opens
  */
-function initMobileMenu(root: HTMLElement, events: ReturnType<typeof createEventManager>): void {
+function initMobileMenu(
+  root: HTMLElement,
+  events: ReturnType<typeof createEventManager>,
+  sharedState: { menuOpen: boolean; onMenuToggle: ((isOpen: boolean) => void) | null }
+): void {
   const mobileMenuDetails = root.querySelector<HTMLDetailsElement>("[data-mobile-menu]");
   if (!mobileMenuDetails) return;
 
@@ -240,7 +284,18 @@ function initMobileMenu(root: HTMLElement, events: ReturnType<typeof createEvent
 
   // Listen to toggle event (fired when details open/close state changes)
   mobileMenuDetails.addEventListener("toggle", () => {
-    if (mobileMenuDetails.open) {
+    const isOpen = mobileMenuDetails.open;
+
+    // Update shared state
+    sharedState.menuOpen = isOpen;
+
+    // Trigger header detach animation callback (un-detach/re-detach)
+    if (sharedState.onMenuToggle) {
+      sharedState.onMenuToggle(isOpen);
+    }
+
+    // Trigger menu open/close animations
+    if (isOpen) {
       openMenu();
     } else {
       closeMenu();
