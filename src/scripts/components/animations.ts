@@ -77,8 +77,8 @@ function initAnimatedElement(element: HTMLElement): void {
 
   if (!animation) return;
 
-  // Add initial state class
-  element.classList.add("animate-hidden");
+  // Add initial state classes (both hidden state and animation type)
+  element.classList.add("animate-hidden", `animate-${animation}`);
 
   // Observe element
   observe(
@@ -88,12 +88,12 @@ function initAnimatedElement(element: HTMLElement): void {
         // Trigger animation after delay
         setTimeout(() => {
           element.classList.remove("animate-hidden");
-          element.classList.add("animate-visible", `animate-${animation}`);
+          element.classList.add("animate-visible");
         }, delay);
       } else if (!once) {
         // Reset animation if not "once"
         element.classList.add("animate-hidden");
-        element.classList.remove("animate-visible", `animate-${animation}`);
+        element.classList.remove("animate-visible");
       }
     },
     { threshold }

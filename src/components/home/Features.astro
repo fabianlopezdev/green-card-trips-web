@@ -34,7 +34,7 @@ const cardBackgroundColors = [
 ];
 ---
 
-<section id={features.id} class="mx-auto max-w-screen-lg px-4 py-12" aria-label="App features">
+<section id={features.id} class="mx-auto max-w-screen-lg px-4 py-12" aria-label="App features" data-interactive="animations">
   <div class="prose prose-lg mb-12 flex max-w-none flex-col items-center text-center">
     <h2 class="mb-3 font-normal">{translations.features.title}</h2>
     <div class="h-2 w-[200px] overflow-hidden rounded-full bg-gradient-to-r from-primary to-secondary md:w-[350px]">
@@ -50,10 +50,14 @@ const cardBackgroundColors = [
         description: string;
       };
       const isLastOdd = index === featureCards.length - 1 && featureCards.length % 2 === 1;
+      const animateDirection = index % 2 === 0 ? "slide-right" : "slide-left";
 
       return (
         <article
           class={`group relative overflow-hidden rounded-3xl px-8 pt-6 pb-8 bg-base-200/40 ${isLastOdd ? "sm:col-span-2" : ""}`}
+          data-animate={animateDirection}
+          data-threshold="0.2"
+          data-once="true"
         >
           <header class="relative mb-6 mt-2">
             <div
