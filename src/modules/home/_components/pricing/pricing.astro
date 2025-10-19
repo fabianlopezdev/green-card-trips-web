@@ -51,7 +51,7 @@ const planImageAltTexts = [
     {
       pricing.plans?.map((plan, index) => (
         <article class={`relative rounded-3xl bg-base-200/40 p-6 lg:col-start-2`}>
-          <div class="flex flex-col items-center gap-4 text-center">
+          <header class="flex flex-col items-center gap-4 text-center">
             <div class="flex h-28 w-28 items-center justify-center rounded-full bg-primary/10">
               <img
                 src={planImages[index % planImages.length]}
@@ -70,7 +70,7 @@ const planImageAltTexts = [
                 {plan.price ?? translations.pricing.price}
               </p>
             </div>
-          </div>
+          </header>
           <ul class="mt-6 space-y-2 text-base text-base-content/80">
             {(plan.rows ?? translations.pricing.features).map(
               (feature: string) => (

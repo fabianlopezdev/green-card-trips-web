@@ -1,6 +1,7 @@
 ---
 import type { TemplateConfig } from "@utils/configType";
 import type { TranslationObject } from "@utils/serverI18n";
+import NeonHexagon from "./svgs/neonHexagon.astro";
 
 interface Props {
   config: TemplateConfig;
@@ -29,18 +30,29 @@ const faqs = faq.qa.map((_, i) => {
 ---
 
 <section id={faq.id} class="mx-auto mb-12 max-w-screen-lg px-4" aria-label="Frequently asked questions">
-  <div class="rounded-3xl bg-base-200/50 px-6 py-10 md:px-10">
-    <header class="mb-8 text-center md:text-left">
-      <h2 class="text-3xl font-semibold md:text-4xl">{translations.faq.title}</h2>
-    </header>
+  <div class="flex flex-col md:flex-row gap-6 md:gap-8">
+    <!-- Left Column: Title with Hexagon -->
+    <div class="relative flex flex-1 items-center justify-center">
+      <NeonHexagon />
+      <div class="h-full w-full flex items-center justify-center">
+        <h2 class="text-center font-normal text-3xl mb-8 md:mb-0 md:text-4xl">
+          {translations.faq.title}
+        </h2>
+      </div>
+    </div>
 
-    <dl class="space-y-4">
+    <!-- Right Column: FAQ Items -->
+    <div class="flex-1 rounded-3xl bg-base-200/50 px-4 py-10 md:px-10">
       {faqs.map((faqItem) => (
-        <div class="rounded-2xl border border-base-300 bg-base-100 p-4">
-          <dt class="text-lg font-medium text-base-content">{faqItem.question}</dt>
-          <dd class="mt-2 text-base text-base-content/70">{faqItem.answer}</dd>
-        </div>
+        <details class="rounded-2xl border border-base-300 bg-base-100 p-4 mb-4 last:mb-0">
+          <summary class="text-lg font-medium text-base-content cursor-pointer list-none">
+            {faqItem.question}
+          </summary>
+          <p class="mt-2 text-base text-base-content/70">
+            {faqItem.answer}
+          </p>
+        </details>
       ))}
-    </dl>
+    </div>
   </div>
 </section>
