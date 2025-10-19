@@ -25,7 +25,7 @@
   },
   "highlight": {
     "title": "Protect Your Green Card",
-    "subtitle": "Avoid surprises and stay in control of your residency status.",
+    "subtitle": "Stay in control of your residency status and travel with confidence.",
     "paragraph1": "Your Green Card is valuable — and time abroad can put it at risk if not carefully tracked. The app helps you understand when a trip could raise questions about continuous residence or even risk what's called 'abandonment of residence.' It highlights when an upcoming trip may require a reentry permit (Form I-131), and keeps you fully aware of your travel history, so you can make informed choices long before a problem arises.",
     "paragraph2": "Green Card Trips also calculates your estimated earliest N-400 filing date and shows the 90-day early filing window when applicable — so you know not only if you meet residence requirements, but when you can file."
   },
@@ -41,20 +41,20 @@
       "description": "Add a future trip and see how it changes your continuous residence and physical presence totals — before you travel. Plan smarter with instant, visual feedback and see how a trip might shift your earliest filing date."
     },
     "dashboard": {
-      "title": "Continuous Residence Dashboard",
-      "description": "Get clear indicators when a single trip exceeds 180 or 365 days, and when your total time abroad approaches limits that could delay your earliest N-400 filing date — including the 90-day early filing window where applicable."
+      "title": "Dashboard Insights",
+      "description": "Get clear indicators when a single trip exceeds 180 or 365 days, and when your total time abroad approaches limits that could delay your earliest N-400 filing date."
     },
     "privacy": {
-      "title": "Your Data, Your Control",
-      "description": "Your travel records are stored securely on your device. You decide if and when to back them up. No personal data leaves your phone unless you choose to sync."
+      "title": "Your Data is Safe",
+      "description": "Offline-first design. Your travel records are stored securely on your device."
     }
   },
   "howItWorks": {
     "title": "How It Works",
-    "subtitle": "Get started in minutes — clarity and confidence included",
+    "subtitle": "Get started in minutes",
     "step1": {
       "title": "Download the App",
-      "description": "Install Green Card Trips on your iPhone or iPad."
+      "description": "Install Green Card Trips on your iPhone"
     },
     "step2": {
       "title": "Enter Your Green Card Details",
@@ -65,29 +65,29 @@
       "description": "Add past and upcoming trips with departure and return dates. The app instantly calculates total days abroad and in the U.S."
     },
     "step4": {
-      "title": "Check Continuous Residence",
-      "description": "See if any single trip passes 180 or 365 days and how that affects continuous residence."
+      "title": "Check Continuous Residence & Physical Presence",
+      "description": "See if any single trip affects continuous residence and get the accumulated total days outside the U.S. and remaining physical presence required."
     },
     "step5": {
-      "title": "Know When You Can File (90-Day Rule)",
-      "description": "The app calculates your earliest possible N-400 filing date and shows the 90-day early filing window when you're within reach — so you know exactly when you can submit your application."
+      "title": "Know When You Can File",
+      "description": "The app calculates your earliest possible N-400 filing date and shows the 90-day early filing window when you're within reach — so you know when you can submit your application."
     }
   },
   "pricing": {
     "title": "Simple, Transparent Pricing",
-    "subtitle": "One-time purchase. Lifetime clarity.",
+    "subtitle": "One-time purchase. Peace of mind.",
     "price": "$4.99",
     "cta": "Download",
     "features": [
       "Unlimited trip tracking",
       "Trip impact simulator",
       "Continuous residence and physical presence calculator",
-      "Dashboard with friendly warnings and filing-date projections (including the 90-day window)",
+      "Dashboard with friendly warnings and filing-date projections",
       "Offline access"
     ]
   },
   "faq": {
-    "title": "Common Questions About Travel, Continuous Residence, and Protecting Your Green Card",
+    "title": "Common Questions About Travel & Your Green Card",
     "q1": {
       "question": "What is Green Card Trips?",
       "answer": "Green Card Trips is an app that helps U.S. permanent residents track trips abroad, calculate physical presence, and understand how travel affects continuous residence and citizenship eligibility."
