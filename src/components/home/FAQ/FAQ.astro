@@ -29,10 +29,21 @@ const faqs = faq.qa.map((_, i) => {
 });
 ---
 
-<section id={faq.id} class="mx-auto mb-12 max-w-screen-lg px-4" aria-label="Frequently asked questions">
+<section
+  id={faq.id}
+  class="mx-auto mb-12 max-w-screen-lg px-4"
+  aria-label="Frequently asked questions"
+  data-interactive="faq"
+  data-faq-mode="single"
+>
+  <div class="flex justify-center mb-12">
+    <div class="h-2 w-[200px] overflow-hidden rounded-full bg-gradient-to-r from-primary to-secondary md:w-[350px]">
+      <span class="block h-full w-full bg-white/20"></span>
+    </div>
+  </div>
   <div class="flex flex-col md:flex-row gap-6 md:gap-8">
     <!-- Left Column: Title with Hexagon -->
-    <div class="relative flex flex-1 items-center justify-center">
+    <div id="faq-hexagon" class="relative flex flex-1 items-center justify-center">
       <NeonHexagon />
       <div class="h-full w-full flex items-center justify-center">
         <h2 class="text-center font-normal text-3xl mb-8 md:mb-0 md:text-4xl">
@@ -44,7 +55,7 @@ const faqs = faq.qa.map((_, i) => {
     <!-- Right Column: FAQ Items -->
     <div class="flex-1 rounded-3xl bg-base-200/50 px-4 py-10 md:px-10">
       {faqs.map((faqItem) => (
-        <details class="rounded-2xl border border-base-300 bg-base-100 p-4 mb-4 last:mb-0">
+        <details data-faq-item class="rounded-2xl border border-base-300 bg-base-100 p-4 mb-4 last:mb-0">
           <summary class="text-lg font-medium text-base-content cursor-pointer list-none">
             {faqItem.question}
           </summary>

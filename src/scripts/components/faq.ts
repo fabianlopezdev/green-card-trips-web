@@ -24,6 +24,27 @@ import { getDataAttr } from "../utils/dataset";
 const initializedSections = new WeakSet<HTMLElement>();
 
 /**
+ * Update hexagon SVG scale based on FAQ open state
+ */
+function updateHexagonScale(root: HTMLElement, faqItems: NodeListOf<HTMLDetailsElement>): void {
+  const hexagon = root.querySelector("#faq-hexagon");
+  if (!hexagon) return;
+
+  // Use setTimeout to wait for all synchronous toggle events to complete
+  // The animation logic programmatically sets details.open which triggers more events
+  setTimeout(() => {
+    // Check if any FAQ item is open
+    const anyOpen = Array.from(faqItems).some((item) => item.open);
+
+    if (anyOpen) {
+      hexagon.classList.add("faq-open");
+    } else {
+      hexagon.classList.remove("faq-open");
+    }
+  }, 50);
+}
+
+/**
  * Initialize FAQ accordion behavior
  */
 function initFaq(root: HTMLElement): void {
@@ -37,25 +58,25 @@ function initFaq(root: HTMLElement): void {
 
   const events = createEventManager();
 
-  // Initialize each FAQ item
+  // Initialize each FAQ item and attach toggle listeners
+  // Note: toggle events don't bubble, so we can't use delegation
   for (const item of faqItems) {
     initFaqItem(item);
-  }
 
-  // Auto-close behavior (only for "single" mode)
-  if (mode === "single") {
-    events.delegate(root, "toggle", "[data-faq-item]", (event, target) => {
-      const details = target as HTMLDetailsElement;
-
-      if (details.open) {
+    // Attach toggle listener directly to each item
+    item.addEventListener("toggle", () => {
+      if (mode === "single" && item.open) {
         // Close all other items
         for (const otherItem of faqItems) {
-          if (otherItem !== details && otherItem.open) {
+          if (otherItem !== item && otherItem.open) {
             otherItem.open = false;
           }
         }
       }
-    });
+
+      // Update hexagon scale after DOM updates complete
+      updateHexagonScale(root, faqItems);
+    }, { signal: events.signal });
   }
 
   // Keyboard navigation (arrow keys)
@@ -89,50 +110,11 @@ function initFaq(root: HTMLElement): void {
 }
 
 /**
- * Initialize smooth animations for a single FAQ item
+ * Initialize accessibility for a single FAQ item
  */
 function initFaqItem(details: HTMLDetailsElement): void {
   const summary = details.querySelector("summary");
   if (!summary) return;
-
-  const content = Array.from(details.children).find((el) => el !== summary) as HTMLElement;
-  if (!content) return;
-
-  // Set up animation styles
-  details.style.overflow = "hidden";
-
-  const animate = (opening: boolean) => {
-    const startHeight = opening ? 0 : content.scrollHeight;
-    const endHeight = opening ? content.scrollHeight : 0;
-
-    // Use Web Animations API for smooth performance
-    const animation = details.animate(
-      [{ height: `${summary.offsetHeight + startHeight}px` }, { height: `${summary.offsetHeight + endHeight}px` }],
-      {
-        duration: 300,
-        easing: "ease-in-out",
-      }
-    );
-
-    animation.onfinish = () => {
-      if (!opening) {
-        details.open = false;
-      }
-      details.style.height = "";
-    };
-  };
-
-  // Listen for toggle events
-  details.addEventListener("toggle", () => {
-    if (details.open) {
-      animate(true);
-    } else {
-      // For closing, we need to prevent default closing and animate first
-      requestAnimationFrame(() => {
-        animate(false);
-      });
-    }
-  });
 
   // Enhance summary for accessibility
   summary.setAttribute("role", "button");

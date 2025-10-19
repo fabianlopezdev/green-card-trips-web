@@ -54,7 +54,7 @@ const cardBackgroundColors = [
 
       return (
         <article
-          class={`group relative overflow-hidden rounded-3xl px-8 pt-6 pb-8 bg-base-200/40 ${isLastOdd ? "sm:col-span-2" : ""}`}
+          class={`group relative overflow-hidden rounded-3xl px-5 md:px-8 pt-4 md:pt-6 pb-6 md:pb-8 bg-base-200/40 ${isLastOdd ? "sm:col-span-2" : ""}`}
           data-animate={animateDirection}
           data-threshold="0.2"
           data-once="true"
@@ -78,10 +78,10 @@ const cardBackgroundColors = [
               />
             </figure>
           </header>
-          <div class="flex flex-col items-center gap-2 text-center px-8">
+          <div class="flex flex-col items-center gap-2 text-center px-0 md:px-8">
             <h3 class="text-2xl font-bold">{featureCopy?.title}</h3>
             <div class="h-0.5 w-full bg-primary/10" />
-            <p class="text-base text-base-content/70">{featureCopy?.description}</p>
+            <p class="text-base text-base-content/70 text-pretty">{featureCopy?.description}</p>
           </div>
         </article>
       );

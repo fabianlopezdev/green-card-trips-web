@@ -306,3 +306,44 @@ header[data-interactive="header"] nav {
     animation: none !important;
   }
 }
+
+/* ============================================================================
+   Neon Hexagon Pulse Animation
+   Used by src/components/home/FAQ/svgs/neonHexagon.astro
+   ============================================================================ */
+
+/* Pulse animation for neon glow effect */
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .neon-pulse {
+    animation: none !important;
+    opacity: 0.6 !important;
+  }
+}
+
+/* FAQ Hexagon Scaling on Open/Close */
+#faq-hexagon svg {
+  transition: transform 0.5s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  #faq-hexagon.faq-open svg {
+    transform: scale(1.1);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  #faq-hexagon svg {
+    transition: none !important;
+  }
+}
