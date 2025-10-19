@@ -18,8 +18,6 @@ import { observe } from "../observers/intersection";
 const headerStates = new WeakMap<
   HTMLElement,
   {
-    lastScrollY: number;
-    isVisible: boolean;
     cleanup: () => void;
   }
 >();
@@ -32,11 +30,9 @@ function initHeader(root: HTMLElement): void {
   if (headerStates.has(root)) return;
 
   const events = createEventManager();
-  let lastScrollY = 0;
-  let isVisible = true;
 
-  // Feature: Sticky header show/hide on scroll
-  initStickyHeader(root, events);
+  // Feature: Detach and shrink animation (NEW!)
+  initDetachAnimation(root, events);
 
   // Feature: Mobile menu toggle
   initMobileMenu(root, events);
@@ -49,8 +45,6 @@ function initHeader(root: HTMLElement): void {
 
   // Store state and cleanup
   headerStates.set(root, {
-    lastScrollY,
-    isVisible,
     cleanup: () => {
       events.cleanup();
       headerStates.delete(root);
@@ -59,43 +53,83 @@ function initHeader(root: HTMLElement): void {
 }
 
 /**
- * Sticky header behavior - show/hide on scroll
+ * Detach and shrink animation - triggered by scroll position
+ * Animates header width, position, and backdrop opacity
  */
-function initStickyHeader(root: HTMLElement, events: ReturnType<typeof createEventManager>): void {
-  const isSticky = root.dataset.sticky === "true";
-  if (!isSticky) return;
+function initDetachAnimation(
+  root: HTMLElement,
+  events: ReturnType<typeof createEventManager>
+): void {
+  const nav = root.querySelector<HTMLElement>("nav");
+  const navInner = nav?.querySelector<HTMLElement>(".nav-inner");
+  const backdrop = navInner?.querySelector<HTMLElement>(".backdrop");
 
-  let lastScrollY = window.scrollY;
-  let isVisible = true;
+  if (!navInner || !backdrop) {
+    console.warn("[Header Detach] Missing elements:", { navInner: !!navInner, backdrop: !!backdrop });
+    return;
+  }
 
-  const handleScroll = memoizeFrame(() => {
-    const currentScrollY = window.scrollY;
-    const scrollingDown = currentScrollY > lastScrollY;
-    const scrollThreshold = 100; // Minimum scroll before hiding
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (currentScrollY < scrollThreshold) {
-      // Always show at top of page
-      if (!isVisible) {
-        root.style.transform = "translateY(0)";
-        isVisible = true;
-      }
-    } else if (scrollingDown && isVisible) {
-      // Hide when scrolling down
-      root.style.transform = "translateY(-100%)";
-      isVisible = false;
-    } else if (!scrollingDown && !isVisible) {
-      // Show when scrolling up
-      root.style.transform = "translateY(0)";
-      isVisible = true;
+  if (prefersReducedMotion) {
+    // Set final state immediately without animation
+    navInner.style.maxWidth = "932px";
+    navInner.style.transform = "translateY(12px)";
+    backdrop.style.opacity = "0.95";
+    backdrop.style.backdropFilter = "blur(12px)";
+    return;
+  }
+
+  // Animation parameters
+  const SCROLL_THRESHOLD = 2200; // Pixels to complete animation (sweet spot - not too fast, not too slow)
+  const MAX_WIDTH_START = 1024; // px (matches max-w-screen-lg)
+  const MAX_WIDTH_END = 932; // px (91% - matches deployed final state)
+  const TRANSLATE_END = 12; // px (matches deployed version)
+  const OPACITY_END = 0.95; // backdrop opacity
+  const BLUR_END = 12; // px backdrop blur
+
+  const updateAnimation = (scrollY: number) => {
+    const progress = Math.min(scrollY / SCROLL_THRESHOLD, 1);
+
+    // Easing function (ease-out cubic)
+    const eased = 1 - Math.pow(1 - progress, 3);
+
+    // Calculate values
+    const maxWidth = MAX_WIDTH_START - (MAX_WIDTH_START - MAX_WIDTH_END) * eased;
+    const translateY = TRANSLATE_END * eased;
+    const opacity = OPACITY_END * eased;
+    const blur = BLUR_END * eased;
+
+    // Apply transforms
+    navInner.style.maxWidth = `${maxWidth}px`;
+    navInner.style.transform = `translateY(${translateY}px)`;
+    backdrop.style.opacity = `${opacity}`;
+
+    // Only apply backdrop-filter if supported
+    if (CSS.supports("backdrop-filter", "blur(12px)")) {
+      backdrop.style.backdropFilter = `blur(${blur}px)`;
     }
+  };
 
-    lastScrollY = currentScrollY;
-  });
+  // Check if Lenis smooth scroll is available
+  const lenis = (window as any).__lenisInstance;
 
-  // Add smooth transition
-  root.style.transition = "transform 0.3s ease-in-out";
+  if (lenis) {
+    // Use Lenis scroll event
+    lenis.on("scroll", ({ scroll }: { scroll: number }) => {
+      updateAnimation(scroll);
+    });
+  } else {
+    // Fallback to native scroll event if Lenis is not available
+    const memoizedUpdate = memoizeFrame(() => {
+      updateAnimation(window.scrollY);
+    });
+    events.on(window, "scroll", memoizedUpdate, { passive: true });
+  }
 
-  events.on(window, "scroll", handleScroll, { passive: true });
+  // Initial state
+  updateAnimation(window.scrollY || 0);
 }
 
 /**

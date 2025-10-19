@@ -95,8 +95,10 @@ export function initInteractiveRoots(root: ParentNode = document): void {
 /**
  * Wire up lifecycle hooks
  * Runs on initial page load and Astro page transitions
+ *
+ * This should be called AFTER all components have been imported and registered
  */
-function wireLifecycle(): void {
+export function wireLifecycle(): void {
   if (typeof document === "undefined") return;
 
   // Initial page load
@@ -112,6 +114,3 @@ function wireLifecycle(): void {
     initInteractiveRoots();
   });
 }
-
-// Bootstrap the system
-wireLifecycle();

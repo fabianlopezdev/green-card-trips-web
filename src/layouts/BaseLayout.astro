@@ -49,10 +49,6 @@ const mobileAppSchema = generateMobileApplicationSchema(config, currentPageUrl);
 const organizationSchema = generateOrganizationSchema(config, currentPageUrl);
 const websiteSchema = generateWebSiteSchema(config, currentPageUrl);
 const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-cn'];
-const lenisModuleUrl = new URL("./components/ui/initScripts/lenis-init.ts", import.meta.url);
-const lenisScript = `import("${lenisModuleUrl.href}");`;
-const interactivityModuleUrl = new URL("./components/ui/initScripts/interactivity-init.ts", import.meta.url);
-const interactivityScript = `import("${interactivityModuleUrl.href}");`;
 
 // Get the current path without language prefix and detect if it's a legal page
 const getCurrentPathInfo = () => {
@@ -236,9 +232,31 @@ const languageUrls = supportedLanguages.map(lang => {
     <CookieConsentBanner currentLang={htmlLang} />
     <!-- Google Analytics (loads conditionally based on cookie consent) -->
     <GoogleAnalytics trackingId={config.googleAnalytics} />
-    
-    <script is:inline type="module" set:html={lenisScript} />
-    <script is:inline type="module" set:html={interactivityScript} />
+
+    <!-- Lenis smooth scroll initialization -->
+    <script>
+      import { initLenis } from "@components/ui/initScripts/lenis.client.ts";
+
+      if (!window.__lenisLoader) {
+        window.__lenisLoader = true;
+        initLenis();
+      }
+    </script>
+
+    <!-- Interactivity system initialization -->
+    <script>
+      import { wireLifecycle } from "../scripts/register";
+      import "../scripts/components/header";
+      import "../scripts/components/animations";
+      import "../scripts/components/faq";
+      import "../scripts/components/theme";
+
+      if (!window.__interactivityLoader) {
+        window.__interactivityLoader = true;
+        wireLifecycle();
+        console.log("[Interactivity] System initialized");
+      }
+    </script>
     <!-- Skip to main content link for keyboard accessibility -->
     <a
       href="#main"

@@ -157,3 +157,37 @@ html.lenis body {
               color 0.3s ease-in-out,
               border-color 0.3s ease-in-out !important;
 }
+
+/* ============================================================================
+   Header Detach & Shrink Animation
+   Used by src/scripts/components/header.ts
+   ============================================================================ */
+
+/* Ensure navigation header doesn't affect layout */
+header[data-interactive="header"] {
+  height: 0;
+}
+
+/* Header nav container */
+header[data-interactive="header"] nav {
+  .nav-inner {
+    /* No transitions - animation is directly controlled by scroll position */
+  }
+
+  .backdrop {
+    /* No transitions - animation is directly controlled by scroll position */
+    @supports (backdrop-filter: blur(12px)) {
+      backdrop-filter: blur(0px);
+    }
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  header[data-interactive="header"] nav {
+    .nav-inner,
+    .backdrop {
+      transition: none !important;
+    }
+  }
+}
