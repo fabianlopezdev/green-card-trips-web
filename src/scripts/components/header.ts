@@ -55,6 +55,7 @@ function initHeader(root: HTMLElement): void {
 /**
  * Detach and shrink animation - triggered by scroll position
  * Animates header width, position, and backdrop opacity
+ * Works on both mobile and desktop with different width behaviors
  */
 function initDetachAnimation(
   root: HTMLElement,
@@ -69,25 +70,31 @@ function initDetachAnimation(
     return;
   }
 
+  // Check if we're on mobile (below nav breakpoint: 932px)
+  const isMobile = window.matchMedia("(max-width: 931px)").matches;
+
   // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (prefersReducedMotion) {
     // Set final state immediately without animation
-    navInner.style.maxWidth = "932px";
+    const finalWidth = isMobile ? `${window.innerWidth * 0.95}px` : "932px";
+    navInner.style.setProperty('width', finalWidth, 'important');
+    navInner.style.setProperty('min-width', finalWidth, 'important');
+    navInner.style.setProperty('max-width', finalWidth, 'important');
     navInner.style.transform = "translateY(12px)";
-    backdrop.style.opacity = "0.95";
+    backdrop.style.opacity = "0.8";
     backdrop.style.backdropFilter = "blur(12px)";
     return;
   }
 
-  // Animation parameters
+  // Animation parameters (mobile shrinks to 95% width, desktop shrinks to 932px)
   const SCROLL_THRESHOLD = 2200; // Pixels to complete animation (sweet spot - not too fast, not too slow)
-  const MAX_WIDTH_START = 1024; // px (matches max-w-screen-lg)
-  const MAX_WIDTH_END = 932; // px (91% - matches deployed final state)
-  const TRANSLATE_END = 12; // px (matches deployed version)
-  const OPACITY_END = 0.95; // backdrop opacity
-  const BLUR_END = 12; // px backdrop blur
+  const MAX_WIDTH_START = isMobile ? window.innerWidth : 1024; // 100vw on mobile, 1024px on desktop
+  const MAX_WIDTH_END = isMobile ? window.innerWidth * 0.95 : 932; // 95vw on mobile, 932px on desktop
+  const TRANSLATE_END = 12; // px (same for mobile and desktop)
+  const OPACITY_END = 0.8; // backdrop opacity (same for mobile and desktop, matches bg-base-100/80)
+  const BLUR_END = 12; // px backdrop blur (same for mobile and desktop)
 
   const updateAnimation = (scrollY: number) => {
     const progress = Math.min(scrollY / SCROLL_THRESHOLD, 1);
@@ -102,7 +109,9 @@ function initDetachAnimation(
     const blur = BLUR_END * eased;
 
     // Apply transforms
-    navInner.style.maxWidth = `${maxWidth}px`;
+    navInner.style.setProperty('width', `${maxWidth}px`, 'important');
+    navInner.style.setProperty('min-width', `${maxWidth}px`, 'important');
+    navInner.style.setProperty('max-width', `${maxWidth}px`, 'important');
     navInner.style.transform = `translateY(${translateY}px)`;
     backdrop.style.opacity = `${opacity}`;
 
@@ -133,11 +142,110 @@ function initDetachAnimation(
 }
 
 /**
- * Mobile menu toggle behavior
+ * Mobile menu toggle behavior with animations
  */
 function initMobileMenu(root: HTMLElement, events: ReturnType<typeof createEventManager>): void {
   const mobileMenuDetails = root.querySelector<HTMLDetailsElement>("[data-mobile-menu]");
   if (!mobileMenuDetails) return;
+
+  const overlay = mobileMenuDetails.querySelector<HTMLElement>("[data-mobile-menu-overlay]");
+  if (!overlay) return;
+
+  // Get animatable elements
+  const menuItems = mobileMenuDetails.querySelectorAll<HTMLElement>("[data-menu-item]");
+  const themeSection = mobileMenuDetails.querySelector<HTMLElement>("[data-menu-theme]");
+  const languageSection = mobileMenuDetails.querySelector<HTMLElement>("[data-menu-language]");
+  const storesSection = mobileMenuDetails.querySelector<HTMLElement>("[data-menu-stores]");
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /**
+   * Open menu with staggered animations
+   */
+  const openMenu = () => {
+    // Lock body scroll
+    document.body.style.overflow = "hidden";
+
+    if (prefersReducedMotion) {
+      // Skip animations, show immediately
+      overlay.classList.remove("mobile-menu-hidden");
+      overlay.classList.add("mobile-menu-visible");
+      menuItems.forEach((item) => {
+        item.classList.remove("menu-item-hidden");
+        item.classList.add("menu-item-visible");
+      });
+      [themeSection, languageSection, storesSection].forEach((section) => {
+        if (section) {
+          section.classList.remove("menu-section-hidden");
+          section.classList.add("menu-section-visible");
+        }
+      });
+      return;
+    }
+
+    // Animate overlay
+    overlay.classList.remove("mobile-menu-hidden");
+    overlay.classList.add("mobile-menu-visible");
+
+    // Staggered animation sequence (like hero.ts)
+    const sequence: Array<{ element: HTMLElement | null; delay: number }> = [
+      { element: themeSection, delay: 100 },
+    ];
+
+    // Add menu items with staggered delays
+    menuItems.forEach((item, index) => {
+      sequence.push({ element: item, delay: 150 + index * 80 });
+    });
+
+    // Add language and stores sections
+    sequence.push({ element: languageSection, delay: 150 + menuItems.length * 80 + 80 });
+    sequence.push({ element: storesSection, delay: 150 + menuItems.length * 80 + 160 });
+
+    // Trigger animations
+    sequence.forEach(({ element, delay }) => {
+      if (!element) return;
+
+      setTimeout(() => {
+        element.classList.remove("menu-item-hidden", "menu-section-hidden");
+        element.classList.add("menu-item-visible", "menu-section-visible");
+      }, delay);
+    });
+  };
+
+  /**
+   * Close menu and reset animations
+   */
+  const closeMenu = () => {
+    // Unlock body scroll
+    document.body.style.overflow = "";
+
+    // Reset overlay
+    overlay.classList.remove("mobile-menu-visible");
+    overlay.classList.add("mobile-menu-hidden");
+
+    // Reset all animated elements
+    menuItems.forEach((item) => {
+      item.classList.remove("menu-item-visible");
+      item.classList.add("menu-item-hidden");
+    });
+
+    [themeSection, languageSection, storesSection].forEach((section) => {
+      if (section) {
+        section.classList.remove("menu-section-visible");
+        section.classList.add("menu-section-hidden");
+      }
+    });
+  };
+
+  // Listen to toggle event (fired when details open/close state changes)
+  mobileMenuDetails.addEventListener("toggle", () => {
+    if (mobileMenuDetails.open) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
 
   // Close menu when clicking outside
   const handleClickOutside = (event: MouseEvent) => {
@@ -152,7 +260,7 @@ function initMobileMenu(root: HTMLElement, events: ReturnType<typeof createEvent
   events.on(document, "click", handleClickOutside);
 
   // Close menu when clicking nav links
-  events.delegate(mobileMenuDetails, "click", "[data-nav-link]", (e) => {
+  events.delegate(mobileMenuDetails, "click", "[data-nav-link]", () => {
     mobileMenuDetails.open = false;
   });
 

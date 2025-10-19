@@ -1,151 +1,169 @@
 {
   "seo": {
-    "title": "Green Card Trips - Subaybayan ang Iyong Landas sa U.S. Citizenship",
-    "description": "Simple at magandang app para sa mga may green card upang subaybayan ang pisikal na presensya sa USA at pamahalaan ang kanilang paglalakbay tungo sa citizenship nang may kumpiyansa."
+    "title": "Green Card Trips - Kalkulahin ang Presensya at Tuloy-Tuloy na Paninirahan",
+    "description": "Tinutulungan ng Green Card Trips ang mga permanenteng residente ng U.S. na subaybayan ang kanilang presensya, maunawaan ang mga patakaran ng paglalakbay ng USCIS, at maprotektahan ang kanilang daan tungo sa pagkamamamayan. Kalkulahin ang mga araw sa U.S., iwasan ang pagkasira ng tuloy-tuloy na paninirahan, at magplano ng mga biyahe nang may kumpiyansa."
   },
   "nav": {
     "features": "Mga Tampok",
     "howItWorks": "Paano Gumagana",
     "pricing": "Presyo",
     "faq": "Mga Tanong",
-    "getApp": "Kunin ang app",
+    "getApp": "I-download ang App",
     "language": "Wika",
-    "openMenu": "Buksan ang menu",
-    "closeMenu": "Isara ang menu",
+    "openMenu": "Buksan ang Menu",
+    "closeMenu": "Isara ang Menu",
     "homeLink": "Home ng Green Card Trips",
-    "chooseLanguage": "Pumili ng wika",
+    "chooseLanguage": "Piliin ang Wika",
     "downloadAppStore": "I-download sa App Store",
     "downloadPlayStore": "I-download sa Google Play"
   },
   "hero": {
-    "headline": "Ang Iyong Kasosyo sa Kapayapaan ng Isip sa Landas Patungo sa U.S. Citizenship",
-    "subtitle": "Subaybayan ang iyong mga biyahe, planuhin ang iyong paglalakbay, at sumunod sa mga kinakailangan ng USCIS. Ginagawang simple at walang stress ng Green Card Trips ang pagiging karapat-dapat sa citizenship.",
-    "usersDescription": "Pinagkakatiwalaan ng mga may green card",
-    "downloadNow": "I-download Ngayon"
+    "headline": "Madaling Kalkulahin ang Iyong Presensya at Tuloy-Tuloy na Paninirahan",
+    "subtitle": "Tinutulungan ka ng Green Card Trips na manatiling nasa tamang alituntunin at kumpiyansa sa bawat hakbang. Subaybayan ang mga biyahe, kalkulahin ang presensya at tuloy-tuloy na paninirahan, at alamin ang pinakamaagang petsa para sa iyong N-400 application (kasama ang 90-araw na maagang filing window).",
+    "usersDescription": "Pinagkakatiwalaan ng mga may hawak ng Green Card",
+    "downloadNow": "I-download"
+  },
+  "highlight": {
+    "title": "Protektahan ang Iyong Green Card",
+    "subtitle": "Panatilihing kontrolado ang iyong status sa paninirahan at maglakbay nang may kapanatagan.",
+    "paragraph1": "Mahalaga ang iyong Green Card — at maaaring malagay sa panganib kung hindi maayos na nasusubaybayan ang oras sa labas ng bansa. Tinutulungan ka ng app na maunawaan kung kailan ang isang biyahe ay maaaring magdulot ng tanong tungkol sa iyong tuloy-tuloy na paninirahan. Tinutulungan ka rin nitong subaybayan ang kinakailangang presensya.",
+    "paragraph2": "Sa Green Card Trips, ganap mong alam ang iyong kasaysayan ng paglalakbay upang makagawa ka ng tamang mga desisyon."
   },
   "features": {
-    "title": "Lahat ng Kailangan Mo para Manatiling Sumusunod",
-    "subtitle": "Simpleng mga tool para subaybayan ang iyong presensya, magplano ng paglalakbay, at makamit ang iyong mga layunin sa citizenship",
+    "title": "Lahat ng Kailangan Mo para Manatiling Nasa Tamang Alituntunin",
+    "subtitle": "Planuhin ang mga biyahe at protektahan ang iyong daan tungo sa pagkamamamayan",
     "tracking": {
       "title": "Matalinong Pagsubaybay ng Biyahe",
-      "description": "Madaling itala ang lahat ng iyong mga internasyonal na biyahe kasama ang mga petsa at destinasyon. Makita ang iyong mga araw sa USA sa isang sulyap."
+      "description": "Irekord ang bawat biyahe sa ibang bansa kasama ang eksaktong mga petsa. Awtomatikong ina-update ng iyong dashboard ang kabuuang araw sa labas ng U.S. at ipinapakita kung ilang araw pa ang kinakailangan (548 o 913 depende sa iyong eligibility)."
     },
     "simulator": {
-      "title": "Travel Simulator",
-      "description": "Magplano ng mga biyahe sa hinaharap nang may kumpiyansa. Makita kung paano nakakaapekto ang paglalakbay sa iyong pagiging karapat-dapat sa citizenship bago mag-book."
+      "title": "Simulator ng Epekto ng Biyahe",
+      "description": "Magdagdag ng planadong biyahe at tingnan kung paano nito binabago ang iyong kabuuang tuloy-tuloy na paninirahan at presensya — bago ka bumiyahe. Planuhin nang mas matalino gamit ang agarang biswal na feedback at alamin kung paano maaapektuhan ng isang biyahe ang petsa ng iyong aplikasyon."
     },
     "dashboard": {
-      "title": "Dashboard Insights",
-      "description": "Real-time na mga istatistika ng presensya na may 180-araw at 365-araw na mga babala. Alamin ang iyong katayuan agad."
+      "title": "Mga Insight sa Dashboard",
+      "description": "Makakuha ng malinaw na babala kapag lumampas ang isang biyahe ng 180 o 365 araw, at kapag ang kabuuang oras mo sa labas ay malapit na sa mga limitasyon na maaaring magpaliban ng iyong N-400 application."
     },
     "privacy": {
-      "title": "Privacy at Seguridad",
-      "description": "Offline-first na disenyo na may field-level encryption. Hindi lumalabas ang iyong data sa iyong device maliban kung pipiliin mo ang cloud sync."
+      "title": "Ligtas ang Iyong Datos",
+      "description": "Dinisenyo para gumana offline. Ligtas na nakaimbak sa iyong device ang mga tala ng iyong paglalakbay."
     }
   },
   "howItWorks": {
-    "title": "Paano Ito Gumagana",
-    "subtitle": "Magsimula sa loob ng ilang minuto at kontrolin ang iyong paglalakbay tungo sa citizenship",
+    "title": "Paano Gumagana",
+    "subtitle": "Magsimula sa loob ng ilang minuto",
     "step1": {
       "title": "I-download ang App",
-      "description": "I-install ang Green Card Trips sa iyong iOS device."
+      "description": "I-install ang Green Card Trips sa iyong iPhone"
     },
     "step2": {
-      "title": "Ilagay ang Mga Detalye ng Green Card",
-      "description": "Idagdag ang petsa ng iyong green card at piliin ang iyong eligibility path (3-taon o 5-taon)."
+      "title": "Ilagay ang Iyong Detalye ng Green Card",
+      "description": "Idagdag ang petsa ng iyong Green Card at piliin ang iyong eligibility — 3 taon o 5 taon."
     },
     "step3": {
-      "title": "Itala ang Iyong Mga Biyahe",
-      "description": "Manu-manong ilagay ang mga nakaraang at darating na biyahe kasama ang mga petsa ng pag-alis at pagbabalik."
+      "title": "Irekord ang Iyong Mga Biyahe",
+      "description": "Idagdag ang mga nakaraang at paparating na biyahe kasama ang petsa ng alis at balik. Awtomatikong kinakalkula ng app ang kabuuang araw sa labas at sa loob ng U.S."
     },
     "step4": {
-      "title": "Magplano ng Biyahe nang Ligtas",
-      "description": "Gamitin ang simulator para suriin kung paano nakakaapekto ang mga biyahe sa iyong eligibility bago mag-book."
+      "title": "Suriin ang Tuloy-Tuloy na Paninirahan at Presensya",
+      "description": "Alamin kung may biyahe bang nakaapekto sa iyong tuloy-tuloy na paninirahan at tingnan ang kabuuang mga araw sa labas at ang natitirang presensya na kailangan."
     },
     "step5": {
-      "title": "Manatiling Sumusunod",
-      "description": "Subaybayan ang iyong dashboard para sa mga babala, subaybayan ang mga petsa ng renewal, at panatilihin ang iyong katayuan."
+      "title": "Alamin Kung Kailan Ka Maaaring Mag-apply",
+      "description": "Kinakalkula ng app ang pinakamaagang petsa para isumite ang iyong N-400 application at ipinapakita ang 90-araw na window para sa maagang pagsumite — upang malaman mo kung kailan ka maaaring mag-apply."
     }
   },
   "pricing": {
-    "title": "Simple at Transparent na Presyo",
-    "subtitle": "Isang beses lang na pagbili.",
+    "title": "Simple at Transparenteng Presyo",
+    "subtitle": "Isang beses lang magbayad. Kapayapaan ng isip.",
     "price": "$4.99",
-    "cta": "I-download Ngayon",
+    "cta": "I-download",
     "features": [
-      "Walang limitasyong pagsubaybay ng biyahe",
-      "Travel simulator",
-      "Dashboard insights",
-      "Mga paalala sa pagsunod",
-      "Offline mode"
+      "Walang limitasyong pagrekord ng biyahe",
+      "Simulator ng epekto ng biyahe",
+      "Calculator ng tuloy-tuloy na paninirahan at presensya",
+      "Dashboard na may mga babala at pagtataya ng petsa ng aplikasyon",
+      "Offline access"
     ]
   },
   "faq": {
-    "title": "Mga Madalas Itanong",
+    "title": "Mga Karaniwang Tanong Tungkol sa Paglalakbay at Iyong Green Card",
     "q1": {
       "question": "Ano ang Green Card Trips?",
-      "answer": "Ang Green Card Trips ay isang mobile app na tumutulong sa mga may green card sa U.S. na subaybayan ang kanilang pisikal na presensya sa United States upang matugunan ang mga kinakailangan sa pagiging karapat-dapat sa citizenship. Pinipigilan nito ang mga nakakalokong pagkakamali sa pamamagitan ng pagsubaybay sa mga kritikal na threshold ng paglalakbay."
+      "answer": "Ang Green Card Trips ay isang app na tumutulong sa mga permanenteng residente ng U.S. na subaybayan ang mga biyahe sa ibang bansa, kalkulahin ang presensya, at maunawaan kung paano naaapektuhan ng paglalakbay ang tuloy-tuloy na paninirahan at pagiging kwalipikado sa pagkamamamayan."
     },
     "q2": {
-      "question": "Gaano katumpak ang mga kalkulasyon?",
-      "answer": "Ang aming mga kalkulasyon ay sumusunod nang eksakto sa mga opisyal na patakaran ng USCIS. Ang mga araw ng pag-alis at pagbabalik ay binibilang bilang pisikal na presensya. At sinusubaybayan namin ang mga threshold na nakakaapekto sa tuloy-tuloy na paninirahan at pisikal na presensya para sa katayuan ng green card."
+      "question": "Gaano ka-accurate ang mga kalkulasyon?",
+      "answer": "Sinusunod ng mga kalkulasyon ang mga patakaran ng USCIS. Ang araw ng pag-alis at pagbalik ay binibilang bilang presensya sa U.S. Kinakalkula ng app ang parehong tuloy-tuloy na paninirahan (mga biyahe na higit sa 180 o 365 araw) at ang presensya (kabuuang araw sa labas kumpara sa 548 o 913 na kinakailangan sa U.S.)."
     },
     "q3": {
-      "question": "Ligtas at pribado ba ang aking data?",
-      "answer": "Tiyak. Ang lahat ng data ay naka-imbak nang lokal sa iyong device. Ang iyong impormasyon ay hindi lumalabas sa iyong telepono. Wala kaming access sa iyong data."
+      "question": "Ligtas ba ang aking datos?",
+      "answer": "Oo, ganap. Ang app ay gumagana offline. Lahat ng datos ay nakaimbak lamang sa iyong device. Hindi namin nakukuha o nakikita ang iyong impormasyon."
     },
     "q4": {
-      "question": "Pwede ko bang gamitin ito offline?",
-      "answer": "Oo! Ang buong app ay gumagana offline. Magtala ng mga biyahe, gamitin ang simulator, at suriin ang iyong dashboard kahit saan nang walang internet."
+      "question": "Available ba ang app sa Android?",
+      "answer": "Sa kasalukuyan, ang Green Card Trips ay available para sa iOS. Paparating na ang suporta para sa Android."
     },
     "q5": {
-      "question": "Available ba ang app sa Android?",
-      "answer": "Hindi pa, pero nagtratrabaho kami upang dalhin ang Green Card Trips sa Android sa lalong madaling panahon! Sa kasalukuyan, ang app ay available lang para sa iOS devices. Iaanunsyo namin ang Android launch pagkatapos itong matapos."
+      "question": "Ano ang 90-araw na maagang filing rule?",
+      "answer": "Pinapayagan ng USCIS ang ilang aplikante na magsumite ng N-400 hanggang 90 araw bago makumpleto ang requirement ng tuloy-tuloy na paninirahan. Kinakalkula ng Green Card Trips ang petsa ng iyong pinakamaagang pagsumite at ipinapakita kung kailan ka papasok sa 90-araw na window."
+    },
+    "q6": {
+      "question": "Maaari ba akong mawalan ng Green Card kung masyado akong matagal sa labas?",
+      "answer": "Ang sobrang oras sa labas ng U.S. ay maaaring magdulot ng pagdududa sa USCIS kung nilisan mo na ang iyong paninirahan. Ang mga biyahe na higit sa 180 araw ay maaaring magdulot ng isyu, at higit sa 365 araw ay halos laging nangangailangan ng patunay na nananatili ka pa ring nakatira sa U.S. Tinutulungan ka ng Green Card Trips na makita agad ang panganib na ito sa pamamagitan ng mga babala at kalkulasyon ng kabuuang araw sa labas."
+    },
+    "q7": {
+      "question": "Kailangan ko ba ng reentry permit?",
+      "answer": "Kung inaasahan mong mananatili sa labas ng U.S. ng halos isang taon o higit pa, makatutulong ang reentry permit (Form I-131) upang ipakita na hindi mo layuning talikuran ang iyong paninirahan. Binabalaan ka ng Green Card Trips kapag ang isang planadong biyahe ay maaaring mangailangan nito upang makapag-apply ka bago umalis."
+    },
+    "q8": {
+      "question": "Ano ang ibig sabihin ng 'abandonment of residence'?",
+      "answer": "Ang abandonment of residence ay kapag ang isang permanenteng residente ay nanatili sa labas nang matagal o madalas na mukhang hindi na sa U.S. ang pangunahing tirahan. Pinapanatiling malinaw ng Green Card Trips ang iyong tala ng paglalakbay at mga bilang ng araw, upang maunawaan mo kung kailan maaaring magdulot ng tanong ang iyong mga biyahe."
     }
   },
   "appBanner": {
-    "title": "Handa Ka Na Bang Kontrolin ang Iyong Paglalakbay Tungo sa Citizenship?",
-    "subtitle": "Sumali sa mga may green card na nagtitiwala sa Green Card Trips upang manatiling sumusunod at makamit ang kanilang mga layunin sa citizenship.",
-    "cta": "I-download Ngayon"
+    "title": "Handa ka na bang kontrolin ang iyong daan tungo sa pagkamamamayan?",
+    "subtitle": "Sumali sa iba pang mga may hawak ng Green Card na gumagamit ng Green Card Trips upang manatiling maayos, kumpiyansa, at kontrolado sa kanilang kasaysayan ng paglalakbay.",
+    "cta": "I-download"
   },
   "footer": {
-    "description": "Tinutulungan ng Green Card Trips ang mga may green card sa U.S. na subaybayan ang pisikal na presensya at pamahalaan ang kanilang landas tungo sa citizenship nang may kumpiyansa.",
-    "madeBy": "Ginawa ng mga May Green Card",
-    "madeByFor": "para sa mga May Green Card",
-    "developedBy": "Nilikha ng",
-    "termsAndConditions": "Mga tuntunin at kundisyon",
-    "privacyPolicy": "Patakaran sa privacy",
-    "cookiesPolicy": "Patakaran sa cookies",
-    "cookieSettings": "Mga setting ng cookie"
+    "description": "Tinutulungan ng Green Card Trips ang mga may hawak ng Green Card sa U.S. na subaybayan ang presensya at pamahalaan ang kanilang daan tungo sa pagkamamamayan nang may kumpiyansa.",
+    "madeBy": "Ginawa ng mga may hawak ng Green Card para sa mga may hawak ng Green Card",
+    "developedBy": "Binuo ng",
+    "termsAndConditions": "Mga Tuntunin at Kundisyon",
+    "privacyPolicy": "Patakaran sa Privacy",
+    "cookiesPolicy": "Patakaran sa Cookies",
+    "cookieSettings": "Mga Setting ng Cookies",
+    "allRightsReserved": "Lahat ng Karapatan ay Nakalaan © 2025"
   },
   "notFound": {
     "title": "404",
     "heading": "Hindi Natagpuan ang Pahina",
-    "description": "Oops! Ang pahinang hinahanap mo ay hindi umiiral. Maaaring inilipat o tinanggal ito.",
-    "goHome": "Bumalik sa Homepage",
-    "quickLinks": "Mabilis na mga Link",
+    "description": "Oops! Ang pahinang hinahanap mo ay maaaring nailipat o nabura.",
+    "goHome": "Bumalik sa Home",
+    "quickLinks": "Mga Mabilis na Link",
     "home": "Home",
     "legal": "Legal",
-    "availableLanguages": "Available sa maraming wika:"
+    "availableLanguages": "Available sa iba’t ibang wika:"
   },
   "cookieConsent": {
     "title": "Gumagamit kami ng cookies",
-    "description": "Gumagamit kami ng cookies upang suriin ang trapiko ng site gamit ang Google Analytics. Tinutulungan kaming ito na maintindihan kung paano ginagamit ng mga bisita ang aming website upang mapabuti namin ito. Maaari kang tumanggap o tanggihan ang mga analytics cookies sa ibaba.",
-    "acceptAll": "Tanggapin lahat",
-    "acceptNecessary": "Tanggihan lahat",
-    "settings": "Mga setting ng cookie",
+    "description": "Gumagamit kami ng cookies upang pag-aralan ang trapiko ng site gamit ang Google Analytics. Tinutulungan kami nitong maunawaan kung paano ginagamit ng mga bisita ang aming website upang mapabuti ito. Maaari mong tanggapin o tanggihan ang cookies ng analytics sa ibaba.",
+    "acceptAll": "Tanggapin Lahat",
+    "acceptNecessary": "Tanggihan Lahat",
+    "settings": "Mga Setting ng Cookies",
     "privacyPolicy": "Patakaran sa Privacy",
     "cookiePolicy": "Patakaran sa Cookies",
     "preferences": {
-      "title": "Mga kagustuhan sa cookie",
-      "save": "I-save ang aking mga kagustuhan",
+      "title": "Mga Kagustuhan sa Cookies",
+      "save": "I-save ang Aking Mga Kagustuhan",
       "close": "Isara",
-      "usage": "Paggamit ng cookie",
-      "usageDesc": "Gumagamit kami ng cookies upang masiguro ang mga pangunahing functionality ng website at mapahusay ang iyong online experience. Maaari mong baguhin o bawiin ang iyong pahintulot anumang oras.",
-      "necessary": "Mahigpit na kinakailangang cookies",
-      "necessaryDesc": "Ang mga cookies na ito ay mahalaga para gumana ang website. Pinagagana nila ang mga pangunahing functionality tulad ng kagustuhan sa wika. Ang website ay hindi makakapag-function nang maayos nang walang mga cookies na ito.",
-      "analytics": "Mga analytics cookies",
-      "analyticsDesc": "Tinutulungan kami ng mga cookies na ito na maintindihan kung paano nakikipag-ugnayan ang mga bisita sa aming website sa pamamagitan ng pagkolekta at pag-ulat ng impormasyon nang hindi nagpapakilala. Gumagamit kami ng Google Analytics, na nagtatakda ng mga cookies tulad ng _ga, _ga_*, at _gid upang makilala ang mga natatanging bisita at subaybayan ang mga pattern ng paggamit."
+      "usage": "Paggamit ng Cookies",
+      "usageDesc": "Gumagamit kami ng cookies upang matiyak ang mga pangunahing tungkulin ng website at mapahusay ang iyong karanasan online. Maaari mong baguhin o bawiin ang iyong pahintulot anumang oras.",
+      "necessary": "Mahigpit na Kinakailangang Cookies",
+      "necessaryDesc": "Mahalaga ang mga cookies na ito para gumana ang website. Pinapagana nila ang pangunahing mga function tulad ng pagpili ng wika. Hindi gagana nang tama ang website kung wala ang mga ito.",
+      "analytics": "Cookies para sa Analytics",
+      "analyticsDesc": "Tumutulong ang mga cookies na ito upang maunawaan namin kung paano nakikipag-ugnayan ang mga bisita sa aming website sa pamamagitan ng pagkolekta ng impormasyon nang hindi nagpapakilala. Gumagamit kami ng Google Analytics, na nagtatakda ng mga cookies tulad ng _ga, _ga_*, at _gid upang makilala ang mga natatanging bisita at subaybayan ang mga pattern ng paggamit."
     }
   },
   "alt": {
@@ -156,34 +174,34 @@
       "googlePlayLogo": "Logo ng Google Play"
     },
     "screenshots": {
-      "dashboard": "Dashboard ng app na nagpapakita ng istatistika ng biyahe at katayuan ng pagiging karapat-dapat sa pagkamamamayan",
-      "trips": "Listahan ng kasaysayan ng biyahe na nagpapakita ng lahat ng internasyonal na paglalakbay",
-      "modifyTrip": "Form para magdagdag o mag-edit ng biyahe na may petsa ng pag-alis at pagbabalik"
+      "dashboard": "Dashboard ng app na nagpapakita ng estadistika ng biyahe at katayuan ng pagiging kwalipikado sa pagkamamamayan",
+      "trips": "Listahan ng mga nakaraang biyahe sa ibang bansa",
+      "modifyTrip": "Form para magdagdag o mag-edit ng biyahe na may mga petsa ng alis at balik"
     },
     "features": {
-      "tracking": "Icon ng matalinong pagsubaybay sa biyahe",
-      "simulator": "Icon ng simulator ng paglalakbay",
-      "dashboard": "Icon ng mga insight sa dashboard",
-      "privacy": "Icon ng privacy at seguridad"
+      "tracking": "Icon para sa matalinong pagsubaybay ng biyahe",
+      "simulator": "Icon para sa simulator ng paglalakbay",
+      "dashboard": "Icon para sa mga insight sa dashboard",
+      "privacy": "Icon para sa privacy at seguridad"
     },
     "pricing": {
-      "wallet": "Icon ng pitaka na kumakatawan sa one-time na pagbabayad",
-      "money": "Icon ng pera na kumakatawan sa presyo ng subscription",
-      "locker": "Icon ng locker na kumakatawan sa secure premium features"
+      "wallet": "Icon ng pitaka na kumakatawan sa isang beses na bayad",
+      "money": "Icon ng pera na kumakatawan sa presyo o subscription",
+      "locker": "Icon ng locker na kumakatawan sa mga secure na tampok"
     },
     "steps": {
-      "step1": "Taong nag-download ng app mula sa App Store sa smartphone",
-      "step2": "Mga kamay na naglalagay ng detalye ng green card sa app",
-      "step3": "User na nagrerekord ng impormasyon ng internasyonal na biyahe na may mga petsa",
-      "step4": "Interface ng pagpaplano ng biyahe na nagpapakita ng simulation ng biyahe",
-      "step5": "Dashboard na nagpapakita ng katayuan ng pagsunod at mga paalala sa pag-renew"
+      "step1": "Tao na nagda-download ng app mula sa App Store sa smartphone",
+      "step2": "Mga kamay na naglalagay ng detalye ng Green Card sa app",
+      "step3": "User na nagrerekord ng impormasyon ng biyahe na may mga petsa",
+      "step4": "Interface ng pagpaplano ng biyahe na nagpapakita ng simulation",
+      "step5": "Dashboard na nagpapakita ng katayuan sa pagsunod at mga paalala sa aplikasyon"
     },
     "misc": {
       "logo": "Logo ng Green Card Trips",
       "iphoneFrame": "Frame ng iPhone",
       "appScreenshot": "Screenshot ng app",
       "partnerLogo": "Logo ng partner",
-      "appUser": "Gumagamit ng app"
+      "appUser": "User ng app"
     }
   }
 }

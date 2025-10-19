@@ -1,13 +1,13 @@
 {
   "seo": {
-    "title": "Green Card Trips - Theo Dõi Con Đường Đến Quốc Tịch Hoa Kỳ",
-    "description": "Ứng dụng đơn giản và đẹp mắt cho người có thẻ xanh để theo dõi sự hiện diện vật lý tại Hoa Kỳ và quản lý hành trình của họ đến công dân một cách tự tin."
+    "title": "Green Card Trips - Ứng dụng Tính Ngày Hiện Diện và Cư Trú Liên Tục",
+    "description": "Green Card Trips giúp Thường trú nhân Hoa Kỳ theo dõi thời gian hiện diện, hiểu các quy định du lịch của USCIS, và bảo vệ con đường đến quốc tịch. Tính số ngày ở Mỹ, tránh gián đoạn cư trú liên tục và lên kế hoạch du lịch tự tin."
   },
   "nav": {
     "features": "Tính năng",
     "howItWorks": "Cách hoạt động",
-    "pricing": "Giá cả",
-    "faq": "Câu hỏi",
+    "pricing": "Giá",
+    "faq": "Câu hỏi thường gặp",
     "getApp": "Tải ứng dụng",
     "language": "Ngôn ngữ",
     "openMenu": "Mở menu",
@@ -18,134 +18,152 @@
     "downloadPlayStore": "Tải trên Google Play"
   },
   "hero": {
-    "headline": "Đối Tác An Tâm Trên Con Đường Đến Quốc Tịch Hoa Kỳ",
-    "subtitle": "Theo dõi chuyến đi, lên kế hoạch du lịch và tuân thủ các yêu cầu của USCIS. Green Card Trips giúp việc đủ điều kiện công dân trở nên đơn giản và không căng thẳng.",
-    "usersDescription": "Được tin tưởng bởi người có thẻ xanh",
-    "downloadNow": "Tải Ngay"
+    "headline": "Dễ dàng Tính Ngày Hiện Diện và Cư Trú Liên Tục của Bạn",
+    "subtitle": "Green Card Trips giúp bạn tuân thủ quy định và tự tin trong từng bước. Theo dõi các chuyến đi, tính số ngày hiện diện và cư trú liên tục, đồng thời xem ngày nộp đơn N-400 sớm nhất (bao gồm khoảng thời gian nộp sớm 90 ngày).",
+    "usersDescription": "Được tin tưởng bởi những người có Thẻ Xanh (Green Card)",
+    "downloadNow": "Tải ngay"
+  },
+  "highlight": {
+    "title": "Bảo vệ Thẻ Xanh của Bạn",
+    "subtitle": "Kiểm soát tình trạng cư trú của bạn và du lịch với sự yên tâm.",
+    "paragraph1": "Thẻ Xanh của bạn rất quý giá — thời gian ở nước ngoài có thể gây rủi ro nếu không được theo dõi cẩn thận. Ứng dụng giúp bạn biết khi nào một chuyến đi có thể ảnh hưởng đến cư trú liên tục, đồng thời theo dõi yêu cầu về số ngày hiện diện.",
+    "paragraph2": "Với Green Card Trips, bạn luôn nắm rõ lịch sử du lịch của mình để đưa ra quyết định đúng đắn."
   },
   "features": {
-    "title": "Mọi Thứ Bạn Cần Để Tuân Thủ",
-    "subtitle": "Công cụ đơn giản để theo dõi sự hiện diện, lên kế hoạch du lịch và đạt được mục tiêu công dân",
+    "title": "Tất cả những gì bạn cần để tuân thủ quy định",
+    "subtitle": "Lên kế hoạch du lịch và bảo vệ con đường đến quốc tịch",
     "tracking": {
-      "title": "Theo Dõi Chuyến Đi Thông Minh",
-      "description": "Dễ dàng ghi lại tất cả các chuyến đi quốc tế với ngày tháng và điểm đến. Xem số ngày ở Mỹ trong nháy mắt."
+      "title": "Theo dõi Chuyến đi Thông minh",
+      "description": "Ghi lại mọi chuyến đi nước ngoài với ngày cụ thể. Bảng điều khiển sẽ cập nhật tức thì số ngày ở ngoài Hoa Kỳ và số ngày hiện diện còn lại (548 hoặc 913 ngày tùy vào diện đủ điều kiện)."
     },
     "simulator": {
-      "title": "Mô Phỏng Du Lịch",
-      "description": "Lên kế hoạch cho các chuyến đi tương lai một cách tự tin. Xem chính xác cách du lịch ảnh hưởng đến điều kiện công dân của bạn trước khi đặt vé."
+      "title": "Mô phỏng Ảnh hưởng của Chuyến đi",
+      "description": "Thêm chuyến đi trong tương lai và xem nó ảnh hưởng thế nào đến cư trú liên tục và tổng số ngày hiện diện — trước khi bạn đi. Lập kế hoạch thông minh hơn với phản hồi trực quan tức thì và xem chuyến đi có thể thay đổi ngày nộp đơn sớm nhất của bạn như thế nào."
     },
     "dashboard": {
-      "title": "Thông Tin Dashboard",
-      "description": "Thống kê hiện diện theo thời gian thực với cảnh báo 180 ngày và 365 ngày. Biết trạng thái của bạn ngay lập tức."
+      "title": "Phân tích từ Bảng điều khiển",
+      "description": "Nhận thông báo rõ ràng khi một chuyến đi vượt quá 180 hoặc 365 ngày, và khi tổng thời gian ở nước ngoài của bạn sắp chạm giới hạn có thể trì hoãn ngày nộp đơn N-400 (đơn xin nhập quốc tịch)."
     },
     "privacy": {
-      "title": "Riêng Tư & Bảo Mật",
-      "description": "Thiết kế offline-first với mã hóa cấp trường. Dữ liệu của bạn không bao giờ rời khỏi thiết bị trừ khi bạn chọn đồng bộ đám mây."
+      "title": "Dữ liệu của Bạn An toàn",
+      "description": "Thiết kế ưu tiên ngoại tuyến. Dữ liệu du lịch của bạn được lưu trữ an toàn ngay trên thiết bị."
     }
   },
   "howItWorks": {
-    "title": "Cách Hoạt Động",
-    "subtitle": "Bắt đầu trong vài phút và kiểm soát hành trình công dân của bạn",
+    "title": "Cách hoạt động",
+    "subtitle": "Bắt đầu chỉ trong vài phút",
     "step1": {
-      "title": "Tải Ứng Dụng",
-      "description": "Cài đặt Green Card Trips trên thiết bị iOS của bạn."
+      "title": "Tải Ứng dụng",
+      "description": "Cài đặt Green Card Trips trên iPhone của bạn"
     },
     "step2": {
-      "title": "Nhập Chi Tiết Thẻ Xanh",
-      "description": "Thêm ngày thẻ xanh của bạn và chọn lộ trình đủ điều kiện (3 năm hoặc 5 năm)."
+      "title": "Nhập Thông tin Thẻ Xanh",
+      "description": "Thêm ngày cấp Thẻ Xanh và chọn diện đủ điều kiện — 3 năm hoặc 5 năm."
     },
     "step3": {
-      "title": "Ghi Lại Chuyến Đi",
-      "description": "Nhập thủ công các chuyến đi trong quá khứ và tương lai với ngày khởi hành và trở về."
+      "title": "Ghi lại các Chuyến đi",
+      "description": "Thêm các chuyến đi trước đây và sắp tới với ngày đi và ngày về. Ứng dụng sẽ tự động tính tổng số ngày ở trong và ngoài Hoa Kỳ."
     },
     "step4": {
-      "title": "Lên Kế Hoạch Du Lịch An Toàn",
-      "description": "Sử dụng mô phỏng để kiểm tra cách các chuyến đi tương lai ảnh hưởng đến điều kiện của bạn trước khi đặt vé."
+      "title": "Kiểm tra Cư trú Liên tục và Hiện diện",
+      "description": "Xem liệu chuyến đi nào ảnh hưởng đến cư trú liên tục của bạn và xem tổng số ngày ở nước ngoài cùng số ngày hiện diện còn thiếu."
     },
     "step5": {
-      "title": "Duy Trì Tuân Thủ",
-      "description": "Theo dõi dashboard của bạn để nhận cảnh báo, theo dõi ngày gia hạn và duy trì trạng thái của bạn."
+      "title": "Biết Khi nào Có thể Nộp Đơn",
+      "description": "Ứng dụng tính toán ngày sớm nhất bạn có thể nộp N-400 (đơn nhập quốc tịch) và hiển thị khoảng 90 ngày nộp sớm — để bạn biết chính xác khi nào có thể nộp hồ sơ."
     }
   },
   "pricing": {
-    "title": "Giá Cả Đơn Giản và Minh Bạch",
-    "subtitle": "Mua một lần.",
+    "title": "Giá rõ ràng và minh bạch",
+    "subtitle": "Thanh toán một lần. Yên tâm trọn đời.",
     "price": "$4.99",
-    "cta": "Tải Ngay",
+    "cta": "Tải xuống",
     "features": [
       "Theo dõi chuyến đi không giới hạn",
-      "Mô phỏng du lịch",
-      "Thông tin dashboard",
-      "Nhắc nhở tuân thủ",
-      "Chế độ offline"
+      "Mô phỏng ảnh hưởng của chuyến đi",
+      "Tính cư trú liên tục và hiện diện",
+      "Bảng điều khiển với cảnh báo và dự đoán ngày nộp đơn",
+      "Truy cập ngoại tuyến"
     ]
   },
   "faq": {
-    "title": "Câu Hỏi Thường Gặp",
+    "title": "Câu hỏi thường gặp về Du lịch và Thẻ Xanh của bạn",
     "q1": {
       "question": "Green Card Trips là gì?",
-      "answer": "Green Card Trips là một ứng dụng di động giúp người có thẻ xanh Hoa Kỳ theo dõi sự hiện diện vật lý của họ tại Hoa Kỳ để đáp ứng các yêu cầu đủ điều kiện công dân. Nó ngăn chặn những sai lầm tốn kém bằng cách theo dõi các ngưỡng du lịch quan trọng."
+      "answer": "Green Card Trips là ứng dụng giúp Thường trú nhân Hoa Kỳ theo dõi các chuyến đi, tính số ngày hiện diện và hiểu cách du lịch ảnh hưởng đến cư trú liên tục và điều kiện nhập quốc tịch."
     },
     "q2": {
-      "question": "Các phép tính chính xác như thế nào?",
-      "answer": "Các phép tính của chúng tôi tuân theo chính xác các quy tắc chính thức của USCIS. Ngày khởi hành và trở về được tính là hiện diện vật lý. Và chúng tôi theo dõi các ngưỡng ảnh hưởng đến cư trú liên tục và hiện diện vật lý cho tình trạng thẻ xanh."
+      "question": "Tính toán có chính xác không?",
+      "answer": "Các phép tính tuân thủ quy định của USCIS. Ngày đi và ngày về được tính là ngày có mặt tại Hoa Kỳ. Ứng dụng tính cả cư trú liên tục (chuyến đi trên 180 hoặc 365 ngày) và hiện diện (tổng số ngày ở ngoài so với yêu cầu 548 hoặc 913 ngày tại Hoa Kỳ)."
     },
     "q3": {
-      "question": "Dữ liệu của tôi có riêng tư và an toàn không?",
-      "answer": "Hoàn toàn. Tất cả dữ liệu được lưu trữ cục bộ trên thiết bị của bạn. Thông tin của bạn không bao giờ rời khỏi điện thoại. Chúng tôi không có quyền truy cập vào dữ liệu của bạn."
+      "question": "Dữ liệu của tôi có an toàn không?",
+      "answer": "Hoàn toàn an toàn. Ứng dụng hoạt động ngoại tuyến. Tất cả dữ liệu được lưu cục bộ trên thiết bị của bạn. Chúng tôi không thu thập hay truy cập dữ liệu của bạn."
     },
     "q4": {
-      "question": "Tôi có thể sử dụng nó offline không?",
-      "answer": "Có! Toàn bộ ứng dụng hoạt động offline. Ghi lại chuyến đi, sử dụng mô phỏng và kiểm tra dashboard của bạn ở bất cứ đâu mà không cần internet."
+      "question": "Ứng dụng có trên Android không?",
+      "answer": "Hiện tại, Green Card Trips có sẵn cho iOS. Phiên bản Android sẽ sớm ra mắt."
     },
     "q5": {
-      "question": "Ứng dụng có khả dụng trên Android không?",
-      "answer": "Chưa, nhưng chúng tôi đang làm việc để đưa Green Card Trips lên Android sớm! Hiện tại, ứng dụng chỉ khả dụng cho thiết bị iOS. Chúng tôi sẽ thông báo về việc ra mắt Android ngay khi sẵn sàng."
+      "question": "Quy tắc nộp đơn sớm 90 ngày là gì?",
+      "answer": "USCIS cho phép một số người nộp đơn N-400 sớm hơn đến 90 ngày trước khi hoàn thành yêu cầu cư trú liên tục. Green Card Trips tính ngày sớm nhất bạn có thể nộp và hiển thị khi bạn bước vào giai đoạn 90 ngày đó."
+    },
+    "q6": {
+      "question": "Tôi có thể mất Thẻ Xanh nếu ở nước ngoài quá lâu không?",
+      "answer": "Ở ngoài Hoa Kỳ quá lâu có thể khiến USCIS nghi ngờ bạn đã từ bỏ tư cách thường trú nhân. Chuyến đi hơn 180 ngày có thể gây nghi ngờ, còn trên 365 ngày gần như luôn cần bằng chứng rằng bạn vẫn cư trú tại Hoa Kỳ. Green Card Trips giúp bạn phát hiện rủi ro sớm bằng cảnh báo và theo dõi thời gian ở nước ngoài."
+    },
+    "q7": {
+      "question": "Tôi có cần xin giấy phép tái nhập cảnh (reentry permit) không?",
+      "answer": "Nếu bạn dự định ở ngoài Hoa Kỳ gần hoặc hơn một năm, giấy phép tái nhập cảnh (Form I-131) sẽ chứng minh rằng bạn không có ý định từ bỏ cư trú. Green Card Trips sẽ cảnh báo nếu chuyến đi của bạn đủ dài để cần nộp đơn này trước khi rời đi."
+    },
+    "q8": {
+      "question": "“Từ bỏ cư trú” nghĩa là gì?",
+      "answer": "Từ bỏ cư trú xảy ra khi một thường trú nhân ở nước ngoài quá lâu hoặc quá thường xuyên khiến dường như Hoa Kỳ không còn là nơi cư trú chính. Green Card Trips giúp bạn ghi lại lịch sử du lịch rõ ràng và đếm chính xác số ngày, để bạn biết khi nào cần hành động để bảo vệ tình trạng cư trú."
     }
   },
   "appBanner": {
-    "title": "Sẵn Sàng Kiểm Soát Hành Trình Công Dân Của Bạn?",
-    "subtitle": "Tham gia với những người có thẻ xanh tin tưởng Green Card Trips để tuân thủ và đạt được mục tiêu công dân của họ.",
-    "cta": "Tải Ngay"
+    "title": "Sẵn sàng kiểm soát hành trình đến quốc tịch của bạn?",
+    "subtitle": "Tham gia cùng những người có Thẻ Xanh khác đang sử dụng Green Card Trips để tuân thủ quy định, tự tin và kiểm soát lịch sử du lịch của họ.",
+    "cta": "Tải xuống"
   },
   "footer": {
-    "description": "Green Card Trips giúp người có thẻ xanh Hoa Kỳ theo dõi sự hiện diện vật lý và quản lý con đường của họ đến công dân một cách tự tin.",
-    "madeBy": "Được Tạo bởi Người Có Thẻ Xanh",
-    "madeByFor": "cho Người Có Thẻ Xanh",
+    "description": "Green Card Trips giúp người có Thẻ Xanh ở Hoa Kỳ theo dõi sự hiện diện và quản lý hành trình đến quốc tịch một cách tự tin.",
+    "madeBy": "Được tạo ra bởi những người có Thẻ Xanh dành cho những người có Thẻ Xanh",
     "developedBy": "Phát triển bởi",
-    "termsAndConditions": "Điều khoản và điều kiện",
+    "termsAndConditions": "Điều khoản & điều kiện",
     "privacyPolicy": "Chính sách bảo mật",
-    "cookiesPolicy": "Chính sách cookies",
-    "cookieSettings": "Cài đặt cookie"
+    "cookiesPolicy": "Chính sách cookie",
+    "cookieSettings": "Cài đặt cookie",
+    "allRightsReserved": "Bản quyền © 2025"
   },
   "notFound": {
     "title": "404",
-    "heading": "Không Tìm Thấy Trang",
-    "description": "Oops! Trang bạn đang tìm kiếm không tồn tại. Nó có thể đã được di chuyển hoặc xóa.",
-    "goHome": "Về Trang Chủ",
-    "quickLinks": "Liên Kết Nhanh",
+    "heading": "Không tìm thấy trang",
+    "description": "Rất tiếc! Trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển.",
+    "goHome": "Về trang chủ",
+    "quickLinks": "Liên kết nhanh",
     "home": "Trang chủ",
     "legal": "Pháp lý",
     "availableLanguages": "Có sẵn bằng nhiều ngôn ngữ:"
   },
   "cookieConsent": {
-    "title": "Chúng tôi sử dụng cookies",
-    "description": "Chúng tôi sử dụng cookies để phân tích lưu lượng truy cập trang web với Google Analytics. Điều này giúp chúng tôi hiểu cách khách truy cập sử dụng trang web của chúng tôi để chúng tôi có thể cải thiện nó. Quý vị có thể chấp nhận hoặc từ chối cookies phân tích bên dưới.",
+    "title": "Chúng tôi sử dụng cookie",
+    "description": "Chúng tôi sử dụng cookie để phân tích lưu lượng truy cập trang web bằng Google Analytics. Điều này giúp chúng tôi hiểu cách người dùng truy cập trang web để cải thiện nó. Bạn có thể chấp nhận hoặc từ chối cookie phân tích bên dưới.",
     "acceptAll": "Chấp nhận tất cả",
     "acceptNecessary": "Từ chối tất cả",
     "settings": "Cài đặt cookie",
-    "privacyPolicy": "Chính Sách Bảo Mật",
-    "cookiePolicy": "Chính Sách Cookies",
+    "privacyPolicy": "Chính sách bảo mật",
+    "cookiePolicy": "Chính sách cookie",
     "preferences": {
       "title": "Tùy chọn cookie",
-      "save": "Lưu tùy chọn của tôi",
+      "save": "Lưu tùy chọn",
       "close": "Đóng",
-      "usage": "Sử dụng cookie",
-      "usageDesc": "Chúng tôi sử dụng cookies để đảm bảo các chức năng cơ bản của trang web và nâng cao trải nghiệm trực tuyến của quý vị. Quý vị có thể thay đổi hoặc rút lại sự đồng ý của mình bất cứ lúc nào.",
-      "necessary": "Cookies thực sự cần thiết",
-      "necessaryDesc": "Những cookies này rất cần thiết để trang web hoạt động. Chúng cho phép các chức năng cốt lõi như tùy chọn ngôn ngữ. Trang web không thể hoạt động đúng cách nếu không có những cookies này.",
-      "analytics": "Cookies phân tích",
-      "analyticsDesc": "Những cookies này giúp chúng tôi hiểu cách khách truy cập tương tác với trang web của chúng tôi bằng cách thu thập và báo cáo thông tin một cách ẩn danh. Chúng tôi sử dụng Google Analytics, thiết lập các cookies như _ga, _ga_*, và _gid để phân biệt khách truy cập duy nhất và theo dõi các mẫu sử dụng."
+      "usage": "Cách chúng tôi sử dụng cookie",
+      "usageDesc": "Chúng tôi sử dụng cookie để đảm bảo các chức năng cơ bản của trang web và nâng cao trải nghiệm của bạn. Bạn có thể thay đổi hoặc rút lại sự đồng ý bất kỳ lúc nào.",
+      "necessary": "Cookie cần thiết",
+      "necessaryDesc": "Những cookie này là cần thiết để trang web hoạt động đúng. Chúng kích hoạt các chức năng cơ bản như lựa chọn ngôn ngữ. Trang web sẽ không hoạt động bình thường nếu thiếu chúng.",
+      "analytics": "Cookie phân tích",
+      "analyticsDesc": "Những cookie này giúp chúng tôi hiểu cách người dùng tương tác với trang web bằng cách thu thập dữ liệu ẩn danh. Chúng tôi sử dụng Google Analytics, đặt các cookie như _ga, _ga_* và _gid để phân biệt người dùng và theo dõi hành vi sử dụng."
     }
   },
   "alt": {
@@ -156,27 +174,27 @@
       "googlePlayLogo": "Logo Google Play"
     },
     "screenshots": {
-      "dashboard": "Bảng điều khiển ứng dụng hiển thị thống kê chuyến đi và tình trạng đủ điều kiện nhập tịch",
-      "trips": "Danh sách lịch sử chuyến đi hiển thị tất cả các chuyến đi quốc tế",
-      "modifyTrip": "Mẫu thêm hoặc chỉnh sửa chuyến đi với ngày khởi hành và trở về"
+      "dashboard": "Bảng điều khiển hiển thị thống kê chuyến đi và trạng thái đủ điều kiện nhập quốc tịch",
+      "trips": "Danh sách lịch sử các chuyến đi quốc tế",
+      "modifyTrip": "Biểu mẫu thêm hoặc chỉnh sửa chuyến đi với ngày đi và ngày về"
     },
     "features": {
       "tracking": "Biểu tượng theo dõi chuyến đi thông minh",
-      "simulator": "Biểu tượng trình mô phỏng du lịch",
-      "dashboard": "Biểu tượng thông tin bảng điều khiển",
-      "privacy": "Biểu tượng riêng tư và bảo mật"
+      "simulator": "Biểu tượng mô phỏng chuyến đi",
+      "dashboard": "Biểu tượng bảng điều khiển phân tích",
+      "privacy": "Biểu tượng quyền riêng tư và bảo mật"
     },
     "pricing": {
       "wallet": "Biểu tượng ví đại diện cho thanh toán một lần",
-      "money": "Biểu tượng tiền đại diện cho giá đăng ký",
-      "locker": "Biểu tượng tủ khóa đại diện cho các tính năng cao cấp an toàn"
+      "money": "Biểu tượng tiền đại diện cho gói giá",
+      "locker": "Biểu tượng khóa đại diện cho tính năng bảo mật"
     },
     "steps": {
-      "step1": "Người tải ứng dụng từ App Store trên điện thoại thông minh",
-      "step2": "Tay đang nhập chi tiết thẻ xanh vào ứng dụng",
-      "step3": "Người dùng ghi lại thông tin chuyến đi quốc tế với ngày tháng",
-      "step4": "Giao diện lập kế hoạch du lịch hiển thị mô phỏng chuyến đi",
-      "step5": "Bảng điều khiển hiển thị tình trạng tuân thủ và lời nhắc gia hạn"
+      "step1": "Người dùng tải ứng dụng từ App Store trên điện thoại",
+      "step2": "Người dùng nhập thông tin Thẻ Xanh vào ứng dụng",
+      "step3": "Người dùng ghi lại thông tin chuyến đi với ngày cụ thể",
+      "step4": "Giao diện lập kế hoạch hiển thị mô phỏng chuyến đi",
+      "step5": "Bảng điều khiển hiển thị trạng thái tuân thủ và nhắc nhở nộp đơn"
     },
     "misc": {
       "logo": "Logo Green Card Trips",

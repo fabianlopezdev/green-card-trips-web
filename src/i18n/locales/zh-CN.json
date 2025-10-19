@@ -1,138 +1,156 @@
 {
   "seo": {
-    "title": "Green Card Trips - 追踪您通往美国公民身份的道路",
-    "description": "简单美观的应用，帮助绿卡持有者追踪在美国的实际在场时间，自信地管理他们的公民身份之旅。"
+    "title": "Green Card Trips - 实际居住与连续居住时间计算器",
+    "description": "Green Card Trips 帮助美国永久居民跟踪实际居住时间，了解 USCIS 旅行规定，并保障您的入籍之路。计算在美天数，避免中断连续居住，让您的旅行规划更安心。"
   },
   "nav": {
     "features": "功能",
-    "howItWorks": "如何使用",
+    "howItWorks": "工作原理",
     "pricing": "价格",
     "faq": "常见问题",
-    "getApp": "获取应用",
+    "getApp": "下载应用",
     "language": "语言",
     "openMenu": "打开菜单",
     "closeMenu": "关闭菜单",
-    "homeLink": "Green Card Trips首页",
+    "homeLink": "Green Card Trips 首页",
     "chooseLanguage": "选择语言",
-    "downloadAppStore": "在App Store下载",
-    "downloadPlayStore": "在Google Play下载"
+    "downloadAppStore": "在 App Store 下载",
+    "downloadPlayStore": "在 Google Play 下载"
   },
   "hero": {
-    "headline": "您通往美国公民身份之路的安心伙伴",
-    "subtitle": "记录您的旅行，规划您的行程，并遵守USCIS的要求。Green Card Trips让公民资格申请变得简单无压力。",
-    "usersDescription": "受到绿卡持有者的信赖",
+    "headline": "轻松计算您的实际居住与连续居住时间",
+    "subtitle": "Green Card Trips 帮助您遵守规定并保持信心。跟踪出行记录，计算实际居住与连续居住时间，并查看最早的 N-400 申请日期（包括 90 天提前申请窗口）。",
+    "usersDescription": "绿卡持有者信赖之选",
     "downloadNow": "立即下载"
+  },
+  "highlight": {
+    "title": "保护您的绿卡",
+    "subtitle": "掌握居留状态，安心出行。",
+    "paragraph1": "您的绿卡非常宝贵——如果不仔细记录，出国时间可能会影响您的居住资格。此应用可帮助您了解哪些旅行可能影响连续居住，并追踪所需的实际居住天数。",
+    "paragraph2": "使用 Green Card Trips，您能清楚了解自己的出行记录，从而做出明智的决定。"
   },
   "features": {
     "title": "保持合规所需的一切",
-    "subtitle": "简单的工具可追踪您的在美时间，规划旅行，并实现您的公民身份目标",
+    "subtitle": "规划旅行，保障您的入籍之路",
     "tracking": {
       "title": "智能旅行追踪",
-      "description": "轻松记录所有国际旅行的日期和目的地。一目了然地查看您在美国的天数。"
+      "description": "记录每次出国的确切日期。仪表盘即时更新，显示您在美国境外的总天数和所需的剩余实际居住时间（根据资格路径为 548 或 913 天）。"
     },
     "simulator": {
-      "title": "旅行模拟器",
-      "description": "自信地规划未来旅行。在预订之前准确了解旅行如何影响您的公民资格。"
+      "title": "旅行影响模拟器",
+      "description": "添加未来行程，查看其对连续居住和实际居住总天数的影响——出行前即可了解。即时可视化反馈，帮您更聪明地规划旅行，并了解行程如何影响最早可申请日期。"
     },
     "dashboard": {
-      "title": "仪表板洞察",
-      "description": "实时在美统计数据，包含180天和365天警告。立即了解您的状态。"
+      "title": "仪表盘洞察",
+      "description": "当单次旅行超过 180 或 365 天时获得明确提示；当境外总时间接近可能延迟 N-400 申请日期的限值时，系统将提醒您。"
     },
     "privacy": {
-      "title": "隐私与安全",
-      "description": "离线优先设计，字段级加密。除非您选择云同步，否则您的数据永远不会离开您的设备。"
+      "title": "您的数据安全可靠",
+      "description": "离线优先设计。您的旅行记录安全地存储在设备上。"
     }
   },
   "howItWorks": {
-    "title": "如何使用",
-    "subtitle": "几分钟内开始，掌控您的公民身份之旅",
+    "title": "工作原理",
+    "subtitle": "几分钟即可开始使用",
     "step1": {
       "title": "下载应用",
-      "description": "在您的iOS设备上安装Green Card Trips。"
+      "description": "在您的 iPhone 上安装 Green Card Trips"
     },
     "step2": {
-      "title": "输入绿卡详情",
-      "description": "添加您的绿卡日期并选择您的资格路径（3年或5年）。"
+      "title": "输入绿卡信息",
+      "description": "添加您的绿卡日期，并选择您的资格路径——3 年或 5 年。"
     },
     "step3": {
-      "title": "记录您的旅行",
-      "description": "手动输入过去和未来的旅行，包括出发和返回日期。"
+      "title": "记录旅行",
+      "description": "添加过去和即将进行的旅行，包括出发与返回日期。应用会即时计算在美和境外的总天数。"
     },
     "step4": {
-      "title": "安全规划旅行",
-      "description": "使用模拟器检查未来旅行如何影响您的资格，然后再预订。"
+      "title": "查看连续居住与实际居住",
+      "description": "查看是否有单次旅行影响连续居住，并获取境外累计天数与所需的剩余实际居住时间。"
     },
     "step5": {
-      "title": "保持合规",
-      "description": "监控您的仪表板以获取警告，追踪续签日期，并维持您的状态。"
+      "title": "了解何时可以申请",
+      "description": "应用会计算您最早可以提交 N-400（入籍申请）的日期，并显示 90 天提前申请窗口，让您明确何时可以放心提交。"
     }
   },
   "pricing": {
     "title": "简单透明的价格",
-    "subtitle": "一次性购买。",
+    "subtitle": "一次性购买，安心无忧。",
     "price": "$4.99",
-    "cta": "立即下载",
+    "cta": "下载",
     "features": [
-      "无限旅行追踪",
-      "旅行模拟器",
-      "仪表板洞察",
-      "合规提醒",
-      "离线模式"
+      "无限次旅行记录",
+      "旅行影响模拟器",
+      "连续居住与实际居住时间计算",
+      "带有提醒与申请日期预测的仪表盘",
+      "离线访问"
     ]
   },
   "faq": {
-    "title": "常见问题",
+    "title": "关于旅行与绿卡的常见问题",
     "q1": {
-      "question": "什么是Green Card Trips？",
-      "answer": "Green Card Trips是一款移动应用，帮助美国绿卡持有者追踪他们在美国的实际在场时间，以满足公民资格要求。它通过监控关键旅行阈值来防止代价高昂的错误。"
+      "question": "什么是 Green Card Trips？",
+      "answer": "Green Card Trips 是一款帮助美国永久居民记录出国旅行、计算实际居住时间并了解旅行如何影响连续居住和入籍资格的应用。"
     },
     "q2": {
-      "question": "计算有多准确？",
-      "answer": "我们的计算精确遵循USCIS的官方规则。出发和返回日期计入实际在场时间。我们监控影响绿卡身份的连续居住和实际在场的阈值。"
+      "question": "计算是否准确？",
+      "answer": "计算遵循 USCIS 规则。出发日与返回日均计为在美天数。应用计算连续居住（单次出行超过 180 或 365 天）与实际居住（境外总天数对比在美所需 548 或 913 天）。"
     },
     "q3": {
-      "question": "我的数据是否私密和安全？",
-      "answer": "绝对安全。所有数据都本地存储在您的设备上。您的信息永远不会离开您的手机。我们无法访问您的数据。"
+      "question": "我的数据安全吗？",
+      "answer": "完全安全。此应用为离线优先设计。所有数据均存储在您的设备上。我们无法访问您的信息。"
     },
     "q4": {
-      "question": "我可以离线使用吗？",
-      "answer": "可以！整个应用离线运行。在任何地方记录旅行，使用模拟器，查看您的仪表板，无需互联网。"
+      "question": "应用是否支持 Android？",
+      "answer": "目前 Green Card Trips 仅支持 iOS，Android 版本即将推出。"
     },
     "q5": {
-      "question": "应用是否支持Android？",
-      "answer": "目前还不支持，但我们正在努力将Green Card Trips带到Android平台！目前，应用仅适用于iOS设备。我们会在Android版本准备就绪后立即宣布。"
+      "question": "什么是 90 天提前申请规则？",
+      "answer": "USCIS 允许部分申请人在满足连续居住要求前最多提前 90 天提交 N-400 表。Green Card Trips 会为您计算最早可提交日期，并显示进入 90 天窗口的时间，让您准确掌握申请时机。"
+    },
+    "q6": {
+      "question": "如果在国外停留太久，会失去绿卡吗？",
+      "answer": "在美国境外停留过久可能使 USCIS 认为您已放弃永久居留。旅行超过 180 天可能引发疑问，超过 365 天几乎总需证明您仍以美国为主要居所。Green Card Trips 会提前提醒并标记风险，帮助您规划返回并保护居留身份。"
+    },
+    "q7": {
+      "question": "我需要申请回美证（Reentry Permit）吗？",
+      "answer": "如果您计划在美国境外停留接近或超过一年，建议申请回美证（Form I-131）以证明您无意放弃居留。Green Card Trips 会在您计划的旅行可能需要该文件时发出提醒，帮助您提前申请。"
+    },
+    "q8": {
+      "question": "什么是“放弃居留”?",
+      "answer": "当永久居民长期或频繁在国外停留，以至于看起来主要居所在美国以外时，就被视为放弃居留。Green Card Trips 帮助您清晰记录旅行历史与天数，及时识别风险并采取措施。"
     }
   },
   "appBanner": {
-    "title": "准备好掌控您的公民身份之旅了吗？",
-    "subtitle": "加入信任Green Card Trips保持合规并实现公民身份目标的绿卡持有者行列。",
+    "title": "准备好掌控您的入籍之路了吗？",
+    "subtitle": "加入其他绿卡持有者的行列，使用 Green Card Trips 自信、合规地管理旅行记录。",
     "cta": "立即下载"
   },
   "footer": {
-    "description": "Green Card Trips帮助美国绿卡持有者追踪实际在场时间，自信地管理他们的公民身份之路。",
-    "madeBy": "由绿卡持有者",
-    "madeByFor": "为绿卡持有者制作",
+    "description": "Green Card Trips 帮助美国绿卡持有者跟踪实际居住时间，安心规划入籍之路。",
+    "madeBy": "由绿卡持有者为绿卡持有者打造",
     "developedBy": "开发者",
-    "termsAndConditions": "条款和条件",
+    "termsAndConditions": "条款与条件",
     "privacyPolicy": "隐私政策",
-    "cookiesPolicy": "Cookies政策",
-    "cookieSettings": "Cookie设置"
+    "cookiesPolicy": "Cookie 政策",
+    "cookieSettings": "Cookie 设置",
+    "allRightsReserved": "版权所有 © 2025"
   },
   "notFound": {
     "title": "404",
-    "heading": "页面未找到",
-    "description": "哎呀！您要找的页面不存在。它可能已被移动或删除。",
+    "heading": "未找到页面",
+    "description": "抱歉！您访问的页面不存在，可能已被移动或删除。",
     "goHome": "返回首页",
     "quickLinks": "快速链接",
     "home": "首页",
-    "legal": "法律",
+    "legal": "法律信息",
     "availableLanguages": "支持多种语言："
   },
   "cookieConsent": {
-    "title": "我们使用 cookies",
-    "description": "我们使用 cookies 通过 Google Analytics 分析网站流量。这有助于我们了解访问者如何使用我们的网站，以便我们可以改进它。您可以在下方接受或拒绝分析 cookies。",
-    "acceptAll": "接受全部",
-    "acceptNecessary": "拒绝全部",
+    "title": "我们使用 Cookie",
+    "description": "我们使用 Cookie 通过 Google Analytics 分析网站流量，以便了解访问者的使用情况并改进网站。您可以在下方接受或拒绝分析类 Cookie。",
+    "acceptAll": "全部接受",
+    "acceptNecessary": "全部拒绝",
     "settings": "Cookie 设置",
     "privacyPolicy": "隐私政策",
     "cookiePolicy": "Cookie 政策",
@@ -140,12 +158,12 @@
       "title": "Cookie 偏好设置",
       "save": "保存我的偏好",
       "close": "关闭",
-      "usage": "Cookie 使用",
-      "usageDesc": "我们使用 cookies 来确保网站的基本功能并增强您的在线体验。您可以随时更改或撤回您的同意。",
-      "necessary": "绝对必要的 cookies",
-      "necessaryDesc": "这些 cookies 对于网站运行至关重要。它们启用核心功能，如语言偏好。没有这些 cookies，网站无法正常运行。",
-      "analytics": "分析 cookies",
-      "analyticsDesc": "这些 cookies 帮助我们通过匿名收集和报告信息来了解访问者如何与我们的网站互动。我们使用 Google Analytics，它设置像 _ga、_ga_* 和 _gid 这样的 cookies 来区分唯一访问者并跟踪使用模式。"
+      "usage": "Cookie 的使用",
+      "usageDesc": "我们使用 Cookie 以确保网站的基本功能并提升您的在线体验。您可随时更改或撤回同意。",
+      "necessary": "必要的 Cookie",
+      "necessaryDesc": "这些 Cookie 对网站运行至关重要，如语言偏好等核心功能。若无这些 Cookie，网站将无法正常运作。",
+      "analytics": "分析类 Cookie",
+      "analyticsDesc": "这些 Cookie 帮助我们匿名了解访客行为。我们使用 Google Analytics，它会设置 _ga、_ga_*、_gid 等 Cookie 来区分独立访客并追踪使用模式。"
     }
   },
   "alt": {
@@ -156,27 +174,27 @@
       "googlePlayLogo": "Google Play 标志"
     },
     "screenshots": {
-      "dashboard": "应用仪表板显示旅行统计和公民资格状态",
-      "trips": "旅行历史列表显示所有国际旅行",
-      "modifyTrip": "添加或编辑旅行表单，包含出发和返回日期"
+      "dashboard": "应用仪表盘显示旅行统计与入籍资格状态",
+      "trips": "显示所有国际旅行记录的列表",
+      "modifyTrip": "添加或编辑旅行的表单，含出发和返回日期"
     },
     "features": {
       "tracking": "智能旅行追踪图标",
       "simulator": "旅行模拟器图标",
-      "dashboard": "仪表板洞察图标",
-      "privacy": "隐私和安全图标"
+      "dashboard": "仪表盘洞察图标",
+      "privacy": "隐私与安全图标"
     },
     "pricing": {
-      "wallet": "钱包图标代表一次性付款",
-      "money": "金钱图标代表订阅价格",
-      "locker": "储物柜图标代表安全高级功能"
+      "wallet": "表示一次性付款的钱包图标",
+      "money": "表示价格或订阅的金钱图标",
+      "locker": "表示安全功能的锁头图标"
     },
     "steps": {
-      "step1": "在智能手机上从 App Store 下载应用的人",
-      "step2": "在应用中输入绿卡详细信息的手",
-      "step3": "用户记录国际旅行信息和日期",
-      "step4": "显示旅行模拟的旅行规划界面",
-      "step5": "仪表板显示合规状态和续期提醒"
+      "step1": "用户在智能手机上从 App Store 下载应用",
+      "step2": "用户在应用中输入绿卡信息",
+      "step3": "用户记录国际旅行信息及日期",
+      "step4": "旅行规划界面显示模拟结果",
+      "step5": "仪表盘显示合规状态与申请提醒"
     },
     "misc": {
       "logo": "Green Card Trips 标志",

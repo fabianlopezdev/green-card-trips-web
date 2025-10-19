@@ -35,6 +35,13 @@
 html {
   scroll-behavior: auto; // Let Lenis handle smooth scrolling
   position: relative; // Required for Framer Motion's useScroll() to calculate scroll offsets correctly
+  overflow-x: hidden; // Prevent horizontal scroll on mobile
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden; // Prevent horizontal scroll on mobile
+  max-width: 100vw;
 }
 
 html.lenis,
@@ -191,6 +198,24 @@ header[data-interactive="header"] nav {
   }
 }
 
+/* Mobile header: keep full width while allowing detach animation */
+@media (max-width: 931px) {
+  header[data-interactive="header"] nav {
+    max-width: 100vw;
+    overflow-x: clip;
+
+    .nav-inner {
+      max-width: 100% !important;
+      width: 100% !important;
+      /* Allow transform (translateY) and backdrop animations to work */
+    }
+
+    .navbar {
+      max-width: 100vw;
+    }
+  }
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   header[data-interactive="header"] nav {
@@ -198,6 +223,105 @@ header[data-interactive="header"] nav {
     .backdrop {
       transition: none !important;
     }
+  }
+}
+
+/* ============================================================================
+   Mobile Menu Animations
+   Used by src/scripts/components/header.ts
+   ============================================================================ */
+
+/* Mobile menu overlay container */
+.mobile-menu-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100%);
+}
+
+.mobile-menu-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s;
+}
+
+/* Individual menu items */
+.menu-item-hidden {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.menu-item-visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* Menu sections (theme, language, stores) */
+.menu-section-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.menu-section-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* Hamburger/X icon animation */
+[data-mobile-menu] summary {
+  position: relative;
+}
+
+/* Hamburger lines container */
+[data-mobile-menu] summary .menu-icon {
+  position: relative;
+  width: 24px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Top line */
+[data-mobile-menu] summary .menu-icon-line {
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* Transform to X when open */
+[data-mobile-menu][open] summary .menu-icon-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+[data-mobile-menu][open] summary .menu-icon-line:nth-child(2) {
+  opacity: 0;
+}
+
+[data-mobile-menu][open] summary .menu-icon-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-hidden,
+  .mobile-menu-visible,
+  .menu-item-hidden,
+  .menu-item-visible,
+  .menu-section-hidden,
+  .menu-section-visible {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  [data-mobile-menu] summary .menu-icon-line {
+    transition: none !important;
   }
 }
 

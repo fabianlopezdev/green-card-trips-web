@@ -1,189 +1,207 @@
 {
   "seo": {
-    "title": "Green Card Trips - Rastrea tu Camino a la Ciudadanía de EE.UU.",
-    "description": "Aplicación simple y hermosa para titulares de green card para rastrear la presencia física en EE.UU. y gestionar su camino hacia la ciudadanía con confianza."
+    "title": "Green Card Trips - Calculadora de Presencia Física y Residencia Continua",
+    "description": "Green Card Trips ayuda a los residentes permanentes de EE. UU. a calcular su presencia física, entender las reglas de viaje de USCIS y proteger su camino hacia la ciudadanía. Planifica tus viajes con confianza. Calcula los días necesarios en EE. UU., evita interrumpir la residencia continua"
   },
   "nav": {
-    "features": "Funciones",
+    "features": "Características",
     "howItWorks": "Cómo funciona",
     "pricing": "Precio",
-    "faq": "Preguntas",
-    "getApp": "Obtener la app",
+    "faq": "Preguntas frecuentes",
+    "getApp": "Descargar la app",
     "language": "Idioma",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "homeLink": "Inicio de Green Card Trips",
-    "chooseLanguage": "Elegir idioma",
+    "chooseLanguage": "Seleccionar idioma",
     "downloadAppStore": "Descargar en App Store",
     "downloadPlayStore": "Descargar en Google Play"
   },
   "hero": {
-    "headline": "Tu Compañero de Tranquilidad en el Camino a la Ciudadanía de EE.UU.",
-    "subtitle": "Registra tus viajes, planifica tus viajes y cumple con los requisitos de USCIS. Green Card Trips hace que la elegibilidad para la ciudadanía sea simple y sin estrés.",
-    "usersDescription": "Confiado por titulares de green card",
-    "downloadNow": "Descargar Ahora"
+    "headline": " Calcula tu Presencia Física y Residencia Continua de forma sencilla.",
+    "subtitle": "Green Card Trips te ayuda a estar al día de tus viajes. Calcula tu presencia física y residencia continua y descubre tu fecha estimada más temprana para presentar el Formulario N-400 (solicitar la ciudadanía).",
+    "usersDescription": "Otros titulares de la Green Card ya la usan",
+    "downloadNow": "Descargar"
+  },
+  "highlight": {
+    "title": "Protege tu Green Card",
+    "subtitle": "Mantén el control de tu estatus de residencia y viaja con tranquilidad.",
+    "paragraph1": "Tu Green Card es valiosa — y pasar tiempo fuera del país puede ponerla en riesgo si no llevas un registro adecuado. La app te ayuda a entender cuándo un viaje podría generar dudas sobre tu residencia continua y también controla el requisito de presencia física.",
+    "paragraph2": "Green Card Trips está te permite tomar decisiones informadas."
   },
   "features": {
-    "title": "Todo lo que Necesitas para Mantenerte en Cumplimiento",
-    "subtitle": "Herramientas simples para rastrear tu presencia, planificar viajes y alcanzar tus metas de ciudadanía",
+    "title": "Todo lo que necesitas para mantenerte en regla",
+    "subtitle": "Planifica tus viajes y protege tu camino hacia la ciudadanía",
     "tracking": {
-      "title": "Registro Inteligente de Viajes",
-      "description": "Registra fácilmente todos tus viajes internacionales con fechas y destinos. Ve tus días en EE.UU. de un vistazo."
+      "title": "Registro inteligente de viajes",
+      "description": "Anota cada viaje al extranjero con las fechas exactas. Tu panel se actualiza al instante mostrando los días totales fuera de EE. UU. y la presencia física restante requerida (548 o 913 días según tu vía de elegibilidad)."
     },
     "simulator": {
-      "title": "Simulador de Viajes",
-      "description": "Planifica viajes futuros con confianza. Ve exactamente cómo los viajes afectan tu elegibilidad para la ciudadanía antes de reservar."
+      "title": "Simulador de impacto de viajes",
+      "description": "Agrega un viaje futuro y observa cómo cambia tu residencia continua y tus totales de presencia física — antes de viajar. Planifica mejor con feedback inmediato y comprueba cómo un viaje podría modificar cuando puedes solicitar la ciudadanía."
     },
     "dashboard": {
-      "title": "Panel de Información",
-      "description": "Estadísticas de presencia en tiempo real con advertencias de 180 y 365 días. Conoce tu estado al instante."
+      "title": "Indicadores en el panel",
+      "description": "Obtén alertas cuando un viaje supere los 180 o 365 días, y cuando tu tiempo total acumulado en el extranjero se acerque a los límites que podrían retrasar tu fecha más temprana para presentar el N-400 (solicitud de ciudadanía)."
     },
     "privacy": {
-      "title": "Privacidad y Seguridad",
-      "description": "Diseño sin conexión con encriptación a nivel de campo. Tus datos nunca salen de tu dispositivo a menos que elijas sincronización en la nube."
+      "title": "Tus datos están seguros",
+      "description": "La app está diseñada para funcionar offline. Tu historial de viajes se almacena de forma segura en tu dispositivo. Nosotros no tenemos acceso a tus datos"
     }
   },
   "howItWorks": {
-    "title": "Cómo Funciona",
-    "subtitle": "Comienza en minutos y toma control de tu camino hacia la ciudadanía",
+    "title": "Cómo funciona",
+    "subtitle": "Empieza en minutos",
     "step1": {
-      "title": "Descarga la App",
-      "description": "Instala Green Card Trips en tu dispositivo iOS."
+      "title": "Descarga la app",
+      "description": "Instala Green Card Trips en tu iPhone"
     },
     "step2": {
-      "title": "Ingresa Detalles de Green Card",
-      "description": "Agrega la fecha de tu green card y selecciona tu camino de elegibilidad (3 años o 5 años)."
+      "title": "Introduce los datos de tu Green Card",
+      "description": "Añade la fecha de tu Green Card y elige tu vía de elegibilidad — de 3 o 5 años."
     },
     "step3": {
-      "title": "Registra tus Viajes",
-      "description": "Ingresa manualmente viajes pasados y futuros con fechas de salida y regreso."
+      "title": "Registra tus viajes",
+      "description": "Agrega viajes pasados y futuros con fechas de salida y regreso. La app calcula al instante los días totales fuera y dentro de EE. UU."
     },
     "step4": {
-      "title": "Planifica Viajes de Forma Segura",
-      "description": "Usa el simulador para verificar cómo los viajes futuros afectan tu elegibilidad antes de reservar."
+      "title": "Comprueba la residencia continua y presencia física",
+      "description": "Verifica si algún viaje afecta tu residencia continua y consulta el total acumulado de días fuera de EE. UU. y la presencia física que aún necesitas cumplir."
     },
     "step5": {
-      "title": "Mantente en Cumplimiento",
-      "description": "Monitorea tu panel para advertencias, rastrea fechas de renovación y mantén tu estado."
+      "title": "Saber cuándo te puedes presentar a la ciudadanía",
+      "description": "La app calcula tu fecha más temprana posible para presentar el Formulario N-400 (solicitud de ciudadanía) y muestra el periodo anticipado de 90 días cuando ya estás cerca — así sabrás exactamente cuándo puedes enviar tu solicitud."
     }
   },
   "pricing": {
-    "title": "Precio Simple y Transparente",
-    "subtitle": "Compra única.",
+    "title": "Precio simple y transparente",
+    "subtitle": "Pago único. Tranquilidad total.",
     "price": "$4.99",
-    "cta": "Descargar Ahora",
+    "cta": "Descargar",
     "features": [
       "Registro ilimitado de viajes",
-      "Simulador de viajes",
-      "Panel de información",
-      "Recordatorios de cumplimiento",
-      "Modo sin conexión"
+      "Simulador de impacto de viajes",
+      "Calculadora de residencia continua y presencia física",
+      "Panel con alertas y proyección de fechas de solicitud a la ciudadanía",
+      "Acceso sin conexión a internet"
     ]
   },
   "faq": {
-    "title": "Preguntas Frecuentes",
+    "title": "Preguntas comunes sobre viajes y la Green Card",
     "q1": {
       "question": "¿Qué es Green Card Trips?",
-      "answer": "Green Card Trips es una aplicación móvil que ayuda a los titulares de green card de EE.UU. a rastrear su presencia física en Estados Unidos para cumplir con los requisitos de elegibilidad para la ciudadanía. Previene errores costosos monitoreando umbrales críticos de viaje."
+      "answer": "Green Card Trips es una aplicación que ayuda a los residentes permanentes de EE. UU. a registrar sus viajes al extranjero, calcular su presencia física y entender cómo el viaje afecta su residencia continua y elegibilidad para la ciudadanía."
     },
     "q2": {
-      "question": "¿Qué tan precisos son los cálculos?",
-      "answer": "Nuestros cálculos siguen las reglas oficiales de USCIS con precisión. Los días de salida y regreso cuentan como presencia física. Y monitoreamos umbrales que afectan la residencia continua y la presencia física para el estado de green card."
+      "question": "¿Son precisos los cálculos?",
+      "answer": "Los cálculos siguen las normas de USCIS. Los días de salida y regreso cuentan como presencia en EE. UU. La app calcula tanto la residencia continua (viajes individuales de más de 180 o 365 días) como la presencia física (días totales en el extranjero frente al requisito de 548 o 913 días dentro de EE. UU.)."
     },
     "q3": {
       "question": "¿Mis datos son privados y seguros?",
-      "answer": "Absolutamente. Todos los datos se almacenan localmente en tu dispositivo. Tu información nunca sale de tu teléfono. No tenemos acceso a tus datos."
+      "answer": "Absolutamente. La app funciona principalmente sin conexión. Todos los datos se almacenan localmente en tu dispositivo. Tu información nunca sale de tu teléfono. No tenemos acceso a tus datos."
     },
     "q4": {
-      "question": "¿Puedo usarla sin conexión?",
-      "answer": "¡Sí! Toda la aplicación funciona sin conexión. Registra viajes, usa el simulador y verifica tu panel en cualquier lugar sin internet."
+      "question": "¿La app está disponible en Android?",
+      "answer": "Por el momento, Green Card Trips sólo está disponible para iOS. El soporte para Android estará disponible próximamente."
     },
     "q5": {
-      "question": "¿La aplicación está disponible en Android?",
-      "answer": "Todavía no, ¡pero estamos trabajando en traer Green Card Trips a Android pronto! Actualmente, la aplicación solo está disponible para dispositivos iOS. Anunciaremos el lanzamiento de Android tan pronto como esté lista."
+      "question": "¿Qué es la regla de presentación anticipada de 90 días?",
+      "answer": "El USCIS permite que ciertos solicitantes presenten el Formulario N-400 (la solicitud a la ciudadanía) hasta 90 días antes de cumplir el tiempo obligatorio como titular de la Green Card. Green Card Trips calcula tu fecha más temprana de presentación y muestra cuándo entras en esa ventana de 90 días para que sepas cuándo puedes presentar tu solicitud."
+    },
+    "q6": {
+      "question": "¿Puedo perder mi Green Card si viajo demasiado tiempo?",
+      "answer": "Pasar demasiado tiempo fuera de EE. UU. puede hacer que USCIS cuestione si has abandonado tu residencia permanente. Los viajes de más de 180 días pueden generar dudas, y los de más de 365 días casi siempre requieren pruebas de que sigues viviendo en EE. UU. Green Card Trips te ayuda a detectar ese riesgo con antelación señalando los viajes largos y mostrando cómo afectan tu tiempo total en el extranjero, para que planifiques tu regreso y protejas tu estatus con confianza."
+    },
+    "q7": {
+      "question": "¿Necesito un permiso de reingreso?",
+      "answer": "Si planeas estar fuera de EE. UU. cerca de un año o más, un permiso de reingreso (Formulario I-131) puede demostrar que no pretendías abandonar tu residencia. Green Card Trips te avisa cuando un viaje planificado podría ser lo bastante largo como para requerir uno, dándote tiempo para solicitarlo antes de salir y evitar complicaciones futuras."
+    },
+    "q8": {
+      "question": "¿Qué es la 'renuncia o abandono de residencia'?",
+      "answer": "La renuncia o abandono de residencia ocurre cuando un residente permanente pasa tanto tiempo —o viaja con tanta frecuencia— fuera del país que parece que su hogar principal ya no está en EE. UU. Green Card Trips mantiene tu registro de viajes claro y tus días contabilizados, ayudándote a detectar cuándo tus ausencias podrían generar dudas y dándote el conocimiento para actuar antes de que surjan problemas."
     }
   },
   "appBanner": {
-    "title": "¿Listo para Tomar Control de tu Camino hacia la Ciudadanía?",
-    "subtitle": "Únete a los titulares de green card que confían en Green Card Trips para mantenerse en cumplimiento y lograr sus metas de ciudadanía.",
-    "cta": "Descargar Ahora"
+    "title": "¿Listo para tomar el control de tu camino hacia la ciudadanía?",
+    "subtitle": "Únete a otros titulares de Green Card que usan Green Card Trips y gestiona tu camino a la ciudadanía con confianza",
+    "cta": "Descargar"
   },
   "footer": {
-    "description": "Green Card Trips ayuda a los titulares de green card de EE.UU. a rastrear la presencia física y gestionar su camino hacia la ciudadanía con confianza.",
-    "madeBy": "Hecho por Titulares de Green Card",
-    "madeByFor": "para Titulares de Green Card",
+    "description": "Green Card Trips ayuda a los titulares de Green Card en EE. UU. a registrar su presencia física y gestionar su camino hacia la ciudadanía con confianza.",
+    "madeBy": "Creado por titulares de Green Card para titulares de Green Card",
     "developedBy": "Desarrollado por",
     "termsAndConditions": "Términos y condiciones",
     "privacyPolicy": "Política de privacidad",
     "cookiesPolicy": "Política de cookies",
-    "cookieSettings": "Configuración de cookies"
+    "cookieSettings": "Configuración de cookies",
+    "allRightsReserved": "Todos los derechos reservados © 2025"
   },
   "notFound": {
     "title": "404",
-    "heading": "Página No Encontrada",
-    "description": "¡Ups! La página que buscas no existe. Puede que haya sido movida o eliminada.",
-    "goHome": "Ir a Inicio",
-    "quickLinks": "Enlaces Rápidos",
+    "heading": "Página no encontrada",
+    "description": "¡Ups! La página que buscas no existe. Es posible que haya sido movida o eliminada.",
+    "goHome": "Ir al inicio",
+    "quickLinks": "Enlaces rápidos",
     "home": "Inicio",
     "legal": "Legal",
     "availableLanguages": "Disponible en varios idiomas:"
   },
   "cookieConsent": {
     "title": "Usamos cookies",
-    "description": "Utilizamos cookies para analizar el tráfico del sitio con Google Analytics. Esto nos ayuda a comprender cómo los visitantes usan nuestro sitio web para poder mejorarlo. Puede aceptar o rechazar las cookies de análisis a continuación.",
+    "description": "Usamos cookies para analizar el tráfico del sitio web con Google Analytics. Esto nos ayuda a entender cómo los visitantes usan nuestro sitio web y a mejorarlo. Puedes aceptar o rechazar las cookies analíticas a continuación.",
     "acceptAll": "Aceptar todas",
     "acceptNecessary": "Rechazar todas",
     "settings": "Configuración de cookies",
-    "privacyPolicy": "Política de Privacidad",
-    "cookiePolicy": "Política de Cookies",
+    "privacyPolicy": "Política de privacidad",
+    "cookiePolicy": "Política de cookies",
     "preferences": {
       "title": "Preferencias de cookies",
-      "save": "Guardar preferencias",
+      "save": "Guardar mis preferencias",
       "close": "Cerrar",
       "usage": "Uso de cookies",
-      "usageDesc": "Utilizamos cookies para garantizar las funcionalidades básicas del sitio web y mejorar su experiencia en línea. Puede cambiar o retirar su consentimiento en cualquier momento.",
+      "usageDesc": "Usamos cookies para garantizar las funciones básicas del sitio y mejorar tu experiencia en línea. Puedes cambiar o retirar tu consentimiento en cualquier momento.",
       "necessary": "Cookies estrictamente necesarias",
-      "necessaryDesc": "Estas cookies son esenciales para el funcionamiento del sitio web. Habilitan funcionalidades básicas como la preferencia de idioma. El sitio web no puede funcionar correctamente sin estas cookies.",
+      "necessaryDesc": "Estas cookies son esenciales para que el sitio web funcione correctamente. Permiten funciones básicas como la preferencia de idioma. El sitio no puede funcionar adecuadamente sin ellas.",
       "analytics": "Cookies de análisis",
-      "analyticsDesc": "Estas cookies nos ayudan a comprender cómo los visitantes interactúan con nuestro sitio web mediante la recopilación y el informe de información de forma anónima. Utilizamos Google Analytics, que establece cookies como _ga, _ga_* y _gid para distinguir visitantes únicos y rastrear patrones de uso."
+      "analyticsDesc": "Estas cookies nos ayudan a entender cómo los visitantes interactúan con nuestro sitio recopilando información de forma anónima. Usamos Google Analytics, que establece cookies como _ga, _ga_* y _gid para distinguir visitantes únicos y analizar patrones de uso."
     }
   },
   "alt": {
     "stores": {
       "appStore": "Descargar en App Store",
       "googlePlay": "Descargar en Google Play",
-      "appStoreLogo": "Logo de App Store",
-      "googlePlayLogo": "Logo de Google Play"
+      "appStoreLogo": "Logotipo de App Store",
+      "googlePlayLogo": "Logotipo de Google Play"
     },
     "screenshots": {
-      "dashboard": "Panel de la aplicación mostrando estadísticas de viajes y estado de elegibilidad para ciudadanía",
-      "trips": "Lista del historial de viajes mostrando todos los viajes internacionales",
-      "modifyTrip": "Formulario para agregar o editar viaje con fechas de salida y regreso"
+      "dashboard": "Panel de la app mostrando estadísticas de viajes y estado de elegibilidad para la ciudadanía",
+      "trips": "Lista del historial de viajes internacionales",
+      "modifyTrip": "Formulario para agregar o editar un viaje con fechas de salida y regreso"
     },
     "features": {
-      "tracking": "Icono de registro inteligente de viajes",
-      "simulator": "Icono de simulador de viajes",
-      "dashboard": "Icono de panel de información",
-      "privacy": "Icono de privacidad y seguridad"
+      "tracking": "Ícono de registro inteligente de viajes",
+      "simulator": "Ícono del simulador de viajes",
+      "dashboard": "Ícono de indicadores del panel",
+      "privacy": "Ícono de privacidad y seguridad"
     },
     "pricing": {
-      "wallet": "Icono de billetera representando pago único",
-      "money": "Icono de dinero representando precio de suscripción",
-      "locker": "Icono de casillero representando funciones premium seguras"
+      "wallet": "Ícono de cartera que representa pago único",
+      "money": "Ícono de dinero que representa precio o suscripción",
+      "locker": "Ícono de candado que representa funciones seguras premium"
     },
     "steps": {
-      "step1": "Persona descargando la aplicación desde App Store en smartphone",
-      "step2": "Manos ingresando detalles de green card en la aplicación",
-      "step3": "Usuario registrando información de viaje internacional con fechas",
-      "step4": "Interfaz de planificación de viajes mostrando simulación de viaje",
-      "step5": "Panel mostrando estado de cumplimiento y recordatorios de renovación"
+      "step1": "Persona descargando la app desde la App Store en su smartphone",
+      "step2": "Manos introduciendo los datos de la Green Card en la app",
+      "step3": "Usuario registrando información de viajes internacionales con fechas",
+      "step4": "Interfaz de planificación de viajes mostrando una simulación",
+      "step5": "Panel mostrando estado de cumplimiento y recordatorios de presentación"
     },
     "misc": {
-      "logo": "Logo de Green Card Trips",
+      "logo": "Logotipo de Green Card Trips",
       "iphoneFrame": "Marco de iPhone",
-      "appScreenshot": "Captura de pantalla de la aplicación",
-      "partnerLogo": "Logo de socio",
-      "appUser": "Usuario de la aplicación"
+      "appScreenshot": "Captura de pantalla de la app",
+      "partnerLogo": "Logotipo de socio",
+      "appUser": "Usuario de la app"
     }
   }
 }
