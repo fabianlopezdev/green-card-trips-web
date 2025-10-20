@@ -16,39 +16,58 @@ const { translations, currentLang = 'en' } = Astro.props;
 <!-- Root element for cookie consent -->
 <div id="cookie-consent-root" data-translations={JSON.stringify(translations?.cookieConsent)} data-lang={currentLang}></div>
 
+<!-- Load vanilla-cookieconsent JS from CDN and wait for it to load -->
+<script is:inline>
+  // Load the CDN script dynamically to ensure it's available
+  (function() {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js';
+    script.onload = function() {
+      // Dispatch custom event when CookieConsent is ready
+      window.dispatchEvent(new Event('cookieconsent-loaded'));
+    };
+    document.head.appendChild(script);
+  })();
+</script>
+
 <script>
-  import * as CookieConsent from "vanilla-cookieconsent";
   import { getUserCountry, shouldShowBanner } from "./config";
 
-  // Type declaration for global CookieConsent
+  // Type declaration for global CookieConsent (loaded from CDN)
   declare global {
     interface Window {
       CookieConsent: any;
     }
   }
 
-  // Expose CookieConsent API to window so GoogleAnalytics can check acceptance
-  window.CookieConsent = CookieConsent;
+  // Wait for CookieConsent library to load from CDN
+  function initCookieConsent() {
+    const CookieConsent = window.CookieConsent;
 
-  // Step 6-7: Read translations and language from data attributes
-  const root = document.getElementById('cookie-consent-root');
-  const translationsData = root?.dataset.translations;
-  const lang = root?.dataset.lang || 'en';
-  const t = translationsData ? JSON.parse(translationsData) : null;
+    if (!CookieConsent) {
+      console.error('[CookieConsent] Library not loaded');
+      return;
+    }
 
-  // Step 3: Detect user country
-  const userCountry = getUserCountry();
-  console.log('[CookieConsent] Step 3: Detected country:', userCountry);
+    // Step 6-7: Read translations and language from data attributes
+    const root = document.getElementById('cookie-consent-root');
+    const translationsData = root?.dataset.translations;
+    const lang = root?.dataset.lang || 'en';
+    const t = translationsData ? JSON.parse(translationsData) : null;
 
-  // Step 4: Check if we should show banner based on country
-  const showBanner = shouldShowBanner(userCountry);
-  console.log('[CookieConsent] Step 4: Should show banner?', showBanner);
+    // Step 3: Detect user country
+    const userCountry = getUserCountry();
+    console.log('[CookieConsent] Step 3: Detected country:', userCountry);
 
-  // Initialize cookie consent for both EU and non-EU users
-  // Non-EU: Auto-accept analytics, no banner shown
-  // EU: Show banner requiring opt-in
-  try {
-    CookieConsent.run({
+    // Step 4: Check if we should show banner based on country
+    const showBanner = shouldShowBanner(userCountry);
+    console.log('[CookieConsent] Step 4: Should show banner?', showBanner);
+
+    // Initialize cookie consent for both EU and non-EU users
+    // Non-EU: Auto-accept analytics, no banner shown
+    // EU: Show banner requiring opt-in
+    try {
+      CookieConsent.run({
       // Hide consent modal initially for non-EU users
       autoShow: showBanner,
 
@@ -117,6 +136,15 @@ const { translations, currentLang = 'en' } = Astro.props;
   }
 
   console.log('[CookieConsent] Step 2: Component initialized');
+}
+
+// Listen for the library load event
+window.addEventListener('cookieconsent-loaded', initCookieConsent);
+
+// Also try to init immediately in case the library is already loaded
+if (window.CookieConsent) {
+  initCookieConsent();
+}
 </script>
 
 <!-- Step 8: Wire footer Cookie Settings button -->
