@@ -199,7 +199,7 @@ const languageUrls = supportedLanguages.map(lang => {
     {languageUrls.map(({ lang, url }) => (
       <link
         rel="alternate"
-        hreflang={lang === 'zh-cn' ? 'zh-CN' : lang}
+        hreflang={lang === 'zh-cn' ? 'zh' : lang}
         href={url}
       />
     ))}

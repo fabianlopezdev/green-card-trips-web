@@ -72,7 +72,7 @@ export default defineConfig({
           es: "es-ES",
           tl: "tl-PH",
           vi: "vi-VN",
-          "zh-cn": "zh-CN",
+          "zh-cn": "zh",
         },
       },
       // Customize sitemap entries with priorities and change frequencies
