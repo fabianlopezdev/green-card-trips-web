@@ -1,4 +1,5 @@
 ---
+// Step 5: Google Analytics Integration
 const { trackingId } = Astro.props as { trackingId?: string };
 if (!trackingId) {
   return null;
@@ -8,11 +9,82 @@ if (!trackingId) {
 <div id="ga-root" data-tracking-id={trackingId} style="display:none"></div>
 
 <script>
-  import { initGoogleAnalytics } from "./ga.client";
+  // Step 5: Simple GA integration that respects cookie consent
 
   const root = document.getElementById("ga-root");
   const trackingId = root?.dataset.trackingId;
-  if (trackingId) {
-    initGoogleAnalytics(trackingId);
+
+  if (!trackingId) {
+    console.log('[GA] No tracking ID provided');
+  } else {
+    console.log('[GA] Step 5: Waiting for cookie consent...');
+
+    let gaLoaded = false;
+
+    // Function to load Google Analytics (only once)
+    function loadGA() {
+      if (gaLoaded) {
+        console.log('[GA] Already loaded, skipping');
+        return;
+      }
+      gaLoaded = true;
+
+      console.log('[GA] Step 5: Loading Google Analytics script...');
+
+      // Create gtag script
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
+      document.head.appendChild(script);
+
+      // Initialize dataLayer and gtag
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      }
+      window.gtag = gtag;
+
+      gtag('js', new Date());
+      gtag('config', trackingId);
+
+      console.log('[GA] Step 5: Google Analytics loaded successfully');
+    }
+
+    // CookieConsent is now always initialized (for both EU and non-EU users)
+    // Check immediately in case it's already accepted (non-EU auto-accept)
+    checkAndLoad();
+
+    // Listen for CookieConsent library changes
+    // vanilla-cookieconsent v3 uses 'consent:first' and 'consent:changed' events
+    window.addEventListener('cc:onConsent', () => {
+      console.log('[GA] Step 5: Cookie consent given');
+      checkAndLoad();
+    });
+
+    window.addEventListener('cc:onChange', () => {
+      console.log('[GA] Step 5: Cookie consent changed');
+      checkAndLoad();
+    });
+
+    function checkAndLoad() {
+      // Access CookieConsent API to check if analytics is accepted
+      const cc = (window as any).CookieConsent;
+      if (cc && typeof cc.acceptedCategory === 'function') {
+        if (cc.acceptedCategory('analytics')) {
+          console.log('[GA] Step 5: Analytics category accepted');
+          loadGA();
+        } else {
+          console.log('[GA] Step 5: Analytics category not accepted');
+        }
+      }
+    }
+  }
+
+  // Type declarations
+  declare global {
+    interface Window {
+      dataLayer: any[];
+      gtag: (...args: any[]) => void;
+    }
   }
 </script>

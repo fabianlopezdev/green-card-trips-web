@@ -1,19 +1,132 @@
 ---
-const { currentLang = "en" } = Astro.props as { currentLang?: string };
+// Cookie consent component - Steps 2-7
+import type { TranslationObject } from "@utils/serverI18n";
+
+interface Props {
+  translations?: TranslationObject;
+  currentLang?: string;
+}
+
+const { translations, currentLang = 'en' } = Astro.props;
 ---
 
-<!-- Import vanilla-cookieconsent CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+<!-- Load vanilla-cookieconsent CSS from CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css">
 
-<div id="cookie-consent-root" data-lang={currentLang}></div>
+<!-- Root element for cookie consent -->
+<div id="cookie-consent-root" data-translations={JSON.stringify(translations?.cookieConsent)} data-lang={currentLang}></div>
 
 <script>
-  import { initCookieConsent } from "./cookie-consent.client";
+  import * as CookieConsent from "vanilla-cookieconsent";
+  import { getUserCountry, shouldShowBanner } from "./config";
 
-  if (!window.__cookieConsentLoader) {
-    window.__cookieConsentLoader = true;
-    const root = document.getElementById("cookie-consent-root");
-    const currentLang = root?.dataset.lang || "en";
-    initCookieConsent({ currentLang });
+  // Type declaration for global CookieConsent
+  declare global {
+    interface Window {
+      CookieConsent: any;
+    }
   }
+
+  // Expose CookieConsent API to window so GoogleAnalytics can check acceptance
+  window.CookieConsent = CookieConsent;
+
+  // Step 6-7: Read translations and language from data attributes
+  const root = document.getElementById('cookie-consent-root');
+  const translationsData = root?.dataset.translations;
+  const lang = root?.dataset.lang || 'en';
+  const t = translationsData ? JSON.parse(translationsData) : null;
+
+  // Step 3: Detect user country
+  const userCountry = getUserCountry();
+  console.log('[CookieConsent] Step 3: Detected country:', userCountry);
+
+  // Step 4: Check if we should show banner based on country
+  const showBanner = shouldShowBanner(userCountry);
+  console.log('[CookieConsent] Step 4: Should show banner?', showBanner);
+
+  // Initialize cookie consent for both EU and non-EU users
+  // Non-EU: Auto-accept analytics, no banner shown
+  // EU: Show banner requiring opt-in
+  try {
+    CookieConsent.run({
+      // Hide consent modal initially for non-EU users
+      autoShow: showBanner,
+
+      categories: {
+        necessary: {
+          enabled: true,  // Always enabled (can't be disabled)
+          readOnly: true  // User can't toggle this off
+        },
+        analytics: {
+          // For non-EU: enabled by default (auto-accept)
+          // For EU: disabled by default (user must opt-in)
+          enabled: !showBanner
+        }
+      },
+
+    language: {
+      default: lang,
+      translations: {
+        [lang]: t ? {
+          consentModal: t.consentModal,
+          preferencesModal: t.preferencesModal
+        } : {
+          // Fallback to hardcoded English if no translations provided
+          consentModal: {
+            title: 'We use cookies',
+            description: 'We use cookies to analyze site traffic with Google Analytics. This helps us understand how visitors use our website so we can improve it. You can accept or reject analytics cookies below.',
+            acceptAllBtn: 'Accept all',
+            acceptNecessaryBtn: 'Reject all',
+            showPreferencesBtn: 'Cookie settings'
+          },
+          preferencesModal: {
+            title: 'Cookie preferences',
+            acceptAllBtn: 'Accept all',
+            acceptNecessaryBtn: 'Reject all',
+            savePreferencesBtn: 'Save my preferences',
+            closeIconLabel: 'Close',
+            sections: [
+              {
+                title: 'Cookie usage',
+                description: 'We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can change or withdraw your consent at any time.'
+              },
+              {
+                title: 'Strictly necessary cookies',
+                description: 'These cookies are essential for the website to function. They enable core functionality such as language preference. The website cannot function properly without these cookies.',
+                linkedCategory: 'necessary'
+              },
+              {
+                title: 'Analytics cookies',
+                description: 'These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We use Google Analytics, which sets cookies like _ga, _ga_*, and _gid to distinguish unique visitors and track usage patterns.',
+                linkedCategory: 'analytics'
+              }
+            ]
+          }
+        }
+      }
+    }
+    });
+
+    if (showBanner) {
+      console.log('[CookieConsent] Step 4: Banner initialized for EU country');
+    } else {
+      console.log('[CookieConsent] Step 4: Initialized with auto-accept for non-EU country');
+    }
+  } catch (error) {
+    console.error('[CookieConsent] Error initializing CookieConsent:', error);
+  }
+
+  console.log('[CookieConsent] Step 2: Component initialized');
 </script>
+
+<!-- Step 8: Wire footer Cookie Settings button -->
+<script>
+  import './cookie-consent.client.ts';
+</script>
+
+<!-- Step 9: Debug helpers (development only) -->
+{import.meta.env.DEV && (
+  <script>
+    import './debug-helpers.client.ts';
+  </script>
+)}

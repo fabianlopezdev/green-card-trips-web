@@ -146,26 +146,6 @@
     "legal": "法律信息",
     "availableLanguages": "支持多种语言："
   },
-  "cookieConsent": {
-    "title": "我们使用 Cookie",
-    "description": "我们使用 Cookie 通过 Google Analytics 分析网站流量，以便了解访问者的使用情况并改进网站。您可以在下方接受或拒绝分析类 Cookie。",
-    "acceptAll": "全部接受",
-    "acceptNecessary": "全部拒绝",
-    "settings": "Cookie 设置",
-    "privacyPolicy": "隐私政策",
-    "cookiePolicy": "Cookie 政策",
-    "preferences": {
-      "title": "Cookie 偏好设置",
-      "save": "保存我的偏好",
-      "close": "关闭",
-      "usage": "Cookie 的使用",
-      "usageDesc": "我们使用 Cookie 以确保网站的基本功能并提升您的在线体验。您可随时更改或撤回同意。",
-      "necessary": "必要的 Cookie",
-      "necessaryDesc": "这些 Cookie 对网站运行至关重要，如语言偏好等核心功能。若无这些 Cookie，网站将无法正常运作。",
-      "analytics": "分析类 Cookie",
-      "analyticsDesc": "这些 Cookie 帮助我们匿名了解访客行为。我们使用 Google Analytics，它会设置 _ga、_ga_*、_gid 等 Cookie 来区分独立访客并追踪使用模式。"
-    }
-  },
   "alt": {
     "stores": {
       "appStore": "在 App Store 下载",
@@ -225,5 +205,37 @@
     "iphoneFrame": "iPhone 框架",
     "comingSoon": "即将推出",
     "appComingSoon": "应用即将在 App Store 上架"
+  },
+  "cookieConsent": {
+    "consentModal": {
+      "title": "我们使用 Cookie",
+      "description": "我们使用 Cookie 通过 Google Analytics 分析网站流量。这有助于我们了解访问者如何使用我们的网站，以便我们改进它。您可以在下面接受或拒绝分析 Cookie。",
+      "acceptAllBtn": "全部接受",
+      "acceptNecessaryBtn": "全部拒绝",
+      "showPreferencesBtn": "Cookie 设置"
+    },
+    "preferencesModal": {
+      "title": "Cookie 偏好设置",
+      "acceptAllBtn": "全部接受",
+      "acceptNecessaryBtn": "全部拒绝",
+      "savePreferencesBtn": "保存我的偏好",
+      "closeIconLabel": "关闭",
+      "sections": [
+        {
+          "title": "Cookie 使用",
+          "description": "我们使用 Cookie 来确保网站的基本功能并增强您的在线体验。您可以随时更改或撤回您的同意。"
+        },
+        {
+          "title": "严格必要的 Cookie",
+          "description": "这些 Cookie 对网站的正常运行至关重要。它们启用核心功能，如语言偏好。没有这些 Cookie，网站无法正常运行。",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "分析 Cookie",
+          "description": "这些 Cookie 通过匿名收集和报告信息来帮助我们了解访问者如何与我们的网站互动。我们使用 Google Analytics，它会设置 _ga、_ga_* 和 _gid 等 Cookie 来区分唯一访问者并跟踪使用模式。",
+          "linkedCategory": "analytics"
+        }
+      ]
+    }
   }
 }

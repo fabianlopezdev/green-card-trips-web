@@ -146,26 +146,6 @@
     "legal": "Legal",
     "availableLanguages": "Disponible en varios idiomas:"
   },
-  "cookieConsent": {
-    "title": "Usamos cookies",
-    "description": "Usamos cookies para analizar el tráfico del sitio web con Google Analytics. Esto nos ayuda a entender cómo los visitantes usan nuestro sitio web y a mejorarlo. Puedes aceptar o rechazar las cookies analíticas a continuación.",
-    "acceptAll": "Aceptar todas",
-    "acceptNecessary": "Rechazar todas",
-    "settings": "Configuración de cookies",
-    "privacyPolicy": "Política de privacidad",
-    "cookiePolicy": "Política de cookies",
-    "preferences": {
-      "title": "Preferencias de cookies",
-      "save": "Guardar mis preferencias",
-      "close": "Cerrar",
-      "usage": "Uso de cookies",
-      "usageDesc": "Usamos cookies para garantizar las funciones básicas del sitio y mejorar tu experiencia en línea. Puedes cambiar o retirar tu consentimiento en cualquier momento.",
-      "necessary": "Cookies estrictamente necesarias",
-      "necessaryDesc": "Estas cookies son esenciales para que el sitio web funcione correctamente. Permiten funciones básicas como la preferencia de idioma. El sitio no puede funcionar adecuadamente sin ellas.",
-      "analytics": "Cookies de análisis",
-      "analyticsDesc": "Estas cookies nos ayudan a entender cómo los visitantes interactúan con nuestro sitio recopilando información de forma anónima. Usamos Google Analytics, que establece cookies como _ga, _ga_* y _gid para distinguir visitantes únicos y analizar patrones de uso."
-    }
-  },
   "alt": {
     "stores": {
       "appStore": "Descargar en App Store",
@@ -225,5 +205,37 @@
     "iphoneFrame": "Marco de iPhone",
     "comingSoon": "Próximamente",
     "appComingSoon": "App próximamente en la App Store"
+  },
+  "cookieConsent": {
+    "consentModal": {
+      "title": "Usamos cookies",
+      "description": "Usamos cookies para analizar el tráfico del sitio con Google Analytics. Esto nos ayuda a entender cómo los visitantes usan nuestro sitio web para poder mejorarlo. Puede aceptar o rechazar las cookies de análisis a continuación.",
+      "acceptAllBtn": "Aceptar todo",
+      "acceptNecessaryBtn": "Rechazar todo",
+      "showPreferencesBtn": "Configuración de cookies"
+    },
+    "preferencesModal": {
+      "title": "Preferencias de cookies",
+      "acceptAllBtn": "Aceptar todo",
+      "acceptNecessaryBtn": "Rechazar todo",
+      "savePreferencesBtn": "Guardar mis preferencias",
+      "closeIconLabel": "Cerrar",
+      "sections": [
+        {
+          "title": "Uso de cookies",
+          "description": "Usamos cookies para garantizar las funcionalidades básicas del sitio web y mejorar su experiencia en línea. Puede cambiar o retirar su consentimiento en cualquier momento."
+        },
+        {
+          "title": "Cookies estrictamente necesarias",
+          "description": "Estas cookies son esenciales para el funcionamiento del sitio web. Habilitan funcionalidades básicas como la preferencia de idioma. El sitio web no puede funcionar correctamente sin estas cookies.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Cookies de análisis",
+          "description": "Estas cookies nos ayudan a entender cómo los visitantes interactúan con nuestro sitio web recopilando y reportando información de forma anónima. Usamos Google Analytics, que establece cookies como _ga, _ga_* y _gid para distinguir visitantes únicos y rastrear patrones de uso.",
+          "linkedCategory": "analytics"
+        }
+      ]
+    }
   }
 }

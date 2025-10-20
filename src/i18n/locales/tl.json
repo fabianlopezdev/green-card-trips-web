@@ -144,27 +144,7 @@
     "quickLinks": "Mga Mabilis na Link",
     "home": "Home",
     "legal": "Legal",
-    "availableLanguages": "Available sa iba’t ibang wika:"
-  },
-  "cookieConsent": {
-    "title": "Gumagamit kami ng cookies",
-    "description": "Gumagamit kami ng cookies upang pag-aralan ang trapiko ng site gamit ang Google Analytics. Tinutulungan kami nitong maunawaan kung paano ginagamit ng mga bisita ang aming website upang mapabuti ito. Maaari mong tanggapin o tanggihan ang cookies ng analytics sa ibaba.",
-    "acceptAll": "Tanggapin Lahat",
-    "acceptNecessary": "Tanggihan Lahat",
-    "settings": "Mga Setting ng Cookies",
-    "privacyPolicy": "Patakaran sa Privacy",
-    "cookiePolicy": "Patakaran sa Cookies",
-    "preferences": {
-      "title": "Mga Kagustuhan sa Cookies",
-      "save": "I-save ang Aking Mga Kagustuhan",
-      "close": "Isara",
-      "usage": "Paggamit ng Cookies",
-      "usageDesc": "Gumagamit kami ng cookies upang matiyak ang mga pangunahing tungkulin ng website at mapahusay ang iyong karanasan online. Maaari mong baguhin o bawiin ang iyong pahintulot anumang oras.",
-      "necessary": "Mahigpit na Kinakailangang Cookies",
-      "necessaryDesc": "Mahalaga ang mga cookies na ito para gumana ang website. Pinapagana nila ang pangunahing mga function tulad ng pagpili ng wika. Hindi gagana nang tama ang website kung wala ang mga ito.",
-      "analytics": "Cookies para sa Analytics",
-      "analyticsDesc": "Tumutulong ang mga cookies na ito upang maunawaan namin kung paano nakikipag-ugnayan ang mga bisita sa aming website sa pamamagitan ng pagkolekta ng impormasyon nang hindi nagpapakilala. Gumagamit kami ng Google Analytics, na nagtatakda ng mga cookies tulad ng _ga, _ga_*, at _gid upang makilala ang mga natatanging bisita at subaybayan ang mga pattern ng paggamit."
-    }
+    "availableLanguages": "Available sa iba't ibang wika:"
   },
   "alt": {
     "stores": {
@@ -225,5 +205,37 @@
     "iphoneFrame": "Frame ng iPhone",
     "comingSoon": "Malapit Na",
     "appComingSoon": "App ay malapit nang ilabas sa App Store"
+  },
+  "cookieConsent": {
+    "consentModal": {
+      "title": "Gumagamit kami ng cookies",
+      "description": "Gumagamit kami ng cookies upang suriin ang trapiko ng site gamit ang Google Analytics. Tumutulong ito sa amin na maunawaan kung paano ginagamit ng mga bisita ang aming website upang mapabuti namin ito. Maaari mong tanggapin o tanggihan ang analytics cookies sa ibaba.",
+      "acceptAllBtn": "Tanggapin lahat",
+      "acceptNecessaryBtn": "Tanggihan lahat",
+      "showPreferencesBtn": "Mga setting ng cookie"
+    },
+    "preferencesModal": {
+      "title": "Mga kagustuhan sa cookie",
+      "acceptAllBtn": "Tanggapin lahat",
+      "acceptNecessaryBtn": "Tanggihan lahat",
+      "savePreferencesBtn": "I-save ang aking mga kagustuhan",
+      "closeIconLabel": "Isara",
+      "sections": [
+        {
+          "title": "Paggamit ng cookie",
+          "description": "Gumagamit kami ng cookies upang masiguro ang mga pangunahing functionality ng website at mapahusay ang iyong online na karanasan. Maaari mong baguhin o bawiin ang iyong pahintulot anumang oras."
+        },
+        {
+          "title": "Mahigpit na kinakailangang cookies",
+          "description": "Ang mga cookies na ito ay mahalaga para gumana ang website. Pinapagana nila ang mga pangunahing functionality tulad ng kagustuhan sa wika. Ang website ay hindi makakapaggana nang maayos nang walang mga cookies na ito.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Analytics cookies",
+          "description": "Ang mga cookies na ito ay tumutulong sa amin na maunawaan kung paano nakikipag-ugnayan ang mga bisita sa aming website sa pamamagitan ng pagkolekta at pag-uulat ng impormasyon nang anonymous. Gumagamit kami ng Google Analytics, na nagtatatag ng cookies tulad ng _ga, _ga_*, at _gid upang makilala ang mga natatanging bisita at subaybayan ang mga pattern ng paggamit.",
+          "linkedCategory": "analytics"
+        }
+      ]
+    }
   }
 }

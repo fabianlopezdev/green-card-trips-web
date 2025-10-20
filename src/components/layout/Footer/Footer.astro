@@ -193,24 +193,5 @@ const showSocials = Boolean(socials?.facebook || socials?.instagram || socials?.
     </div>
   </div>
 
-  <script is:inline>
-    const attachCookieHandler = () => {
-      const button = document.getElementById("cookie-settings-button");
-      if (!button || button.dataset.cookieHandlerAttached === "true") {
-        return;
-      }
-
-      button.dataset.cookieHandlerAttached = "true";
-      button.addEventListener("click", () => {
-        if (typeof window === "undefined") return;
-        const api = window.CookieConsent;
-        if (api && typeof api.showPreferences === "function") {
-          api.showPreferences();
-        }
-      });
-    };
-
-    document.addEventListener("astro:page-load", attachCookieHandler);
-    document.addEventListener("astro:after-swap", attachCookieHandler);
-  </script>
+  <!-- Cookie settings handler script removed - will be configured later -->
 </footer>

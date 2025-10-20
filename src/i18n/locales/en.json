@@ -146,26 +146,6 @@
     "legal": "Legal",
     "availableLanguages": "Available in multiple languages:"
   },
-  "cookieConsent": {
-    "title": "We use cookies",
-    "description": "We use cookies to analyze site traffic with Google Analytics. This helps us understand how visitors use our website so we can improve it. You can accept or reject analytics cookies below.",
-    "acceptAll": "Accept all",
-    "acceptNecessary": "Reject all",
-    "settings": "Cookie settings",
-    "privacyPolicy": "Privacy Policy",
-    "cookiePolicy": "Cookie Policy",
-    "preferences": {
-      "title": "Cookie preferences",
-      "save": "Save my preferences",
-      "close": "Close",
-      "usage": "Cookie usage",
-      "usageDesc": "We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can change or withdraw your consent at any time.",
-      "necessary": "Strictly necessary cookies",
-      "necessaryDesc": "These cookies are essential for the website to function. They enable core functionality such as language preference. The website cannot function properly without these cookies.",
-      "analytics": "Analytics cookies",
-      "analyticsDesc": "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We use Google Analytics, which sets cookies like _ga, _ga_*, and _gid to distinguish unique visitors and track usage patterns."
-    }
-  },
   "alt": {
     "stores": {
       "appStore": "Download on the App Store",
@@ -225,5 +205,37 @@
     "iphoneFrame": "iPhone frame",
     "comingSoon": "Coming Soon",
     "appComingSoon": "App coming soon to the App Store"
+  },
+  "cookieConsent": {
+    "consentModal": {
+      "title": "We use cookies",
+      "description": "We use cookies to analyze site traffic with Google Analytics. This helps us understand how visitors use our website so we can improve it. You can accept or reject analytics cookies below.",
+      "acceptAllBtn": "Accept all",
+      "acceptNecessaryBtn": "Reject all",
+      "showPreferencesBtn": "Cookie settings"
+    },
+    "preferencesModal": {
+      "title": "Cookie preferences",
+      "acceptAllBtn": "Accept all",
+      "acceptNecessaryBtn": "Reject all",
+      "savePreferencesBtn": "Save my preferences",
+      "closeIconLabel": "Close",
+      "sections": [
+        {
+          "title": "Cookie usage",
+          "description": "We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can change or withdraw your consent at any time."
+        },
+        {
+          "title": "Strictly necessary cookies",
+          "description": "These cookies are essential for the website to function. They enable core functionality such as language preference. The website cannot function properly without these cookies.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Analytics cookies",
+          "description": "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We use Google Analytics, which sets cookies like _ga, _ga_*, and _gid to distinguish unique visitors and track usage patterns.",
+          "linkedCategory": "analytics"
+        }
+      ]
+    }
   }
 }

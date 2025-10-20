@@ -146,26 +146,6 @@
     "legal": "Pháp lý",
     "availableLanguages": "Có sẵn bằng nhiều ngôn ngữ:"
   },
-  "cookieConsent": {
-    "title": "Chúng tôi sử dụng cookie",
-    "description": "Chúng tôi sử dụng cookie để phân tích lưu lượng truy cập trang web bằng Google Analytics. Điều này giúp chúng tôi hiểu cách người dùng truy cập trang web để cải thiện nó. Bạn có thể chấp nhận hoặc từ chối cookie phân tích bên dưới.",
-    "acceptAll": "Chấp nhận tất cả",
-    "acceptNecessary": "Từ chối tất cả",
-    "settings": "Cài đặt cookie",
-    "privacyPolicy": "Chính sách bảo mật",
-    "cookiePolicy": "Chính sách cookie",
-    "preferences": {
-      "title": "Tùy chọn cookie",
-      "save": "Lưu tùy chọn",
-      "close": "Đóng",
-      "usage": "Cách chúng tôi sử dụng cookie",
-      "usageDesc": "Chúng tôi sử dụng cookie để đảm bảo các chức năng cơ bản của trang web và nâng cao trải nghiệm của bạn. Bạn có thể thay đổi hoặc rút lại sự đồng ý bất kỳ lúc nào.",
-      "necessary": "Cookie cần thiết",
-      "necessaryDesc": "Những cookie này là cần thiết để trang web hoạt động đúng. Chúng kích hoạt các chức năng cơ bản như lựa chọn ngôn ngữ. Trang web sẽ không hoạt động bình thường nếu thiếu chúng.",
-      "analytics": "Cookie phân tích",
-      "analyticsDesc": "Những cookie này giúp chúng tôi hiểu cách người dùng tương tác với trang web bằng cách thu thập dữ liệu ẩn danh. Chúng tôi sử dụng Google Analytics, đặt các cookie như _ga, _ga_* và _gid để phân biệt người dùng và theo dõi hành vi sử dụng."
-    }
-  },
   "alt": {
     "stores": {
       "appStore": "Tải trên App Store",
@@ -225,5 +205,37 @@
     "iphoneFrame": "Khung iPhone",
     "comingSoon": "Sắp Ra Mắt",
     "appComingSoon": "Ứng dụng sắp có trên App Store"
+  },
+  "cookieConsent": {
+    "consentModal": {
+      "title": "Chúng tôi sử dụng cookie",
+      "description": "Chúng tôi sử dụng cookie để phân tích lưu lượng truy cập trang web bằng Google Analytics. Điều này giúp chúng tôi hiểu cách khách truy cập sử dụng trang web của chúng tôi để cải thiện nó. Bạn có thể chấp nhận hoặc từ chối cookie phân tích bên dưới.",
+      "acceptAllBtn": "Chấp nhận tất cả",
+      "acceptNecessaryBtn": "Từ chối tất cả",
+      "showPreferencesBtn": "Cài đặt cookie"
+    },
+    "preferencesModal": {
+      "title": "Tùy chọn cookie",
+      "acceptAllBtn": "Chấp nhận tất cả",
+      "acceptNecessaryBtn": "Từ chối tất cả",
+      "savePreferencesBtn": "Lưu tùy chọn của tôi",
+      "closeIconLabel": "Đóng",
+      "sections": [
+        {
+          "title": "Sử dụng cookie",
+          "description": "Chúng tôi sử dụng cookie để đảm bảo các chức năng cơ bản của trang web và nâng cao trải nghiệm trực tuyến của bạn. Bạn có thể thay đổi hoặc rút lại sự đồng ý của mình bất cứ lúc nào."
+        },
+        {
+          "title": "Cookie cần thiết tuyệt đối",
+          "description": "Những cookie này là cần thiết để trang web hoạt động. Chúng kích hoạt các chức năng cốt lõi như tùy chọn ngôn ngữ. Trang web không thể hoạt động bình thường nếu không có những cookie này.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Cookie phân tích",
+          "description": "Những cookie này giúp chúng tôi hiểu cách khách truy cập tương tác với trang web của chúng tôi bằng cách thu thập và báo cáo thông tin một cách ẩn danh. Chúng tôi sử dụng Google Analytics, thiết lập các cookie như _ga, _ga_*, và _gid để phân biệt khách truy cập duy nhất và theo dõi các mẫu sử dụng.",
+          "linkedCategory": "analytics"
+        }
+      ]
+    }
   }
 }

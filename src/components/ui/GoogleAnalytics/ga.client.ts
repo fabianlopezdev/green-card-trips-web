@@ -1,3 +1,5 @@
+/* Google Analytics - COMMENTED OUT
+
 import { EU_COUNTRIES, getCookie } from "@components/ui/CookieConsent/config";
 
 type ConsentStatus = "granted" | "denied";
@@ -170,3 +172,5 @@ export function initGoogleAnalytics(trackingId: string) {
 
   (window as any).__gaLoaderInitialized = true;
 }
+
+*/

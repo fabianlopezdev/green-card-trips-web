@@ -1,64 +1,55 @@
-// EU/EEA Country Codes (GDPR applies)
+// Cookie Consent Configuration - Steps 3 & 4: Geolocation and Mode Logic
+
+/**
+ * EU/EEA countries requiring GDPR opt-in consent
+ */
 export const EU_COUNTRIES = [
-  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
-  "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
-  "PL", "PT", "RO", "SK", "SI", "ES", "SE",
-  // EEA countries (non-EU)
-  "IS", "LI", "NO",
-  // UK (still follows GDPR-like rules)
-  "GB",
+  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
+  'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
+  'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
+  // EEA countries (not in EU but follow GDPR)
+  'IS', 'LI', 'NO',
+  // UK (follows GDPR-like regulations)
+  'GB'
 ];
 
-// California country code + state detection would be done separately
-// For now, we'll use country code "US" and assume CCPA applies to all US
-
-export type ConsentMode = "opt-in" | "opt-out" | "info";
-
-export interface ConsentConfig {
-  mode: ConsentMode;
-  blockCookies: boolean; // Block cookies until consent?
-}
-
 /**
- * Determine consent mode based on country code
- */
-export function getConsentMode(countryCode: string): ConsentConfig {
-  // EU/EEA - Strict opt-in required (GDPR)
-  if (EU_COUNTRIES.includes(countryCode)) {
-    return {
-      mode: "opt-in",
-      blockCookies: true, // Block all non-essential cookies until user accepts
-    };
-  }
-
-  // US - Opt-out approach (CCPA)
-  // Note: Technically CCPA only applies to California, but we'll apply to all US for simplicity
-  if (countryCode === "US") {
-    return {
-      mode: "opt-out",
-      blockCookies: false, // Allow cookies but offer opt-out
-    };
-  }
-
-  // Other countries - Informational notice
-  return {
-    mode: "info",
-    blockCookies: false, // Allow cookies, just inform user
-  };
-}
-
-/**
- * Get cookie from document.cookie
+ * Get a cookie value by name
  */
 export function getCookie(name: string): string | null {
-  if (typeof document === "undefined") return null;
+  if (typeof document === 'undefined') return null;
 
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
 
   if (parts.length === 2) {
-    return parts.pop()?.split(";").shift() || null;
+    return parts.pop()?.split(';').shift() || null;
   }
 
   return null;
+}
+
+/**
+ * Get the user's country code from the cookie set by Netlify Edge Function
+ * Returns 'UNKNOWN' if cookie doesn't exist (e.g., in local development)
+ */
+export function getUserCountry(): string {
+  const country = getCookie('user_country');
+  return country || 'UNKNOWN';
+}
+
+/**
+ * Check if the user is from an EU/EEA country requiring GDPR consent
+ */
+export function isEUCountry(countryCode: string): boolean {
+  return EU_COUNTRIES.includes(countryCode.toUpperCase());
+}
+
+/**
+ * Determine if we should show the cookie banner
+ * - EU countries: Show banner (GDPR requires opt-in)
+ * - All others: Don't show banner (auto-accept)
+ */
+export function shouldShowBanner(countryCode: string): boolean {
+  return isEUCountry(countryCode);
 }
