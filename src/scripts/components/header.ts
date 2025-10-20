@@ -232,28 +232,50 @@ function initMobileMenu(
     overlay.classList.remove("mobile-menu-hidden");
     overlay.classList.add("mobile-menu-visible");
 
-    // Staggered animation sequence (like hero.ts)
-    const sequence: Array<{ element: HTMLElement | null; delay: number }> = [
-      { element: themeSection, delay: 100 },
-    ];
-
-    // Add menu items with staggered delays
-    menuItems.forEach((item, index) => {
-      sequence.push({ element: item, delay: 150 + index * 80 });
+    // First, ensure all elements are in hidden state
+    menuItems.forEach((item) => {
+      item.classList.remove("menu-item-visible");
+      item.classList.add("menu-item-hidden");
     });
 
-    // Add language and stores sections
-    sequence.push({ element: languageSection, delay: 150 + menuItems.length * 80 + 80 });
-    sequence.push({ element: storesSection, delay: 150 + menuItems.length * 80 + 160 });
+    [themeSection, languageSection, storesSection].forEach((section) => {
+      if (section) {
+        section.classList.remove("menu-section-visible");
+        section.classList.add("menu-section-hidden");
+      }
+    });
 
-    // Trigger animations
-    sequence.forEach(({ element, delay }) => {
-      if (!element) return;
+    // Use requestAnimationFrame to ensure browser paints the hidden state before triggering animations
+    requestAnimationFrame(() => {
+      // Staggered animation sequence (like hero.ts)
+      const sequence: Array<{ element: HTMLElement | null; delay: number }> = [
+        { element: themeSection, delay: 100 },
+      ];
 
-      setTimeout(() => {
-        element.classList.remove("menu-item-hidden", "menu-section-hidden");
-        element.classList.add("menu-item-visible", "menu-section-visible");
-      }, delay);
+      // Add menu items with staggered delays
+      menuItems.forEach((item, index) => {
+        sequence.push({ element: item, delay: 150 + index * 80 });
+      });
+
+      // Add language and stores sections
+      sequence.push({ element: languageSection, delay: 150 + menuItems.length * 80 + 80 });
+      sequence.push({ element: storesSection, delay: 150 + menuItems.length * 80 + 160 });
+
+      // Trigger animations
+      sequence.forEach(({ element, delay }) => {
+        if (!element) return;
+
+        setTimeout(() => {
+          // Check if it's a menu item or a section and apply the correct classes
+          if (element.hasAttribute('data-menu-item')) {
+            element.classList.remove("menu-item-hidden");
+            element.classList.add("menu-item-visible");
+          } else {
+            element.classList.remove("menu-section-hidden");
+            element.classList.add("menu-section-visible");
+          }
+        }, delay);
+      });
     });
   };
 

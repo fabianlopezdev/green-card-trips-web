@@ -249,6 +249,7 @@ header[data-interactive="header"] nav {
 .menu-item-hidden {
   opacity: 0;
   transform: translateX(-100%);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 .menu-item-visible {
@@ -261,6 +262,7 @@ header[data-interactive="header"] nav {
 .menu-section-hidden {
   opacity: 0;
   transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 .menu-section-visible {
@@ -269,41 +271,26 @@ header[data-interactive="header"] nav {
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
-/* Hamburger/X icon animation */
-[data-mobile-menu] summary {
-  position: relative;
+/* Hamburger/X icon toggle */
+[data-mobile-menu] summary .hamburger-icon {
+  display: block;
 }
 
-/* Hamburger lines container */
-[data-mobile-menu] summary .menu-icon {
-  position: relative;
-  width: 24px;
-  height: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+[data-mobile-menu] summary .close-icon {
+  display: none;
 }
 
-/* Top line */
-[data-mobile-menu] summary .menu-icon-line {
-  width: 100%;
-  height: 2px;
-  background-color: currentColor;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  transform-origin: center;
+[data-mobile-menu][open] summary .hamburger-icon {
+  display: none;
 }
 
-/* Transform to X when open */
-[data-mobile-menu][open] summary .menu-icon-line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+[data-mobile-menu][open] summary .close-icon {
+  display: block;
 }
 
-[data-mobile-menu][open] summary .menu-icon-line:nth-child(2) {
-  opacity: 0;
-}
-
-[data-mobile-menu][open] summary .menu-icon-line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+/* Language switcher arrow rotation */
+[data-menu-language] details[open] summary svg {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 /* Respect reduced motion preference */
@@ -318,10 +305,6 @@ header[data-interactive="header"] nav {
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
-  }
-
-  [data-mobile-menu] summary .menu-icon-line {
-    transition: none !important;
   }
 }
 
