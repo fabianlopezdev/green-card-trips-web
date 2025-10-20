@@ -5,6 +5,7 @@ import { getTranslations, getSupportedLanguages, legalPageSlugs, type LegalPageK
 import { generateBreadcrumbSchema } from "@utils/structuredData";
 import PrivacyPolicyContent from "@components/legal/PrivacyPolicy.astro";
 import TermsAndConditionsContent from "@components/legal/TermsAndConditions.astro";
+import CookiesPolicyContent from "@components/legal/CookiesPolicy.astro";
 import { getLegalEntry } from "@utils/getLegalEntry";
 
 export function getStaticPaths() {
@@ -15,12 +16,9 @@ export function getStaticPaths() {
   const nonEnglishLangs = languages.filter(lang => lang !== 'en');
 
   // Generate paths for each legal page in each non-English language
-  // Note: cookies-policy is excluded as there's no content for it yet
-  const availablePages = ['privacy-policy', 'terms-and-conditions'] as const;
-
   nonEnglishLangs.forEach(lang => {
-    availablePages.forEach(pageKey => {
-      const slug = legalPageSlugs[pageKey][lang as keyof typeof legalPageSlugs[typeof pageKey]];
+    Object.entries(legalPageSlugs).forEach(([pageKey, slugs]) => {
+      const slug = slugs[lang as keyof typeof slugs];
       paths.push({
         params: { lang, legalSlug: slug },
         props: {
@@ -68,5 +66,8 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   )}
   {pageKey === 'terms-and-conditions' && (
     <TermsAndConditionsContent currentLang={lang} />
+  )}
+  {pageKey === 'cookies-policy' && (
+    <CookiesPolicyContent currentLang={lang} />
   )}
 </LegalLayout>

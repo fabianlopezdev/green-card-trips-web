@@ -1,0 +1,32 @@
+---
+import LegalLayout from "@layouts/LegalLayout.astro";
+import defaultTemplateConfig from "@utils/config";
+import { generateBreadcrumbSchema } from "@utils/structuredData";
+import CookiesPolicyContent from "@components/legal/CookiesPolicy.astro";
+import { getLegalEntry } from "@utils/getLegalEntry";
+import enTranslations from "@i18n/locales/en.json";
+
+// Generate site URL for breadcrumbs
+const siteUrl = Astro.site || new URL(Astro.url.origin);
+
+const cookiesEntry = await getLegalEntry("cookies-policy", "en");
+
+// Generate breadcrumb schema
+const breadcrumbs = [
+  { name: "Home", url: new URL('/', siteUrl).href },
+  { name: cookiesEntry.data.title, url: new URL('/cookies-policy', siteUrl).href }
+];
+const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+---
+
+<LegalLayout
+  {...defaultTemplateConfig}
+  seo={cookiesEntry.data.seo}
+  currentLang="en"
+  translations={enTranslations}
+>
+  <!-- BreadcrumbList Structured Data -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
+  <CookiesPolicyContent currentLang="en" />
+</LegalLayout>
