@@ -96,10 +96,10 @@ function initDetachAnimation(
     return;
   }
 
-  // Animation parameters (mobile shrinks to 95% width, desktop shrinks to 932px)
+  // Animation parameters (mobile shrinks to 95% width, desktop shrinks to 945px)
   const SCROLL_THRESHOLD = 2200; // Pixels to complete animation (sweet spot - not too fast, not too slow)
-  const MAX_WIDTH_START = isMobile ? window.innerWidth : 1024; // 100vw on mobile, 1024px on desktop
-  const MAX_WIDTH_END = isMobile ? window.innerWidth * 0.95 : 932; // 95vw on mobile, 932px on desktop
+  let MAX_WIDTH_START = isMobile ? window.innerWidth : Math.min(window.innerWidth, 1024); // 100vw on mobile, capped at 1024px on desktop
+  let MAX_WIDTH_END = isMobile ? window.innerWidth * 0.95 : Math.min(window.innerWidth * 0.95, 945); // 95vw on mobile, capped at 945px on desktop
   const TRANSLATE_END = 12; // px (same for mobile and desktop)
   const OPACITY_END = 0.8; // backdrop opacity (same for mobile and desktop, matches bg-base-100/80)
   const BLUR_END = 12; // px backdrop blur (same for mobile and desktop)
@@ -178,6 +178,22 @@ function initDetachAnimation(
 
   // Initial state
   updateAnimation(window.scrollY || 0);
+
+  // Handle window resize - recalculate widths and update animation
+  let resizeTimeout: number;
+  const handleResize = () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(() => {
+      // Recalculate widths based on new viewport size
+      MAX_WIDTH_START = isMobile ? window.innerWidth : Math.min(window.innerWidth, 1024);
+      MAX_WIDTH_END = isMobile ? window.innerWidth * 0.95 : Math.min(window.innerWidth * 0.95, 945);
+
+      // Update animation with current scroll position
+      updateAnimation(window.scrollY || 0);
+    }, 150); // Debounce resize events
+  };
+
+  events.on(window, 'resize', handleResize, { passive: true });
 }
 
 /**
