@@ -2,14 +2,14 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  // Exclude legal components - they use separate tailwind.legal.config.mjs
+  // Only scan legal components and pages for class extraction
   content: [
-    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-    "!./src/components/legal/**",
-    "!./src/pages/**/[legalSlug].astro",
-    "!./src/pages/privacy-policy.astro",
-    "!./src/pages/terms-and-conditions.astro",
-    "!./src/pages/cookies-policy.astro",
+    "./src/components/legal/**/*.astro",
+    "./src/pages/**/[legalSlug].astro",
+    "./src/pages/privacy-policy.astro",
+    "./src/pages/terms-and-conditions.astro",
+    "./src/pages/cookies-policy.astro",
+    "./src/layouts/LegalLayout.astro",
   ],
   darkMode: ['selector', '[data-theme="dark"]'],
   safelist: [
@@ -52,8 +52,8 @@ export default {
       },
     },
   },
-  // Typography plugin removed - only used in legal pages (see tailwind.legal.config.mjs)
-  plugins: [require("daisyui")],
+  // Legal pages need Typography plugin for prose styles
+  plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
     styled: true,
     base: true,

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import LegalLayout from "@layouts/LegalLayout.astro";
 import defaultTemplateConfig from "@utils/config";
 import { getTranslations, getSupportedLanguages, legalPageSlugs, type LegalPageKey } from "@utils/serverI18n";
 import { generateBreadcrumbSchema } from "@utils/structuredData";
@@ -52,7 +52,7 @@ const breadcrumbs = [
 const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 ---
 
-<BaseLayout
+<LegalLayout
   {...defaultTemplateConfig}
   seo={seo}
   currentLang={lang}
@@ -70,4 +70,4 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   {pageKey === 'cookies-policy' && (
     <CookiesPolicyContent currentLang={lang} />
   )}
-</BaseLayout>
+</LegalLayout>

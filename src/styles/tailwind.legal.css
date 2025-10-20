@@ -1,0 +1,16 @@
+/**
+ * Legal Pages Tailwind CSS
+ *
+ * This CSS file uses Tailwind's @config directive (v3.2+) to load a separate
+ * Tailwind configuration specific to legal pages. This enables CSS code splitting
+ * where legal pages get Typography prose styles, while the homepage doesn't.
+ *
+ * The @config directive tells Tailwind to use tailwind.legal.config.mjs instead
+ * of the default tailwind.config.mjs for this CSS file.
+ */
+
+@config "../../tailwind.legal.config.mjs";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

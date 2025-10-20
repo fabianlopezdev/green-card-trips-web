@@ -50,3 +50,11 @@ docs/
 .playwright-mcp/
 COOKIE_CONSENT_IMPLEMENTATION.md
 TESTING-COOKIE-CONSENT-AND-ANALYTICS.md
+
+# image optimization backups
+public/3D/*-original.webp
+public/misc/*-original.webp
+
+# temporary build scripts
+resize-frames.js
+resize-icons.js

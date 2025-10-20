@@ -1,0 +1,20 @@
+---
+/**
+ * Legal Pages Layout
+ *
+ * Wrapper layout for legal pages (Privacy Policy, Terms & Conditions, Cookies Policy).
+ * Imports legal-specific Tailwind CSS with Typography plugin using @config directive.
+ *
+ * This creates a separate CSS bundle for legal pages, improving homepage performance
+ * by eliminating 12KB of unused Typography prose styles.
+ */
+import BaseLayout from './BaseLayout.astro';
+import '../styles/tailwind.legal.css';
+
+// Pass through all props to BaseLayout
+const props = Astro.props;
+---
+
+<BaseLayout {...props}>
+  <slot />
+</BaseLayout>
