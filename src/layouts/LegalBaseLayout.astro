@@ -1,0 +1,319 @@
+---
+/**
+ * Legal Pages Base Layout
+ *
+ * This is a duplicate of BaseLayout.astro with ONE key difference:
+ * It imports tailwind.legal.css instead of styles.scss
+ *
+ * This duplication is intentional to prevent Vite from creating shared CSS chunks
+ * between homepage and legal pages. Without this separation, Vite bundles CSS together
+ * due to the shared BaseLayout dependency, causing legal CSS to load on the homepage.
+ */
+import "@styles/tailwind.legal.css";
+import type { TemplateConfig } from "@utils/configType";
+import type { TranslationObject } from "@utils/serverI18n";
+import { getLegalPageKeyFromSlug, getLegalPageSlug } from "@utils/serverI18n";
+import {
+  generateMobileApplicationSchema,
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+} from "@utils/structuredData";
+import CookieConsentBanner from "@components/ui/CookieConsent/CookieConsent.astro";
+import GoogleAnalytics from "@components/ui/GoogleAnalytics/GoogleAnalytics.astro";
+import Header from "@components/layout/Header/Header.astro";
+import AppBanner from "@components/layout/AppBanner/AppBanner.astro";
+import Footer from "@components/layout/Footer/Footer.astro";
+import enTranslations from "@i18n/locales/en.json";
+
+interface Props extends TemplateConfig {
+  currentLang?: string;
+  translations?: TranslationObject;
+  showHeader?: boolean;
+  showAppBanner?: boolean;
+  showFooter?: boolean;
+  robots?: string;
+}
+
+const config = Astro.props as Props;
+const { backgroundGrid, seo, theme, forceTheme, currentLang, translations, showHeader = true, showAppBanner = true, showFooter = true, robots = "index, follow" } = config;
+
+// Use provided translations or fallback to English
+const activeTranslations = translations || enTranslations;
+
+// For new language routes, use translations; for old routes, use config seo
+const pageSeo = translations ? {
+  title: translations.seo?.title || seo.title,
+  description: translations.seo?.description || seo.description,
+} : seo;
+
+// Determine the actual language - default to 'en' for old routes
+const htmlLang = currentLang || 'en';
+
+// Generate hreflang URLs
+const siteUrl = Astro.site || new URL(Astro.url.origin);
+
+// Create the full current page URL using the production site URL
+const currentPageUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+// Generate structured data schemas
+const mobileAppSchema = generateMobileApplicationSchema(config, currentPageUrl);
+const organizationSchema = generateOrganizationSchema(config, currentPageUrl);
+const websiteSchema = generateWebSiteSchema(config, currentPageUrl);
+const supportedLanguages = ['en', 'es', 'tl', 'vi', 'zh-cn'];
+
+// Get the current path without language prefix and detect if it's a legal page
+const getCurrentPathInfo = () => {
+  const pathname = Astro.url.pathname;
+  // Remove language prefix if present
+  const pathWithoutLang = pathname.replace(/^\/(es|tl|vi|zh-cn)(\/|$)/, '/');
+  const cleanPath = pathWithoutLang === '/' ? '' : pathWithoutLang.replace(/\/$/, '');
+
+  // Extract the last segment to check if it's a legal page
+  const segments = cleanPath.split('/').filter(Boolean);
+  const lastSegment = segments[segments.length - 1];
+
+  // Check if this is a legal page by trying to match it in any language
+  let legalPageKey = null;
+  if (lastSegment) {
+    // Try to find which legal page this is
+    legalPageKey = getLegalPageKeyFromSlug(lastSegment, htmlLang);
+  }
+
+  return {
+    cleanPath,
+    isLegalPage: !!legalPageKey,
+    legalPageKey,
+    isHomepage: cleanPath === '' || cleanPath === '/'
+  };
+};
+
+const pathInfo = getCurrentPathInfo();
+
+// Locale mapping for Open Graph tags
+const getLocaleCode = (lang: string) => {
+  const localeMap: Record<string, string> = {
+    'en': 'en_US',
+    'es': 'es_ES',
+    'tl': 'tl_PH',
+    'vi': 'vi_VN',
+    'zh-cn': 'zh_CN'
+  };
+  return localeMap[lang] || 'en_US';
+};
+
+// Generate legal page URLs based on current language
+const legalUrls = htmlLang === 'en'
+  ? {
+      termsAndConditions: '/terms-and-conditions',
+      privacyPolicy: '/privacy-policy',
+      cookiesPolicy: '/cookies-policy',
+    }
+  : {
+      termsAndConditions: `/${htmlLang}/${getLegalPageSlug('terms-and-conditions', htmlLang)}`,
+      privacyPolicy: `/${htmlLang}/${getLegalPageSlug('privacy-policy', htmlLang)}`,
+      cookiesPolicy: `/${htmlLang}/${getLegalPageSlug('cookies-policy', htmlLang)}`,
+    };
+
+// Generate language-specific URLs
+const languageUrls = supportedLanguages.map(lang => {
+  let targetPath;
+
+  if (pathInfo.isLegalPage && pathInfo.legalPageKey) {
+    // Translate the legal page slug for this language
+    const translatedSlug = getLegalPageSlug(pathInfo.legalPageKey, lang);
+    targetPath = `/${translatedSlug}`;
+  } else if (pathInfo.isHomepage) {
+    // Homepage
+    targetPath = '/';
+  } else {
+    // Other pages - keep the same path
+    targetPath = pathInfo.cleanPath || '/';
+  }
+
+  // English (default locale) doesn't have language prefix
+  if (lang === 'en') {
+    return { lang, url: new URL(targetPath, siteUrl).href };
+  }
+  // Other languages have /{lang}/ prefix
+  return { lang, url: new URL(`/${lang}${targetPath}`, siteUrl).href };
+});
+---
+
+<!doctype html>
+<html lang={htmlLang} data-theme={theme}>
+  <head>
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Favicon with Dark Mode Support -->
+    <link rel="icon" type="image/webp" href="/favicon-dark.webp" />
+    <link rel="icon" type="image/webp" href="/favicon-dark.webp" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/webp" href="/favicon-light.webp" media="(prefers-color-scheme: dark)" />
+
+    <!-- Web App Manifest for PWA support - language-specific -->
+    <link rel="manifest" href={htmlLang === 'en' ? '/site.webmanifest' : `/${htmlLang}/site.webmanifest`} />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/montserrat-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Preload LCP Image (dashboard screenshot with srcset matching actual usage) -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+      href="/screenshots/en/dashboard-298.webp"
+      imagesrcset="/screenshots/en/dashboard-250.webp 250w, /screenshots/en/dashboard-298.webp 298w, /screenshots/en/dashboard-311.webp 311w, /screenshots/en/dashboard-327.webp 327w"
+      imagesizes="(max-width: 768px) 327px, 298px"
+    />
+
+    <!-- Resource Hints - Upgrade to preconnect for critical domains -->
+    <link rel="preconnect" href="https://fabapps.dev" crossorigin />
+    <link rel="dns-prefetch" href="https://tools.google.com" />
+    <link rel="dns-prefetch" href="https://policies.google.com" />
+    <link rel="dns-prefetch" href="https://www.google.com" />
+
+    <!-- Defer Swiper CSS - only used in testimonials section (below fold) -->
+    <!-- @ts-ignore - onload attribute is valid HTML for deferred CSS loading -->
+    <link rel="stylesheet" href="/swiper.css" media="print" onload="this.media='all'; this.onload=null;" />
+    <noscript><link rel="stylesheet" href="/swiper.css" /></noscript>
+
+    <!-- Defer below-fold fonts (howItWorks, footer) -->
+    <!-- @ts-ignore - onload attribute is valid HTML for deferred CSS loading -->
+    <link rel="stylesheet" href="/below-fold-fonts.css" media="print" onload="this.media='all'; this.onload=null;" />
+    <noscript><link rel="stylesheet" href="/below-fold-fonts.css" /></noscript>
+
+    <!-- Primary Meta Tags -->
+    <title>{pageSeo.title}</title>
+    <meta name="title" content={pageSeo.title} />
+    <meta name="description" content={pageSeo.description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={currentPageUrl} />
+
+    <!-- Mobile Web App Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Green Card Trips" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#8b5cf6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1f2937" media="(prefers-color-scheme: dark)" />
+
+    <!-- Hreflang Tags for Multilingual SEO -->
+    {languageUrls.map(({ lang, url }) => (
+      <link
+        rel="alternate"
+        hreflang={lang === 'zh-cn' ? 'zh' : lang}
+        href={url}
+      />
+    ))}
+    <!-- x-default points to English version -->
+    <link rel="alternate" hreflang="x-default" href={languageUrls.find(l => l.lang === 'en')?.url} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Green Card Trips" />
+    <meta property="og:url" content={currentPageUrl} />
+    <meta property="og:title" content={pageSeo.title} />
+    <meta property="og:description" content={pageSeo.description} />
+    <meta property="og:locale" content={getLocaleCode(htmlLang)} />
+    {supportedLanguages
+      .filter(lang => lang !== htmlLang)
+      .map(lang => (
+        <meta property="og:locale:alternate" content={getLocaleCode(lang)} />
+      ))
+    }
+    <meta property="og:image" content={new URL('/og-image.png', siteUrl).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Green Card Trips - Track your U.S. physical presence" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={currentPageUrl} />
+    <meta property="twitter:title" content={pageSeo.title} />
+    <meta property="twitter:description" content={pageSeo.description} />
+    <meta property="twitter:image" content={new URL('/og-image.png', siteUrl).href} />
+    <meta property="twitter:image:alt" content="Green Card Trips - Track your U.S. physical presence" />
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(mobileAppSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+    <!-- Allow pages to inject additional head content (e.g., FAQPage schema) -->
+    <slot name="head" />
+
+    <script is:inline define:vars={{ forceTheme }}>
+      function getPreferredColorScheme() {
+        if (!window.matchMedia) {
+          return;
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+      }
+      const theme = localStorage.getItem("theme") ?? getPreferredColorScheme();
+      if (theme === "dark" && !forceTheme)
+        document.documentElement.setAttribute("data-theme", theme);
+    </script>
+  </head>
+  <body class="relative">
+    <!-- Cookie Consent Banner -->
+    <CookieConsentBanner currentLang={htmlLang} />
+    <!-- Google Analytics (loads conditionally based on cookie consent) -->
+    <GoogleAnalytics trackingId={config.googleAnalytics} />
+
+    <!-- Lenis smooth scroll initialization -->
+    <script>
+      import { initLenis } from "@components/ui/initScripts/lenis.client.ts";
+
+      if (!window.__lenisLoader) {
+        window.__lenisLoader = true;
+        initLenis();
+      }
+    </script>
+
+    <!-- Interactivity system initialization -->
+    <script>
+      import { wireLifecycle } from "../scripts/register";
+      import "../scripts/components/header";
+      import "../scripts/components/hero";
+      import "../scripts/components/animations";
+      import "../scripts/components/faq";
+      import "../scripts/components/theme";
+
+      if (!window.__interactivityLoader) {
+        window.__interactivityLoader = true;
+        wireLifecycle();
+        console.log("[Interactivity] System initialized");
+      }
+    </script>
+    <!-- Skip to main content link for keyboard accessibility -->
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-content focus:rounded-md focus:shadow-lg"
+    >
+      {activeTranslations.aria.skipToMain}
+    </a>
+    {backgroundGrid && <div class="backgroundGrid" />}
+
+    {showHeader && <Header config={config} translations={activeTranslations} currentLang={htmlLang} />}
+
+    <main id="main">
+      <slot />
+    </main>
+
+    {showAppBanner && <AppBanner config={config} translations={activeTranslations} currentLang={htmlLang} />}
+
+    {showFooter && <Footer config={config} translations={activeTranslations} currentLang={htmlLang} legalUrls={legalUrls} />}
+
+  </body>
+</html>

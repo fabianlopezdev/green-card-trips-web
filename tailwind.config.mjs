@@ -57,7 +57,7 @@ export default {
   daisyui: {
     styled: true,
     base: true,
-    utils: true,
+    utils: false, // Disable utility classes (we'll use custom Tailwind utilities instead)
     logs: false,
     themes: [
       {
@@ -76,5 +76,7 @@ export default {
         },
       },
     ],
+    // Prefix DaisyUI classes to avoid conflicts and make purging more effective
+    prefix: "",
   },
 };
