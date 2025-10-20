@@ -2,6 +2,9 @@
 const { currentLang = "en" } = Astro.props as { currentLang?: string };
 ---
 
+<!-- Import vanilla-cookieconsent CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+
 <div id="cookie-consent-root" data-lang={currentLang}></div>
 
 <script>

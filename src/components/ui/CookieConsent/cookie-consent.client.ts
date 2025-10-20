@@ -1,4 +1,3 @@
-import "vanilla-cookieconsent/dist/cookieconsent.css";
 import { getConsentMode, getCookie } from "./config";
 import enLocale from "@i18n/locales/en.json";
 import esLocale from "@i18n/locales/es.json";
