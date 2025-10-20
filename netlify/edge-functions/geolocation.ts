@@ -20,11 +20,10 @@ export default async (_request: Request, context: Context) => {
       });
     }
 
-    // Explicitly pass through to the origin
-    return context.next();
+    // Return nothing - continues to static content
+    // For static sites, returning undefined passes through to serve static HTML
   } catch (error) {
     // On error, pass through without setting cookie
-    console.error("[Geolocation Edge Function] Error:", error);
-    return context.next();
+    console.error("[Geolocation] Error:", error);
   }
 };
