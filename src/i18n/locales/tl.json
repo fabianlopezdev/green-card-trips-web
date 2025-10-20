@@ -203,5 +203,27 @@
       "partnerLogo": "Logo ng partner",
       "appUser": "User ng app"
     }
+  },
+  "aria": {
+    "skipToMain": "Lumipat sa pangunahing nilalaman",
+    "toggleTheme": "Palitan ang tema",
+    "sections": {
+      "hero": "Pangunahing seksyon",
+      "features": "Mga tampok ng app",
+      "howItWorks": "Paano gumagana ang app",
+      "pricing": "Mga plano sa presyo",
+      "faq": "Mga madalas itanong",
+      "testimonials": "Mga testimonial ng mga user",
+      "highlight": "Protektahan ang Iyong Green Card",
+      "appBanner": "I-download ang app"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter"
+    },
+    "iphoneFrame": "Frame ng iPhone",
+    "comingSoon": "Malapit Na",
+    "appComingSoon": "App ay malapit nang ilabas sa App Store"
   }
 }

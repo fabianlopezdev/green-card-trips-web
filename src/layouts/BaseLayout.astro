@@ -141,8 +141,8 @@ const languageUrls = supportedLanguages.map(lang => {
     <link rel="icon" type="image/webp" href="/favicon-dark.webp" media="(prefers-color-scheme: light)" />
     <link rel="icon" type="image/webp" href="/favicon-light.webp" media="(prefers-color-scheme: dark)" />
 
-    <!-- Web App Manifest for PWA support -->
-    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Web App Manifest for PWA support - language-specific -->
+    <link rel="manifest" href={htmlLang === 'en' ? '/site.webmanifest' : `/${htmlLang}/site.webmanifest`} />
 
     <meta name="generator" content={Astro.generator} />
 
@@ -291,7 +291,7 @@ const languageUrls = supportedLanguages.map(lang => {
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-content focus:rounded-md focus:shadow-lg"
     >
-      Skip to main content
+      {activeTranslations.aria.skipToMain}
     </a>
     {backgroundGrid && <div class="backgroundGrid" />}
 

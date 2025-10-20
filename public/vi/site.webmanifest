@@ -1,12 +1,12 @@
 {
   "name": "Green Card Trips",
   "short_name": "GC Trips",
-  "description": "Track physical presence and continuous residence for U.S. citizenship",
-  "start_url": "/",
+  "description": "Theo dõi sự hiện diện thực tế và cư trú liên tục để được quốc tịch Hoa Kỳ",
+  "start_url": "/vi/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#8b5cf6",
-  "lang": "en-US",
+  "lang": "vi-VN",
   "dir": "ltr",
   "icons": [
     {

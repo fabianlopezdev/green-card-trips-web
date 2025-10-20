@@ -203,5 +203,27 @@
       "partnerLogo": "合作伙伴标志",
       "appUser": "应用用户"
     }
+  },
+  "aria": {
+    "skipToMain": "跳转到主要内容",
+    "toggleTheme": "切换主题",
+    "sections": {
+      "hero": "主要部分",
+      "features": "应用功能",
+      "howItWorks": "应用工作原理",
+      "pricing": "价格方案",
+      "faq": "常见问题",
+      "testimonials": "用户评价",
+      "highlight": "保护您的绿卡",
+      "appBanner": "下载应用"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter"
+    },
+    "iphoneFrame": "iPhone 框架",
+    "comingSoon": "即将推出",
+    "appComingSoon": "应用即将在 App Store 上架"
   }
 }

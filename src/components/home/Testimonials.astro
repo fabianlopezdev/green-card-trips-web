@@ -1,11 +1,13 @@
 ---
 import type { TemplateConfig } from "@utils/configType";
+import type { TranslationObject } from "@utils/serverI18n";
 
 interface Props {
   config: TemplateConfig;
+  translations: TranslationObject;
 }
 
-const { config } = Astro.props as Props;
+const { config, translations } = Astro.props as Props;
 
 const testimonials = config.home?.testimonials;
 
@@ -14,7 +16,7 @@ if (!testimonials) {
 }
 ---
 
-<section class="mx-auto max-w-screen-lg px-4 py-12" aria-label="User testimonials">
+<section class="mx-auto max-w-screen-lg px-4 py-12" aria-label={translations.aria.sections.testimonials}>
   <div class="prose prose-lg mb-8 flex max-w-none flex-col items-center text-center">
     <h2 class="mb-2 font-normal text-3xl">{testimonials.title}</h2>
     {testimonials.subtitle && (

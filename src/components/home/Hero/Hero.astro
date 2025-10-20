@@ -51,7 +51,7 @@ if (hero.headlineMark) {
 }
 ---
 
-<section id={hero.id} class="relative pb-8 md:pb-4" aria-label="Hero section" data-interactive="hero">
+<section id={hero.id} class="relative pb-8 md:pb-4" aria-label={translations.aria.sections.hero} data-interactive="hero">
   <div class="max-w-screen-lg mx-auto pt-24 pb-4 px-4 md:pt-32 md:pb-16">
     <div class="flex flex-col md:flex-row">
       <div class="flex flex-1 items-center md:items-start md:h-[300vh]" data-hero-scroll-container>
@@ -116,6 +116,7 @@ if (hero.headlineMark) {
                     showIcon={true}
                     target="_blank"
                     rel="noopener noreferrer"
+                    translations={translations}
                   />
                 </li>
               )}

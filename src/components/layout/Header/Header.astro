@@ -114,7 +114,7 @@ const homeUrl = normalizedLang === "en" ? "/" : `/${normalizedLang}/`;
                 <button
                   type="button"
                   class="inline-flex w-8 items-center justify-center rounded-full text-base-content"
-                  aria-label="Toggle theme"
+                  aria-label={translations.aria.toggleTheme}
                   data-theme-toggle
                 >
                   <svg class="moon-icon h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -204,6 +204,7 @@ const homeUrl = normalizedLang === "en" ? "/" : `/${normalizedLang}/`;
                         showIcon={true}
                         target="_blank"
                         rel="noopener noreferrer"
+                        translations={translations}
                       />
                     </li>
                   )}
@@ -258,7 +259,7 @@ const homeUrl = normalizedLang === "en" ? "/" : `/${normalizedLang}/`;
             <button
               type="button"
               class="inline-flex h-7 w-7 p-1.5 items-center justify-center rounded-full text-base-content transition duration-300 hover:bg-neutral-200 dark:hover:bg-neutral-200/20 hover:text-primary"
-              aria-label="Toggle theme"
+              aria-label={translations.aria.toggleTheme}
               data-theme-toggle
             >
               <svg class="moon-icon w-6 h-6 nav:w-4 nav:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -285,6 +286,7 @@ const homeUrl = normalizedLang === "en" ? "/" : `/${normalizedLang}/`;
                 variant="outline"
                 text={translations.nav.getApp}
                 as="summary"
+                translations={translations}
               />
               <ul class="dropdown-content menu mt-2 w-48 space-y-2 rounded-xl border border-base-200 bg-base-100 p-3 shadow-lg">
                 {config.appStoreLink && (
@@ -331,6 +333,7 @@ const homeUrl = normalizedLang === "en" ? "/" : `/${normalizedLang}/`;
               showIcon={true}
               target="_blank"
               rel="noopener noreferrer"
+              translations={translations}
             />
           ) : null}
         </div>

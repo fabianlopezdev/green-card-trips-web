@@ -2,11 +2,13 @@
 const props = Astro.props as {
   src: string;
   altText?: string;
+  frameAltText?: string;
 };
 
 const {
   src,
   altText = "App screenshot",
+  frameAltText = "iPhone frame",
 } = props;
 
 const basePath = src.endsWith(".webp") ? src.slice(0, -5) : src;
@@ -28,7 +30,7 @@ const basePath = src.endsWith(".webp") ? src.slice(0, -5) : src;
     sizes="(max-width: 768px) 331px, 298px"
     src="/misc/iphone-frame-md.webp"
     loading="lazy"
-    alt="iPhone frame"
+    alt={frameAltText}
     class="relative z-10 h-full"
   />
 </div>

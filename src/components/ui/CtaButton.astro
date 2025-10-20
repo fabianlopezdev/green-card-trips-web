@@ -1,4 +1,6 @@
 ---
+import type { TranslationObject } from "@utils/serverI18n";
+
 interface Props {
   variant?: "filled" | "outline";
   href?: string;
@@ -9,6 +11,7 @@ interface Props {
   target?: string;
   rel?: string;
   as?: "a" | "summary";
+  translations: TranslationObject;
 }
 
 const {
@@ -21,11 +24,12 @@ const {
   target,
   rel,
   as: elementType = "a",
+  translations,
 } = Astro.props as Props;
 
 // Detect if this is a placeholder link (app not published yet)
 const isPlaceholder = href === "#" || href === undefined;
-const displayText = isPlaceholder ? "Coming Soon" : text;
+const displayText = isPlaceholder ? translations.aria.comingSoon : text;
 const shouldShowIcon = showIcon && !isPlaceholder;
 
 const baseClasses = "inline-flex items-center gap-2 rounded-full font-semibold transition duration-300 no-underline";
@@ -34,7 +38,9 @@ const baseClasses = "inline-flex items-center gap-2 rounded-full font-semibold t
 const disabledClasses = isPlaceholder ? "opacity-60 cursor-not-allowed pointer-events-none" : "";
 
 const variantClasses = {
-  filled: "bg-black pr-5 pl-3 py-2.5 text-base leading-6 text-white shadow-[0_1px_2px_rgba(16,24,40,0.05)] hover:bg-black/85 dark:border dark:border-white",
+  filled: shouldShowIcon
+    ? "bg-black pr-5 pl-3 py-2.5 text-base leading-6 text-white shadow-[0_1px_2px_rgba(16,24,40,0.05)] hover:bg-black/85 dark:border dark:border-white"
+    : "bg-black px-5 py-2.5 text-base leading-6 text-white shadow-[0_1px_2px_rgba(16,24,40,0.05)] hover:bg-black/85 dark:border dark:border-white",
   outline: showIcon && !isPlaceholder
     ? "border border-black pr-5 pl-3 py-2.5 text-base leading-6 text-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black"
     : "btn btn-primary btn-outline whitespace-nowrap px-6 py-2 text-sm hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black",
@@ -47,7 +53,7 @@ const classes = `${baseClasses} ${variantClasses[variant]} ${disabledClasses} ${
   <a
     href={isPlaceholder ? undefined : href}
     class={classes}
-    aria-label={ariaLabel || (isPlaceholder ? "App coming soon to the App Store" : undefined)}
+    aria-label={ariaLabel || (isPlaceholder ? translations.aria.appComingSoon : undefined)}
     aria-disabled={isPlaceholder}
     tabindex={isPlaceholder ? -1 : undefined}
     target={isPlaceholder ? undefined : target}
@@ -71,7 +77,7 @@ const classes = `${baseClasses} ${variantClasses[variant]} ${disabledClasses} ${
     {displayText}
   </a>
 ) : (
-  <summary class={classes} aria-label={ariaLabel || (isPlaceholder ? "App coming soon to the App Store" : undefined)}>
+  <summary class={classes} aria-label={ariaLabel || (isPlaceholder ? translations.aria.appComingSoon : undefined)}>
     {shouldShowIcon && (
       <svg
         width="24"

@@ -203,5 +203,27 @@
       "partnerLogo": "Logo đối tác",
       "appUser": "Người dùng ứng dụng"
     }
+  },
+  "aria": {
+    "skipToMain": "Chuyển đến nội dung chính",
+    "toggleTheme": "Chuyển đổi giao diện",
+    "sections": {
+      "hero": "Phần chính",
+      "features": "Các tính năng ứng dụng",
+      "howItWorks": "Cách ứng dụng hoạt động",
+      "pricing": "Gói giá",
+      "faq": "Câu hỏi thường gặp",
+      "testimonials": "Nhận xét của người dùng",
+      "highlight": "Bảo vệ Thẻ Xanh của Bạn",
+      "appBanner": "Tải ứng dụng"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter"
+    },
+    "iphoneFrame": "Khung iPhone",
+    "comingSoon": "Sắp Ra Mắt",
+    "appComingSoon": "Ứng dụng sắp có trên App Store"
   }
 }

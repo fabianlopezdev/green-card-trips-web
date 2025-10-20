@@ -63,6 +63,8 @@ export default defineConfig({
       SVG: false, // Don't compress SVGs to preserve animations
     }),
     sitemap({
+      // Exclude pages that should not be indexed (noindex robots tag)
+      filter: (page) => !page.includes('/redirectPage'),
       i18n: {
         defaultLocale: "en",
         locales: {

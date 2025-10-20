@@ -203,5 +203,27 @@
       "partnerLogo": "Logotipo de socio",
       "appUser": "Usuario de la app"
     }
+  },
+  "aria": {
+    "skipToMain": "Saltar al contenido principal",
+    "toggleTheme": "Cambiar tema",
+    "sections": {
+      "hero": "Sección principal",
+      "features": "Funciones de la app",
+      "howItWorks": "Cómo funciona la app",
+      "pricing": "Planes de precio",
+      "faq": "Preguntas frecuentes",
+      "testimonials": "Testimonios de usuarios",
+      "highlight": "Protege tu Green Card",
+      "appBanner": "Descargar la app"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter"
+    },
+    "iphoneFrame": "Marco de iPhone",
+    "comingSoon": "Próximamente",
+    "appComingSoon": "App próximamente en la App Store"
   }
 }
