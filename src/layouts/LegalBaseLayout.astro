@@ -18,8 +18,8 @@ import {
   generateOrganizationSchema,
   generateWebSiteSchema,
 } from "@utils/structuredData";
-// import CookieConsentBanner from "@components/ui/CookieConsent/CookieConsent.astro";
-// import GoogleAnalytics from "@components/ui/GoogleAnalytics/GoogleAnalytics.astro";
+import CookieConsent from "@components/ui/CookieConsent/CookieConsent.astro";
+import GoogleAnalytics from "@components/ui/GoogleAnalytics/GoogleAnalytics.astro";
 import Header from "@components/layout/Header/Header.astro";
 import AppBanner from "@components/layout/AppBanner/AppBanner.astro";
 import Footer from "@components/layout/Footer/Footer.astro";
@@ -267,9 +267,9 @@ const languageUrls = supportedLanguages.map(lang => {
   </head>
   <body class="relative">
     <!-- Cookie Consent Banner -->
-    <!-- <CookieConsentBanner currentLang={htmlLang} /> -->
+    <CookieConsent translations={activeTranslations} currentLang={htmlLang} />
     <!-- Google Analytics (loads conditionally based on cookie consent) -->
-    <!-- <GoogleAnalytics trackingId={config.googleAnalytics} /> -->
+    <GoogleAnalytics trackingId={config.googleAnalytics} />
 
     <!-- Lenis smooth scroll initialization -->
     <script>

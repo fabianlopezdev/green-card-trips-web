@@ -8,9 +8,20 @@
  * This separation ensures legal CSS (Typography plugin) doesn't load on the homepage.
  */
 import LegalBaseLayout from './LegalBaseLayout.astro';
+import type { TemplateConfig } from "@utils/configType";
+import type { TranslationObject } from "@utils/serverI18n";
+
+interface Props extends TemplateConfig {
+  currentLang?: string;
+  translations?: TranslationObject;
+  showHeader?: boolean;
+  showAppBanner?: boolean;
+  showFooter?: boolean;
+  robots?: string;
+}
 
 // Pass through all props to LegalBaseLayout
-const props = Astro.props;
+const props = Astro.props as Props;
 ---
 
 <LegalBaseLayout {...props}>
