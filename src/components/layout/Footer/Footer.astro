@@ -52,7 +52,6 @@ const footerLinks = [
 ];
 
 const showSocials = Boolean(socials?.facebook || socials?.instagram || socials?.twitter);
-const currentYear = new Date().getFullYear();
 ---
 
 <footer class="relative mt-0 bg-gradient-to-b from-primary to-secondary/70">
@@ -129,7 +128,7 @@ const currentYear = new Date().getFullYear();
         )}
 
         <div class="flex flex-col items-center md:flex-row md:items-center gap-4">
-          <div class="flex flex-wrap gap-4 justify-center">
+          <div class="flex flex-col md:flex-row gap-4 justify-center text-center">
             {legalLinks.termsAndConditions && (
               <a
                 class="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap transition-colors"
@@ -155,7 +154,7 @@ const currentYear = new Date().getFullYear();
               </a>
             )}
             <button
-              id="cookie-settings-button"
+              data-cc="show-preferencesModal"
               class="font-bold text-primary hover:text-primary/50 lg:whitespace-nowrap cursor-pointer transition-colors"
               type="button"
             >
@@ -169,12 +168,13 @@ const currentYear = new Date().getFullYear();
       </aside>
 
       <div class="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4 pt-4 md:pt-0 text-neutral-content">
-        <p
-          class="md:flex md:items-center md:gap-1 text-center md:text-left text-white"
+        <div
+          class="flex flex-col md:flex-row md:items-center md:gap-1 items-center gap-2 text-center md:text-left text-white"
           style="font-family: 'PlaywriteAR', cursive; font-size: 0.7rem;"
         >
-          {translations.footer.madeBy} <Heart class="w-6 h-6 md:w-3 md:h-3 inline-block align-middle" />
-        </p>
+          <span>{translations.footer.madeBy}</span>
+          <Heart class="w-6 h-6 md:w-3 md:h-3" />
+        </div>
         <p
           class="font-sans whitespace-nowrap md:pb-4 text-white text-center md:text-left"
           style="font-size: 0.625rem;"

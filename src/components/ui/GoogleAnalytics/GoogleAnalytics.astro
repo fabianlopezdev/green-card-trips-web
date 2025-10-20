@@ -3,8 +3,16 @@ const { trackingId } = Astro.props as { trackingId?: string };
 if (!trackingId) {
   return null;
 }
-const clientUrl = new URL("./ga.client.ts", import.meta.url).href;
-const inlineScript = `import("${clientUrl}").then((module) => module.initGoogleAnalytics?.(${JSON.stringify(trackingId)}));`;
 ---
 
-<script is:inline type="module" set:html={inlineScript} />
+<div id="ga-root" data-tracking-id={trackingId} style="display:none"></div>
+
+<script>
+  import { initGoogleAnalytics } from "./ga.client";
+
+  const root = document.getElementById("ga-root");
+  const trackingId = root?.dataset.trackingId;
+  if (trackingId) {
+    initGoogleAnalytics(trackingId);
+  }
+</script>

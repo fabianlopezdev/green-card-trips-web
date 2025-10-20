@@ -1,17 +1,16 @@
 ---
 const { currentLang = "en" } = Astro.props as { currentLang?: string };
-const serializedOptions = JSON.stringify({ currentLang });
-const inlineScript = `(() => {
-  const options = ${serializedOptions};
-  if (!window.__cookieConsentLoader) {
-    window.__cookieConsentLoader = true;
-    import("./cookie-consent.client.ts").then((module) => {
-      if (typeof module?.initCookieConsent === "function") {
-        module.initCookieConsent(options);
-      }
-    });
-  }
-})();`;
 ---
 
-<script is:inline set:html={inlineScript} />
+<div id="cookie-consent-root" data-lang={currentLang}></div>
+
+<script>
+  import { initCookieConsent } from "./cookie-consent.client";
+
+  if (!window.__cookieConsentLoader) {
+    window.__cookieConsentLoader = true;
+    const root = document.getElementById("cookie-consent-root");
+    const currentLang = root?.dataset.lang || "en";
+    initCookieConsent({ currentLang });
+  }
+</script>

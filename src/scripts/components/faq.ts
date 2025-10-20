@@ -83,7 +83,6 @@ function initFaq(root: HTMLElement): void {
   events.delegate(root, "keydown", "[data-faq-item] summary", (event, target) => {
     const keyEvent = event as KeyboardEvent;
     const summary = target;
-    const details = summary.parentElement as HTMLDetailsElement;
     const allSummaries = Array.from(
       root.querySelectorAll<HTMLElement>("[data-faq-item] summary")
     );

@@ -152,10 +152,12 @@ const languageUrls = supportedLanguages.map(lang => {
     <link rel="dns-prefetch" href="https://www.google.com" />
 
     <!-- Defer Swiper CSS - only used in testimonials section (below fold) -->
+    <!-- @ts-ignore - onload attribute is valid HTML for deferred CSS loading -->
     <link rel="stylesheet" href="/swiper.css" media="print" onload="this.media='all'; this.onload=null;" />
     <noscript><link rel="stylesheet" href="/swiper.css" /></noscript>
 
     <!-- Defer below-fold fonts (howItWorks, footer) -->
+    <!-- @ts-ignore - onload attribute is valid HTML for deferred CSS loading -->
     <link rel="stylesheet" href="/below-fold-fonts.css" media="print" onload="this.media='all'; this.onload=null;" />
     <noscript><link rel="stylesheet" href="/below-fold-fonts.css" /></noscript>
 

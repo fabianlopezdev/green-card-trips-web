@@ -36,11 +36,6 @@ const screenshotAlts: Record<string, string> = {
   "trips": translations.alt.screenshots.trips,
 };
 
-const primaryScreenshot = hero.screenshots?.[0];
-const screenshotBasePath = primaryScreenshot
-  ? `/screenshots/${languageFolder}/${primaryScreenshot}`
-  : undefined;
-
 const buildSrcSet = (base: string) =>
   `${base}-250.webp 250w, ${base}-298.webp 298w, ${base}-311.webp 311w, ${base}-327.webp 327w`;
 

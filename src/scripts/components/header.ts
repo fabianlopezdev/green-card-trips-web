@@ -104,7 +104,7 @@ function initDetachAnimation(
   const OPACITY_END = 0.8; // backdrop opacity (same for mobile and desktop, matches bg-base-100/80)
   const BLUR_END = 12; // px backdrop blur (same for mobile and desktop)
 
-  const updateAnimation = (scrollY: number, force = false) => {
+  const updateAnimation = (scrollY: number, _force = false) => {
     // If mobile menu is open (on mobile only), force header to attached state
     if (isMobile && sharedState.menuOpen) {
       navInner.style.setProperty('width', `${MAX_WIDTH_START}px`, 'important');
@@ -160,7 +160,7 @@ function initDetachAnimation(
 
   // Expose callback for mobile menu toggle (only on mobile)
   if (isMobile) {
-    sharedState.onMenuToggle = (isOpen: boolean) => {
+    sharedState.onMenuToggle = (_isOpen: boolean) => {
       // Add faster transition class for menu open/close
       navInner.style.transition = 'width 0.3s ease-out, min-width 0.3s ease-out, max-width 0.3s ease-out, transform 0.3s ease-out';
       backdrop.style.transition = 'opacity 0.3s ease-out, backdrop-filter 0.3s ease-out';
