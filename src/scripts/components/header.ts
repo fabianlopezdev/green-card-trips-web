@@ -356,12 +356,37 @@ function initThemeSwitcher(root: HTMLElement, events: ReturnType<typeof createEv
   const themeToggles = root.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]");
   if (!themeToggles.length) return;
 
+  /**
+   * Update theme toggle button icons based on current theme
+   */
+  const updateThemeIcons = (theme: string) => {
+    for (const toggle of themeToggles) {
+      const moonIcon = toggle.querySelector(".moon-icon");
+      const sunIcon = toggle.querySelector(".sun-icon");
+
+      if (moonIcon && sunIcon) {
+        if (theme === "dark") {
+          // In dark mode, show sun icon (to switch to light)
+          moonIcon.classList.add("hidden");
+          sunIcon.classList.remove("hidden");
+        } else {
+          // In light mode, show moon icon (to switch to dark)
+          moonIcon.classList.remove("hidden");
+          sunIcon.classList.add("hidden");
+        }
+      }
+    }
+  };
+
   const toggleTheme = () => {
     const currentTheme = document.documentElement.getAttribute("data-theme");
     const newTheme = currentTheme === "dark" ? "light" : "dark";
 
     // Update DOM
     document.documentElement.setAttribute("data-theme", newTheme);
+
+    // Update icons
+    updateThemeIcons(newTheme);
 
     // Persist to localStorage
     try {
@@ -377,6 +402,10 @@ function initThemeSwitcher(root: HTMLElement, events: ReturnType<typeof createEv
     });
     document.dispatchEvent(event);
   };
+
+  // Set initial icon state based on current theme
+  const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+  updateThemeIcons(currentTheme);
 
   // Attach click handlers to all theme toggles
   for (const toggle of themeToggles) {
