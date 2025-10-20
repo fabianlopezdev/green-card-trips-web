@@ -2,6 +2,23 @@
   command = "pnpm build"
   publish = "dist"
 
+# Run geolocation edge function on all homepage variants (English + language-specific)
 [[edge_functions]]
   function = "geolocation"
   path = "/"
+
+[[edge_functions]]
+  function = "geolocation"
+  path = "/es"
+
+[[edge_functions]]
+  function = "geolocation"
+  path = "/tl"
+
+[[edge_functions]]
+  function = "geolocation"
+  path = "/vi"
+
+[[edge_functions]]
+  function = "geolocation"
+  path = "/zh-cn"
