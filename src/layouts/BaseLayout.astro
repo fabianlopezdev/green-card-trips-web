@@ -21,10 +21,11 @@ interface Props extends TemplateConfig {
   showHeader?: boolean;
   showAppBanner?: boolean;
   showFooter?: boolean;
+  robots?: string;
 }
 
 const config = Astro.props as Props;
-const { backgroundGrid, seo, theme, forceTheme, currentLang, translations, showHeader = true, showAppBanner = true, showFooter = true } = config;
+const { backgroundGrid, seo, theme, forceTheme, currentLang, translations, showHeader = true, showAppBanner = true, showFooter = true, robots = "index, follow" } = config;
 
 // Use provided translations or fallback to English
 const activeTranslations = translations || enTranslations;
@@ -78,6 +79,18 @@ const getCurrentPathInfo = () => {
 
 const pathInfo = getCurrentPathInfo();
 
+// Locale mapping for Open Graph tags
+const getLocaleCode = (lang: string) => {
+  const localeMap: Record<string, string> = {
+    'en': 'en_US',
+    'es': 'es_ES',
+    'tl': 'tl_PH',
+    'vi': 'vi_VN',
+    'zh-cn': 'zh_CN'
+  };
+  return localeMap[lang] || 'en_US';
+};
+
 // Generate legal page URLs based on current language
 const legalUrls = htmlLang === 'en'
   ? {
@@ -128,6 +141,9 @@ const languageUrls = supportedLanguages.map(lang => {
     <link rel="icon" type="image/webp" href="/favicon-dark.webp" media="(prefers-color-scheme: light)" />
     <link rel="icon" type="image/webp" href="/favicon-light.webp" media="(prefers-color-scheme: dark)" />
 
+    <!-- Web App Manifest for PWA support -->
+    <link rel="manifest" href="/site.webmanifest" />
+
     <meta name="generator" content={Astro.generator} />
 
     <!-- Preload Critical Fonts -->
@@ -165,7 +181,7 @@ const languageUrls = supportedLanguages.map(lang => {
     <title>{pageSeo.title}</title>
     <meta name="title" content={pageSeo.title} />
     <meta name="description" content={pageSeo.description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={currentPageUrl} />
 
     <!-- Mobile Web App Meta Tags -->
@@ -192,13 +208,22 @@ const languageUrls = supportedLanguages.map(lang => {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Green Card Trips" />
     <meta property="og:url" content={currentPageUrl} />
     <meta property="og:title" content={pageSeo.title} />
     <meta property="og:description" content={pageSeo.description} />
+    <meta property="og:locale" content={getLocaleCode(htmlLang)} />
+    {supportedLanguages
+      .filter(lang => lang !== htmlLang)
+      .map(lang => (
+        <meta property="og:locale:alternate" content={getLocaleCode(lang)} />
+      ))
+    }
     <meta property="og:image" content={new URL('/og-image.png', siteUrl).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Green Card Trips - Track your U.S. physical presence" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -206,6 +231,7 @@ const languageUrls = supportedLanguages.map(lang => {
     <meta property="twitter:title" content={pageSeo.title} />
     <meta property="twitter:description" content={pageSeo.description} />
     <meta property="twitter:image" content={new URL('/og-image.png', siteUrl).href} />
+    <meta property="twitter:image:alt" content="Green Card Trips - Track your U.S. physical presence" />
 
     <!-- Structured Data (JSON-LD) for SEO -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(mobileAppSchema)} />

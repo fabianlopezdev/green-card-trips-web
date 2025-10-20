@@ -78,8 +78,11 @@ export default defineConfig({
         // Homepage - highest priority
         "https://greencardtrips.com/",
       ],
-      // Filter function to set priorities and changefreq
+      // Filter function to set priorities, changefreq, and lastmod
       serialize(item) {
+        // Add lastmod (last modified date) to all URLs for better crawl efficiency
+        item.lastmod = new Date().toISOString();
+
         // Homepage - highest priority, updated weekly
         if (item.url === "https://greencardtrips.com/") {
           item.priority = 1.0;

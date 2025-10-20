@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro"
 import defaultTemplateConfig from "@utils/config"
-import { generateFAQPageSchema, generateReviewSchema, generateProductSchema } from "@utils/structuredData"
+import { generateFAQPageSchema, generateProductSchema } from "@utils/structuredData"
 import Hero from "@components/home/Hero/Hero.astro"
 import Highlight from "@components/home/Highlight.astro"
 import Features from "@components/home/Features.astro"
@@ -23,8 +23,8 @@ const faqs = [
 ];
 const faqSchema = generateFAQPageSchema(faqs);
 
-// Generate Review schemas for testimonials
-const reviewSchemas = generateReviewSchema(defaultTemplateConfig);
+// Review schemas disabled - waiting for real user testimonials from App Store
+// Fake reviews violate Google's guidelines and can result in penalties
 
 // Generate Product schema for pricing with production URL
 const siteUrl = Astro.site || new URL(Astro.url.origin);
@@ -36,12 +36,10 @@ const productSchema = generateProductSchema(defaultTemplateConfig, currentPageUr
   <!-- FAQPage Structured Data -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
 
-  <!-- Review Structured Data for Testimonials -->
-  {reviewSchemas.map((review) => (
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(review)} slot="head" />
-  ))}
+  <!-- Review Structured Data - DISABLED until we have real testimonials -->
+  <!-- TODO: Uncomment when app is published and has verified user reviews -->
 
-  <!-- Product Structured Data -->
+  <!-- Product Structured Data (price only, no ratings) -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
 
   <Hero config={defaultTemplateConfig} translations={enTranslations} currentLang="en" />

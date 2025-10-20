@@ -1,0 +1,30 @@
+{
+  "name": "Green Card Trips",
+  "short_name": "GC Trips",
+  "description": "Track physical presence and continuous residence for U.S. citizenship",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-dark.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/favicon-light.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ],
+  "categories": ["lifestyle", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

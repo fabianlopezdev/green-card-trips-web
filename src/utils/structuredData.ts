@@ -11,15 +11,22 @@ interface FAQ {
 
 /**
  * Generate MobileApplication schema for the Green Card Trips app
+ *
+ * Note: aggregateRating is removed until we have verified App Store reviews.
+ * Add it back when the app is published and has real user ratings.
  */
-export function generateMobileApplicationSchema(config: TemplateConfig, _currentUrl: string) {
+export function generateMobileApplicationSchema(config: TemplateConfig, currentUrl: string) {
   const { name, seo, appStoreLink, googlePlayLink } = config;
+
+  // Use site root URL for the app schema (not the current page URL)
+  const siteUrl = new URL('/', currentUrl).href;
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "MobileApplication",
     "name": name,
     "description": seo?.description || "",
+    "url": siteUrl,
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "iOS",
     "offers": {
@@ -27,14 +34,8 @@ export function generateMobileApplicationSchema(config: TemplateConfig, _current
       "price": "4.99",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "250",
-      "bestRating": "5",
-      "worstRating": "1"
     }
+    // aggregateRating removed - will be added when we have real App Store reviews
   };
 
   // Add download URLs if available
@@ -68,16 +69,21 @@ export function generateFAQPageSchema(faqs: FAQ[]) {
 
 /**
  * Generate Organization schema for business info
+ *
+ * Note: Always uses the site root URL, not the current page URL
  */
 export function generateOrganizationSchema(config: TemplateConfig, currentUrl: string) {
   const { name, logo, seo, footer } = config;
+
+  // Always use site root URL for Organization (not subpages like /privacy-policy)
+  const siteUrl = new URL('/', currentUrl).href;
 
   const schema: any = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": name,
     "description": seo?.description || "",
-    "url": currentUrl,
+    "url": siteUrl,
     "logo": new URL(logo, currentUrl).href,
     "sameAs": []
   };
@@ -103,23 +109,42 @@ export function generateOrganizationSchema(config: TemplateConfig, currentUrl: s
 
 /**
  * Generate WebSite schema for site-wide search
+ *
+ * Note: Always uses the site root URL, not the current page URL
  */
 export function generateWebSiteSchema(config: TemplateConfig, currentUrl: string) {
   const { name, seo } = config;
+
+  // Always use site root URL for WebSite (not subpages)
+  const siteUrl = new URL('/', currentUrl).href;
 
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": name,
     "description": seo?.description || "",
-    "url": currentUrl
+    "url": siteUrl
   };
 }
 
 /**
  * Generate Review schemas for testimonials to show in rich search results
+ *
+ * IMPORTANT: This function is currently disabled to avoid Google penalties for fake reviews.
+ * TODO: Uncomment and use this when we have real user testimonials from the App Store.
+ *
+ * Fake reviews violate Google's structured data guidelines and can result in:
+ * - Manual actions against the site
+ * - Loss of rich results eligibility
+ * - Reduced search rankings
+ *
+ * Only enable this when you have verified, genuine customer reviews.
  */
 export function generateReviewSchema(config: TemplateConfig) {
+  // Disabled until we have real testimonials
+  return [];
+
+  /* Uncomment when you have real reviews:
   const testimonials = config.home?.testimonials;
 
   if (!testimonials || !testimonials.cards || testimonials.cards.length === 0) {
@@ -145,13 +170,21 @@ export function generateReviewSchema(config: TemplateConfig) {
     },
     "reviewBody": comment
   }));
+  */
 }
 
 /**
  * Generate Product schema for the app pricing/offering
+ *
+ * Note: aggregateRating is removed until we have verified user reviews.
+ * Price ($4.99) is kept as it's the actual product price.
+ * Add aggregateRating back when the app is published and has real ratings.
  */
 export function generateProductSchema(config: TemplateConfig, currentUrl: string) {
   const { name, seo, appStoreLink } = config;
+
+  // Use site root URL for offers (not subpages)
+  const siteUrl = new URL('/', currentUrl).href;
 
   const schema: any = {
     "@context": "https://schema.org",
@@ -169,15 +202,9 @@ export function generateProductSchema(config: TemplateConfig, currentUrl: string
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
       "priceValidUntil": "2026-12-31",
-      "url": currentUrl
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "250",
-      "bestRating": "5",
-      "worstRating": "1"
+      "url": siteUrl
     }
+    // aggregateRating removed - will be added when we have real user reviews
   };
 
   // Add download URLs if available
