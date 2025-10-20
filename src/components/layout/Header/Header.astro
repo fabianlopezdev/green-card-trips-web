@@ -67,6 +67,9 @@ const buildLanguageUrl = (code: string) => {
 const currentLanguage =
   languageOptions.find((lang) => lang.code.toLowerCase() === normalizedLang) ??
   languageOptions[0];
+
+// Home URL for logo - always goes to homepage in current language
+const homeUrl = normalizedLang === "en" ? "/" : `/${normalizedLang}/`;
 ---
 
 <header class="pointer-events-none" data-interactive="header">
@@ -76,7 +79,7 @@ const currentLanguage =
       <div class="navbar relative px-3 py-0">
         <div class="navbar-start relative z-[110] flex-1 max-nav:flex-auto">
           <a
-            href={buildLanguageUrl(currentLanguage.code)}
+            href={homeUrl}
             class="flex items-center gap-2 text-lg nav:text-2xl font-medium text-base-content"
             aria-label={translations.nav.homeLink}
           >

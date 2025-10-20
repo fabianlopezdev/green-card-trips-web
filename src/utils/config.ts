@@ -9,7 +9,7 @@ const templateConfig: TemplateConfig = {
   // Draws grid behind main container
   backgroundGrid: false,
   logo: "/green-card-trips-logo.svg",
-  theme: "green-card-trips",
+  theme: "light",
   // Forces theme to be chosen above, no matter what user prefers
   forceTheme: false,
   // Shows switch to toggle between dark and light modes

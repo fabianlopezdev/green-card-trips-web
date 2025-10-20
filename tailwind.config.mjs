@@ -58,7 +58,7 @@ export default {
         },
       },
       {
-        "green-card-trips": {
+        "light": {
           ...require("daisyui/src/theming/themes")["corporate"],
           "primary": "#2800C8",           // rgb(40,0,200) - Lighter blue for buttons/gradients
           "secondary": "#EA3341",         // rgb(234,51,65) - Red
