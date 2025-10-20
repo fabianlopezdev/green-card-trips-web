@@ -4,4 +4,4 @@
 
 [[edge_functions]]
   function = "geolocation"
-  path = "/*"
+  path = "/"
