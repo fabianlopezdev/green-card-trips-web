@@ -32,15 +32,23 @@ const { translations, currentLang = 'en' } = Astro.props;
 
 <!-- Cookie Consent Initialization - Inlined to ensure it runs in production -->
 <script is:inline>
-  // EU/EEA countries requiring GDPR opt-in consent
-  const EU_COUNTRIES = [
+  // Countries requiring GDPR or GDPR-equivalent opt-in consent for cookies
+  const OPT_IN_COUNTRIES = [
+    // EU Member States (27)
     'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
     'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
     'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
     // EEA countries (not in EU but follow GDPR)
     'IS', 'LI', 'NO',
-    // UK (follows GDPR-like regulations)
-    'GB'
+    // UK (UK GDPR)
+    'GB',
+    // Other countries with GDPR-equivalent opt-in requirements
+    'AD', // Andorra - LQPD (GDPR-aligned, effective Jan 2024)
+    'BR', // Brazil - LGPD
+    'CH', // Switzerland - FADP (opt-in required for tracking/analytics)
+    'JP', // Japan - APPI (opt-in for third-party cookies)
+    'KR', // South Korea - PIPA
+    'ZA'  // South Africa - POPIA
   ];
 
   // Get a cookie value by name
@@ -63,9 +71,9 @@ const { translations, currentLang = 'en' } = Astro.props;
     return country || 'UNKNOWN';
   }
 
-  // Check if the user is from an EU/EEA country requiring GDPR consent
+  // Check if the user is from a country requiring opt-in consent
   function shouldShowBanner(countryCode) {
-    return EU_COUNTRIES.includes(countryCode.toUpperCase());
+    return OPT_IN_COUNTRIES.includes(countryCode.toUpperCase());
   }
 
   // Wait for CookieConsent library to load from CDN (window.CookieConsent will be available)
@@ -91,12 +99,12 @@ const { translations, currentLang = 'en' } = Astro.props;
     const showBanner = shouldShowBanner(userCountry);
     console.log('[CookieConsent] Step 4: Should show banner?', showBanner);
 
-    // Initialize cookie consent for both EU and non-EU users
-    // Non-EU: Auto-accept analytics, no banner shown
-    // EU: Show banner requiring opt-in
+    // Initialize cookie consent for both opt-in and opt-out countries
+    // Opt-out countries: Auto-accept analytics, no banner shown
+    // Opt-in countries: Show banner requiring explicit consent
     try {
       CookieConsent.run({
-      // Hide consent modal initially for non-EU users
+      // Hide consent modal initially for opt-out countries
       autoShow: showBanner,
 
       categories: {
@@ -105,8 +113,8 @@ const { translations, currentLang = 'en' } = Astro.props;
           readOnly: true  // User can't toggle this off
         },
         analytics: {
-          // For non-EU: enabled by default (auto-accept)
-          // For EU: disabled by default (user must opt-in)
+          // For opt-out countries: enabled by default (auto-accept)
+          // For opt-in countries: disabled by default (user must opt-in)
           enabled: !showBanner,
           // Automatically delete GA cookies when consent is withdrawn (GDPR requirement)
           autoClear: {
@@ -166,9 +174,9 @@ const { translations, currentLang = 'en' } = Astro.props;
     });
 
     if (showBanner) {
-      console.log('[CookieConsent] Step 4: Banner initialized for EU country');
+      console.log('[CookieConsent] Step 4: Banner initialized for opt-in country');
     } else {
-      console.log('[CookieConsent] Step 4: Initialized with auto-accept for non-EU country');
+      console.log('[CookieConsent] Step 4: Initialized with auto-accept for opt-out country');
     }
   } catch (error) {
     console.error('[CookieConsent] Error initializing CookieConsent:', error);
