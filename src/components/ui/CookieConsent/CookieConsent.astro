@@ -30,17 +30,45 @@ const { translations, currentLang = 'en' } = Astro.props;
   })();
 </script>
 
-<script>
-  import { getUserCountry, shouldShowBanner } from "./config";
+<!-- Cookie Consent Initialization - Inlined to ensure it runs in production -->
+<script is:inline>
+  // EU/EEA countries requiring GDPR opt-in consent
+  const EU_COUNTRIES = [
+    'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
+    'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
+    'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
+    // EEA countries (not in EU but follow GDPR)
+    'IS', 'LI', 'NO',
+    // UK (follows GDPR-like regulations)
+    'GB'
+  ];
 
-  // Type declaration for global CookieConsent (loaded from CDN)
-  declare global {
-    interface Window {
-      CookieConsent: any;
+  // Get a cookie value by name
+  function getCookie(name) {
+    if (typeof document === 'undefined') return null;
+
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+
+    if (parts.length === 2) {
+      return parts.pop()?.split(';').shift() || null;
     }
+
+    return null;
   }
 
-  // Wait for CookieConsent library to load from CDN
+  // Get the user's country code from the cookie set by Netlify Edge Function
+  function getUserCountry() {
+    const country = getCookie('user_country');
+    return country || 'UNKNOWN';
+  }
+
+  // Check if the user is from an EU/EEA country requiring GDPR consent
+  function shouldShowBanner(countryCode) {
+    return EU_COUNTRIES.includes(countryCode.toUpperCase());
+  }
+
+  // Wait for CookieConsent library to load from CDN (window.CookieConsent will be available)
   function initCookieConsent() {
     const CookieConsent = window.CookieConsent;
 
