@@ -164,6 +164,22 @@ const { translations, currentLang = 'en' } = Astro.props;
   }
 
   console.log('[CookieConsent] Step 2: Component initialized');
+
+  // Sync cookie consent theme with website theme
+  function syncCookieConsentTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+      document.documentElement.classList.add('cc--darkmode');
+    } else {
+      document.documentElement.classList.remove('cc--darkmode');
+    }
+  }
+
+  // Apply initial theme
+  syncCookieConsentTheme();
+
+  // Listen for theme changes from the website's theme toggle
+  document.addEventListener('theme:changed', syncCookieConsentTheme);
 }
 
 // Listen for the library load event
