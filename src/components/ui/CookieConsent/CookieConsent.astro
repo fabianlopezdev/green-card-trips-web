@@ -107,7 +107,18 @@ const { translations, currentLang = 'en' } = Astro.props;
         analytics: {
           // For non-EU: enabled by default (auto-accept)
           // For EU: disabled by default (user must opt-in)
-          enabled: !showBanner
+          enabled: !showBanner,
+          // Automatically delete GA cookies when consent is withdrawn (GDPR requirement)
+          autoClear: {
+            cookies: [
+              {
+                name: /^_ga/  // Matches all Google Analytics cookies (_ga, _ga_*, etc.)
+              },
+              {
+                name: '_gid'   // Google Analytics session cookie
+              }
+            ]
+          }
         }
       },
 
